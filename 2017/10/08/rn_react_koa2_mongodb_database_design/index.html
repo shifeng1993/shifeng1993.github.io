@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="nodejs,实战随笔,后端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。 参考文章： 关联关系 MongoDB进阶模式设计 对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。 数据库设计数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计 逻辑设计模块列表 用户 商品 订单">
+<meta name="keywords" content="nodejs,实战随笔,后端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计">
+<meta property="og:url" content="http://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/index.html">
+<meta property="og:site_name" content="师峰的博客">
+<meta property="og:description" content="这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。 参考文章： 关联关系 MongoDB进阶模式设计 对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。 数据库设计数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计 逻辑设计模块列表 用户 商品 订单">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-03T16:11:06.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计">
+<meta name="twitter:description" content="这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。 参考文章： 关联关系 MongoDB进阶模式设计 对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。 数据库设计数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计 逻辑设计模块列表 用户 商品 订单">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/"/>
+
+
+
+
+
+  <title>【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计 | 师峰的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">师峰的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">正在面向工资编程</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-08T00:00:00+08:00">
+                2017-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。</p>
+<p>参考文章：</p>
+<p><a href="http://www.cnblogs.com/lgxlsm/archive/2013/05/15/3080994.html" title="关联关系" target="_blank" rel="noopener">关联关系</a></p>
+<p><a href="http://www.mongoing.com/mongodb-advanced-pattern-design" title="MongoDB进阶模式设计" target="_blank" rel="noopener">MongoDB进阶模式设计</a></p>
+<p>对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。</p>
+<h1 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h1><p>数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计</p>
+<h1 id="逻辑设计"><a href="#逻辑设计" class="headerlink" title="逻辑设计"></a>逻辑设计</h1><h2 id="模块列表"><a href="#模块列表" class="headerlink" title="模块列表"></a>模块列表</h2><ul>
+<li>用户</li>
+<li>商品</li>
+<li>订单</li>
+<li>购物车</li>
+<li>供货商</li>
+</ul>
+<h2 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h2><ul>
+<li>用户&lt;一–多&gt;订单</li>
+<li>订单&lt;一–多&gt;商品</li>
+<li>用户&lt;一–一&gt;购物车</li>
+<li>购物车&lt;一–多&gt;商品</li>
+<li>商品&lt;一–一&gt;供货商</li>
+<li>商品&lt;多–多&gt;用户</li>
+</ul>
+<h2 id="逻辑设计原则"><a href="#逻辑设计原则" class="headerlink" title="逻辑设计原则"></a>逻辑设计原则</h2><p>mongodb逻辑设计是和mysql不一样的，mongodb用复杂的写入换取了简单的读取，并且采用灵活模式，^_^。赞！</p>
+<p>我理解的mongodb设计原则：</p>
+<ul>
+<li>为应用服务，为性能设计，而不是为了存储优化，</li>
+<li>灵活方式大于规范方式，</li>
+<li>优先嵌套</li>
+<li>对于有实体的对象，采用引入，对于无实体的对象，采用嵌套。</li>
+<li>嵌套适合一对一，一对多</li>
+<li>引用适合多对多</li>
+</ul>
+<h2 id="逻辑设计实施"><a href="#逻辑设计实施" class="headerlink" title="逻辑设计实施"></a>逻辑设计实施</h2><p>模型和实体关系是息息相关的，er图是必须的，但是此demo比较简单，就省去了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户：&#123;</span><br><span class="line">  订单: [&#123;</span><br><span class="line">    商品: [&#123;&#125;],</span><br><span class="line">  &#125;],</span><br><span class="line">  购物车: [商品]</span><br><span class="line">&#125;</span><br><span class="line">商品&#123;</span><br><span class="line">  商品信息，</span><br><span class="line">  供货商：“”</span><br><span class="line">&#125;</span><br><span class="line">供货商：&#123;供货商信息&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一个用户对应多个订单，订单内嵌在用户下</p>
+<p>一个订单可以对应多个商品，商品内嵌在订单下</p>
+<p>一个用户对应一个购物车，购物车内嵌在用户下</p>
+<p>一个购物车对应多个商品，商品内嵌在购物车下</p>
+<p>一个商品对应一个供货商，供货商是单独存在的实体，商品可以没有和下架，但是供货商一直都在，所以商品引用供货商信息。</p>
+<p>注：关于用户下商品的内嵌，如果采用引用，则不能记录购买时的信息。所以必须单独放在用户下</p>
+<h1 id="物理设计"><a href="#物理设计" class="headerlink" title="物理设计"></a>物理设计</h1><p>既然逻辑设计出了物理设计就好办了，先制定规范，后填字段就可以</p>
+<h2 id="物理设计规范"><a href="#物理设计规范" class="headerlink" title="物理设计规范"></a>物理设计规范</h2><ol>
+<li>采用驼峰命名，能简洁清楚表达字段名称意义，</li>
+<li>类别类型，统一用int来存储，</li>
+<li>时间格式，统一用Date来存储</li>
+<li>二进制，统一用Buffer来存储</li>
+</ol>
+<h2 id="物理设计实施"><a href="#物理设计实施" class="headerlink" title="物理设计实施"></a>物理设计实施</h2><h3 id="用户模型"><a href="#用户模型" class="headerlink" title="用户模型"></a>用户模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> ObjectId = mongoose.Schema.Types.ObjectId;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> UserSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  username: &#123;</span><br><span class="line">    type: <span class="built_in">String</span>,</span><br><span class="line">    unique: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 账号</span></span><br><span class="line">  userphone: &#123;</span><br><span class="line">    type: <span class="built_in">String</span>,</span><br><span class="line">    unique: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 手机</span></span><br><span class="line">  password: <span class="built_in">String</span>, <span class="comment">// 密码</span></span><br><span class="line">  nickname: <span class="built_in">String</span>, <span class="comment">// 昵称</span></span><br><span class="line">  summary: <span class="built_in">String</span>, <span class="comment">//简介</span></span><br><span class="line">  userImg: <span class="built_in">String</span>, <span class="comment">// 头像</span></span><br><span class="line">  editTime: &#123;</span><br><span class="line">    type: <span class="built_in">Date</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="built_in">Date</span>.now</span><br><span class="line">  &#125;,</span><br><span class="line">  orders: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: ObjectId,</span><br><span class="line">      ref: <span class="string">'Order'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  shoppingCart: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: ObjectId,</span><br><span class="line">      ref: <span class="string">'ShoppingCart'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'User'</span>, UserSchema);</span><br></pre></td></tr></table></figure>
+<h3 id="订单模型"><a href="#订单模型" class="headerlink" title="订单模型"></a>订单模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> OrderSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  orderState: <span class="built_in">Number</span>,  <span class="comment">//订单状态</span></span><br><span class="line">  createTime: <span class="built_in">Date</span>,  <span class="comment">// 订单创建时间</span></span><br><span class="line">  dealTime: <span class="built_in">Date</span>,   <span class="comment">// 订单成交时间</span></span><br><span class="line">  orderTotal: <span class="built_in">Number</span>,  <span class="comment">// 订单总价</span></span><br><span class="line">  actuaPayment: <span class="built_in">Number</span>, <span class="comment">// 实付款</span></span><br><span class="line">  <span class="comment">// 订单中商品详情</span></span><br><span class="line">  goods: [&#123;</span><br><span class="line">    goodsCode: <span class="built_in">String</span>, <span class="comment">//商品id</span></span><br><span class="line">    goodsName: <span class="built_in">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">    goodsSummary: <span class="built_in">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">    goodsImg: <span class="built_in">String</span>,  <span class="comment">//商品图片</span></span><br><span class="line">    goodsPrice: <span class="built_in">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">    goodsNumber: <span class="built_in">Number</span>, <span class="comment">// 商品数量</span></span><br><span class="line">    supplierUsername: <span class="built_in">String</span>, <span class="comment">// 供货商账号</span></span><br><span class="line">    supplierNickname: <span class="built_in">String</span>, <span class="comment">//供货商名称</span></span><br><span class="line">    goodsType: <span class="built_in">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">    goodsAttrs: [<span class="built_in">String</span>]  <span class="comment">// 商品属性</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Order'</span>, OrderSchema);</span><br></pre></td></tr></table></figure>
+<h3 id="购物车模型"><a href="#购物车模型" class="headerlink" title="购物车模型"></a>购物车模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> ShoppingCartSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  goodsCode: <span class="built_in">String</span>, <span class="comment">//商品id</span></span><br><span class="line">  goodsName: <span class="built_in">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">  goodsSummary: <span class="built_in">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  goodsImg: <span class="built_in">String</span>,  <span class="comment">//商品图片</span></span><br><span class="line">  goodsType: <span class="built_in">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  goodsPrice: <span class="built_in">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  supplierUsername: <span class="built_in">String</span>, <span class="comment">// 供货商id</span></span><br><span class="line">  supplierNickname: <span class="built_in">String</span>, <span class="comment">//供货商名称</span></span><br><span class="line">  goodsAttrs: [<span class="built_in">String</span>],  <span class="comment">// 商品属性</span></span><br><span class="line">  goodsNumber: <span class="built_in">Number</span>, <span class="comment">// 商品数量</span></span><br><span class="line">  editTime: &#123;</span><br><span class="line">    type: <span class="built_in">Date</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="built_in">Date</span>.now</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'ShoppingCart'</span>, ShoppingCartSchema);</span><br></pre></td></tr></table></figure>
+<h3 id="商品模型"><a href="#商品模型" class="headerlink" title="商品模型"></a>商品模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> ObjectId = mongoose.Schema.Types.ObjectId;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> GoodsSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  goodsName: <span class="built_in">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">  goodsSummary: <span class="built_in">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  goodsImg: <span class="built_in">String</span>, <span class="comment">//商品图片</span></span><br><span class="line">  goodsPrice: <span class="built_in">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  goodsType: <span class="built_in">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  goodsStock: <span class="built_in">Number</span>, <span class="comment">// 商品库存</span></span><br><span class="line">  editTime: &#123;</span><br><span class="line">    type: <span class="built_in">Date</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="built_in">Date</span>.now</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 商品属性</span></span><br><span class="line">  goodsAttrs: [</span><br><span class="line">    &#123;</span><br><span class="line">      name: <span class="built_in">String</span>,</span><br><span class="line">      value: [<span class="built_in">String</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// 供货商</span></span><br><span class="line">  supplier: &#123;</span><br><span class="line">    type: ObjectId,</span><br><span class="line">    ref: <span class="string">'Supplier'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Goods'</span>, GoodsSchema);</span><br></pre></td></tr></table></figure>
+<h3 id="供货商模型"><a href="#供货商模型" class="headerlink" title="供货商模型"></a>供货商模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> SupplierSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  username: &#123;</span><br><span class="line">    type: <span class="built_in">String</span>,</span><br><span class="line">    unique: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 账号</span></span><br><span class="line">  userphone: &#123;</span><br><span class="line">    type: <span class="built_in">String</span>,</span><br><span class="line">    unique: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 手机</span></span><br><span class="line">  password: <span class="built_in">String</span>, <span class="comment">// 密码</span></span><br><span class="line">  nickname: <span class="built_in">String</span>, <span class="comment">// 昵称</span></span><br><span class="line">  summary: <span class="built_in">String</span>, <span class="comment">//简介</span></span><br><span class="line">  userImg: <span class="built_in">String</span>, <span class="comment">// 头像</span></span><br><span class="line">  editTime: &#123;</span><br><span class="line">    type: <span class="built_in">Date</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="built_in">Date</span>.now</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Supplier'</span>, SupplierSchema);</span><br></pre></td></tr></table></figure>
+<h1 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h1><p><code>https://github.com/shifeng1993/mongo-server</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          
+            <a href="/tags/实战随笔/" rel="tag"># 实战随笔</a>
+          
+            <a href="/tags/后端/" rel="tag"># 后端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/06/rn_react_koa2_mongodb_requirementAnalysis/" rel="next" title="【RN+react+koa2+mongodb实战随笔】1.需求分析">
+                <i class="fa fa-chevron-left"></i> 【RN+react+koa2+mongodb实战随笔】1.需求分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/rn_react_koa2_mongodb_api1/" rel="prev" title="【RN+react+koa2+mongodb实战随笔】3.API和C层结构">
+                【RN+react+koa2+mongodb实战随笔】3.API和C层结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">海色</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑设计"><span class="nav-number">2.</span> <span class="nav-text">逻辑设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块列表"><span class="nav-number">2.1.</span> <span class="nav-text">模块列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块关系"><span class="nav-number">2.2.</span> <span class="nav-text">模块关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑设计原则"><span class="nav-number">2.3.</span> <span class="nav-text">逻辑设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑设计实施"><span class="nav-number">2.4.</span> <span class="nav-text">逻辑设计实施</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理设计"><span class="nav-number">3.</span> <span class="nav-text">物理设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#物理设计规范"><span class="nav-number">3.1.</span> <span class="nav-text">物理设计规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理设计实施"><span class="nav-number">3.2.</span> <span class="nav-text">物理设计实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户模型"><span class="nav-number">3.2.1.</span> <span class="nav-text">用户模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订单模型"><span class="nav-number">3.2.2.</span> <span class="nav-text">订单模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#购物车模型"><span class="nav-number">3.2.3.</span> <span class="nav-text">购物车模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#商品模型"><span class="nav-number">3.2.4.</span> <span class="nav-text">商品模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#供货商模型"><span class="nav-number">3.2.5.</span> <span class="nav-text">供货商模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目链接"><span class="nav-number">4.</span> <span class="nav-text">项目链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海色</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

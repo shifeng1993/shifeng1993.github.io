@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="flutter," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文为机翻加人工矫正，原文链接：https://flutter.io/flutter-for-react-native/ 本文档适用于React Native（RN）开发人员，他们希望利用现有的RN知识，使用Flutter构建移动应用程序。如果您了解RN框架的基础知识，那么您可以使用此文档作为开始学习Flutter开发的方法。 您可以利用此文档来查找与您的需求最相关的问题。  针对JavaScri">
+<meta name="keywords" content="flutter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【flutter】用于React Native开发者的flutter参考文档">
+<meta property="og:url" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/index.html">
+<meta property="og:site_name" content="师峰的博客">
+<meta property="og:description" content="本文为机翻加人工矫正，原文链接：https://flutter.io/flutter-for-react-native/ 本文档适用于React Native（RN）开发人员，他们希望利用现有的RN知识，使用Flutter构建移动应用程序。如果您了解RN框架的基础知识，那么您可以使用此文档作为开始学习Flutter开发的方法。 您可以利用此文档来查找与您的需求最相关的问题。  针对JavaScri">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic1.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic2.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic3.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic4.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic5.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic6.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic7.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic8.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic9.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic10.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic11.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic12.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic13.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic14.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic15.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic16.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic17.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic18.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic5.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic6.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic19.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic20.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic21.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic22.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic23.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic24.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic25.gif">
+<meta property="og:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic26.gif">
+<meta property="og:updated_time" content="2018-07-03T16:11:06.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【flutter】用于React Native开发者的flutter参考文档">
+<meta name="twitter:description" content="本文为机翻加人工矫正，原文链接：https://flutter.io/flutter-for-react-native/ 本文档适用于React Native（RN）开发人员，他们希望利用现有的RN知识，使用Flutter构建移动应用程序。如果您了解RN框架的基础知识，那么您可以使用此文档作为开始学习Flutter开发的方法。 您可以利用此文档来查找与您的需求最相关的问题。  针对JavaScri">
+<meta name="twitter:image" content="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/pic1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/"/>
+
+
+
+
+
+  <title>【flutter】用于React Native开发者的flutter参考文档 | 师峰的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">师峰的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">正在面向工资编程</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【flutter】用于React Native开发者的flutter参考文档</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T00:00:00+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文为机翻加人工矫正，原文链接：<a href="https://flutter.io/flutter-for-react-native/" target="_blank" rel="noopener">https://flutter.io/flutter-for-react-native/</a></p>
+<p>本文档适用于React Native（RN）开发人员，他们希望利用现有的RN知识，使用Flutter构建移动应用程序。如果您了解RN框架的基础知识，那么您可以使用此文档作为开始学习Flutter开发的方法。</p>
+<p>您可以利用此文档来查找与您的需求最相关的问题。</p>
+<hr>
+<h1 id="针对JavaScript开发人员的Dart简介"><a href="#针对JavaScript开发人员的Dart简介" class="headerlink" title="针对JavaScript开发人员的Dart简介"></a>针对JavaScript开发人员的Dart简介</h1><p>像React Native一样，Flutter使用响应的view。但是，不同点是RN需要编译为native代码。而Flutter则控制屏幕上的每个像素进行渲染，从而避免因需要JavaScript桥而导致的性能问题。</p>
+<p>Dart是一种易于学习的语言，并提供以下功能：</p>
+<ul>
+<li>提供用于构建Web，服务器和移动应用程序的开源，可伸缩编程语言。</li>
+<li>提供面向对象的单继承语言，该语言使用AOT编译为native的C风格语法。</li>
+<li>可选地编译为JavaScript。</li>
+<li>支持接口和抽象类。</li>
+</ul>
+<p>下面介绍JavaScript和Dart之间差异的几个示例。</p>
+<h2 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h2><p>JavaScript是没有入口函数的 - 可以随意定义入口。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startHere</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Can be used as entry point</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Dart中，每个应用都必须有一个最顶层的<code>main()</code>函数，作为应用的入口。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line">main() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<a href="https://dartpad.dartlang.org/0df636e00f348bdec2bc1c8ebc7daeb1" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<h2 id="打印到控制台"><a href="#打印到控制台" class="headerlink" title="打印到控制台"></a>打印到控制台</h2><p>要在Dart中打印到控制台，请使用<code>print</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Hello world!"</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Hello world!'</span>);</span><br></pre></td></tr></table></figure>
+<p>在<a href="https://dartpad.dartlang.org/cf9e652f77636224d3e37d96dcf238e5" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>Dart是类型安全的, 它使用静态类型检查和运行时检查的组合来确保变量的值始终与变量的静态类型相匹配。尽管类型是强制性的，但某些类型注释是可选的，因为Dart执行类型推断。</p>
+<h3 id="创建和分配变量"><a href="#创建和分配变量" class="headerlink" title="创建和分配变量"></a>创建和分配变量</h3><p>在JavaScript中，变量没有类型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"JavaScript"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在Dart中，变量必须是明确类型的，或者类型系统必须自动推断正确的类型。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="built_in">String</span> name = <span class="string">'dart'</span>; <span class="comment">// Explicitly typed as a string.</span></span><br><span class="line"><span class="keyword">var</span> otherName = <span class="string">'Dart'</span>; <span class="comment">// Inferred string.</span></span><br><span class="line"><span class="comment">// Both are acceptable in Dart.</span></span><br></pre></td></tr></table></figure></p>
+<p>在<a href="https://dartpad.dartlang.org/3f4625c16e05eec396d6046883739612" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<p>有关更多信息，请参阅<a href="https://www.dartlang.org/guides/language/sound-dart" target="_blank" rel="noopener">Dart的类型系统</a>。</p>
+<h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>在JavaScript中，未初始化的变量是undefined。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// == undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>在Dart中，未初始化的变量的初始值为null。由于数字是Dart中的对象，因此即使数字类型的未初始化变量也具有该值null。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// == null</span></span><br><span class="line"><span class="built_in">int</span> x; <span class="comment">// == null</span></span><br></pre></td></tr></table></figure></p>
+<p>在<a href="https://dartpad.dartlang.org/57ec21faa8b6fe2326ffd74e9781a2c7" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<p>有关更多信息，请参阅有关<a href="https://www.dartlang.org/guides/language/language-tour#variables" target="_blank" rel="noopener">变量</a>的文档。</p>
+<h2 id="检查null或零"><a href="#检查null或零" class="headerlink" title="检查null或零"></a>检查null或零</h2><p>在JavaScript中，1或任何非空对象的值都视为true。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> myNull = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span> (!myNull) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"null is treated as false"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> zero = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (!zero) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"0 is treated as false"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Dart中，只有布尔值<code>true</code>被视为true。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="keyword">var</span> myNull = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">if</span> (myNull == <span class="keyword">null</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'use "== null" to check null'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> zero = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (zero == <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'use "== 0" to check zero'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在<a href="https://dartpad.dartlang.org/c85038ad677963cb6dc943eb1a0b72e6" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>Dart和JavaScript的函数大致相同。主要区别在于声明。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line">fn() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// can also be written as</span></span><br><span class="line"><span class="built_in">bool</span> fn() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<a href="https://dartpad.dartlang.org/5454e8bfadf3000179d19b9bc6be9918" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<p>有关更多信息，请参阅有关<a href="https://www.dartlang.org/guides/language/language-tour#functions" target="_blank" rel="noopener">函数</a>的文档。</p>
+<h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="Futures"><a href="#Futures" class="headerlink" title="Futures"></a>Futures</h3><p>像JavaScript一样，Dart支持单线程执行。在JavaScript中，Promise对象表示异步操作的最终完成（或失败）及其结果值。</p>
+<p>而Dart使用 <code>Future</code> 对象来处理这个问题。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line">_getIPAddress = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> url=<span class="string">"https://httpbin.org/ip"</span>;</span><br><span class="line">  <span class="keyword">return</span> fetch(url)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .then(<span class="function"><span class="params">responseJson</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(responseJson.origin);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(error);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line">_getIPAddress() &#123;</span><br><span class="line">  <span class="keyword">final</span> url = <span class="string">'https://httpbin.org/ip'</span>;</span><br><span class="line">  HttpRequest.request(url).then((value) &#123;</span><br><span class="line">      <span class="built_in">print</span>(json.decode(value.responseText)[<span class="string">'origin'</span>]);</span><br><span class="line">  &#125;).catchError((error) =&gt; <span class="built_in">print</span>(error));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<a href="https://dartpad.dartlang.org/b68eb981456c5eec03daa3c05ee59486" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<p>有关更多信息，请参阅有关<a href="https://www.dartlang.org/tutorials/language/futures" target="_blank" rel="noopener">Futures</a>的文档。</p>
+<h3 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a><code>async</code> 和 <code>await</code></h3><p>两者都使用<code>async</code>函数声明定义异步函数。</p>
+<p>在JavaScript中，该<code>async</code>函数返回一个<code>Promise</code>对象。该<code>await</code>操作是用来等待Promise。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">async</span> _getIPAddress() &#123;</span><br><span class="line">  <span class="keyword">const</span> url=<span class="string">"https://httpbin.org/ip"</span>;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(url);</span><br><span class="line">  <span class="keyword">const</span> json = <span class="keyword">await</span> response.json();</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> json.origin;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Dart中，一个<code>async</code>函数返回一个<code>Future</code>对象，函数的主体被安排在稍后执行。该<code>await</code>操作是用来等待<code>Future</code>.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line">_getIPAddress() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">final</span> url = <span class="string">'https://httpbin.org/ip'</span>;</span><br><span class="line">  <span class="keyword">var</span> request = <span class="keyword">await</span> HttpRequest.request(url);</span><br><span class="line">  <span class="built_in">String</span> ip = json.decode(request.responseText)[<span class="string">'origin'</span>];</span><br><span class="line">  <span class="built_in">print</span>(ip);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<a href="https://dartpad.dartlang.org/96e845a844d8f8d91c6f5b826ef38951" target="_blank" rel="noopener">DartPad</a>中尝试一下。</p>
+<p>有关更多信息，请参阅有关<a href="https://www.dartlang.org/guides/language/language-tour#asynchrony-support" target="_blank" rel="noopener">async和await</a>的文档。</p>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="如何创建Flutter应用程序？"><a href="#如何创建Flutter应用程序？" class="headerlink" title="如何创建Flutter应用程序？"></a>如何创建Flutter应用程序？</h2><p>要使用React Native创建应用程序，您可以从命令行运行<code>react-native init</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init &lt;projectname&gt;</span><br></pre></td></tr></table></figure></p>
+<p>要在Flutter中创建应用程序，请执行以下操作之一：</p>
+<p>使用<code>flutter create</code>命令行中的命令。确保Flutter SDK位于PATH中。<br>使用安装了Flutter和Dart插件的IDE。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ flutter create &lt;projectname&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有关更多信息，请参阅”<a href="https://flutter.io/get-started/" target="_blank" rel="noopener">入门：概述</a>“教程，该教程将引导您创建按钮单击计数器应用程序。创建一个Flutter项目会构建在Android和iOS设备上运行示例应用程序所需的所有文件。</p>
+<h2 id="如何运行应用程序？"><a href="#如何运行应用程序？" class="headerlink" title="如何运行应用程序？"></a>如何运行应用程序？</h2><p>在React Native中，您将运行<code>react-native run-ios</code>或<code>react-native run-android</code>从项目目录运行。</p>
+<p>您可以通过几种方式运行Flutter应用程序：</p>
+<ul>
+<li>使用<code>flutter run</code>从项目的根目录。</li>
+<li>在带有Flutter和Dart插件的IDE中使用“run”选项。</li>
+</ul>
+<p>需注意：在启动应用之前，请确保有一个设备是在连接的设备，iOS模拟器或Android模拟器上运行。</p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/get-started/" target="_blank" rel="noopener">Flutter入门</a>文档。</p>
+<h2 id="如何导入widget？"><a href="#如何导入widget？" class="headerlink" title="如何导入widget？"></a>如何导入<code>widget</code>？</h2><p>在React Native中，您需要导入每个必需的组件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//React Native</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">"react-native"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，要使用Material Design库中的widget，请导入该<code>material.dart</code>包。要使用iOS样式widget，请导入<code>Cupertino</code>库。要使用更基本的<code>widget</code>，请导入<code>widget</code>库。或者，您可以编写自己的<code>widget</code>库并导入它。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/cupertino.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/widget.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/my_widget.dart'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>无论您导入哪个Widget软件包，Dart都只会引入应用中使用的widget。</p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/widget/" target="_blank" rel="noopener">Flutter widget Catalog</a>。</p>
+<h2 id="Flutter中的-quot-Hello-world-quot-在React-Native里怎么写？"><a href="#Flutter中的-quot-Hello-world-quot-在React-Native里怎么写？" class="headerlink" title="Flutter中的&quot;Hello world!&quot;在React Native里怎么写？"></a>Flutter中的<code>&quot;Hello world!&quot;</code>在React Native里怎么写？</h2><p>在React Native中，<code>HelloWorldApp</code>类<code>React.Component</code>通过返回View组件来扩展和实现渲染方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">"react-native"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Hello world!<span class="xml"><span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const styles = StyleSheet.create(&#123;</span></span><br><span class="line"><span class="regexp">  container: &#123;</span></span><br><span class="line"><span class="regexp">    flex: 1,</span></span><br><span class="line"><span class="regexp">    backgroundColor: "#fff",</span></span><br><span class="line"><span class="regexp">    alignItems: "center",</span></span><br><span class="line"><span class="regexp">    justifyContent: "center"</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure></p>
+<p>在flutter，您可以使用创建一个相同的”Hello world!”的应用程序<code>Center</code>和<code>Text</code>小工具从核心部件库。该<code>Center</code>widget成为widget树的根，并且有一个<code>Text</code>widget。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(</span><br><span class="line">    Center(</span><br><span class="line">      child: Text(</span><br><span class="line">        <span class="string">'Hello, world!'</span>,</span><br><span class="line">        textDirection: TextDirection.ltr,</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下图片显示了基本Flutter”Hello world!”应用程序的Android和iOS UI。</p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic1.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic2.png" width="350" title="iOS"></div><br></div>
+
+<p>现在您已经看到了最基本的Flutter应用程序，下一节将介绍如何利用Flutter丰富的widget库来创建一个现代的，优雅的应用程序。</p>
+<h2 id="如何使用widget并将其嵌套成widget树？"><a href="#如何使用widget并将其嵌套成widget树？" class="headerlink" title="如何使用widget并将其嵌套成widget树？"></a>如何使用widget并将其嵌套成widget树？</h2><p>在Flutter中，几乎所有东西都是一个widget。</p>
+<p>widget是应用程序用户界面的基本构建块。您将窗口widget组成一个层次结构，称为窗口widget树。每个widget嵌套在父窗口widget中，并从其父窗口继承属性。即使应用程序对象本身也是一个widget。没有单独的“应用程序”对象。相反，根部件扮演着这个角色。</p>
+<p>一个widget可以定义：</p>
+<ul>
+<li>结构元素 - 按钮或菜单</li>
+<li>风格元素 - 字体或颜色方案</li>
+<li>布局 - padding或alignment</li>
+</ul>
+<p>以下示例使用<code>Material</code>库中的widget显示”Hello world!”应用程序。在此示例中，widget树嵌套在<code>MaterialApp</code>根widget中。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Welcome to Flutter'</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">'Welcome to Flutter'</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Center(</span><br><span class="line">          child: Text(<span class="string">'Hello world'</span>),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic3.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic4.png" width="350" title="iOS"></div><br></div>
+
+<p>在编写应用程序时，您将使用两种类型的weiget：<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html" target="_blank" rel="noopener">StatelessWidget</a>或 <a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener">StatefulWidget</a>。StatelessWidget听起来就像是一个没有状态的widget。一个StatelessWidget被创建一次，永远不会改变它的外观。StatefulWidget根据收到的数据或用户输入动态改变状态。</p>
+<p>无状态和有状态weiget之间的重要区别在于，有状态weiget具有一个状态对象，用于存储状态数据并跨树重建执行，因此不会丢失。</p>
+<p>在简单或基本应用程序中，嵌套widget很容易，但随着代码库变得越来越大，应用程序变得越来越复杂，您应该将嵌套widget深入分解为返回widget或更小类的函数。创建单独的函数和widget允许您在应用程序内重用这些组件。</p>
+<h2 id="如何创建可重用组件？"><a href="#如何创建可重用组件？" class="headerlink" title="如何创建可重用组件？"></a>如何创建可重用组件？</h2><p>在React Native中，您可以定义一个类来创建可重用组件，然后使用<code>props</code>方法来设置或返回所选元素的属性和值。在下面的例子中，<code>CustomCard</code>该类是定义的，然后在父类中使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomCard</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text &gt; Card &#123;<span class="keyword">this</span>.props.index&#125; &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Button</span></span><br><span class="line"><span class="regexp">          title="Press"</span></span><br><span class="line"><span class="regexp">          onPress=&#123;() =&gt; this.props.onPress(this.props.index)&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ Usage</span></span><br><span class="line"><span class="regexp">&lt;CustomCard onPress=&#123;this.onPress&#125; index=&#123;item.key&#125; /</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，定义一个类来创建自定义窗口weiget，然后重用窗口weiget。您还可以定义和调用返回可重用weiget的<code>build</code>函数，如以下示例中的函数中所示。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomCard</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  CustomCard(&#123;<span class="meta">@required</span> <span class="keyword">this</span>.index, <span class="meta">@required</span> <span class="keyword">this</span>.onPress&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> index;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Function</span> onPress;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Card(</span><br><span class="line">      child: Column(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">'Card $index'</span>),</span><br><span class="line">          FlatButton(</span><br><span class="line">            child: <span class="keyword">const</span> Text(<span class="string">'Press'</span>),</span><br><span class="line">            onPressed: <span class="keyword">this</span>.onPress,</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line">CustomCard(</span><br><span class="line">  index: index,</span><br><span class="line">  onPress: () &#123; </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Card $index'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>在前面的例子中，<code>CustomCard</code>该类的构造函数使用Dart的大括号语法来表示命名的可选参数。<code>{}</code></p>
+<p>要求这些字段，请从构造函数中删除花括号，或者添加<code>@required</code>到构造函数中。</p>
+<p>以下屏幕截图显示了可重用的<code>CustomCard</code>类的示例。</p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic5.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic6.png" width="350" title="iOS"></div><br></div>
+
+<h1 id="项目结构和资源目录"><a href="#项目结构和资源目录" class="headerlink" title="项目结构和资源目录"></a>项目结构和资源目录</h1><h2 id="我从哪里开始编写代码？"><a href="#我从哪里开始编写代码？" class="headerlink" title="我从哪里开始编写代码？"></a>我从哪里开始编写代码？</h2><p>从<code>main.dart</code>文件开始。它是在您创建Flutter应用程序时自动生成的。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="keyword">void</span> main()&#123;</span><br><span class="line"> <span class="built_in">print</span>(<span class="string">"Hello, this is the main function."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，入口点文件是<code>&lt;projectname&gt;/lib/main.dart</code>从<code>main</code>函数开始执行。</p>
+<h2 id="如何在Flutter应用程序中构建文件？"><a href="#如何在Flutter应用程序中构建文件？" class="headerlink" title="如何在Flutter应用程序中构建文件？"></a>如何在Flutter应用程序中构建文件？</h2><p>当您创建一个新的Flutter项目时，它会构建以下目录结构。您可以稍后自定义，但这是您开始的地方。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┬</span><br><span class="line">└ projectname</span><br><span class="line">  ┬</span><br><span class="line">  ├ android      - android源码。</span><br><span class="line">  ├ build        - 存储iOS和Android的build文件。</span><br><span class="line">  ├ ios          - iOS源码。</span><br><span class="line">  ├ lib          - 外部可访问的Dart源文件。</span><br><span class="line">    ┬</span><br><span class="line">    └ src        - 额外的源文件。</span><br><span class="line">    └ main.dart  - Flutter入口点和新应用程序的开始。</span><br><span class="line">  ├ test         - 自动化测试文件。</span><br><span class="line">  └ pubspec.yaml - Flutter应用程序的元数据。</span><br><span class="line">                   这相当于React Native中的package.json文件。</span><br></pre></td></tr></table></figure></p>
+<h2 id="我在哪里放置我的资源和资产以及如何使用它们？"><a href="#我在哪里放置我的资源和资产以及如何使用它们？" class="headerlink" title="我在哪里放置我的资源和资产以及如何使用它们？"></a>我在哪里放置我的资源和资产以及如何使用它们？</h2><p>Flutter资源或资产是与您的应用程序捆绑并部署的文件，可在运行时访问。扑动应用程序可以包含以下资产类型：</p>
+<ul>
+<li>静态数据，如JSON文件</li>
+<li>配置文件</li>
+<li>图标和图像（JPEG，PNG，GIF，动画GIF，WebP，动画WebP，BMP和WBMP）</li>
+</ul>
+<p>Flutter使用<code>pubspec.yaml</code>位于项目根目录的文件来识别应用程序所需的资产。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flutter:</span><br><span class="line">  assets:</span><br><span class="line">    - assets/my_icon.png</span><br><span class="line">    - assets/background.png</span><br></pre></td></tr></table></figure></p>
+<p>该assets 节点指定应包含在应用程序中的文件。每个资产都由相对于<code>pubspec.yaml</code> 资产文件所在文件的显式路径标识。声明资产的顺序无关紧要。使用的实际目录（assets 在本例中）无关紧要。但是，虽然资产可以放在任何app目录中，但最好将它们放在assets目录中。</p>
+<p>在构建期间，Flutter将资产放入称为资产包的特殊存档中，应用程序在运行时读取这些存档。在资产部分中指定资产的路径时pubspec.yaml，构建过程会查找相邻子目录中具有相同名称的任何文件。这些文件也与指定的资产一起包含在资产包中。flutter使用资产变型时，为您的应用程序选择合适分辨率的图像。</p>
+<p>在React Native中，您可以通过将图像文件放在源代码目录中并引用它来添加静态图像。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image source=&#123;<span class="built_in">require</span>(<span class="string">"./my-icon.png"</span>)&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，使用AssetImage窗口weiget构建方法中的类向应用程序添加静态图像。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image: AssetImage(<span class="string">'assets/background.png'</span>),</span><br></pre></td></tr></table></figure></p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/assets-and-images/" target="_blank" rel="noopener">在Flutter中添加资产和图像</a>。</p>
+<h2 id="如何通过网络加载图像？"><a href="#如何通过网络加载图像？" class="headerlink" title="如何通过网络加载图像？"></a>如何通过网络加载图像？</h2><p>在React Native中，您可以在<code>Image</code>组件使用props属性<code>source</code>的<code>uri</code>方式进行指定，并在Image需要时提供大小。</p>
+<p>在Flutter中，使用<code>Image.network</code>构造函数来包含URL中的图像。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">body: Image.network(<span class="string">'https://flutter.io/images/owl.jpg'</span>),</span><br></pre></td></tr></table></figure></p>
+<h2 id="我如何安装软件包和软件包插件？"><a href="#我如何安装软件包和软件包插件？" class="headerlink" title="我如何安装软件包和软件包插件？"></a>我如何安装软件包和软件包插件？</h2><p>Flutter支持使用由其他开发者贡献给Flutter和Dart生态系统的公用package。这使您可以快速构建应用程序，而无需从头开始开发所有内容。包含平台特定代码的软件包称为package plugins。</p>
+<p>在React Native中，您可以使用<code>yarn add {package-name}</code>或<code>npm install {package-name} --save</code>从命令行安装package。</p>
+<p>在Flutter中，使用以下说明安装包装：</p>
+<p>1.将软件包名称和版本添加到<code>pubspec.yaml</code>依赖项部分。下面的例子展示了如何将·<code>google_sign_inDart</code>包添加到<code>pubspec.yaml</code>文件中。在YAML文件中工作时检查缩进，因为缩进空格很重要！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  flutter:</span><br><span class="line"> sdk: flutter</span><br><span class="line">  google_sign_in: ^3.0.3</span><br></pre></td></tr></table></figure></p>
+<p>2.通过使用命令行来安装软件包<code>flutter packages get</code>。如果使用IDE，它通常会自动运行<code>flutter packages get</code>，或者它可能会提示您这样做。</p>
+<p>3.将软件包导入您的应用程序代码，如下所示：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/cupertino.dart'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/using-packages/" target="_blank" rel="noopener">使用包</a>和<a href="https://flutter.io/developing-packages/" target="_blank" rel="noopener">开发包和插件</a>。</p>
+<p>您可以在<a href="https://pub.dartlang.org/flutter/" target="_blank" rel="noopener">pub.dartlang.org的Flutter Packages部分</a>找到Flutter开发人员共享的许多packages。</p>
+<h1 id="Flutter-widget"><a href="#Flutter-widget" class="headerlink" title="Flutter widget"></a>Flutter widget</h1><p>在Flutter中，您可以使用widget构建您的用户界面，这些widget根据当前的配置和状态描述他们的视图应该是什么样子。</p>
+<p>widget通常由许多嵌套的小型单一用途widget组成，以产生强大的效果。例如，<code>Container</code>widget由几个widget组成，负责布局，绘制，定位和大小调整。具体地，<code>Container</code>widget包括<code>LimitedBox</code>，<code>ConstrainedBox</code>，<code>Align</code>，<code>Padding</code>，<code>DecoratedBox</code>，和<code>Transform</code> widgets。Container您可以用新的和独特的方式组合这些和其他简单的widget，而不是创建自定义效果的子类。</p>
+<p>该<code>Center</code>部件是如何控制布局的另一个例子。要将widget居中，将其包装在<code>Center</code>widget中，然后使用布局widget进行对齐，行，列和网格。这些布局widget没有自己的可视化表示。相反，他们唯一的目的是控制另一个widget布局的某些方面。要了解widget以某种方式呈现的原因，检查相邻窗口widget通常很有帮助。</p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/technical-overview/" target="_blank" rel="noopener">Flutter技术概述</a>。</p>
+<p>有关Widgets包中的核心weiget的更多信息，请参阅<a href="https://flutter.io/widgets/basics/" target="_blank" rel="noopener">Flutter Basic Widgets</a>，<a href="https://flutter.io/widgets/" target="_blank" rel="noopener">Flutter Widget 目录</a>或 <a href="https://flutter.io/widgets/widgetindex/" target="_blank" rel="noopener">Flutter Widget 索引</a>。</p>
+<h1 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h1><h2 id="什么相当于View容器？"><a href="#什么相当于View容器？" class="headerlink" title="什么相当于View容器？"></a>什么相当于<code>View</code>容器？</h2><p>在React Native中，<code>View</code>是一个支持布局的容器<code>Flexbox</code>，样式，触摸处理和可访问性控件。</p>
+<p>在Flutter中，您可以使用Widgets库中的核心布局weiget，例如 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html" target="_blank" rel="noopener">Container</a>，<a href="https://docs.flutter.io/flutter/widgets/Column-class.html" target="_blank" rel="noopener">Column</a>，<a href="https://docs.flutter.io/flutter/widgets/Row-class.html" target="_blank" rel="noopener">Row</a>和 <a href="https://docs.flutter.io/flutter/widgets/Center-class.html" target="_blank" rel="noopener">Center</a>。</p>
+<p>有关更多信息，请参阅<a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener">Layout Widgets</a>目录。</p>
+<h2 id="什么相当于FlatList或SectionList？"><a href="#什么相当于FlatList或SectionList？" class="headerlink" title="什么相当于FlatList或SectionList？"></a>什么相当于<code>FlatList</code>或<code>SectionList</code>？</h2><p><code>List</code>是垂直排列的可滚动组件列表。</p>
+<p>在React Native中，<code>FlatList</code>或<code>SectionList</code>用于呈现简单或分段的列表。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">&lt;FlatList</span><br><span class="line">  data=&#123;[ ... ]&#125;</span><br><span class="line">  renderItem=&#123;(&#123; item &#125;) =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Text</span>&gt;</span>&#123;item.key&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://docs.flutter.io/flutter/widgets/ListView-class.html" target="_blank" rel="noopener">ListView</a>是Flutter最常用的滚动weiget。默认的构造函数需要一个明确的子列表。<a href="https://docs.flutter.io/flutter/widgets/ListView-class.html" target="_blank" rel="noopener">ListView</a>对于少数weiget是最合适的。对于一个大的或无限的列表，使用<code>ListView.builder</code>，它根据需要构建它的子项，并只构建那些可见的子项。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">var</span> data = [ ... ];</span><br><span class="line">ListView.builder(</span><br><span class="line">  itemCount: data.length,</span><br><span class="line">  itemBuilder: (context, <span class="built_in">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(</span><br><span class="line">      data[index],</span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic7.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic8.gif" width="350" title="iOS"></div><br></div><br>要了解如何实现无限滚动列表，请参阅 <a href="https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1/#0" target="_blank" rel="noopener">编写您的第一个flutter应用程序，第1部分</a> codelab。<br><br>## 我如何使用Canvas绘制？<br>在React Native中，画布组件不存在，所以<code>react-native-canvas</code>使用第三方库。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">handleCanvas = <span class="function"><span class="params">canvas</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">  ctx.fillStyle = <span class="string">"skyblue"</span>;</span><br><span class="line">  ctx.beginPath();</span><br><span class="line">  ctx.arc(<span class="number">75</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI);</span><br><span class="line">  ctx.fillRect(<span class="number">150</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">  ctx.stroke();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;View&gt;</span><br><span class="line">      &lt;Canvas ref=&#123;<span class="keyword">this</span>.handleCanvas&#125; /&gt;</span><br><span class="line">    &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure><br><br>在Flutter中，您可以使用CustomPaint 和CustomPainter类绘制到画布。<br><br>以下示例显示了如何在绘制阶段使用<code>CustomPaint</code>weiget进行绘制。它实现了抽象类CustomPainter，并将其传递给CustomPaint的画家属性。CustomPaint子类必须实现<code>paint</code>和<code>shouldRepaint</code>方法。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCanvasPainter</span> <span class="keyword">extends</span> <span class="title">CustomPainter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> paint(Canvas canvas, Size size) &#123;</span><br><span class="line">    Paint paint = Paint();</span><br><span class="line">    paint.color = Colors.amber;</span><br><span class="line">    canvas.drawCircle(Offset(<span class="number">100.0</span>, <span class="number">200.0</span>), <span class="number">40.0</span>, paint);</span><br><span class="line">    Paint paintRect = Paint();</span><br><span class="line">    paintRect.color = Colors.lightBlue;</span><br><span class="line">    Rect rect = Rect.fromPoints(Offset(<span class="number">150.0</span>, <span class="number">300.0</span>), Offset(<span class="number">300.0</span>, <span class="number">400.0</span>));</span><br><span class="line">    canvas.drawRect(rect, paintRect);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">bool</span> shouldRepaint(MyCanvasPainter oldDelegate) =&gt; <span class="keyword">false</span>;</span><br><span class="line">  <span class="built_in">bool</span> shouldRebuildSemantics(MyCanvasPainter oldDelegate) =&gt; <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyCanvasState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyCanvas</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: CustomPaint(</span><br><span class="line">        painter: MyCanvasPainter(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic9.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic10.png" width="350" title="iOS"></div><br></div>
+
+<h1 id="Layouts-布局"><a href="#Layouts-布局" class="headerlink" title="Layouts(布局)"></a>Layouts(布局)</h1><h2 id="如何使用widget来定义布局属性？"><a href="#如何使用widget来定义布局属性？" class="headerlink" title="如何使用widget来定义布局属性？"></a>如何使用widget来定义布局属性？</h2><p>在React Native中，大部分布局可以通过传递给特定组件的道具完成。例如，您可以使用<code>View</code>组件的props属性<code>style</code>来指定flexbox属性。要在列中排列组件，您需要指定一个属性，如：<code>flexDirection:&#39;column&#39;</code>。</p>
+<p>在Flutter中，布局主要由widget定义，widget专门用于提供布局，并结合控件和其样式属性。</p>
+<p>例如，<a href="https://docs.flutter.io/flutter/widgets/Column-class.html" target="_blank" rel="noopener"><code>Column</code></a> 和 <a href="https://docs.flutter.io/flutter/widgets/Row-class.html" target="_blank" rel="noopener"><code>Row</code></a> 将获取一组子对象，并分别垂直和水平对齐。<a href="https://docs.flutter.io/flutter/widgets/Container-class.html" target="_blank" rel="noopener"><code>Container</code></a> 采用布局和样式属性的组合，而<a href="https://docs.flutter.io/flutter/widgets/Center-class.html" target="_blank" rel="noopener"><code>Center</code></a>控件将其子控件居中。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">Center(</span><br><span class="line">  child: Column(</span><br><span class="line">    children: &lt;Widget&gt;[</span><br><span class="line">      Container(</span><br><span class="line">        color: Colors.red,</span><br><span class="line">        width: <span class="number">100.0</span>,</span><br><span class="line">        height: <span class="number">100.0</span>,</span><br><span class="line">      ),</span><br><span class="line">      Container(</span><br><span class="line">        color: Colors.blue,</span><br><span class="line">        width: <span class="number">100.0</span>,</span><br><span class="line">        height: <span class="number">100.0</span>,</span><br><span class="line">      ),</span><br><span class="line">      Container(</span><br><span class="line">        color: Colors.green,</span><br><span class="line">        width: <span class="number">100.0</span>,</span><br><span class="line">        height: <span class="number">100.0</span>,</span><br><span class="line">      ),</span><br><span class="line">    ],</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>Flutter在其核心部件库中提供了各种布局部件。例如，<a href="https://docs.flutter.io/flutter/widgets/Padding-class.html" target="_blank" rel="noopener"><code>Padding</code></a>和<a href="https://docs.flutter.io/flutter/widgets/Align-class.html" target="_blank" rel="noopener"><code>Align</code></a>，和<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html" target="_blank" rel="noopener"><code>Stack</code></a>。</p>
+<p>有关完整列表，请参阅<a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener">Layout Widgets</a>。</p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic11.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic12.gif" width="350" title="iOS"></div><br></div>
+
+<h2 id="如何布局widget？"><a href="#如何布局widget？" class="headerlink" title="如何布局widget？"></a>如何布局widget？</h2><p>在React Native中，组件可以使用absolute定位进行布局。</p>
+<p>Flutter使用<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html" target="_blank" rel="noopener">Stack</a>widget在图层中排列子widget。widget可以完全或部分重叠基本widget。</p>
+<p>该<code>Stack</code>widget的子widget相对于它的框的边缘进行定位。如果你只是想重叠几个子部件，这个类很有用。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">Stack(</span><br><span class="line">  alignment: <span class="keyword">const</span> Alignment(<span class="number">0.6</span>, <span class="number">0.6</span>),</span><br><span class="line">  children: &lt;Widget&gt;[</span><br><span class="line">    CircleAvatar(</span><br><span class="line">      backgroundImage: NetworkImage(</span><br><span class="line">        <span class="string">"https://avatars3.githubusercontent.com/u/14101776?v=4"</span>),</span><br><span class="line">    ),</span><br><span class="line">    Container(</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          color: Colors.black45,</span><br><span class="line">      ),</span><br><span class="line">      child: Text(<span class="string">'Flutter'</span>),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>前面的示例用于<code>Stack</code>在<code>Container</code>上覆盖<code>Container</code>（<code>Text</code> 在半透明的黑色背景上显示它）<code>CircleAvatar</code>。<code>Stack</code>使用对齐属性和对齐坐标偏移文本。</p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic13.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic14.png" width="350" title="iOS"></div><br></div>
+
+<p>有关更多信息，请参阅<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html" target="_blank" rel="noopener">Stack</a>类文档。</p>
+<h1 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h1><h2 id="如何设置组件的样式？"><a href="#如何设置组件的样式？" class="headerlink" title="如何设置组件的样式？"></a>如何设置组件的样式？</h2><p>在React Native中，内联样式并<code>Stylesheets.create</code>用于对组件进行样式设置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">  &lt;Text style=&#123;&#123; <span class="attr">fontSize</span>: <span class="number">32</span>, <span class="attr">color</span>: <span class="string">"cyan"</span>, <span class="attr">fontWeight</span>: <span class="string">"600"</span> &#125;&#125;&gt;</span><br><span class="line">    This is a sample text</span><br><span class="line">  &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>View&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">"#fff"</span>,</span><br><span class="line">    alignItems: <span class="string">"center"</span>,</span><br><span class="line">    justifyContent: <span class="string">"center"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，一个<code>Text</code>widget可以<code>TextStyle</code>为其样式属性选择一个类。如果您想在多个位置使用相同的文本样式，则可以创建一个<code>TextStyle</code>类并将其用于多个<code>Text</code>widget。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">var</span> textStyle = TextStyle(fontSize: <span class="number">32.0</span>, color: Colors.cyan, fontWeight:</span><br><span class="line">   FontWeight.w600);</span><br><span class="line">	...</span><br><span class="line">Center(</span><br><span class="line">  child: Column(</span><br><span class="line">    children: &lt;Widget&gt;[</span><br><span class="line">      Text(</span><br><span class="line">        <span class="string">'Sample text'</span>,</span><br><span class="line">        style: textStyle,</span><br><span class="line">      ),</span><br><span class="line">      Padding(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">20.0</span>),</span><br><span class="line">        child: Icon(Icons.lightbulb_outline,</span><br><span class="line">          size: <span class="number">48.0</span>, color: Colors.redAccent)</span><br><span class="line">      ),</span><br><span class="line">    ],</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic15.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic16.gif" width="350" title="iOS"></div><br></div>
+
+<h2 id="如何使用Icons和Colors？"><a href="#如何使用Icons和Colors？" class="headerlink" title="如何使用Icons和Colors？"></a>如何使用<code>Icons</code>和<code>Colors</code>？</h2><p>React Native不包含对图标的支持，因此使用第三方库。</p>
+<p>在Flutter中，导入<code>Material</code>库也引入了丰富的 Material <a href="https://docs.flutter.io/flutter/material/Icons-class.html" target="_blank" rel="noopener">Icons</a> 和 <a href="https://docs.flutter.io/flutter/material/Colors-class.html" target="_blank" rel="noopener">Colors</a>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Icon(Icons.lightbulb_outline, color: Colors.redAccent)</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>Icons</code>类时，请确保<code>uses-material-design: true</code>在项目<code>pubspec.yaml</code>文件中设置。这可确保<code>MaterialIcons</code>显示图标的字体包含在您的应用程序中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: my_awesome_application</span><br><span class="line">flutter: uses-material-design: true</span><br></pre></td></tr></table></figure></p>
+<p>Flutter的<a href="https://flutter.io/widgets/cupertino/" target="_blank" rel="noopener">Cupertino（iOS风格）</a>包为当前的iOS设计语言提供了高保真的widgets。要使用该<code>CupertinoIcons</code>字体，请在项目 <code>pubspec.yaml</code> 文件中添加一个依赖项 <code>cupertino_icons</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name: my_awesome_application</span><br><span class="line">dependencies:</span><br><span class="line">  cupertino_icons: ^0.1.0</span><br></pre></td></tr></table></figure></p>
+<p>要全局自定义组件的颜色和样式，请使用ThemeData为主题的各个方面指定默认颜色。将主题属性设置<code>MaterialApp</code>为该<code>ThemeData</code>对象。该 <code>Colors</code> 类从Material Design提供的主题配色。</p>
+<p>以下示例将主题颜色设置为blue，并将文本选择设置为red。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SampleApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Sample App'</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">        textSelectionColor: Colors.red</span><br><span class="line">      ),</span><br><span class="line">      home: SampleAppPage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="我如何添加风格主题？"><a href="#我如何添加风格主题？" class="headerlink" title="我如何添加风格主题？"></a>我如何添加风格主题？</h2><p>在React Native中，通用主题是为样式表中的组件定义的，然后在组件中使用。</p>
+<p>在Flutter中，通过在<a href="https://docs.flutter.io/flutter/material/ThemeData-class.html" target="_blank" rel="noopener"><code>ThemeData</code></a>类中定义样式并将其传递给<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html" target="_blank" rel="noopener">MaterialApp</a>widget中的<code>theme</code>属性，为几乎所有内容创建统一样式。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> MaterialApp(</span><br><span class="line">    theme: ThemeData(</span><br><span class="line">      primaryColor: Colors.cyan,</span><br><span class="line">      brightness: Brightness.dark,</span><br><span class="line">    ),</span><br><span class="line">    home: StylingPage(),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>即使不使用<code>MaterialApp</code>widget，也可以用Theme。<a href="https://docs.flutter.io/flutter/material/Theme-class.html" target="_blank" rel="noopener"><code>Theme</code></a>在其数据参数中接受一个<code>ThemeData</code>，并将<code>ThemeData</code>应用于其所有子部件。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line"> Widget build(BuildContext context) &#123;</span><br><span class="line">   <span class="keyword">return</span> Theme(</span><br><span class="line">     data: ThemeData(</span><br><span class="line">       primaryColor: Colors.cyan,</span><br><span class="line">       brightness: brightness,</span><br><span class="line">     ),</span><br><span class="line">     child: Scaffold(</span><br><span class="line">        backgroundColor: Theme.of(context).primaryColor,</span><br><span class="line">             ...</span><br><span class="line">             ...</span><br><span class="line">     ),</span><br><span class="line">   );</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="State管理"><a href="#State管理" class="headerlink" title="State管理"></a>State管理</h1><p>状态是可以在构建widgets时同步读取的信息，也可以是在widgets的生命周期内可能更改的信息。要在Flutter中管理应用程序状态，请使用与状态对象配对的 <a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener">StatefulWidget</a>。</p>
+<h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>StatelessWidget是一个不需要状态更改的widget，它没有内部状态可管理。</p>
+<p>如果所描述的用户界面部分不依赖于对象本身中的配置信息和widget填充的BuildContext，则无状态widget非常有用。</p>
+<p><a href="https://docs.flutter.io/flutter/material/AboutDialog-class.html" target="_blank" rel="noopener"><code>AboutDialog</code></a>、<a href="https://docs.flutter.io/flutter/material/CircleAvatar-class.html" target="_blank" rel="noopener"><code>CircleAvator</code></a>和<a href="https://docs.flutter.io/flutter/widgets/Text-class.html" target="_blank" rel="noopener"><code>Text</code></a>是无状态widget的示例，它们是<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html" target="_blank" rel="noopener"><code>StatelessWidget</code></a>的子类。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyStatelessWidget(text: <span class="string">"StatelessWidget Example to show immutable data"</span>));</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStatelessWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> text;</span><br><span class="line">  MyStatelessWidget(&#123;Key key, <span class="keyword">this</span>.text&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Center(</span><br><span class="line">      child: Text(</span><br><span class="line">        text,</span><br><span class="line">        textDirection: TextDirection.ltr,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在前面的例子中，您使用了<code>MyStatelessWidget</code>类的构造函数来传递一个<code>final</code>的<code>text</code>。这个类扩展了<code>StatelessWidget</code>,它包含不可变数据。</p>
+<p><code>build</code>通常仅在三种情况下调用无状态widget的方法：</p>
+<ul>
+<li>当widget插入到树中时</li>
+<li>当widget的父部件更改其配置时</li>
+<li>当依赖于<a href="https://docs.flutter.io/flutter/widgets/InheritedWidget-class.html" target="_blank" rel="noopener"><code>InheritedWidget</code></a>时，更改</li>
+</ul>
+<h2 id="StatefulWidget"><a href="#StatefulWidget" class="headerlink" title="StatefulWidget"></a>StatefulWidget</h2><p><a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener">StatefulWidget</a>是一个状态变化的widget。使用<code>setState</code>方法来管理<code>StatefulWidget</code>的状态变更。调用 <code>setState</code> 会告诉Fltter框架，某个状态发生了变化，这会导致应用程序重新运行<code>build</code>方法，以便应用程序能够反映变更。</p>
+<p>state是在构建widget时可以同步读取的信息，在widget的生命周期内可能会发生更改。widget实现者有责任确保状态变化时立即通知状态。当widget可以动态更改时，使用<code>StatefulWidget</code>。例如，通过在表单中键入或移动滑块来更改widget的状态。或者，它可以随着时间的推移而改变-也许是一个数据提要更新了UI。</p>
+<p><a href="https://docs.flutter.io/flutter/material/Checkbox-class.html" target="_blank" rel="noopener">Checkbox</a>，<a href="https://docs.flutter.io/flutter/material/Radio-class.html" target="_blank" rel="noopener">Radio</a>，<a href="https://docs.flutter.io/flutter/material/Slider-class.html" target="_blank" rel="noopener">Slider</a>，<a href="https://docs.flutter.io/flutter/material/InkWell-class.html" target="_blank" rel="noopener">InkWell</a>，<a href="https://docs.flutter.io/flutter/widgets/Form-class.html" target="_blank" rel="noopener">Form</a>和<a href="https://docs.flutter.io/flutter/material/TextField-class.html" target="_blank" rel="noopener">TextField</a>是有状态窗口widget的示例，它们是<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener">StatefulWidget</a>的子类。</p>
+<p>下面的示例声明一个StatefulWidget，它需要<code>createState()</code>方法。此方法创建用于管理widget状态的状态对象<code>_MyStatefulWidgetState</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStatefulWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  MyStatefulWidget(&#123;Key key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyStatefulWidgetState createState() =&gt; _MyStatefulWidgetState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面的状态类<code>_MyStatefulWidgetState</code>实现了widget的<code>build()</code>方法。例如，当状态更改时，当用户切换按钮时，使用新的切换值调用<code>setState</code>。这会导致框架在UI中重新生成这个widget。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyStatefulWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyStatefulWidget</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">bool</span> showtext=<span class="keyword">true</span>;</span><br><span class="line">  <span class="built_in">bool</span> toggleState=<span class="keyword">true</span>;</span><br><span class="line">  Timer t2;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> toggleBlinkState()&#123;</span><br><span class="line">    setState(()&#123;</span><br><span class="line">      toggleState=!toggleState;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> twenty = <span class="keyword">const</span> <span class="built_in">Duration</span>(milliseconds: <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">if</span>(toggleState==<span class="keyword">false</span>) &#123;</span><br><span class="line">      t2 = Timer.periodic(twenty, (Timer t) &#123;</span><br><span class="line">        toggleShowText();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      t2.cancel();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> toggleShowText()&#123;</span><br><span class="line">    setState(()&#123;</span><br><span class="line">      showtext=!showtext;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            (showtext</span><br><span class="line">              ?(Text(<span class="string">'This execution will be done before you can blink.'</span>))</span><br><span class="line">              :(Container())</span><br><span class="line">            ),</span><br><span class="line">            Padding(</span><br><span class="line">              padding: EdgeInsets.only(top: <span class="number">70.0</span>),</span><br><span class="line">              child: RaisedButton(</span><br><span class="line">                onPressed: toggleBlinkState,</span><br><span class="line">                child: (toggleState</span><br><span class="line">                  ?( Text(<span class="string">'Blink'</span>))</span><br><span class="line">                  :(Text(<span class="string">'Stop Blinking'</span>))</span><br><span class="line">                )</span><br><span class="line">              )</span><br><span class="line">            )</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="什么是StatefulWidget和StatelessWidget最佳实践？"><a href="#什么是StatefulWidget和StatelessWidget最佳实践？" class="headerlink" title="什么是StatefulWidget和StatelessWidget最佳实践？"></a>什么是StatefulWidget和StatelessWidget最佳实践？</h2><p>在设计窗口widget时，需要考虑以下几点。</p>
+<h3 id="1-确定一个widget应该是一个StatefulWidget还是一个StatelessWidget"><a href="#1-确定一个widget应该是一个StatefulWidget还是一个StatelessWidget" class="headerlink" title="1.确定一个widget应该是一个StatefulWidget还是一个StatelessWidget"></a>1.确定一个widget应该是一个StatefulWidget还是一个StatelessWidget</h3><p>在Flutter中，widget是有状态的还是无状态的 - 取决于它们是否依赖于状态变化。</p>
+<ul>
+<li>如果窗口widget发生更改 - 用户与其进行交互或数据源中断UI，则它是有状态的。</li>
+<li>如果一个widget是只读的或不可变的，那么它就是无状态。</li>
+</ul>
+<h3 id="2-确定哪个对象管理widget的状态（对于StatefulWidget）"><a href="#2-确定哪个对象管理widget的状态（对于StatefulWidget）" class="headerlink" title="2.确定哪个对象管理widget的状态（对于StatefulWidget）"></a>2.确定哪个对象管理widget的状态（对于StatefulWidget）</h3><p>在Flutter中，管理状态有三种主要方式：</p>
+<ul>
+<li>widget管理自己的状态</li>
+<li>父widget管理widget的状态</li>
+<li>混合搭配的方法</li>
+</ul>
+<p>在决定使用哪种方法时，请考虑以下原则：</p>
+<ul>
+<li>如果所涉及的状态是用户数据，例如复选框的选中或未选中模式，或者滑块的位置，那么状态最好由父widget管理。</li>
+<li>如果所涉及的状态是图形的，例如动画，那么widget本身就可以最好地管理状态。</li>
+<li>如果有疑问，让父widget管理子widget的状态。</li>
+</ul>
+<h3 id="3-子类StatefulWidget和State"><a href="#3-子类StatefulWidget和State" class="headerlink" title="3.子类StatefulWidget和State"></a>3.子类StatefulWidget和State</h3><p><code>MyStatefulWidget</code>类管理自己的状态-它继承自StatefulWidget，它覆盖createState()方法来创建<code>State</code>对象，框架调用<code>createState()</code>来构建widget。在本例中，createState()创建了一个<code>_MyStatefulWidgetState</code>的实例，该实例在下一个最佳实践中实现。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStatefulWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  MyStatefulWidget(&#123;Key key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyStatefulWidgetState createState() =&gt; _MyStatefulWidgetState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyStatefulWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyStatefulWidget</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-将StatefulWidget添加到widget树中"><a href="#4-将StatefulWidget添加到widget树中" class="headerlink" title="4.将StatefulWidget添加到widget树中"></a>4.将StatefulWidget添加到widget树中</h3><p><code>StatefulWidget</code>在app的构建方法中将自定义添加到窗口widget树。<br>在应用程序<code>build</code>方法中的widget树中添加自定义<code>StatefulWidget</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStatelessWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyStatefulWidget(title: <span class="string">'State Change Demo'</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic17.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic18.gif" width="350" title="iOS"></div><br></div>
+
+<h1 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h1><p>在React Native中，大多数组件在使用不同的参数或属性创建时都可以自定义<code>props</code>。这些参数可以在子组件中使用<code>this.props</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomCard</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text&gt; Card &#123;<span class="keyword">this</span>.props.index&#125; &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Button</span></span><br><span class="line"><span class="regexp">          title="Press"</span></span><br><span class="line"><span class="regexp">          onPress=&#123;() =&gt; this.props.onPress(this.props.index)&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">class App extends React.Component &#123;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  onPress = index =&gt; &#123;</span></span><br><span class="line"><span class="regexp">    console.log("Card ", index);</span></span><br><span class="line"><span class="regexp">  &#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;View&gt;</span></span><br><span class="line"><span class="regexp">        &lt;FlatList</span></span><br><span class="line"><span class="regexp">          data=&#123;[ ... ]&#125;</span></span><br><span class="line"><span class="regexp">          renderItem=&#123;(&#123; item &#125;) =&gt; (</span></span><br><span class="line"><span class="regexp">            &lt;CustomCard onPress=&#123;this.onPress&#125; index=&#123;item.key&#125; /</span>&gt;</span><br><span class="line">          )&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，您可以<code>final</code>为参数化构造函数中的属性指定标记的局部变量或函数。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomCard</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  CustomCard(&#123;<span class="meta">@required</span> <span class="keyword">this</span>.index, <span class="meta">@required</span> <span class="keyword">this</span>.onPress&#125;);</span><br><span class="line">  <span class="keyword">final</span> index;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Function</span> onPress;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> Card(</span><br><span class="line">    child: Column(</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Text(<span class="string">'Card $index'</span>),</span><br><span class="line">        FlatButton(</span><br><span class="line">          child: <span class="keyword">const</span> Text(<span class="string">'Press'</span>),</span><br><span class="line">          onPressed: <span class="keyword">this</span>.onPress,</span><br><span class="line">        ),</span><br><span class="line">      ],</span><br><span class="line">    ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">    ...</span><br><span class="line"><span class="comment">//Usage</span></span><br><span class="line">CustomCard(</span><br><span class="line">  index: index,</span><br><span class="line">  onPress: () &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Card $index'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic5.png" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic6.png" width="350" title="iOS"></div><br></div>
+
+
+<h1 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h1><p>如果您不需要存储大量数据并且不需要结构，则可以使用<code>shared_preferences</code>它来读取和编写基本数据类型的持久键值对：布尔值，浮点数，整数，长整数和字符串。</p>
+<h2 id="如何在应用内持久化存储一个键值对？"><a href="#如何在应用内持久化存储一个键值对？" class="headerlink" title="如何在应用内持久化存储一个键值对？"></a>如何在应用内持久化存储一个键值对？</h2><p>在React Native中，您可以使用组件的<code>setItem</code>和<code>getItem</code>函数  <code>AsyncStorage</code>来存储和检索应用程序的持久性和全局性数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="keyword">await</span> AsyncStorage.setItem( <span class="string">"counterkey"</span>, json.stringify(++<span class="keyword">this</span>.state.counter));</span><br><span class="line">AsyncStorage.getItem(<span class="string">"counterkey"</span>).then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (value != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">counter</span>: value &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，使用<a href="https://github.com/flutter/plugins/tree/master/packages/shared_preferences" target="_blank" rel="noopener"><code>shared_preferences</code></a>插件来存储和检索应用程序持久化的全局键值数据。<code>shared_preferences</code>插件是iOS的<code>NSUserDefaults</code>和Android的<code>SharedPreferences</code>的封装，为简单数据提供持久存储。要使用该插件，请<code>shared_preferences</code>在<code>pubspec.yaml</code>文件中添加依赖项，然后在Dart文件中导入该包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  flutter:</span><br><span class="line">    sdk: flutter</span><br><span class="line">  shared_preferences: ^0.3.0</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dart</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:shared_preferences/shared_preferences.dart'</span>;</span><br></pre></td></tr></table></figure>
+<p>要实现持久数据，请使用<code>SharedPreferences</code>类提供的setter方法 。setter方法可用于各种原始类型，例如<code>setInt</code>，<code>setBool</code>，和<code>setString</code>。要读取数据，请使用<code>SharedPreferences</code>类提供的相应getter方法。对于每一个setter有相应的getter方法，例如，<code>getInt</code>，<code>getBool</code>，和<code>getString</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences prefs = <span class="keyword">await</span> SharedPreferences.getInstance();</span><br><span class="line">_counter = prefs.getInt(<span class="string">'counter'</span>);</span><br><span class="line">prefs.setInt(<span class="string">'counter'</span>, ++_counter);</span><br><span class="line">setState(() &#123;</span><br><span class="line">  _counter = _counter;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>大多数应用程序都包含几个屏幕，用于显示不同类型的信息。例如，您可能有一个产品屏幕，该屏幕显示用户可以点击产品图片以在新屏幕上获取有关该产品的更多信息的图片。</p>
+<p>在Android中，新的屏幕是新的活动。在iOS中，新屏幕是新的ViewController。在flutter中，屏幕只是widgets！要导航到flutter中的新屏幕，请使用<code>Navigator</code>widget。</p>
+<h2 id="如何在屏幕之间使用navigate？"><a href="#如何在屏幕之间使用navigate？" class="headerlink" title="如何在屏幕之间使用navigate？"></a>如何在屏幕之间使用<code>navigate</code>？</h2><p>在React Native中，有三个主要导航器：StackNavigator，TabNavigator和DrawerNavigator。每种都提供了配置和定义屏幕的方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="keyword">const</span> MyApp = TabNavigator(</span><br><span class="line">  &#123; <span class="attr">Home</span>: &#123; <span class="attr">screen</span>: HomeScreen &#125;, <span class="attr">Notifications</span>: &#123; <span class="attr">screen</span>: tabNavScreen &#125; &#125;,</span><br><span class="line">  &#123; <span class="attr">tabBarOptions</span>: &#123; <span class="attr">activeTintColor</span>: <span class="string">"#e91e63"</span> &#125; &#125;</span><br><span class="line">);</span><br><span class="line"><span class="keyword">const</span> SimpleApp = StackNavigator(&#123;</span><br><span class="line">  Home: &#123; <span class="attr">screen</span>: MyApp &#125;,</span><br><span class="line">  stackScreen: &#123; <span class="attr">screen</span>: StackScreen &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (MyApp1 = DrawerNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: SimpleApp</span><br><span class="line">  &#125;,</span><br><span class="line">  Screen2: &#123;</span><br><span class="line">    screen: drawerScreen</span><br><span class="line">  &#125;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，有两个用于在屏幕之间导航的主要widget：</p>
+<ul>
+<li><a href="https://docs.flutter.io/flutter/widgets/Route-class.html" target="_blank" rel="noopener">Route</a>是应用程序屏幕或页面的抽象。</li>
+<li><a href="https://docs.flutter.io/flutter/widgets/Navigator-class.html" target="_blank" rel="noopener">Navigator</a>是一个管理路由的widget</li>
+</ul>
+<p><code>Navigator</code>被定义为一个widget，它管理一组具有<code>stack</code>规则的子widget。<code>Navigator</code>管理路由对象的<code>stack</code>，并提供管理<code>stack</code>的方法，如<a href="https://docs.flutter.io/flutter/widgets/Navigator/push.html" target="_blank" rel="noopener"><code>Navigator.push</code></a>和<a href="https://docs.flutter.io/flutter/widgets/Navigator/pop.html" target="_blank" rel="noopener"><code>Navigator.pop</code></a>。路径列表可以在<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html" target="_blank" rel="noopener"><code>MaterialApp</code></a>widget中指定，或者可以在动态中构建，例如在hero动画中。以下示例指定<code>MaterialApp</code>widget中的命名路由。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NavigationApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">            ...</span><br><span class="line">      routes: &lt;<span class="built_in">String</span>, WidgetBuilder&gt;&#123;</span><br><span class="line">        <span class="string">'/a'</span>: (BuildContext context) =&gt; usualNavscreen(),</span><br><span class="line">        <span class="string">'/b'</span>: (BuildContext context) =&gt; drawerNavscreen(),</span><br><span class="line">      &#125;</span><br><span class="line">            ...</span><br><span class="line">  );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要导航到命名路由，widget<code>of()</code>方法<code>Navigator</code>用于指定<code>BuildContext</code>。路由的名称被传递给该<code>pushNamed</code>函数以导航到指定的路由。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.of(context).pushNamed(<span class="string">'/a'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>您还可以使用<code>Navigator</code>的<code>push</code>方法，该方法将给定的数据添加一个<a href="https://docs.flutter.io/flutter/widgets/Route-class.html" target="_blank" rel="noopener"><code>Route</code></a>到<code>Navigator</code>的历史记录中，并跳转到它。在下面的示例中，<a href="https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html" target="_blank" rel="noopener"><code>MaterialPageRouting</code></a>widget是一种模态路由，它会对平台自适应的转换替换整个屏幕，并需要一个<code>WidgetBuilder</code>必需参数。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =&gt; UsualNavscreen()));</span><br></pre></td></tr></table></figure></p>
+<h2 id="如何使用选项卡导航-Tab-navigation-和抽屉导航-Drawer-navigation-？"><a href="#如何使用选项卡导航-Tab-navigation-和抽屉导航-Drawer-navigation-？" class="headerlink" title="如何使用选项卡导航(Tab navigation)和抽屉导航(Drawer navigation)？"></a>如何使用选项卡导航(Tab navigation)和抽屉导航(Drawer navigation)？</h2><p>在Material Design应用程序中，Flutter导航有两个主要选项：选项卡和抽屉。当没有足够的空间支持选项卡时，抽屉提供了一个很好的选择。</p>
+<h3 id="标签导航（Tab-navigation）"><a href="#标签导航（Tab-navigation）" class="headerlink" title="标签导航（Tab navigation）"></a>标签导航（Tab navigation）</h3><p>在react-native，<code>createBottomTabNavigator</code>和<code>TabNavigation</code>用于显示选项卡和选项卡导航。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="keyword">import</span> &#123; createBottomTabNavigator &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MyApp = TabNavigator(</span><br><span class="line">  &#123; <span class="attr">Home</span>: &#123; <span class="attr">screen</span>: HomeScreen &#125;, <span class="attr">Notifications</span>: &#123; <span class="attr">screen</span>: tabNavScreen &#125; &#125;,</span><br><span class="line">  &#123; <span class="attr">tabBarOptions</span>: &#123; <span class="attr">activeTintColor</span>: <span class="string">"#e91e63"</span> &#125; &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>Flutter为抽屉和标签导航提供了几个专门的widget：</p>
+<ul>
+<li><a href="https://docs.flutter.io/flutter/material/TabController-class.html" target="_blank" rel="noopener">TabController</a></li>
+<li><a href="https://docs.flutter.io/flutter/material/TabBar-class.html" target="_blank" rel="noopener">TabBar</a></li>
+<li><a href="https://docs.flutter.io/flutter/material/Tab-class.html" target="_blank" rel="noopener">Tab</a></li>
+<li><a href="https://docs.flutter.io/flutter/material/TabBarView-class.html" target="_blank" rel="noopener">TabBarView</a></li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">TabController controller=TabController(length: <span class="number">2</span>, vsync: <span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">TabBar(</span><br><span class="line">  tabs: &lt;Tab&gt;[</span><br><span class="line">    Tab(icon: Icon(Icons.person),),</span><br><span class="line">    Tab(icon: Icon(Icons.email),),</span><br><span class="line">  ],</span><br><span class="line">  controller: controller,</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<p><code>TabBar</code>需要一个<code>TabController</code>来控制<code>TabBarView</code>之间的选项卡选择。<code>TabController</code>构造函数的 <code>Length</code>参数是tabs的总数。每当框架触发状态更改时，<code>TickerProvider</code>都需要触发通知。<code>TickerProvider</code>是<code>vsync</code>。每当创建一个<code>TabController</code>，都将此参数传递给TabController构造函数。</p>
+<p><a href="https://docs.flutter.io/flutter/scheduler/TickerProvider-class.html" target="_blank" rel="noopener"><code>TickerProvider</code></a> 是一个接口，可以通过类来实现<a href="https://docs.flutter.io/flutter/scheduler/Ticker-class.html" target="_blank" rel="noopener"><code>Ticker</code></a>对象。当帧触发时，必须通知的任何对象都可以使用<code>Tickers</code>，但是它们通常是通过<a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html" target="_blank" rel="noopener"><code>AnimationController</code></a>间接使用的。<code>AnimationControllers</code>需要一个<code>TickerProvider</code>获得他们的<code>Ticker</code>, 如果你从一个状态创建一个<code>AnimationController</code>，那么你可以使用<code>TickerProviderStateMixin</code>类或者<code>SingleTickerProviderStateMixin</code>类来获得合适的<code>TickerProvider</code>。</p>
+<p><a href="https://docs.flutter.io/flutter/material/Scaffold-class.html" target="_blank" rel="noopener"><code>Scaffold</code></a>widget包装了一个新的<code>TabBar</code>widget，并创建了两个选项卡。<code>TabBarView</code>widget作为<code>Scaffold</code>widget<code>body</code>属性的参数传递。与<code>TabBar</code>widget的选项卡对应的所有屏幕都是<code>TabBarView</code>widget和同一<code>TabController</code>的子窗口。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_NavigationHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">NavigationHomePage</span>&gt; <span class="title">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  TabController controller=TabController(length: <span class="number">2</span>, vsync: <span class="keyword">this</span>);</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      bottomNavigationBar: Material (</span><br><span class="line">        child: TabBar(</span><br><span class="line">          tabs: &lt;Tab&gt; [</span><br><span class="line">            Tab(icon: Icon(Icons.person),)</span><br><span class="line">            Tab(icon: Icon(Icons.email),),</span><br><span class="line">          ],</span><br><span class="line">          controller: controller,</span><br><span class="line">        ),</span><br><span class="line">        color: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      body: TabBarView(</span><br><span class="line">        children: &lt;Widget&gt; [</span><br><span class="line">          home.homeScreen(),</span><br><span class="line">          tabScreen.tabScreen()</span><br><span class="line">        ],</span><br><span class="line">        controller: controller,</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Drawer-navigation"><a href="#Drawer-navigation" class="headerlink" title="Drawer navigation"></a>Drawer navigation</h3><p>在React Native中，导入所需的react-navigation包，然后使用<code>createDrawerNavigator</code>和<code>DrawerNavigation</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (MyApp1 = DrawerNavigator(&#123;</span><br><span class="line">  Home: &#123;</span><br><span class="line">    screen: SimpleApp</span><br><span class="line">  &#125;,</span><br><span class="line">  Screen2: &#123;</span><br><span class="line">    screen: drawerScreen</span><br><span class="line">  &#125;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，我们可以使用<code>Drawer</code>widget与<code>Scaffold</code>组合来创建具有Material Design抽屉的布局。要将<code>Drawer</code>添加到应用中，请将其包装在一个<code>Scaffold</code>widget中。该<code>Scaffold</code>widget为遵循Material Design指南的应用程序提供了一致的可视化结构。它还支持特殊Material Design的组件，如<code>Drawers</code>，<code>AppBars</code>和<code>SnackBars</code>。</p>
+<p><code>Drawer</code>widget是一个Material Design面板，它水平地从脚手架边缘滑入，以显示应用程序中的导航链接。可以向<code>Drawer</code>widget提供<code>Button</code>、<code>Text</code>widget或作为子widget显示的项列表。在下面的示例中，<code>ListTile</code>widget在点击时提供导航。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">Drawer(</span><br><span class="line">  child:ListTile(</span><br><span class="line">    leading: Icon(Icons.change_history),</span><br><span class="line">    title: Text(<span class="string">'Screen2'</span>),</span><br><span class="line">    onTap: () &#123;</span><br><span class="line">      Navigator.of(context).pushNamed(<span class="string">"/b"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">  elevation: <span class="number">20.0</span>,</span><br><span class="line">),</span><br></pre></td></tr></table></figure></p>
+<p><code>Scaffold</code>widget还包括一个<code>AppBar</code>widget，它自动显示适当的<code>IconButton</code>，以便在<code>Scaffold</code>中的<code>Drawer</code>可用时显示<code>Drawer</code>。脚手架自动处理边缘滑动手势，以显示<code>Drawer</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="meta">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> Scaffold(</span><br><span class="line">    drawer: Drawer(</span><br><span class="line">      child: ListTile(</span><br><span class="line">        leading: Icon(Icons.change_history),</span><br><span class="line">        title: Text(<span class="string">'Screen2'</span>),</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          Navigator.of(context).pushNamed(<span class="string">"/b"</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">      elevation: <span class="number">20.0</span>,</span><br><span class="line">    ),</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(<span class="string">"Home"</span>),</span><br><span class="line">    ),</span><br><span class="line">    body: Container(),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic19.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic20.gif" width="350" title="iOS"></div><br></div>
+
+
+<h1 id="手势检测和触摸事件处理"><a href="#手势检测和触摸事件处理" class="headerlink" title="手势检测和触摸事件处理"></a>手势检测和触摸事件处理</h1><p>为了监听和响应手势，Flutter支持点击，拖动和缩放。Flutter中的手势系统有两个独立的层。第一层包括原始指针事件，它描述屏幕上指针的位置和移动（例如触摸，鼠标和手写笔移动）。第二层包括手势，其描述由一个或多个指针移动组成的语义动作。</p>
+<h2 id="如何添加click或press监听器到widget？"><a href="#如何添加click或press监听器到widget？" class="headerlink" title="如何添加click或press监听器到widget？"></a>如何添加<code>click</code>或<code>press</code>监听器到<code>widget</code>？</h2><p>在React Native中，使用<code>PanResponder</code>或组件将监听添加到<code>Touchable</code>组件中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">&lt;TouchableOpacity</span><br><span class="line">  onPress=&#123;() =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Press"</span>);</span><br><span class="line">  &#125;&#125;</span><br><span class="line">  onLongPress=&#123;() =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Long Press"</span>);</span><br><span class="line">  &#125;&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;Text&gt;Tap or Long Press&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>TouchableOpacity&gt;</span><br></pre></td></tr></table></figure></p>
+<p>对于更复杂的手势并将多个触摸组合成单个手势，<code>PanResponder</code>使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  componentWillMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>._panResponder = PanResponder.create(&#123;</span><br><span class="line">      onMoveShouldSetPanResponder: <span class="function">(<span class="params">event, gestureState</span>) =&gt;</span></span><br><span class="line">        !!getDirection(gestureState),</span><br><span class="line">      onPanResponderMove: <span class="function">(<span class="params">event, gestureState</span>) =&gt;</span> <span class="literal">true</span>,</span><br><span class="line">      onPanResponderRelease: <span class="function">(<span class="params">event, gestureState</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> drag = getDirection(gestureState);</span><br><span class="line">      &#125;,</span><br><span class="line">      onPanResponderTerminationRequest: <span class="function">(<span class="params">event, gestureState</span>) =&gt;</span> <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125; &#123;...this._panResponder.panHandlers&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;styles.center&#125;&gt;</span><br><span class="line">          &lt;Text&gt;Swipe Horizontally or Vertically&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>View&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，要向widget添加click（或press）监听，请使用具有<code>onPress: field</code>字段的按钮或可触摸widget。或者，将手势检测添加到任何widget中<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html" target="_blank" rel="noopener"><code>GestureDetector</code></a>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line">GestureDetector(</span><br><span class="line">  child: Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(<span class="string">"Gestures"</span>),</span><br><span class="line">    ),</span><br><span class="line">    body: Center(</span><br><span class="line">      child: Column(</span><br><span class="line">        mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          Text(<span class="string">'Tap, Long Press, Swipe Horizontally or Vertically '</span>),</span><br><span class="line">        ],</span><br><span class="line">      )</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">  onTap: () &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Tapped'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  onLongPress: () &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Long Pressed'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  onVerticalDragEnd: (DragEndDetails value) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Swiped Vertically'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  onHorizontalDragEnd: (DragEndDetails value) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Swiped Horizontally'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>有关更多信息，包括Flutter <code>GestureDetector</code>回调列表，请参阅<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html#Properties" target="_blank" rel="noopener">GestureDetector</a>类。</p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic21.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic22.gif" width="350" title="iOS"></div><br></div>
+
+<h1 id="发出HTTP网络请求"><a href="#发出HTTP网络请求" class="headerlink" title="发出HTTP网络请求"></a>发出HTTP网络请求</h1><p>在大多数应用程序中，从互联网上获取数据是很常见的。在Fltter中，<code>http</code>package提供了从互联网上获取数据的最简单方法。</p>
+<h2 id="如何从API调用中获取数据？"><a href="#如何从API调用中获取数据？" class="headerlink" title="如何从API调用中获取数据？"></a>如何从API调用中获取数据？</h2><p>React Native为网络提供了Fetch API - 您可以进行获取请求，然后接收响应以获取数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">_getIPAddress = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  fetch(<span class="string">"https://httpbin.org/ip"</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .then(<span class="function"><span class="params">responseJson</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123; <span class="attr">_ipAddress</span>: responseJson.origin &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(error);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Flutter使用<code>http</code>package。要安装<code>http</code>，请将其添加到<code>pubspec.yaml</code>的<code>dependencies</code>部分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  flutter:</span><br><span class="line">    sdk: flutter</span><br><span class="line">  http: &lt;latest_version&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Flutter使用<a href="https://docs.flutter.io/flutter/dart-io/dart-io-library.html" target="_blank" rel="noopener"><code>dart:io</code></a>核心HTTP支持客户端。要创建HTTP客户端，请导入<code>dart:io</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:io'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>客户端支持以下HTTP操作：GET，POST，PUT和DELETE。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">final</span> url = <span class="built_in">Uri</span>.https(<span class="string">'httpbin.org'</span>, <span class="string">'ip'</span>);</span><br><span class="line"><span class="keyword">final</span> httpClient = HttpClient();</span><br><span class="line">_getIPAddress() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> request = <span class="keyword">await</span> httpClient.getUrl(url);</span><br><span class="line">  <span class="keyword">var</span> response = <span class="keyword">await</span> request.close();</span><br><span class="line">  <span class="keyword">var</span> responseBody = <span class="keyword">await</span> response.transform(utf8.decoder).join();</span><br><span class="line">  <span class="built_in">String</span> ip = json.decode(responseBody)[<span class="string">'origin'</span>];</span><br><span class="line">  setState(() &#123;</span><br><span class="line">    _ipAddress = ip;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic23.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic24.gif" width="350" title="iOS"></div><br></div>
+
+<h1 id="表单输入"><a href="#表单输入" class="headerlink" title="表单输入"></a>表单输入</h1><p>Text fields允许用户在应用程序中键入文本，以便用于生成表单、消息应用程序、搜索体验等。Fltter提供了两个核心文本字段widget：<a href="https://docs.flutter.io/flutter/material/TextField-class.html" target="_blank" rel="noopener"><code>TextField</code></a>和<a href="https://docs.flutter.io/flutter/material/TextFormField-class.html" target="_blank" rel="noopener"><code>TextFormField</code></a>。</p>
+<h2 id="如何使用文本字段widget？"><a href="#如何使用文本字段widget？" class="headerlink" title="如何使用文本字段widget？"></a>如何使用文本字段widget？</h2><p>在React Native中，要输入文本，可以使用TextInput组件显示文本输入框，然后使用回调将值存储在变量中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React Native</span></span><br><span class="line">&lt;TextInput</span><br><span class="line">  placeholder=<span class="string">"Enter your Password"</span></span><br><span class="line">  onChangeText=&#123;password =&gt; <span class="keyword">this</span>.setState(&#123; password &#125;)&#125;</span><br><span class="line"> /&gt;</span><br><span class="line">&lt;Button title=<span class="string">"Submit"</span> onPress=&#123;<span class="keyword">this</span>.validate&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在Flutter中，使用<a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html" target="_blank" rel="noopener"><code>TextEditingController</code></a>该类来管理<code>TextField</code>widget。每当文本字段被修改时，控制器都会通知其监听者。</p>
+<p>监听器读取文本和选择属性，以了解用户在字段中键入的内容。可以通过<code>controller</code>的<code>Text</code>属性访问<code>TextField</code>中的文本。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Flutter</span></span><br><span class="line"><span class="keyword">final</span> TextEditingController _controller = TextEditingController();</span><br><span class="line">      ...</span><br><span class="line">TextField(</span><br><span class="line">  controller: _controller,</span><br><span class="line">  decoration: InputDecoration(</span><br><span class="line">    hintText: <span class="string">'Type something'</span>, labelText: <span class="string">"Text Field "</span></span><br><span class="line">  ),</span><br><span class="line">),</span><br><span class="line">RaisedButton(</span><br><span class="line">  child: Text(<span class="string">'Submit'</span>),</span><br><span class="line">  onPressed: () &#123;</span><br><span class="line">    showDialog(</span><br><span class="line">      context: context,</span><br><span class="line">        child: AlertDialog(</span><br><span class="line">          title: Text(<span class="string">'Alert'</span>),</span><br><span class="line">          content: Text(<span class="string">'You typed <span class="subst">$&#123;_controller.text&#125;</span>'</span>),</span><br><span class="line">        ),</span><br><span class="line">     );</span><br><span class="line">   &#125;,</span><br><span class="line"> ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>在此示例中，当用户单击<code>Submit</code>按钮时，dialog将显示在<code>TextField</code>中输入的文本。这是使用alertDialog显示警报消息的小部件实现的 ，而<a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html" target="_blank" rel="noopener">TextEditingController</a>的<code>text</code>属性访问了<code>TextField</code>输入的文本。</p>
+<h2 id="如何使用表单widget？"><a href="#如何使用表单widget？" class="headerlink" title="如何使用表单widget？"></a>如何使用表单widget？</h2><p>在Fltter中，使用<a href="https://docs.flutter.io/flutter/widgets/Form-class.html" target="_blank" rel="noopener"><code>Form</code></a>小部件，其中<a href="https://docs.flutter.io/flutter/material/TextFormField-class.html" target="_blank" rel="noopener"><code>TextFormField</code></a>小部件和Submit按钮作为子元素传递。<code>TextFormField</code>小部件有一个名为<code>onSaved</code><a href="https://docs.flutter.io/flutter/widgets/FormField/onSaved.html" target="_blank" rel="noopener">onSaved</a>的参数，它接受回调并在保存表单时执行。<code>FormState</code>对象用于保存、重置或验证每个<code>FormField</code>，这些<code>FormField</code>是此<code>Form</code>的后代。要获得<code>FormState</code>，可以使用<code>Form.of</code>和以表单为祖先的上下文，或者将<code>GlobalKey</code>传递给表单构造函数并调用<code>GlobalKey.currentState</code>。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> formKey = GlobalKey&lt;FormState&gt;();</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Form(</span><br><span class="line">  key:formKey,</span><br><span class="line">  child: Column(</span><br><span class="line">    children: &lt;Widget&gt;[</span><br><span class="line">      TextFormField(</span><br><span class="line">        validator: (value) =&gt; !value.contains(<span class="string">'@'</span>) ? <span class="string">'Not a valid email.'</span> : <span class="keyword">null</span>,</span><br><span class="line">        onSaved: (val) =&gt; _email = val,</span><br><span class="line">        decoration: <span class="keyword">const</span> InputDecoration(</span><br><span class="line">          hintText: <span class="string">'Enter your email'</span>,</span><br><span class="line">          labelText: <span class="string">'Email'</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      RaisedButton(</span><br><span class="line">        onPressed: _submit,</span><br><span class="line">        child: Text(<span class="string">'Login'</span>),</span><br><span class="line">      ),</span><br><span class="line">    ],</span><br><span class="line">  ),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>以下示例显示如何<code>Form.save()</code>和<code>formKey</code>（哪些是 <code>GlobalKey</code>）用于在提交时保存表单。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> _submit() &#123;</span><br><span class="line">  <span class="keyword">final</span> form = formKey.currentState;</span><br><span class="line">  <span class="keyword">if</span> (form.validate()) &#123;</span><br><span class="line">    form.save();</span><br><span class="line">    showDialog(</span><br><span class="line">      context: context,</span><br><span class="line">      child: AlertDialog(</span><br><span class="line">        title: Text(<span class="string">'Alert'</span>),</span><br><span class="line">        content: Text(<span class="string">'Email: $_email, password: $_password'</span>),</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="display:table-row;margin:0 auto"><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic25.gif" width="350" title="android"></div><br><div style="display:table-cell"><img src="/2018/07/02/flutter-for-react-native/pic26.gif" width="350" title="iOS"></div><br></div>
+
+<h1 id="判断平台特定的代码"><a href="#判断平台特定的代码" class="headerlink" title="判断平台特定的代码"></a>判断平台特定的代码</h1><h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h2 id="如何访问应用内开发人员菜单？"><a href="#如何访问应用内开发人员菜单？" class="headerlink" title="如何访问应用内开发人员菜单？"></a>如何访问应用内开发人员菜单？</h2><h2 id="如何执行热重载？"><a href="#如何执行热重载？" class="headerlink" title="如何执行热重载？"></a>如何执行热重载？</h2><h2 id="我可以用什么工具在Flutter中调试我的应用程序？"><a href="#我可以用什么工具在Flutter中调试我的应用程序？" class="headerlink" title="我可以用什么工具在Flutter中调试我的应用程序？"></a>我可以用什么工具在Flutter中调试我的应用程序？</h2><h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="如何添加简单的淡入动画？"><a href="#如何添加简单的淡入动画？" class="headerlink" title="如何添加简单的淡入动画？"></a>如何添加简单的淡入动画？</h2><h2 id="如何给卡片添加滑动动画？"><a href="#如何给卡片添加滑动动画？" class="headerlink" title="如何给卡片添加滑动动画？"></a>如何给卡片添加滑动动画？</h2><h1 id="React-Native-和-Flutter-Widget-相同作用的组件"><a href="#React-Native-和-Flutter-Widget-相同作用的组件" class="headerlink" title="React Native 和 Flutter Widget 相同作用的组件"></a>React Native 和 Flutter Widget 相同作用的组件</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter/" rel="tag"># flutter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/15/android9/" rel="next" title="【android学习随笔】android数据持久化(二)-sqlite">
+                <i class="fa fa-chevron-left"></i> 【android学习随笔】android数据持久化(二)-sqlite
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">海色</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#针对JavaScript开发人员的Dart简介"><span class="nav-number">1.</span> <span class="nav-text">针对JavaScript开发人员的Dart简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#入口函数"><span class="nav-number">1.1.</span> <span class="nav-text">入口函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印到控制台"><span class="nav-number">1.2.</span> <span class="nav-text">打印到控制台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.3.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和分配变量"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建和分配变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认值"><span class="nav-number">1.3.2.</span> <span class="nav-text">默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查null或零"><span class="nav-number">1.4.</span> <span class="nav-text">检查null或零</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.5.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步编程"><span class="nav-number">1.6.</span> <span class="nav-text">异步编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Futures"><span class="nav-number">1.6.1.</span> <span class="nav-text">Futures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-和-await"><span class="nav-number">1.6.2.</span> <span class="nav-text">async 和 await</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础"><span class="nav-number">2.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建Flutter应用程序？"><span class="nav-number">2.1.</span> <span class="nav-text">如何创建Flutter应用程序？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何运行应用程序？"><span class="nav-number">2.2.</span> <span class="nav-text">如何运行应用程序？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何导入widget？"><span class="nav-number">2.3.</span> <span class="nav-text">如何导入widget？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter中的-quot-Hello-world-quot-在React-Native里怎么写？"><span class="nav-number">2.4.</span> <span class="nav-text">Flutter中的&quot;Hello world!&quot;在React Native里怎么写？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用widget并将其嵌套成widget树？"><span class="nav-number">2.5.</span> <span class="nav-text">如何使用widget并将其嵌套成widget树？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建可重用组件？"><span class="nav-number">2.6.</span> <span class="nav-text">如何创建可重用组件？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构和资源目录"><span class="nav-number">3.</span> <span class="nav-text">项目结构和资源目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我从哪里开始编写代码？"><span class="nav-number">3.1.</span> <span class="nav-text">我从哪里开始编写代码？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在Flutter应用程序中构建文件？"><span class="nav-number">3.2.</span> <span class="nav-text">如何在Flutter应用程序中构建文件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我在哪里放置我的资源和资产以及如何使用它们？"><span class="nav-number">3.3.</span> <span class="nav-text">我在哪里放置我的资源和资产以及如何使用它们？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何通过网络加载图像？"><span class="nav-number">3.4.</span> <span class="nav-text">如何通过网络加载图像？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我如何安装软件包和软件包插件？"><span class="nav-number">3.5.</span> <span class="nav-text">我如何安装软件包和软件包插件？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter-widget"><span class="nav-number">4.</span> <span class="nav-text">Flutter widget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Views"><span class="nav-number">5.</span> <span class="nav-text">Views</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么相当于View容器？"><span class="nav-number">5.1.</span> <span class="nav-text">什么相当于View容器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么相当于FlatList或SectionList？"><span class="nav-number">5.2.</span> <span class="nav-text">什么相当于FlatList或SectionList？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Layouts-布局"><span class="nav-number">6.</span> <span class="nav-text">Layouts(布局)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用widget来定义布局属性？"><span class="nav-number">6.1.</span> <span class="nav-text">如何使用widget来定义布局属性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何布局widget？"><span class="nav-number">6.2.</span> <span class="nav-text">如何布局widget？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Styling"><span class="nav-number">7.</span> <span class="nav-text">Styling</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何设置组件的样式？"><span class="nav-number">7.1.</span> <span class="nav-text">如何设置组件的样式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用Icons和Colors？"><span class="nav-number">7.2.</span> <span class="nav-text">如何使用Icons和Colors？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我如何添加风格主题？"><span class="nav-number">7.3.</span> <span class="nav-text">我如何添加风格主题？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#State管理"><span class="nav-number">8.</span> <span class="nav-text">State管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StatelessWidget"><span class="nav-number">8.1.</span> <span class="nav-text">StatelessWidget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StatefulWidget"><span class="nav-number">8.2.</span> <span class="nav-text">StatefulWidget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是StatefulWidget和StatelessWidget最佳实践？"><span class="nav-number">8.3.</span> <span class="nav-text">什么是StatefulWidget和StatelessWidget最佳实践？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-确定一个widget应该是一个StatefulWidget还是一个StatelessWidget"><span class="nav-number">8.3.1.</span> <span class="nav-text">1.确定一个widget应该是一个StatefulWidget还是一个StatelessWidget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-确定哪个对象管理widget的状态（对于StatefulWidget）"><span class="nav-number">8.3.2.</span> <span class="nav-text">2.确定哪个对象管理widget的状态（对于StatefulWidget）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-子类StatefulWidget和State"><span class="nav-number">8.3.3.</span> <span class="nav-text">3.子类StatefulWidget和State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-将StatefulWidget添加到widget树中"><span class="nav-number">8.3.4.</span> <span class="nav-text">4.将StatefulWidget添加到widget树中</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Props"><span class="nav-number">9.</span> <span class="nav-text">Props</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地存储"><span class="nav-number">10.</span> <span class="nav-text">本地存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在应用内持久化存储一个键值对？"><span class="nav-number">10.1.</span> <span class="nav-text">如何在应用内持久化存储一个键值对？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由"><span class="nav-number">11.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在屏幕之间使用navigate？"><span class="nav-number">11.1.</span> <span class="nav-text">如何在屏幕之间使用navigate？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用选项卡导航-Tab-navigation-和抽屉导航-Drawer-navigation-？"><span class="nav-number">11.2.</span> <span class="nav-text">如何使用选项卡导航(Tab navigation)和抽屉导航(Drawer navigation)？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签导航（Tab-navigation）"><span class="nav-number">11.2.1.</span> <span class="nav-text">标签导航（Tab navigation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drawer-navigation"><span class="nav-number">11.2.2.</span> <span class="nav-text">Drawer navigation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手势检测和触摸事件处理"><span class="nav-number">12.</span> <span class="nav-text">手势检测和触摸事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何添加click或press监听器到widget？"><span class="nav-number">12.1.</span> <span class="nav-text">如何添加click或press监听器到widget？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发出HTTP网络请求"><span class="nav-number">13.</span> <span class="nav-text">发出HTTP网络请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何从API调用中获取数据？"><span class="nav-number">13.1.</span> <span class="nav-text">如何从API调用中获取数据？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单输入"><span class="nav-number">14.</span> <span class="nav-text">表单输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用文本字段widget？"><span class="nav-number">14.1.</span> <span class="nav-text">如何使用文本字段widget？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用表单widget？"><span class="nav-number">14.2.</span> <span class="nav-text">如何使用表单widget？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断平台特定的代码"><span class="nav-number">15.</span> <span class="nav-text">判断平台特定的代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调试"><span class="nav-number">16.</span> <span class="nav-text">调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何访问应用内开发人员菜单？"><span class="nav-number">16.1.</span> <span class="nav-text">如何访问应用内开发人员菜单？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何执行热重载？"><span class="nav-number">16.2.</span> <span class="nav-text">如何执行热重载？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我可以用什么工具在Flutter中调试我的应用程序？"><span class="nav-number">16.3.</span> <span class="nav-text">我可以用什么工具在Flutter中调试我的应用程序？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number">17.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何添加简单的淡入动画？"><span class="nav-number">17.1.</span> <span class="nav-text">如何添加简单的淡入动画？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何给卡片添加滑动动画？"><span class="nav-number">17.2.</span> <span class="nav-text">如何给卡片添加滑动动画？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-Native-和-Flutter-Widget-相同作用的组件"><span class="nav-number">18.</span> <span class="nav-text">React Native 和 Flutter Widget 相同作用的组件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海色</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
