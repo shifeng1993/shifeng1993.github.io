@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.shifeng1993.com/tags/index.html</loc>
+    <loc>http://www.shifeng1993.com/2018/08/19/rn_splash_screen/</loc>
     
-    <lastmod>2018-07-03T16:11:06.742Z</lastmod>
+    <lastmod>2018-08-19T11:48:17.973Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/06/04/yanghuimat/</loc>
+    <loc>http://www.shifeng1993.com/2018/07/12/flutter_dev/</loc>
     
-    <lastmod>2018-07-03T16:11:06.742Z</lastmod>
+    <lastmod>2018-07-14T08:17:36.107Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/07/04/flutter-for-react-native/</loc>
+    
+    <lastmod>2018-07-14T08:17:36.103Z</lastmod>
     
   </url>
   
@@ -23,23 +30,16 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2016/10/23/vue_vuex/</loc>
+    <loc>http://www.shifeng1993.com/tags/index.html</loc>
     
-    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.742Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2016/10/02/vue_vue/</loc>
+    <loc>http://www.shifeng1993.com/2018/06/04/yanghuimat/</loc>
     
-    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.742Z</lastmod>
     
   </url>
   
@@ -65,6 +65,13 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2017/10/06/rn_react_koa2_mongodb_requirementAnalysis/</loc>
     
     <lastmod>2018-07-03T16:11:06.741Z</lastmod>
@@ -72,9 +79,16 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/</loc>
+    <loc>http://www.shifeng1993.com/2016/10/23/vue_vuex/</loc>
     
-    <lastmod>2018-07-03T16:11:06.740Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2016/10/02/vue_vue/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
     
   </url>
   
@@ -100,9 +114,9 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/</loc>
+    <loc>http://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/</loc>
     
-    <lastmod>2018-07-03T16:11:06.735Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.740Z</lastmod>
     
   </url>
   
@@ -142,14 +156,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/08/18/js_data_format/</loc>
+    <loc>http://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/</loc>
     
-    <lastmod>2018-07-03T16:11:06.734Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.735Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/08/28/js_FuzzyQuery/</loc>
+    <loc>http://www.shifeng1993.com/2017/08/18/js_data_format/</loc>
     
     <lastmod>2018-07-03T16:11:06.734Z</lastmod>
     
@@ -163,21 +177,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/07/02/flutter-for-react-native/</loc>
+    <loc>http://www.shifeng1993.com/2017/08/28/js_FuzzyQuery/</loc>
     
-    <lastmod>2018-07-03T16:11:06.710Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_typeConversion/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.734Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/09/19/centos7_mongod_install/</loc>
+    <loc>http://www.shifeng1993.com/2017/04/28/cpp_1/</loc>
     
     <lastmod>2018-07-03T16:11:06.709Z</lastmod>
     
@@ -185,13 +192,6 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2017/09/28/centos7_nginx_install/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2017/04/28/cpp_1/</loc>
     
     <lastmod>2018-07-03T16:11:06.709Z</lastmod>
     
@@ -206,6 +206,20 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_stringFunc/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_typeConversion/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/09/19/centos7_mongod_install/</loc>
     
     <lastmod>2018-07-03T16:11:06.709Z</lastmod>
     
@@ -233,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_io/</loc>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_int/</loc>
     
     <lastmod>2018-07-03T16:11:06.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_int/</loc>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_io/</loc>
     
     <lastmod>2018-07-03T16:11:06.708Z</lastmod>
     
