@@ -588,7 +588,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_macosInstallGDB/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_float/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -607,7 +607,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_macosInstallGDB/" itemprop="url">【C学习随笔】macos系统下安装gdb</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_float/" itemprop="url">【C学习随笔】C语言的实型数据</a></h2>
         
 
         <div class="post-meta">
@@ -681,14 +681,15 @@
       
         
           
-          1.安装homebrewruby -e&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-2.安装gdbbrew install gdb
-3.生成证书生成证书
-Step
+          注：浮点运算是有误差的，用于精密计算建议用整型数据类型存储和运算。如：银行存款。
+float
+单精度类型占用4个字节，32位。用%f进行输出
+
+1234567#include &lt;stdio.h&gt;int main(void) &#123;    float a = 3.1;    prin
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_macosInstallGDB/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_float/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -739,7 +740,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_Other/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_io/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -758,7 +759,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_Other/" itemprop="url">【C学习随笔】C语言其他运算符</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_io/" itemprop="url">【C学习随笔】C语言I/O函数printf()和scanf()</a></h2>
         
 
         <div class="post-meta">
@@ -832,11 +833,12 @@ Step
       
         
           
-          sizeof运算符和size_t类型sizeof运算符，以字节为单位返回运算对象的大小，运算对象可以是一个具体的数据对象或类型，默认返回一个size_t类型的值，是一个无符号整数类型，转换说明为%zd(C99)，如果不支持%zd(C99)，可使用%lu或%u代替。以下是一个例子：1234567#in
+          输出函数 printf()printf函数打印数据的指令要与待打印数据的类型相匹配，例如打印整数用%d，打印字符类型用%c，以下是转换说明以及打印后结果。
+%a 浮点数，十六进制数和p计数法（C99和C11）%A 浮点数，十六进制数和p计数法（C99和C11）%c 单个字符%d 有符号十进制整数%e
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_Other/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_io/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1036,7 +1038,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_io/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_int/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1055,7 +1057,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_io/" itemprop="url">【C学习随笔】C语言I/O函数printf()和scanf()</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_int/" itemprop="url">【C学习随笔】C语言的整型数据</a></h2>
         
 
         <div class="post-meta">
@@ -1129,12 +1131,12 @@ Step
       
         
           
-          输出函数 printf()printf函数打印数据的指令要与待打印数据的类型相匹配，例如打印整数用%d，打印字符类型用%c，以下是转换说明以及打印后结果。
-%a 浮点数，十六进制数和p计数法（C99和C11）%A 浮点数，十六进制数和p计数法（C99和C11）%c 单个字符%d 有符号十进制整数%e
+          有符号整型数据1Byte = 8Bit；一个字节为八个比特位元。
+short或者为short int 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间1234567#include &lt;stdio.h&gt;int main(void) &#123;    short int a 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_io/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_int/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
