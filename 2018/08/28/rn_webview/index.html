@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native,webView," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="webview 可以看做是react-native内置的浏览器，在rn使用过程中经常为了效率封装一些web的库，作展现使用。 下面是 react native webview 的文档 https://reactnative.cn/docs/webview/ 因为具体的用法，文档内都有示例，下面说一些文档中间没有的处理方法。 webView不能设置宽高 解决方案做一个容器, 使用props传下去宽度">
+<meta name="keywords" content="react-native,webView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【reaact-native】react-native 通过webview 桥接网页">
+<meta property="og:url" content="http://www.shifeng1993.com/2018/08/28/rn_webview/index.html">
+<meta property="og:site_name" content="师峰的博客">
+<meta property="og:description" content="webview 可以看做是react-native内置的浏览器，在rn使用过程中经常为了效率封装一些web的库，作展现使用。 下面是 react native webview 的文档 https://reactnative.cn/docs/webview/ 因为具体的用法，文档内都有示例，下面说一些文档中间没有的处理方法。 webView不能设置宽高 解决方案做一个容器, 使用props传下去宽度">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-19T14:24:25.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【reaact-native】react-native 通过webview 桥接网页">
+<meta name="twitter:description" content="webview 可以看做是react-native内置的浏览器，在rn使用过程中经常为了效率封装一些web的库，作展现使用。 下面是 react native webview 的文档 https://reactnative.cn/docs/webview/ 因为具体的用法，文档内都有示例，下面说一些文档中间没有的处理方法。 webView不能设置宽高 解决方案做一个容器, 使用props传下去宽度">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shifeng1993.com/2018/08/28/rn_webview/"/>
+
+
+
+
+
+  <title>【reaact-native】react-native 通过webview 桥接网页 | 师峰的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">师峰的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">累了歇一歇,保肝护肝人人做起</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2018/08/28/rn_webview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【reaact-native】react-native 通过webview 桥接网页</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T00:00:00+08:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react-native/" itemprop="url" rel="index">
+                    <span itemprop="name">react-native</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>webview 可以看做是react-native内置的浏览器，在rn使用过程中经常为了效率封装一些web的库，作展现使用。</p>
+<p>下面是 react native webview 的文档</p>
+<p><a href="https://reactnative.cn/docs/webview/" target="_blank" rel="noopener">https://reactnative.cn/docs/webview/</a></p>
+<p>因为具体的用法，文档内都有示例，下面说一些文档中间没有的处理方法。</p>
+<h1 id="webView不能设置宽高"><a href="#webView不能设置宽高" class="headerlink" title="webView不能设置宽高"></a>webView不能设置宽高</h1><ul>
+<li>解决方案<br>做一个容器, 使用props传下去宽度和高度，分别在webview的父容器，和网页内部，设置宽高</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">  &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">    &lt;WebView</span><br><span class="line">      ...</span><br><span class="line">      injectedJavaScript=&#123;renderChart(<span class="keyword">this</span>.props)&#125;</span><br><span class="line">      ...</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>View&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> renderChart = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> height = <span class="string">`<span class="subst">$&#123;props.height || <span class="number">400</span>&#125;</span>px`</span>;</span><br><span class="line">  <span class="keyword">const</span> width = props.width ? <span class="string">`<span class="subst">$&#123;props.width&#125;</span>px`</span> : <span class="string">'auto'</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.height = "<span class="subst">$&#123;height&#125;</span>";</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.width = "<span class="subst">$&#123;width&#125;</span>";</span></span><br><span class="line"><span class="string">      ...</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> renderChart;</span><br></pre></td></tr></table></figure>
+<h1 id="webView不能根据传参的变化进行刷新"><a href="#webView不能根据传参的变化进行刷新" class="headerlink" title="webView不能根据传参的变化进行刷新"></a>webView不能根据传参的变化进行刷新</h1><ul>
+<li>解决方案<br>在webview所在的类中，使用类的 componentWillReceiveProps 周期进行监听props的变化，如果变化则刷新webview，注（此方法刷新会有闪烁）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      data: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">    <span class="keyword">if</span>(nextProps.option !== <span class="keyword">this</span>.props.option) &#123;</span><br><span class="line">      <span class="keyword">this</span>.refs.chart.reload();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">   ...</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">          ...</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="webview在暗色系背景下，会呈现白色背景"><a href="#webview在暗色系背景下，会呈现白色背景" class="headerlink" title="webview在暗色系背景下，会呈现白色背景"></a>webview在暗色系背景下，会呈现白色背景</h1><ul>
+<li>解决方案<br>设置背景色为 透明 rgba(0,0,0,0)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    backgroundColor: <span class="string">'#00000000'</span>,</span><br><span class="line">    ...</span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            style=&#123;&#123;<span class="attr">backgroundColor</span>:<span class="keyword">this</span>.props.backgroundColor&#125;&#125; <span class="comment">// 设置背景色透明，修复android闪白</span></span><br><span class="line">            ...</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="webview在暗色系背景下，ios加载会出现白色遮罩闪烁"><a href="#webview在暗色系背景下，ios加载会出现白色遮罩闪烁" class="headerlink" title="webview在暗色系背景下，ios加载会出现白色遮罩闪烁"></a>webview在暗色系背景下，ios加载会出现白色遮罩闪烁</h1><ul>
+<li>解决方案<br>设置renderLoading 为透明的空View<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    backgroundColor: <span class="string">'#00000000'</span>,</span><br><span class="line">    ...</span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            originWhitelist=&#123;[<span class="string">'*'</span>]&#125;</span><br><span class="line">            renderLoading=&#123;<span class="keyword">this</span>.props.renderLoading || <span class="function">(<span class="params">(</span>)=&gt;</span><span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;&#123;backgroundColor:this.props.backgroundColor&#125;&#125;/</span>&gt;</span>)&#125; // 设置空View，修复ioswebview闪白</span></span><br><span class="line"><span class="xml">            ...</span></span><br><span class="line"><span class="xml">          /&gt;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="webview在android-release版本中不渲染。"><a href="#webview在android-release版本中不渲染。" class="headerlink" title="webview在android release版本中不渲染。"></a>webview在android release版本中不渲染。</h1><p>原因是因为android 打包后静态资源会在系统绝对路径，而不是项目相对路径。</p>
+<ul>
+<li>解决方案</li>
+</ul>
+<p>对html 区别 ios 和 android 分别引用 ios还是使用require方式，android使用uri方式，并将html文件放到绝对路径下的资产目录<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    ...</span><br><span class="line">    isMap: <span class="literal">false</span></span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> bmapSource = (Platform.OS == <span class="string">'ios'</span>) ? <span class="built_in">require</span>(<span class="string">'./Bmap.html'</span>) : &#123;<span class="string">'uri'</span>:<span class="string">'file:///android_asset/echarts/Bmap.html'</span>&#125; <span class="comment">// 修复android release路径问题</span></span><br><span class="line">    <span class="keyword">const</span> indexSource = (Platform.OS == <span class="string">'ios'</span>) ? <span class="built_in">require</span>(<span class="string">'./index.html'</span>) : &#123;<span class="string">'uri'</span>:<span class="string">'file:///android_asset/echarts/index.html'</span>&#125; <span class="comment">// 修复android release路径问题</span></span><br><span class="line">    <span class="keyword">let</span> source = <span class="keyword">this</span>.props.isMap ? bmapSource : indexSource;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            ...</span><br><span class="line">            source=&#123;source&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="webview在ios-release版本中不渲染。"><a href="#webview在ios-release版本中不渲染。" class="headerlink" title="webview在ios release版本中不渲染。"></a>webview在ios release版本中不渲染。</h1><p>原因是因为ios在0.56版本后新增了白名单列表，白名单默认是 <code>http://</code> 和 <code>https://</code> 所以本地html要进行通配，添加进白名单内</p>
+<ul>
+<li>解决方案<br>添加白名单通配属性 originWhitelist={[‘*’]}<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    ...</span><br><span class="line">    isMap: <span class="literal">false</span></span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> bmapSource = (Platform.OS == <span class="string">'ios'</span>) ? <span class="built_in">require</span>(<span class="string">'./Bmap.html'</span>) : &#123;<span class="string">'uri'</span>:<span class="string">'file:///android_asset/echarts/Bmap.html'</span>&#125; <span class="comment">// 修复android release路径问题</span></span><br><span class="line">    <span class="keyword">const</span> indexSource = (Platform.OS == <span class="string">'ios'</span>) ? <span class="built_in">require</span>(<span class="string">'./index.html'</span>) : &#123;<span class="string">'uri'</span>:<span class="string">'file:///android_asset/echarts/index.html'</span>&#125; <span class="comment">// 修复android release路径问题</span></span><br><span class="line">    <span class="keyword">let</span> source = <span class="keyword">this</span>.props.isMap ? bmapSource : indexSource;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            ...</span><br><span class="line">            originWhitelist=&#123;[<span class="string">'*'</span>]&#125;</span><br><span class="line">            source=&#123;source&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="webview-ios-出现滚动"><a href="#webview-ios-出现滚动" class="headerlink" title="webview ios 出现滚动"></a>webview ios 出现滚动</h1><ul>
+<li>解决方案<br>禁用scrollEnabled</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    ...</span><br><span class="line">    isMap: <span class="literal">false</span></span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  render() &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            ...</span><br><span class="line">            scrollEnabled=&#123;<span class="literal">false</span>&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="webview-ios-web页面不进行移动端视口的自适配"><a href="#webview-ios-web页面不进行移动端视口的自适配" class="headerlink" title="webview ios web页面不进行移动端视口的自适配"></a>webview ios web页面不进行移动端视口的自适配</h1><ul>
+<li>解决方案<br>在本地html中加入viewport meta标签<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>echarts<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- webView ios适配 start --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- webView ios适配 end --&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="webView-android-内嵌html-外联js失效"><a href="#webView-android-内嵌html-外联js失效" class="headerlink" title="webView android 内嵌html 外联js失效"></a>webView android 内嵌html 外联js失效</h1><p>因为android的web使用的是okhttp发送请求的，okhttp会默认将不安全的https过滤掉</p>
+<ul>
+<li>解决方案<br>使用安全的 https:// 的外联，或者就使用内联<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>echarts<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- webView ios适配 start --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- webView ios适配 end --&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"https://www.echartsjs.com/gallery/vendors/echarts/extension/bmap.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"https://api.map.baidu.com/api?v=2.0&amp;ak=ZUONbpqGBsYGXNIYHicvbAbM"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="rn-引入web库报错-没找到-userAgent-是个未定义"><a href="#rn-引入web库报错-没找到-userAgent-是个未定义" class="headerlink" title="rn 引入web库报错 没找到 userAgent 是个未定义"></a>rn 引入web库报错 没找到 userAgent 是个未定义</h1><p>这是因为在rn中没有浏览器的一些信息。当然，在webview内嵌的网页中是没问题的</p>
+<ul>
+<li>解决方案<br>找到对应判断的代码，将其注释掉<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// env = detect(navigator.userAgent);</span></span><br><span class="line">    env = &#123;</span><br><span class="line">        browser: &#123;&#125;,</span><br><span class="line">        os: &#123;&#125;,</span><br><span class="line">        node: <span class="literal">true</span>,</span><br><span class="line">        worker: <span class="literal">false</span>,</span><br><span class="line">        <span class="comment">// Assume canvas is supported</span></span><br><span class="line">        canvasSupported: <span class="literal">true</span>,</span><br><span class="line">        svgSupported: <span class="literal">true</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="rn与内嵌网页-用webView桥接"><a href="#rn与内嵌网页-用webView桥接" class="headerlink" title="rn与内嵌网页 用webView桥接"></a>rn与内嵌网页 用webView桥接</h1><ul>
+<li>解决方案<br>在 <code>injectedJavaScript</code> 内事先添加对 <code>message</code> 的监听事件，<br>然后使用webView props属性 <code>onMessage</code> 和 实例方法 <code>postMessage</code> 进行一收一发。<br>需要注意的是，收发，都是收发字符串类型的数据，可以使用json字符串</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> renderChart = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> height = <span class="string">`<span class="subst">$&#123;props.height || <span class="number">400</span>&#125;</span>px`</span>;</span><br><span class="line">  <span class="keyword">const</span> width = props.width ? <span class="string">`<span class="subst">$&#123;props.width&#125;</span>px`</span> : <span class="string">'auto'</span>;</span><br><span class="line">  <span class="keyword">const</span> backgroundColor = props.backgroundColor;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.height = "<span class="subst">$&#123;height&#125;</span>";</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.width = "<span class="subst">$&#123;width&#125;</span>";</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.backgroundColor = "<span class="subst">$&#123;backgroundColor&#125;</span>";</span></span><br><span class="line"><span class="string">      var myChart = echarts.init(document.getElementById('main'));</span></span><br><span class="line"><span class="string">      myChart.setOption(<span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(props.option)&#125;</span>);</span></span><br><span class="line"><span class="string">      window.document.addEventListener('message', function(e) &#123;</span></span><br><span class="line"><span class="string">        var req = JSON.parse(e.data);</span></span><br><span class="line"><span class="string">        switch (req.types) &#123;</span></span><br><span class="line"><span class="string">          case "SET_OPTION":</span></span><br><span class="line"><span class="string">            myChart.setOption(req.payload.option,req.payload.notMerge,req.payload.lazyUpate);</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          case "GET_IMAGE":</span></span><br><span class="line"><span class="string">            var base64 = myChart.getDataURL();</span></span><br><span class="line"><span class="string">            window.postMessage(JSON.stringify(&#123;"types":"GET_IMAGE","payload": base64&#125;));</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          case "CLEAR":</span></span><br><span class="line"><span class="string">            myChart.clear();</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          default:</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      myChart.on('click', function(params) &#123;</span></span><br><span class="line"><span class="string">        var seen = [];</span></span><br><span class="line"><span class="string">        var paramsString = JSON.stringify(params, function(key, val) &#123;</span></span><br><span class="line"><span class="string">          if (val != null &amp;&amp; typeof val == "object") &#123;</span></span><br><span class="line"><span class="string">            if (seen.indexOf(val) &gt;= 0) &#123;</span></span><br><span class="line"><span class="string">              return;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            seen.push(val);</span></span><br><span class="line"><span class="string">          &#125;</span></span><br><span class="line"><span class="string">          return val;</span></span><br><span class="line"><span class="string">        &#125;);</span></span><br><span class="line"><span class="string">        window.postMessage(JSON.stringify(&#123;"types":"ON_PRESS","payload": paramsString&#125;));</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> renderChart;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Echarts</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">flexDirection</span>: <span class="string">'row'</span>,<span class="attr">width</span>: <span class="keyword">this</span>.props.width&#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">flex</span>:<span class="number">1</span>,<span class="attr">height</span>: <span class="keyword">this</span>.props.height || <span class="number">400</span>&#125;&#125;&gt;</span><br><span class="line">          &lt;WebView</span><br><span class="line">            ref=<span class="string">"chart"</span></span><br><span class="line">            ...</span><br><span class="line">            onMessage=&#123;<span class="keyword">this</span>._handleMessage&#125;</span><br><span class="line">            injectedJavaScript=&#123;renderChart(<span class="keyword">this</span>.props)&#125;</span><br><span class="line">            ...</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _handleMessage = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!e) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(e.nativeEvent.data)</span><br><span class="line">    <span class="keyword">switch</span> (data.types) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'ON_PRESS'</span>:</span><br><span class="line">        <span class="keyword">this</span>.props.onPress(<span class="built_in">JSON</span>.parse(data.payload))</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'GET_IMAGE'</span>:</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;data&#125;)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  _postMessage(data)&#123;</span><br><span class="line">    <span class="keyword">this</span>.refs.chart.postMessage(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setOption = <span class="function">(<span class="params">option,notMerge, lazyUpdate</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = &#123;</span><br><span class="line">      types: <span class="string">'SET_OPTION'</span>,</span><br><span class="line">      payload: &#123;</span><br><span class="line">        option:option,</span><br><span class="line">        notMerge:notMerge || <span class="literal">false</span>,</span><br><span class="line">        lazyUpdate:lazyUpdate || <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._postMessage(data);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  clear=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> data = &#123;</span><br><span class="line">      types: <span class="string">'CLEAR'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._postMessage(data);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getImage = <span class="function">(<span class="params">callback</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = &#123;</span><br><span class="line">      types: <span class="string">'GET_IMAGE'</span>,</span><br><span class="line">      payload: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._postMessage(data);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.state.data.types === <span class="string">'GET_IMAGE'</span>) &#123;</span><br><span class="line">        callback(<span class="keyword">this</span>.state.data)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        callback(<span class="literal">null</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="postMessage-传递对象-JSON-stringify-后函数对象变为空字符串"><a href="#postMessage-传递对象-JSON-stringify-后函数对象变为空字符串" class="headerlink" title="postMessage 传递对象 JSON.stringify 后函数对象变为空字符串"></a>postMessage 传递对象 JSON.stringify 后函数对象变为空字符串</h1><ul>
+<li>解决方案<br>对function进行特殊处理<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toString = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="built_in">JSON</span>.stringify(obj, <span class="function"><span class="keyword">function</span>(<span class="params">key, val</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 对function进行特殊处理</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">'function'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">`~ha~<span class="subst">$&#123;val&#125;</span>~ha~`</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 再进行还原</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        result = result.replace(<span class="string">'\"~ha~'</span>, <span class="string">''</span>).replace(<span class="string">'~ha~\"'</span>, <span class="string">''</span>).replace(<span class="regexp">/\\n/g</span>, <span class="string">''</span>).replace(<span class="regexp">/\\\"/g</span>,<span class="string">"\""</span>);<span class="comment">//最后一个replace将release模式中莫名生成的\"转换成"</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (result.indexOf(<span class="string">'~ha~'</span>) &gt;= <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> renderChart = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> height = <span class="string">`<span class="subst">$&#123;props.height || <span class="number">400</span>&#125;</span>px`</span>;</span><br><span class="line">  <span class="keyword">const</span> width = props.width ? <span class="string">`<span class="subst">$&#123;props.width&#125;</span>px`</span> : <span class="string">'auto'</span>;</span><br><span class="line">  <span class="keyword">const</span> backgroundColor = props.backgroundColor;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.height = "<span class="subst">$&#123;height&#125;</span>";</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.width = "<span class="subst">$&#123;width&#125;</span>";</span></span><br><span class="line"><span class="string">      document.getElementById('main').style.backgroundColor = "<span class="subst">$&#123;backgroundColor&#125;</span>";</span></span><br><span class="line"><span class="string">      var myChart = echarts.init(document.getElementById('main'));</span></span><br><span class="line"><span class="string">      myChart.setOption(<span class="subst">$&#123;toString(props.option)&#125;</span>);</span></span><br><span class="line"><span class="string">      window.document.addEventListener('message', function(e) &#123;</span></span><br><span class="line"><span class="string">        var req = JSON.parse(e.data);</span></span><br><span class="line"><span class="string">        switch (req.types) &#123;</span></span><br><span class="line"><span class="string">          case "SET_OPTION":</span></span><br><span class="line"><span class="string">            myChart.setOption(req.payload.option,req.payload.notMerge,req.payload.lazyUpate);</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          case "GET_IMAGE":</span></span><br><span class="line"><span class="string">            var base64 = myChart.getDataURL();</span></span><br><span class="line"><span class="string">            window.postMessage(JSON.stringify(&#123;"types":"GET_IMAGE","payload": base64&#125;));</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          case "CLEAR":</span></span><br><span class="line"><span class="string">            myChart.clear();</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">          default:</span></span><br><span class="line"><span class="string">            break;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      myChart.on('click', function(params) &#123;</span></span><br><span class="line"><span class="string">        var seen = [];</span></span><br><span class="line"><span class="string">        var paramsString = JSON.stringify(params, function(key, val) &#123;</span></span><br><span class="line"><span class="string">          if (val != null &amp;&amp; typeof val == "object") &#123;</span></span><br><span class="line"><span class="string">            if (seen.indexOf(val) &gt;= 0) &#123;</span></span><br><span class="line"><span class="string">              return;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            seen.push(val);</span></span><br><span class="line"><span class="string">          &#125;</span></span><br><span class="line"><span class="string">          return val;</span></span><br><span class="line"><span class="string">        &#125;);</span></span><br><span class="line"><span class="string">        window.postMessage(JSON.stringify(&#123;"types":"ON_PRESS","payload": paramsString&#125;));</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> renderChart;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+            <a href="/tags/webView/" rel="tag"># webView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/19/rn_splash_screen/" rel="next" title="【reaact-native】android启动屏幕等比缩放与剪裁">
+                <i class="fa fa-chevron-left"></i> 【reaact-native】android启动屏幕等比缩放与剪裁
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/19/js_basic_algorithms/" rel="prev" title="【js】常用的一些基础算法">
+                【js】常用的一些基础算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">海色</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webView不能设置宽高"><span class="nav-number">1.</span> <span class="nav-text">webView不能设置宽高</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webView不能根据传参的变化进行刷新"><span class="nav-number">2.</span> <span class="nav-text">webView不能根据传参的变化进行刷新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview在暗色系背景下，会呈现白色背景"><span class="nav-number">3.</span> <span class="nav-text">webview在暗色系背景下，会呈现白色背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview在暗色系背景下，ios加载会出现白色遮罩闪烁"><span class="nav-number">4.</span> <span class="nav-text">webview在暗色系背景下，ios加载会出现白色遮罩闪烁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview在android-release版本中不渲染。"><span class="nav-number">5.</span> <span class="nav-text">webview在android release版本中不渲染。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview在ios-release版本中不渲染。"><span class="nav-number">6.</span> <span class="nav-text">webview在ios release版本中不渲染。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview-ios-出现滚动"><span class="nav-number">7.</span> <span class="nav-text">webview ios 出现滚动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webview-ios-web页面不进行移动端视口的自适配"><span class="nav-number">8.</span> <span class="nav-text">webview ios web页面不进行移动端视口的自适配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webView-android-内嵌html-外联js失效"><span class="nav-number">9.</span> <span class="nav-text">webView android 内嵌html 外联js失效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rn-引入web库报错-没找到-userAgent-是个未定义"><span class="nav-number">10.</span> <span class="nav-text">rn 引入web库报错 没找到 userAgent 是个未定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rn与内嵌网页-用webView桥接"><span class="nav-number">11.</span> <span class="nav-text">rn与内嵌网页 用webView桥接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#postMessage-传递对象-JSON-stringify-后函数对象变为空字符串"><span class="nav-number">12.</span> <span class="nav-text">postMessage 传递对象 JSON.stringify 后函数对象变为空字符串</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海色</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
