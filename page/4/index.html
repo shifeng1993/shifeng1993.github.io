@@ -1488,7 +1488,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_char/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1507,7 +1507,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_char/" itemprop="url">【C学习随笔】C语言的字符型数据</a></h2>
         
 
         <div class="post-meta">
@@ -1581,11 +1581,12 @@
       
         
           
-          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
+          字符常量用单引号括起来的一个字符都叫字符常量，字符常量只能是单个字符，不能为字符串，
+123456#include &lt;stdio.h&gt;int main(void) &#123;    printf("this is my \'woshihaise\'\n");    return 0;&
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_char/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1636,7 +1637,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_Other/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_typeConversion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1655,7 +1656,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_Other/" itemprop="url">【C学习随笔】C语言其他运算符</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_typeConversion/" itemprop="url">【C学习随笔】C语言的类型转换</a></h2>
         
 
         <div class="post-meta">
@@ -1729,11 +1730,11 @@
       
         
           
-          sizeof运算符和size_t类型sizeof运算符，以字节为单位返回运算对象的大小，运算对象可以是一个具体的数据对象或类型，默认返回一个size_t类型的值，是一个无符号整数类型，转换说明为%zd(C99)，如果不支持%zd(C99)，可使用%lu或%u代替。以下是一个例子：1234567#in
+          自动类型转换涉及两种类型运算，两种类型会分别被转换成两种类型的更高级别，类型的从高到低依次为：long doubledoublefloatunsigned long longlong longunsigned longlongunsigned intint例外的情况是，当long和int的大小相同时
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_Other/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_typeConversion/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
