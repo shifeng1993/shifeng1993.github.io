@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_gcc/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -307,7 +307,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_gcc/" itemprop="url">【C学习随笔】GCC编译器语法结构</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_operator/" itemprop="url">【C学习随笔】C语言的基本运算符</a></h2>
         
 
         <div class="post-meta">
@@ -381,17 +381,13 @@
       
         
           
-          GCC语法结构注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
-基本选项gcc [options] [srcFile]
--c：只是编译不连接，生成目标文件.o
--S：只是编译不汇编，生成汇编代码
--E：只进行预编译，不做其他处理
--g：在可执行程序中包含标准调试信息
-
+          赋值运算符：=赋值运算符=并不意味着“相等”，例如：12int a = 1;a = a + 1;
+赋值的顺序是从右往左：例如：123int c = 1;a = b = c = 1;printf("%d\n%d\n%d\n", a, b, c);
+如此就是先把1赋值给c，然后把c赋值给b，然后把b赋值
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_gcc/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_operator/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -442,7 +438,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_float/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_int/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -461,7 +457,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_float/" itemprop="url">【C学习随笔】C语言的实型数据</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_int/" itemprop="url">【C学习随笔】C语言的整型数据</a></h2>
         
 
         <div class="post-meta">
@@ -535,15 +531,12 @@
       
         
           
-          注：浮点运算是有误差的，用于精密计算建议用整型数据类型存储和运算。如：银行存款。
-float
-单精度类型占用4个字节，32位。用%f进行输出
-
-1234567#include &lt;stdio.h&gt;int main(void) &#123;    float a = 3.1;    prin
+          有符号整型数据1Byte = 8Bit；一个字节为八个比特位元。
+short或者为short int 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间1234567#include &lt;stdio.h&gt;int main(void) &#123;    short int a 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_float/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_int/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -744,7 +737,7 @@ float
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_const_define/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_gcc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -763,7 +756,7 @@ float
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_const_define/" itemprop="url">【C学习随笔】C语言的变量与常量定义</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_gcc/" itemprop="url">【C学习随笔】GCC编译器语法结构</a></h2>
         
 
         <div class="post-meta">
@@ -837,14 +830,166 @@ float
       
         
           
-          变量定义注意给变量定义类型12int a = 10;a = 11;
-常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000
-第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000
+          GCC语法结构注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
+基本选项gcc [options] [srcFile]
+-c：只是编译不连接，生成目标文件.o
+-S：只是编译不汇编，生成汇编代码
+-E：只进行预编译，不做其他处理
+-g：在可执行程序中包含标准调试信息
 
-          
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_const_define/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_gcc/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_char/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/20/c_char/" itemprop="url">【C学习随笔】C语言的字符型数据</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          字符常量用单引号括起来的一个字符都叫字符常量，字符常量只能是单个字符，不能为字符串，
+123456#include &lt;stdio.h&gt;int main(void) &#123;    printf("this is my \'woshihaise\'\n");    return 0;&
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/20/c_char/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1679,7 +1824,7 @@ windows和mac可以傻瓜式安装，按照默认安装即可。linux安装需�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
