@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_typeConversion/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_GDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -307,7 +307,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_typeConversion/" itemprop="url">【C学习随笔】C语言的类型转换</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_GDB/" itemprop="url">【C学习随笔】gdb的编译选项和命令</a></h2>
         
 
         <div class="post-meta">
@@ -381,309 +381,16 @@
       
         
           
-          自动类型转换涉及两种类型运算，两种类型会分别被转换成两种类型的更高级别，类型的从高到低依次为：long doubledoublefloatunsigned long longlong longunsigned longlongunsigned intint例外的情况是，当long和int的大小相同时
+          gdb的编译选项和命令注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
+gcc  -g -o [binFile] [srcFile]
+gdb  [binFile]
+gdb调试流程l(list)：查看所载入的文件
+b(break)：设置断点，程序运行到断点即可停止
+in
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_typeConversion/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_io/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海色">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="师峰的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/20/c_io/" itemprop="url">【C学习随笔】C语言I/O函数printf()和scanf()</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          输出函数 printf()printf函数打印数据的指令要与待打印数据的类型相匹配，例如打印整数用%d，打印字符类型用%c，以下是转换说明以及打印后结果。
-%a 浮点数，十六进制数和p计数法（C99和C11）%A 浮点数，十六进制数和p计数法（C99和C11）%c 单个字符%d 有符号十进制整数%e
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_io/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_int/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海色">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="师峰的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/20/c_int/" itemprop="url">【C学习随笔】C语言的整型数据</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          有符号整型数据1Byte = 8Bit；一个字节为八个比特位元。
-short或者为short int 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间1234567#include &lt;stdio.h&gt;int main(void) &#123;    short int a 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_int/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_GDB/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -888,7 +595,7 @@ short或者为short int 占用的储存空间可能比int类型少，常用于�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_float/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_int/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -907,7 +614,7 @@ short或者为short int 占用的储存空间可能比int类型少，常用于�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_float/" itemprop="url">【C学习随笔】C语言的实型数据</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_int/" itemprop="url">【C学习随笔】C语言的整型数据</a></h2>
         
 
         <div class="post-meta">
@@ -981,15 +688,12 @@ short或者为short int 占用的储存空间可能比int类型少，常用于�
       
         
           
-          注：浮点运算是有误差的，用于精密计算建议用整型数据类型存储和运算。如：银行存款。
-float
-单精度类型占用4个字节，32位。用%f进行输出
-
-1234567#include &lt;stdio.h&gt;int main(void) &#123;    float a = 3.1;    prin
+          有符号整型数据1Byte = 8Bit；一个字节为八个比特位元。
+short或者为short int 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间1234567#include &lt;stdio.h&gt;int main(void) &#123;    short int a 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_float/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_int/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1040,7 +744,7 @@ float
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_expression/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_io/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1059,7 +763,7 @@ float
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_expression/" itemprop="url">【C学习随笔】C语言表达式和语句</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_io/" itemprop="url">【C学习随笔】C语言I/O函数printf()和scanf()</a></h2>
         
 
         <div class="post-meta">
@@ -1133,13 +837,12 @@ float
       
         
           
-          表达式表达式由运算符和运算对象组成，最简单的表达式是一个单独的运算对象，以此为基础可以建立复杂的表达式。示例:1234564-64+2a*bq&gt;3++i
-语句语句是c语言的基本构成块。一条语句相当于一条完整的计算机指令。大部分语句都以分号结尾。
-
-          
+          输出函数 printf()printf函数打印数据的指令要与待打印数据的类型相匹配，例如打印整数用%d，打印字符类型用%c，以下是转换说明以及打印后结果。
+%a 浮点数，十六进制数和p计数法（C99和C11）%A 浮点数，十六进制数和p计数法（C99和C11）%c 单个字符%d 有符号十进制整数%e
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_expression/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_io/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1190,7 +893,7 @@ float
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_const_define/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_macosInstallGDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1209,7 +912,7 @@ float
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_const_define/" itemprop="url">【C学习随笔】C语言的变量与常量定义</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_macosInstallGDB/" itemprop="url">【C学习随笔】macos系统下安装gdb</a></h2>
         
 
         <div class="post-meta">
@@ -1283,14 +986,14 @@ float
       
         
           
-          变量定义注意给变量定义类型12int a = 10;a = 11;
-常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000
-第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000
-
-          
+          1.安装homebrewruby -e&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+2.安装gdbbrew install gdb
+3.生成证书生成证书
+Step
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_const_define/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_macosInstallGDB/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1341,7 +1044,7 @@ float
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/01/31/nodejs_linuxInstallNodejs/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1360,7 +1063,7 @@ float
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/31/nodejs_linuxInstallNodejs/" itemprop="url">【nodejs】linux下安装nodejs</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_operator/" itemprop="url">【C学习随笔】C语言的基本运算符</a></h2>
         
 
         <div class="post-meta">
@@ -1372,8 +1075,8 @@ float
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-31T00:00:00+08:00">
-                2017-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
               </time>
             
 
@@ -1395,8 +1098,8 @@ float
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
                   </a>
                 </span>
 
@@ -1434,13 +1137,13 @@ float
       
         
           
-          准备命令centos1yum -y install gcc make gcc-c++ openssl-devel wget
-ubuntu1apt-get install python gcc make g++
-下载源码以及解压12wget https://nodejs.org/dist/v6.10.
+          赋值运算符：=赋值运算符=并不意味着“相等”，例如：12int a = 1;a = a + 1;
+赋值的顺序是从右往左：例如：123int c = 1;a = b = c = 1;printf("%d\n%d\n%d\n", a, b, c);
+如此就是先把1赋值给c，然后把c赋值给b，然后把b赋值
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/01/31/nodejs_linuxInstallNodejs/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_operator/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1491,7 +1194,7 @@ ubuntu1apt-get install python gcc make g++
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2016/12/05/react_2016/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_char/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1510,7 +1213,7 @@ ubuntu1apt-get install python gcc make g++
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/05/react_2016/" itemprop="url">【react分享】2016年底学习react经验谈</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_char/" itemprop="url">【C学习随笔】C语言的字符型数据</a></h2>
         
 
         <div class="post-meta">
@@ -1522,8 +1225,8 @@ ubuntu1apt-get install python gcc make g++
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-05T00:00:00+08:00">
-                2016-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
               </time>
             
 
@@ -1545,8 +1248,8 @@ ubuntu1apt-get install python gcc make g++
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
                   </a>
                 </span>
 
@@ -1584,12 +1287,12 @@ ubuntu1apt-get install python gcc make g++
       
         
           
-          马上2017年了，年底努了一把力，把react以及react生态圈终于是入了个门。从11月底开始零零散散的学了一个月，最大的感触就是得上手多练，多请教人。
-分享一下一路走过来的经历吧，希望对新入坑的同学会有一些帮助。至于老司机们，不愿意看的可以无视，愿意看的各位老哥，可以留下意见或和建议。我会努力的
+          字符常量用单引号括起来的一个字符都叫字符常量，字符常量只能是单个字符，不能为字符串，
+123456#include &lt;stdio.h&gt;int main(void) &#123;    printf("this is my \'woshihaise\'\n");    return 0;&
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/12/05/react_2016/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_char/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1640,7 +1343,7 @@ ubuntu1apt-get install python gcc make g++
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2016/10/23/vue_vuex/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1659,7 +1362,7 @@ ubuntu1apt-get install python gcc make g++
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/23/vue_vuex/" itemprop="url">【vue2.0实战分享】如何在项目中引入和使用vuex</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_string/" itemprop="url">【C学习随笔】C语言的字符串</a></h2>
         
 
         <div class="post-meta">
@@ -1671,8 +1374,8 @@ ubuntu1apt-get install python gcc make g++
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-23T00:00:00+08:00">
-                2016-10-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
               </time>
             
 
@@ -1694,8 +1397,8 @@ ubuntu1apt-get install python gcc make g++
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
                   </a>
                 </span>
 
@@ -1733,11 +1436,310 @@ ubuntu1apt-get install python gcc make g++
       
         
           
-          引入vuex因为vuex是加载在vue根实例上的，所以先在app.vue引入store，并在vue根实例中引入代码如下123456789101112import Vue from 'vue'import App from './App'import router from './routes'// 
+          定义字符串是一个或多个字符的序列，例如：1"wo xian zai hao e wo hao xiang chi fan "
+双引号不是字符串的一部分，仅告知编译器，它们中间的字符数组为字符串。
+字符串存储因为C语言没有单独用来存储字符串的变量类型。所以字符串都被存储在char类型的数组里面，数组由
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/10/23/vue_vuex/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/20/c_string1/" itemprop="url">【C学习随笔】C语言字符长度和数据类型大小</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          字符类型大小使用strlen()函数，可以给出字符串中的字节长度
+12345678#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char name[] = "wo shi shifeng";	printf(
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/20/c_string1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1825,7 +1827,7 @@ ubuntu1apt-get install python gcc make g++
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1836,7 +1838,7 @@ ubuntu1apt-get install python gcc make g++
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1847,7 +1849,7 @@ ubuntu1apt-get install python gcc make g++
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
