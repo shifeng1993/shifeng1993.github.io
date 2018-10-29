@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_macosInstallGDB/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -307,7 +307,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_macosInstallGDB/" itemprop="url">【C学习随笔】macos系统下安装gdb</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_string1/" itemprop="url">【C学习随笔】C语言字符长度和数据类型大小</a></h2>
         
 
         <div class="post-meta">
@@ -381,14 +381,12 @@
       
         
           
-          1.安装homebrewruby -e&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-2.安装gdbbrew install gdb
-3.生成证书生成证书
-Step
+          字符类型大小使用strlen()函数，可以给出字符串中的字节长度
+12345678#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char name[] = "wo shi shifeng";	printf(
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_macosInstallGDB/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_string1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -439,7 +437,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_GDB/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -458,7 +456,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_GDB/" itemprop="url">【C学习随笔】gdb的编译选项和命令</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
         
 
         <div class="post-meta">
@@ -532,16 +530,11 @@ Step
       
         
           
-          gdb的编译选项和命令注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
-gcc  -g -o [binFile] [srcFile]
-gdb  [binFile]
-gdb调试流程l(list)：查看所载入的文件
-b(break)：设置断点，程序运行到断点即可停止
-in
+          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_GDB/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
