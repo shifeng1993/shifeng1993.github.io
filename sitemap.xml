@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.shifeng1993.com/2018/11/05/base_css6/</loc>
+    
+    <lastmod>2018-11-05T14:44:08.778Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/10/29/base_css1/</loc>
+    
+    <lastmod>2018-11-05T13:35:41.161Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/11/03/say2/</loc>
+    
+    <lastmod>2018-11-05T13:24:35.229Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/11/02/base_css5/</loc>
+    
+    <lastmod>2018-11-05T13:24:35.229Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/11/01/base_css4/</loc>
+    
+    <lastmod>2018-11-05T13:24:35.229Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2018/10/31/base_css3/</loc>
     
-    <lastmod>2018-10-30T15:41:27.440Z</lastmod>
+    <lastmod>2018-11-05T13:24:35.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/10/30/base_css2/</loc>
+    
+    <lastmod>2018-11-05T13:24:35.228Z</lastmod>
     
   </url>
   
@@ -12,20 +54,6 @@
     <loc>http://www.shifeng1993.com/2018/10/19/base_index/</loc>
     
     <lastmod>2018-10-30T15:41:20.232Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2018/10/30/base_css2/</loc>
-    
-    <lastmod>2018-10-30T15:17:53.689Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2018/10/29/base_css1/</loc>
-    
-    <lastmod>2018-10-30T14:59:33.708Z</lastmod>
     
   </url>
   
@@ -156,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/06/04/yanghuimat/</loc>
+    <loc>http://www.shifeng1993.com/categories/index.html</loc>
     
     <lastmod>2018-07-03T16:11:06.742Z</lastmod>
     
@@ -170,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/categories/index.html</loc>
+    <loc>http://www.shifeng1993.com/2018/06/04/yanghuimat/</loc>
     
     <lastmod>2018-07-03T16:11:06.742Z</lastmod>
     
@@ -184,21 +212,14 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2017/10/06/rn_react_koa2_mongodb_requirementAnalysis/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2018/05/26/tensorflow_gpu_macos/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2016/10/23/vue_vuex/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
     
     <lastmod>2018-07-03T16:11:06.741Z</lastmod>
     
@@ -212,21 +233,28 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/06/rn_react_koa2_mongodb_requirementAnalysis/</loc>
+    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
     
     <lastmod>2018-07-03T16:11:06.741Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/</loc>
+    <loc>http://www.shifeng1993.com/2016/10/23/vue_vuex/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.741Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/</loc>
     
     <lastmod>2018-07-03T16:11:06.740Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/</loc>
+    <loc>http://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/</loc>
     
     <lastmod>2018-07-03T16:11:06.740Z</lastmod>
     
@@ -289,13 +317,6 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/09/28/centos7_nginx_install/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shifeng1993.com/2017/04/28/cpp_1/</loc>
     
     <lastmod>2018-07-03T16:11:06.709Z</lastmod>
@@ -331,21 +352,21 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_int/</loc>
+    <loc>http://www.shifeng1993.com/2017/09/28/centos7_nginx_install/</loc>
     
-    <lastmod>2018-07-03T16:11:06.708Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_gcc/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.708Z</lastmod>
+    <lastmod>2018-07-03T16:11:06.709Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_io/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.708Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_int/</loc>
     
     <lastmod>2018-07-03T16:11:06.708Z</lastmod>
     
@@ -380,6 +401,13 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_gcc/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.708Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_float/</loc>
     
     <lastmod>2018-07-03T16:11:06.707Z</lastmod>
@@ -394,14 +422,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_char/</loc>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_expression/</loc>
     
     <lastmod>2018-07-03T16:11:06.707Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_expression/</loc>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_char/</loc>
     
     <lastmod>2018-07-03T16:11:06.707Z</lastmod>
     
@@ -450,13 +478,6 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/04/27/android3/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.706Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shifeng1993.com/2018/05/16/android6/</loc>
     
     <lastmod>2018-07-03T16:11:06.706Z</lastmod>
@@ -465,6 +486,13 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2018/05/04/android4/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2018/04/27/android3/</loc>
     
     <lastmod>2018-07-03T16:11:06.706Z</lastmod>
     
