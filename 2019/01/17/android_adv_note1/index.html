@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="注明：本笔记部分摘抄自极客时间张绍文先生Android开发高手课专栏，仅为自用，如有需求，请自行前往极客时间进行订阅。 移动应用交付流程一个应用至少会经过开发、编译CI、测试,灰度和发布这几个阶段.每个阶段需要关注什么问题呢? 开发阶段在面试的时候，常常有人说自己熟练掌握各种开发工具。但是，我们真的懂吗？就拿我们比较熟悉的耗时分析工具 Traceview 来说，它背后的实现原理是什么？能不能做一个">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【android高手课学习笔记】高质量应用交付以及APM平台">
+<meta property="og:url" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/index.html">
+<meta property="og:site_name" content="师峰的博客">
+<meta property="og:description" content="注明：本笔记部分摘抄自极客时间张绍文先生Android开发高手课专栏，仅为自用，如有需求，请自行前往极客时间进行订阅。 移动应用交付流程一个应用至少会经过开发、编译CI、测试,灰度和发布这几个阶段.每个阶段需要关注什么问题呢? 开发阶段在面试的时候，常常有人说自己熟练掌握各种开发工具。但是，我们真的懂吗？就拿我们比较熟悉的耗时分析工具 Traceview 来说，它背后的实现原理是什么？能不能做一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/移动应用交付流程图.jpg">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/AMP质量平台结构展示.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/AMP平台背后所需知识.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/android应用体验标准.jpg">
+<meta property="og:updated_time" content="2019-01-17T13:33:35.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【android高手课学习笔记】高质量应用交付以及APM平台">
+<meta name="twitter:description" content="注明：本笔记部分摘抄自极客时间张绍文先生Android开发高手课专栏，仅为自用，如有需求，请自行前往极客时间进行订阅。 移动应用交付流程一个应用至少会经过开发、编译CI、测试,灰度和发布这几个阶段.每个阶段需要关注什么问题呢? 开发阶段在面试的时候，常常有人说自己熟练掌握各种开发工具。但是，我们真的懂吗？就拿我们比较熟悉的耗时分析工具 Traceview 来说，它背后的实现原理是什么？能不能做一个">
+<meta name="twitter:image" content="http://www.shifeng1993.com/2019/01/17/android_adv_note1/移动应用交付流程图.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shifeng1993.com/2019/01/17/android_adv_note1/"/>
+
+
+
+
+
+  <title>【android高手课学习笔记】高质量应用交付以及APM平台 | 师峰的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">师峰的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">累了歇一歇,保肝护肝人人做起</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2019/01/17/android_adv_note1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【android高手课学习笔记】高质量应用交付以及APM平台</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T12:44:00+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>注明：本笔记部分摘抄自极客时间<code>张绍文</code>先生<code>Android开发高手课</code>专栏，仅为自用，如有需求，请自行前往极客时间进行订阅。</p>
+<h1 id="移动应用交付流程"><a href="#移动应用交付流程" class="headerlink" title="移动应用交付流程"></a>移动应用交付流程</h1><p><img src="/2019/01/17/android_adv_note1/移动应用交付流程图.jpg" title="移动应用交付流程图"><br>一个应用至少会经过开发、编译CI、测试,灰度和发布这几个阶段.每个阶段需要关注什么问题呢?</p>
+<h2 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h2><p>在面试的时候，常常有人说自己熟练掌握各种开发工具。但是，我们真的懂吗？就拿我们比较熟悉的耗时分析工具 Traceview 来说，它背后的实现原理是什么？能不能做一个完全没有性能损耗的 Traceview？或者怎么样将它移植到线上使用？</p>
+<h2 id="编译CI阶段"><a href="#编译CI阶段" class="headerlink" title="编译CI阶段"></a>编译CI阶段</h2><p>如何防止代码不断地恶化？怎样进一步优化性能？d8 与 ReDex 有什么神奇的黑科技？如何利用好 Coverity、Infer 这些静态分析工具？这部分可能需要一些编译原理的知识，你会发现移动开发也有很多值得深入研究的东西。</p>
+<h2 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h2><p>我们常说敏捷开发，用户是最好的测试。遇到问题在线上反复试错，对自己、对用户都十分痛苦。我们希望可以做到测试“左移”，尽可能早地发现问题。但是很多时候我们不是不想测试，而是发现测不出什么问题。那么怎样提升实验室发现问题的能力呢？如何尽可能地模拟用户的操作路径？做好测试并不容易，自动化测试结合 AI 或许可以帮助我们解决一些痛点。</p>
+<h2 id="灰度和发布阶段"><a href="#灰度和发布阶段" class="headerlink" title="灰度和发布阶段"></a>灰度和发布阶段</h2><p>动态部署流行起来之后，很多开发变得松懈起来。有问题发补丁，一个不行就两个，两个不行就十个。怎样去保证产品质量？很多线上问题概率很低，基本很难复现，比如对于一个印度的用户，我们希望有一个远程的听诊器，而不需要把用户拉到我们的手术台上。</p>
+<h1 id="移动APM质量平台"><a href="#移动APM质量平台" class="headerlink" title="移动APM质量平台"></a>移动APM质量平台</h1><p>请你思考一下，在应用交付的这几个阶段中，我们对高质量的目标和实现方式是否一样呢？开发阶段有开发人员，可能希望采集尽可能多的数据；测试阶段有测试人员，可能更针对实验室环境或与竞品对比进行测试；灰度和发布阶段可能也有专门的运维人员，策略会相对保守一些。很明显，不同阶段我们对高质量的目标跟手段可能不太一样。</p>
+<p>一个公司有多套质量系统，这在大公司是非常普遍的现象。我们希望有一个统一的平台，整合应用的人员和开发流程，这就是我们常说 APM 质量平台。</p>
+<p>APM 的全称是“Application Performance Management”，即应用性能管理。据我了解，国内像阿里、腾讯、美团点评、饿了么、爱奇艺这些公司都在大力投入。Google 今年也发力 Android Vitals 监控，新增了耗电、权限管理模块。那么 APM 质量平台究竟有着什么样的魅力呢？</p>
+<ol>
+<li>统一管理。A 同学写了一个耗时监控工具，B 同学写了一个内存监控工具，它们在不同的仓库，上报格式可能不太一样，各自都搭了一个简单的页面。如果想评估一个应用的质量，总是要去几个系统汇总数据，想想都费劲。</li>
+<li>统一三端。一个公司可能有多个应用，一个应用也可能有 H5、iOS、Android 多个端。我们希望它们只是采集数据方式有所不同，上报、后台分析、展示、报警都是共用的。随着技术的发展，我们可能会增加 React Native、Flutter 这些新模块的监控，这个平台应该是统一演进的。当然我们非常希望业界有一套开源的方案，大家可以一起优化。</li>
+</ol>
+<p><img src="/2019/01/17/android_adv_note1/AMP质量平台结构展示.png" title="AMP质量平台结构展示"></p>
+<p>那这个质量平台需要关注哪些问题呢？这需要看我们用户关心什么问题。有的问题可能是致命的，像崩溃、卡死、白屏。另一大类问题就是性能问题，安装包大小、启动、耗时、内存、耗电、流量都是这一个范畴。在这个专栏里，我并不会教你如何从头搭建一个 APM 平台，我会更期待你掌握背后所需要的知识，它们主要包括：</p>
+<p><img src="/2019/01/17/android_adv_note1/AMP平台背后所需知识.png" title="AMP平台背后所需知识"></p>
+<p>由于 Android 版本的碎片化和国内 Android 生态的乱象，或者换句话说，“Android 开发者很苦，国内的 Android 开发者更苦”。在 11 月举办的 Android 绿色联盟开发者大会上推出的应用体验标准，有对应用的兼容性、稳定性、性能、功能和安全做了详细的定义。我贴张图，你可以看下。</p>
+<p><img src="/2019/01/17/android_adv_note1/android应用体验标准.jpg" title="android应用体验标准"></p>
+<p>在极致性能的同时，我们希望能更进一步地打造“绿色应用”。在这个过程中，一个全面而强大的 APM 质量平台会是我们坚实的后盾。当然对于大多数中小开发者来说，我们更建议选择成熟的第三方服务。但深入了解它们背后的原理，无论是对我们如何选择合适的服务，还是日常开发工作都会有很大的帮助。在学习完上面的这些内容之后，你也会觉得其实“性能优化”并不是那么“高不可攀”，我们也可以慢慢地迈向“性能优化专家”之路。</p>
+<p>不过我们需要明确一点，虽然移动 APM 质量平台可以帮助我们快速发现和定位问题，但是监控并不能保证实现高质量，这里最关键的永远是人，而不是系统。为什么呢？我举两个小例子。</p>
+<p>你在工作中可能总能遇到这样的场景，我管它叫反馈问题三连击：“是我的问题吗？”“能复现吗？”“你的测试靠谱吗？”。虽然通过 APM 质量平台可以减少推卸责任，但有些人的做法通常还是发现空指针加一个判空，发现并发问题加一个锁。这里的空指针真正原因是什么？这里判空了后面的逻辑是否还会运行正常？有没有更加好的方法或架构可以避免这个问题？我们真正应该反问的是这三个问题，把“质量观”深入骨髓，真正去想要得到个人成长，深挖背后的原因。</p>
+<p>第二个例子是，我发现许多人都在问题无法忍受，或者说是老板无法忍受的时候才去开启各种优化专项，但事后又不了了之。我们很多时候都在用战术的勤奋掩盖战略的懒惰，性能优化的关键在于 <code>如何解决存量问题，同时快速发现增量问题</code>。APM 质量平台只可以协助我们，并不能解决组织内部的心态问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/16/loophole7/" rel="next" title="【查漏-js】7.面向对象之继承">
+                <i class="fa fa-chevron-left"></i> 【查漏-js】7.面向对象之继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/17/loophole8/" rel="prev" title="【查漏-js】8.闭包和模拟块级作用域">
+                【查漏-js】8.闭包和模拟块级作用域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">海色</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动应用交付流程"><span class="nav-number">1.</span> <span class="nav-text">移动应用交付流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发阶段"><span class="nav-number">1.1.</span> <span class="nav-text">开发阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译CI阶段"><span class="nav-number">1.2.</span> <span class="nav-text">编译CI阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试阶段"><span class="nav-number">1.3.</span> <span class="nav-text">测试阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灰度和发布阶段"><span class="nav-number">1.4.</span> <span class="nav-text">灰度和发布阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动APM质量平台"><span class="nav-number">2.</span> <span class="nav-text">移动APM质量平台</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海色</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

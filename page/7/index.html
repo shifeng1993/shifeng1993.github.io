@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_macosInstallGDB/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/09/12/db_mongoose_pagination/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -307,7 +307,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_macosInstallGDB/" itemprop="url">【C学习随笔】macos系统下安装gdb</a></h2>
+                <a class="post-title-link" href="/2017/09/12/db_mongoose_pagination/" itemprop="url">【Mongoose】分页查询优化、获取数据总长度</a></h2>
         
 
         <div class="post-meta">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-12T00:00:00+08:00">
+                2017-09-12
               </time>
             
 
@@ -342,8 +342,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
                   </a>
                 </span>
 
@@ -381,14 +381,13 @@
       
         
           
-          1.安装homebrewruby -e&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-2.安装gdbbrew install gdb
-3.生成证书生成证书
-Step
+          无论是传统网页还是 ajax api，我们都不得不进行数据分页，一来节省带宽二来提升页面响应速度。作为一个数据完备的 web 应用，做好分页功能能极大提升用户体验。
+简单的分页查询在 mongoose 中，我们可以利用 skip、limit来进行分页：
+12345Articl.find(&#123;
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_macosInstallGDB/#more" rel="contents">
+            <a class="btn" href="/2017/09/12/db_mongoose_pagination/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -439,7 +438,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_operator/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/08/28/js_FuzzyQuery1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -458,7 +457,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_operator/" itemprop="url">【C学习随笔】C语言的基本运算符</a></h2>
+                <a class="post-title-link" href="/2017/08/28/js_FuzzyQuery1/" itemprop="url">【js】模糊查询算法</a></h2>
         
 
         <div class="post-meta">
@@ -470,8 +469,8 @@ Step
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T00:00:00+08:00">
+                2017-08-28
               </time>
             
 
@@ -493,8 +492,8 @@ Step
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -532,13 +531,15 @@ Step
       
         
           
-          赋值运算符：=赋值运算符=并不意味着“相等”，例如：12int a = 1;a = a + 1;
-赋值的顺序是从右往左：例如：123int c = 1;a = b = c = 1;printf("%d\n%d\n%d\n", a, b, c);
-如此就是先把1赋值给c，然后把c赋值给b，然后把b赋值
+          最近，写vue的时候，产品大佬提了个要求，要求做前端的模糊查询。二话不说，原生撸起来。
+模糊查询的思路参考传统c的二分递归算法，循环遍历维度中，给二分法传递匹配的字符以及整个字符串，再利用返回的数组下标来确定是否匹配，遍历完成，输出数组。
+需要数据
+一个原始的表格（两个维度，元组和属性）
+需要查询的
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_operator/#more" rel="contents">
+            <a class="btn" href="/2017/08/28/js_FuzzyQuery1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -589,7 +590,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/08/06/js_urlParams/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -608,7 +609,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_string/" itemprop="url">【C学习随笔】C语言的字符串</a></h2>
+                <a class="post-title-link" href="/2017/08/06/js_urlParams/" itemprop="url">【js】获取url query参数的方法</a></h2>
         
 
         <div class="post-meta">
@@ -620,8 +621,8 @@ Step
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T00:00:00+08:00">
+                2017-08-06
               </time>
             
 
@@ -643,8 +644,8 @@ Step
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -682,13 +683,11 @@ Step
       
         
           
-          定义字符串是一个或多个字符的序列，例如：1"wo xian zai hao e wo hao xiang chi fan "
-双引号不是字符串的一部分，仅告知编译器，它们中间的字符数组为字符串。
-字符串存储因为C语言没有单独用来存储字符串的变量类型。所以字符串都被存储在char类型的数组里面，数组由
+          1234567891011const getUrlParams = (url) =&gt; &#123;    let str = url.split('?')[1]    let items = str.split('&amp;')    let result = &#123;&#125;;   
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_string/#more" rel="contents">
+            <a class="btn" href="/2017/08/06/js_urlParams/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -739,7 +738,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string1/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/04/28/cpp_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -758,7 +757,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_string1/" itemprop="url">【C学习随笔】C语言字符长度和数据类型大小</a></h2>
+                <a class="post-title-link" href="/2017/04/28/cpp_1/" itemprop="url">【CPP学习随笔】cpp输入输出流以及作用域运算符</a></h2>
         
 
         <div class="post-meta">
@@ -770,8 +769,8 @@ Step
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T00:00:00+08:00">
+                2017-04-28
               </time>
             
 
@@ -832,12 +831,11 @@ Step
       
         
           
-          字符类型大小使用strlen()函数，可以给出字符串中的字节长度
-12345678#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char name[] = "wo shi shifeng";	printf(
+          输入输出流&gt;&gt;输入运算符&lt;&lt;输出运算符示例：1234567#include &lt;iostream&gt;int main () &#123;    int a, b;    std::cin &gt;&gt; a &gt;&gt; b;    std::cout &lt;
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_string1/#more" rel="contents">
+            <a class="btn" href="/2017/04/28/cpp_1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -888,7 +886,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_GDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -907,7 +905,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_GDB/" itemprop="url">【C学习随笔】gdb的编译选项和命令</a></h2>
         
 
         <div class="post-meta">
@@ -981,11 +979,16 @@ Step
       
         
           
-          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
+          gdb的编译选项和命令注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
+gcc  -g -o [binFile] [srcFile]
+gdb  [binFile]
+gdb调试流程l(list)：查看所载入的文件
+b(break)：设置断点，程序运行到断点即可停止
+in
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_GDB/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1036,7 +1039,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_typeConversion/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_Other/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1055,7 +1058,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_typeConversion/" itemprop="url">【C学习随笔】C语言的类型转换</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_Other/" itemprop="url">【C学习随笔】C语言其他运算符</a></h2>
         
 
         <div class="post-meta">
@@ -1129,11 +1132,11 @@ Step
       
         
           
-          自动类型转换涉及两种类型运算，两种类型会分别被转换成两种类型的更高级别，类型的从高到低依次为：long doubledoublefloatunsigned long longlong longunsigned longlongunsigned intint例外的情况是，当long和int的大小相同时
+          sizeof运算符和size_t类型sizeof运算符，以字节为单位返回运算对象的大小，运算对象可以是一个具体的数据对象或类型，默认返回一个size_t类型的值，是一个无符号整数类型，转换说明为%zd(C99)，如果不支持%zd(C99)，可使用%lu或%u代替。以下是一个例子：1234567#in
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_typeConversion/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_Other/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1484,7 +1487,7 @@ Step
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_GDB/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_expression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1503,7 +1506,7 @@ Step
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_GDB/" itemprop="url">【C学习随笔】gdb的编译选项和命令</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_expression/" itemprop="url">【C学习随笔】C语言表达式和语句</a></h2>
         
 
         <div class="post-meta">
@@ -1577,16 +1580,13 @@ Step
       
         
           
-          gdb的编译选项和命令注：以下文件名称binFile表示编译后的文件，srcFile表示编译前的源文件
-gcc  -g -o [binFile] [srcFile]
-gdb  [binFile]
-gdb调试流程l(list)：查看所载入的文件
-b(break)：设置断点，程序运行到断点即可停止
-in
-          ...
+          表达式表达式由运算符和运算对象组成，最简单的表达式是一个单独的运算对象，以此为基础可以建立复杂的表达式。示例:1234564-64+2a*bq&gt;3++i
+语句语句是c语言的基本构成块。一条语句相当于一条完整的计算机指令。大部分语句都以分号结尾。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_GDB/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_expression/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1780,7 +1780,7 @@ float
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1826,7 +1826,7 @@ float
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1837,7 +1837,7 @@ float
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1848,7 +1848,7 @@ float
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
