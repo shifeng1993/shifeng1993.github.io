@@ -65,6 +65,13 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2019/01/15/loophole6/</loc>
+    
+    <lastmod>2019-01-16T11:49:32.168Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2019/01/15/loophole5/</loc>
     
     <lastmod>2019-01-16T11:49:32.168Z</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2019/01/16/loophole7/</loc>
-    
-    <lastmod>2019-01-16T11:49:32.168Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2019/01/15/loophole6/</loc>
     
     <lastmod>2019-01-16T11:49:32.168Z</lastmod>
     
@@ -317,14 +317,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/05/16/android7/</loc>
+    <loc>http://www.shifeng1993.com/2018/05/16/android6/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/05/16/android6/</loc>
+    <loc>http://www.shifeng1993.com/2018/06/15/android9/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -338,7 +338,7 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2018/06/15/android9/</loc>
+    <loc>http://www.shifeng1993.com/2018/05/16/android7/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -373,6 +373,13 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_float/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_expression/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
@@ -381,13 +388,6 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_gcc/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_float/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -415,6 +415,13 @@
   </url>
   
   <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_string/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_operator/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
@@ -429,20 +436,6 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_string/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shifeng1993.com/2017/03/20/c_stringFunc/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shifeng1993.com/2017/03/20/c_typeConversion/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
@@ -451,6 +444,13 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2017/09/19/centos7_mongod_install/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/03/20/c_stringFunc/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -527,13 +527,6 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
@@ -542,6 +535,13 @@
   
   <url>
     <loc>http://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -569,14 +569,14 @@
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
+    <loc>http://www.shifeng1993.com/2016/10/02/vue_vue/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shifeng1993.com/2016/10/02/vue_vue/</loc>
+    <loc>http://www.shifeng1993.com/2016/10/15/vue_vueRouter/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     

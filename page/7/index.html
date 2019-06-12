@@ -54,16 +54,8 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -1635,7 +1627,7 @@ in
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_expression/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_float/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -1654,7 +1646,7 @@ in
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_expression/" itemprop="url">【C学习随笔】C语言表达式和语句</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_float/" itemprop="url">【C学习随笔】C语言的实型数据</a></h2>
         
 
         <div class="post-meta">
@@ -1728,13 +1720,15 @@ in
       
         
           
-          表达式表达式由运算符和运算对象组成，最简单的表达式是一个单独的运算对象，以此为基础可以建立复杂的表达式。示例:1234564-64+2a*bq&gt;3++i
-语句语句是c语言的基本构成块。一条语句相当于一条完整的计算机指令。大部分语句都以分号结尾。
+          注：浮点运算是有误差的，用于精密计算建议用整型数据类型存储和运算。如：银行存款。
+float
+单精度类型占用4个字节，32位。用%f进行输出
 
-          
+1234567#include &lt;stdio.h&gt;int main(void) &#123;    float a = 3.1;    prin
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_expression/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_float/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
