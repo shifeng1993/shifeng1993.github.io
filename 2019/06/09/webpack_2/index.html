@@ -80,18 +80,18 @@
 
 
 
-<meta name="description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布 暴露变量的三种方式webpack.ProvidePlugin 注入变量不会将变量暴露到wind">
+<meta name="description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布1234# NPM npm install --save-dev webpack-bundle-">
 <meta name="keywords" content="base,webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【webpack学习随笔】2.webpack优化配置策略">
 <meta property="og:url" content="http://www.shifeng1993.com/2019/06/09/webpack_2/index.html">
 <meta property="og:site_name" content="师峰的博客">
-<meta property="og:description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布 暴露变量的三种方式webpack.ProvidePlugin 注入变量不会将变量暴露到wind">
+<meta property="og:description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布1234# NPM npm install --save-dev webpack-bundle-">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-12T15:00:37.387Z">
+<meta property="og:updated_time" content="2019-06-12T15:09:21.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【webpack学习随笔】2.webpack优化配置策略">
-<meta name="twitter:description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布 暴露变量的三种方式webpack.ProvidePlugin 注入变量不会将变量暴露到wind">
+<meta name="twitter:description" content="由于webpack各种配置层出不穷，上一篇只是列举了一些常用的配置，而不知道什么时候又会变。。。 剩余的只能按需去查阅文档进行配置咯 这次是一些webpack优化配置策略说明 下面是正文，顺序不分先后  webpack-bundle-analyzer可视化分析工具，优化可以具体用这个来看包的大小以及分布1234# NPM npm install --save-dev webpack-bundle-">
 
 
 
@@ -360,7 +360,8 @@
 <p>这次是一些webpack优化配置策略说明</p>
 <p>下面是正文，顺序不分先后</p>
 <hr>
-<h1 id="webpack-bundle-analyzer"><a href="#webpack-bundle-analyzer" class="headerlink" title="webpack-bundle-analyzer"></a>webpack-bundle-analyzer</h1><p>可视化分析工具，优化可以具体用这个来看包的大小以及分布</p>
+<h1 id="webpack-bundle-analyzer"><a href="#webpack-bundle-analyzer" class="headerlink" title="webpack-bundle-analyzer"></a>webpack-bundle-analyzer</h1><p>可视化分析工具，优化可以具体用这个来看包的大小以及分布<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NPM </span></span><br><span class="line">npm install --save-dev webpack-bundle-analyzer</span><br><span class="line"><span class="comment"># Yarn </span></span><br><span class="line">yarn add -D webpack-bundle-analyzer</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">'webpack-bundle-analyzer'</span>).BundleAnalyzerPlugin;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> BundleAnalyzerPlugin()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="暴露变量的三种方式"><a href="#暴露变量的三种方式" class="headerlink" title="暴露变量的三种方式"></a>暴露变量的三种方式</h1><h2 id="webpack-ProvidePlugin-注入变量"><a href="#webpack-ProvidePlugin-注入变量" class="headerlink" title="webpack.ProvidePlugin 注入变量"></a>webpack.ProvidePlugin 注入变量</h2><p>不会将变量暴露到window上<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins:[</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">      <span class="string">'$'</span>: <span class="string">'jquery'</span>,</span><br><span class="line">      <span class="string">'全局变量名'</span>: <span class="string">'哪个包'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="expose-loader-暴露到window上"><a href="#expose-loader-暴露到window上" class="headerlink" title="expose-loader 暴露到window上"></a>expose-loader 暴露到window上</h2><p>帮你把一些变量放到window上</p>
 <ol>
