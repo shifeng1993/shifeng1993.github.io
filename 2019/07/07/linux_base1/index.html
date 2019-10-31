@@ -61,7 +61,7 @@
 
 
 
-  <meta name="keywords" content="师峰,师峰博客,师峰的个人站" />
+  <meta name="keywords" content="base,linux,devops," />
 
 
 
@@ -72,17 +72,23 @@
 
 
 
-<meta name="description" content="师峰的博客，为了更快速效率编程而建。包括js算法，vue, react, react native, nodejs, 数据库等栈和框架，以及C/C++，AI人工智能，python，android，ios的学习研究分享记录。">
-<meta name="keywords" content="师峰,师峰博客,师峰的个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="师峰的博客">
-<meta property="og:url" content="http://www.shifeng1993.com/archives/2018/09/index.html">
+<meta name="description" content="启动部分BIOS计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input/Output System) 硬件自检 BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test) 如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。  启动顺">
+<meta name="keywords" content="base,linux,devops">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【linux系统基础学习随笔】1.linux基础">
+<meta property="og:url" content="http://www.shifeng1993.com/2019/07/07/linux_base1/index.html">
 <meta property="og:site_name" content="师峰的博客">
-<meta property="og:description" content="师峰的博客，为了更快速效率编程而建。包括js算法，vue, react, react native, nodejs, 数据库等栈和框架，以及C/C++，AI人工智能，python，android，ios的学习研究分享记录。">
+<meta property="og:description" content="启动部分BIOS计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input/Output System) 硬件自检 BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test) 如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。  启动顺">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/07/07/linux_base1/mbr.png">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/07/07/linux_base1/mbrconstruction.jpg">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/07/07/linux_base1/partition_table.jpg">
+<meta property="og:image" content="http://www.shifeng1993.com/2019/07/07/linux_base1/mount.jpg">
+<meta property="og:updated_time" content="2019-07-14T04:43:18.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="师峰的博客">
-<meta name="twitter:description" content="师峰的博客，为了更快速效率编程而建。包括js算法，vue, react, react native, nodejs, 数据库等栈和框架，以及C/C++，AI人工智能，python，android，ios的学习研究分享记录。">
+<meta name="twitter:title" content="【linux系统基础学习随笔】1.linux基础">
+<meta name="twitter:description" content="启动部分BIOS计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input/Output System) 硬件自检 BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test) 如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。  启动顺">
+<meta name="twitter:image" content="http://www.shifeng1993.com/2019/07/07/linux_base1/mbr.png">
 
 
 
@@ -112,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://www.shifeng1993.com/archives/2018/09/"/>
+  <link rel="canonical" href="http://www.shifeng1993.com/2019/07/07/linux_base1/"/>
 
 
 
 
 
-  <title>归档 | 师峰的博客</title>
+  <title>【linux系统基础学习随笔】1.linux基础 | 师峰的博客</title>
   
 
 
@@ -137,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,73 +271,300 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        很好! 目前共计 85 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2019/07/07/linux_base1/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/19/js_basic_algorithms/" itemprop="url">
-              
-                <span itemprop="name">【js】常用的一些基础算法</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">【linux系统基础学习随笔】1.linux基础</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-19T00:00:00+08:00"
-              content="2018-09-19" >
-          09-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T21:14:00+08:00">
+                2019-07-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="启动部分"><a href="#启动部分" class="headerlink" title="启动部分"></a>启动部分</h1><h2 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h2><p>计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input/Output System)</p>
+<h2 id="硬件自检"><a href="#硬件自检" class="headerlink" title="硬件自检"></a>硬件自检</h2><ul>
+<li>BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test)</li>
+<li>如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。</li>
+</ul>
+<h2 id="启动顺序"><a href="#启动顺序" class="headerlink" title="启动顺序"></a>启动顺序</h2><ul>
+<li>硬件自检完成后，BIOS把控制权转交给下一阶段的启动程序。</li>
+<li>这时，BIOS需要知道下一阶段的启动程序具体存放在哪一个设备</li>
+<li>BIOS需要有一个外部储存设备的排序，排在前面的设备就是优先转交控制权的设备。这种排序叫做”启动顺序”（Boot Sequence）</li>
+<li>BIOS按照”启动顺序”，把控制权转交给排在第一位的储存设备</li>
+</ul>
+<h2 id="主引导记录"><a href="#主引导记录" class="headerlink" title="主引导记录"></a>主引导记录</h2><ul>
+<li>计算机读取该设备的第一个扇区，也就是读取最前面的512个字节。如果这512个字节的最后两个字节是<code>0x55</code>和<code>0xAA</code>，表明这个设备可以用于启动；如果不是，表明设备不能用于启动，控制权于是被转交给<code>启动顺序</code>中的下一个设备</li>
+<li>这最前面的<code>512</code>个字节，就叫做<code>主引导记录</code>（Master boot record，缩写为MBR）<br><img src="/2019/07/07/linux_base1/mbr.png" title="主引导记录"></li>
+</ul>
+<h2 id="主引导记录的结构"><a href="#主引导记录的结构" class="headerlink" title="主引导记录的结构"></a>主引导记录的结构</h2><p>主引导记录只有512个字节。它的主要作用是告诉计算机到硬盘的哪一个位置去找操作系统。</p>
+<ol>
+<li>第1-446字节：是用来记录系统的启动信息的,调用操作系统的机器码</li>
+<li>第447-510字节(64个字节)：分区表（Partition table），分区表的作用，是将硬盘分成若干个区</li>
+<li>第511-512字节：主引导记录签名（0x55和0xAA）<br><img src="/2019/07/07/linux_base1/mbrconstruction.jpg" title="主引导记录的结构"></li>
+</ol>
+<h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><ul>
+<li>磁盘分区是使用分区编辑器在磁盘上划分几个逻辑部分</li>
+<li>磁盘一旦划分成多个分区，不同类的目录与文件可以存储进不同的分区内</li>
+<li>主引导记录因此必须知道将控制权转交给哪个区</li>
+<li>分区表的长度只有64个字节，里面又分成四项，每项16个字节。所以，一个硬盘最多只能分四个一级分区，又叫做主分区<ol>
+<li>第1个字节：如果为0x80，就表示该主分区是激活分区，控制权要转交给这个分区。四个主分区里面只能有一个是激活的。</li>
+<li>第2-4个字节：主分区第一个扇区的物理位置(柱面(Cylinder)、磁头(Heads)、扇区号(Sector)等等)</li>
+<li>第5个字节：主分区类型，比如FAT32、NTFS等</li>
+<li>第6-8个字节：主分区最后一个扇区的物理位置</li>
+<li>第9-12字节：主分区第一个扇区的逻辑地址</li>
+<li>第13-16字节：主分区的扇区总数<br><img src="/2019/07/07/linux_base1/partition_table.jpg" title="分区表"></li>
+</ol>
+</li>
+</ul>
+<h2 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h2><ul>
+<li>扇区是硬盘存储上的概念，机械硬盘的内部是金属盘片，将圆形的盘片划分成若干个扇形区域，这就是扇区，若干个扇区就组成整个盘片</li>
+<li>扇区是硬盘上最小的读写单位，这个是硬盘决定的，不是操作系统决定的</li>
+<li>对现在的硬盘来说，逻辑扇区的大小等于物理扇区的大小，所以也并没有严格区分物理扇区和逻辑扇区</li>
+</ul>
+<h3 id="物理扇区"><a href="#物理扇区" class="headerlink" title="物理扇区"></a>物理扇区</h3><p>物理扇区就是底层硬件意义上的扇区</p>
+<h3 id="逻辑扇区"><a href="#逻辑扇区" class="headerlink" title="逻辑扇区"></a>逻辑扇区</h3><ul>
+<li>而在物理扇区之上，操作系统划分的逻辑扇区，是为了方便操作系统读取写入硬盘数据而设置的，其大小与具体地址，都可以通过一定的公式与物理地址对应</li>
+<li>同时如果出现的坏扇区，系统可以通过逻辑扇区，将物理上的坏扇区地址，重新定位到硬盘上备用的好扇区上，这样也就延长了硬盘的使用寿命</li>
+</ul>
+<h2 id="硬盘启动"><a href="#硬盘启动" class="headerlink" title="硬盘启动"></a>硬盘启动</h2><p>计算机的控制权就要转交给硬盘的某个分区了<br>四个主分区里面，只有一个是激活的。计算机会读取激活分区的第一个扇区，叫做”卷引导记录”(Volume boot record，缩写为VBR)</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ul>
+<li>控制权转交给操作系统后，操作系统的内核首先被载入内存。</li>
+<li>以Linux系统为例，先载入<code>/boot</code>目录下面的<code>kernel</code>。内核加载成功后，第一个运行的程序是<code>/sbin/init</code>。它根据配置文件（Debian系统是/etc/initab）产生init进程。这是Linux启动后的第一个进程，pid进程编号为1，其他进程都是它的后代</li>
+<li>然后，<code>init</code>线程加载系统的各个模块，比如窗口程序和网络程序，直至执行<code>/bin/login</code>程序，跳出登录界面，等待用户输入用户名和密码。</li>
+</ul>
+<h1 id="硬件设备文件名"><a href="#硬件设备文件名" class="headerlink" title="硬件设备文件名"></a>硬件设备文件名</h1><ul>
+<li>只要插入硬盘，Linux会自动检测和分配名称</li>
+<li>一个硬盘可以分成多个分区，每个分区都会有一个系统分配的名称</li>
+<li>第一块SCSI硬盘名称叫sda,它的第一个分区叫sda1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>硬件</th>
+<th>设备文件名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDE硬盘</td>
+<td>/dev/hd[a-d]</td>
+</tr>
+<tr>
+<td>SCSI/SATA/USB硬盘</td>
+<td>/dev/sd[a-p]</td>
+</tr>
+<tr>
+<td>光驱</td>
+<td>/dev/cdrom或/dev/hdc</td>
+</tr>
+<tr>
+<td>软盘</td>
+<td>/dev/fd[0-1]</td>
+</tr>
+<tr>
+<td>打印机(25针)</td>
+<td>/dev/lp[0-2]</td>
+</tr>
+<tr>
+<td>打印机(USB)</td>
+<td>/dev/usb/lp[0-15]</td>
+</tr>
+<tr>
+<td>鼠标</td>
+<td>/dev/mouse</td>
+</tr>
+</tbody>
+</table>
+<h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><ul>
+<li>磁盘分区是使用分区编辑器在磁盘上划分几个逻辑部分</li>
+<li>磁盘一旦划分成多个分区，不同类的目录与文件可以存储进不同的分区内</li>
+<li>分区表的长度只有64个字节，里面又分成四项，每项16个字节。所以，一个硬盘最多只能分四个一级分区，又叫做主分区</li>
+</ul>
+<h2 id="扩展分区"><a href="#扩展分区" class="headerlink" title="扩展分区"></a>扩展分区</h2><ul>
+<li>随着硬盘越来越大,四个主分区已经不够了,需要更多的分区. 但是,分区表只有四项，因此规定有且仅有一个区可以被定义成扩展分区(Extended partition)</li>
+<li>所谓扩展分区，就是指这个区里面又分成多个区。这种分区里面的分区，就叫做逻辑分区(logical partition)</li>
+<li>为了突破4个分区的限制，就取出一个分区作为扩展分区<ul>
+<li>扩展分区最多只能有1个</li>
+<li>主分区加扩展分区最多有4个</li>
+<li>不能写入数据，只能包含逻辑分区，逻辑分区最多是23个</li>
+</ul>
+</li>
+</ul>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
+<li>格式化是指根据用户选定的文件系统(如FAT16(2G),FAT32(4G)、NTFS、EXT2、EXT3、EXT4)对分区进行划分</li>
+<li>目的是为了更好的写入和读取数据</li>
+<li>主要是把整个分区切分成等大小的数据块，每个数据块是4KB，10K需要使用2个半的数据块。是存放文件的最小空间。</li>
+<li>微软操作系统（DOS、WINDOWS等）中磁盘文件存储管理的最小单位叫做簇</li>
+<li>簇(cluster)的本意就是一组，即一组扇区(一个磁道可以分割成若干个大小相等的圆弧，叫扇区)的意思。因为扇区的单位太小，因此把它捆在一起，组成一个更大的单位簇更方便进行灵活管理</li>
+<li>在分区中划出一片用于存放文件分配表，目录表等用户文件管理的磁盘空间。<ul>
+<li>ID</li>
+<li>修改时间</li>
+<li>权限</li>
+<li>数据块位置</li>
+</ul>
+</li>
+<li>格式化会清空数据</li>
+</ul>
+<h1 id="挂载点"><a href="#挂载点" class="headerlink" title="挂载点"></a>挂载点</h1><ul>
+<li>为了让Linux系统中可以访问这些分区，需要把这些分区挂载到对应的目录上</li>
+<li>在Linux中是把目录称为挂载点</li>
+<li>把目录和分区链接在一起的过程成为挂载</li>
+<li>/为根目录，必须挂载到一个分区上，默认所有子目录都会写入这个分区</li>
+<li>同一级目录下面的所有子目录可以有自己的独立存储空间</li>
+<li>必须有的分区<ul>
+<li>/ 根分区</li>
+<li>swap分区(交换分区，虚拟内存，一般为内存的2倍，不要超过2G)</li>
+</ul>
+</li>
+<li>推荐分区<ul>
+<li>/boot (启动分区,200M) 单独分区，避免分区写满造成系统无法启动</li>
+</ul>
+</li>
+</ul>
+<p>挂载示例:</p>
+<ul>
+<li><code>/dev/sd2</code>挂载到了 <code>/</code>目录上,也就是说向<code>/</code>目录下在写文件就是往<code>/dev/sd2</code>分区里写文件</li>
+<li><code>/dev/sd1</code>挂载到了 <code>/boot</code>目录上,也就是说向<code>/boot</code>目录下在写文件就是往<code>/dev/sd1</code>分区里写文件</li>
+<li><code>/dev/sd3</code>挂载到了 <code>/home</code>目录上,也就是说向<code>/home</code>目录下在写文件就是往<code>/dev/sd3</code>分区里写文件<br><img src="/2019/07/07/linux_base1/mount.jpg" title="挂载示例"></li>
+</ul>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/base/" rel="tag"># base</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/09/webpack_2/" rel="next" title="【webpack学习随笔】2.webpack优化配置策略">
+                <i class="fa fa-chevron-left"></i> 【webpack学习随笔】2.webpack优化配置策略
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/08/linux_base2/" rel="prev" title="【linux系统基础学习随笔】2.linux常用命令">
+                【linux系统基础学习随笔】2.linux常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +572,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -359,8 +596,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -375,7 +621,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -397,7 +643,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -436,6 +682,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动部分"><span class="nav-number">1.</span> <span class="nav-text">启动部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BIOS"><span class="nav-number">1.1.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件自检"><span class="nav-number">1.2.</span> <span class="nav-text">硬件自检</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动顺序"><span class="nav-number">1.3.</span> <span class="nav-text">启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主引导记录"><span class="nav-number">1.4.</span> <span class="nav-text">主引导记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主引导记录的结构"><span class="nav-number">1.5.</span> <span class="nav-text">主引导记录的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区表"><span class="nav-number">1.6.</span> <span class="nav-text">分区表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扇区"><span class="nav-number">1.7.</span> <span class="nav-text">扇区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理扇区"><span class="nav-number">1.7.1.</span> <span class="nav-text">物理扇区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑扇区"><span class="nav-number">1.7.2.</span> <span class="nav-text">逻辑扇区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘启动"><span class="nav-number">1.8.</span> <span class="nav-text">硬盘启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">1.9.</span> <span class="nav-text">操作系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬件设备文件名"><span class="nav-number">2.</span> <span class="nav-text">硬件设备文件名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分区"><span class="nav-number">3.</span> <span class="nav-text">分区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展分区"><span class="nav-number">3.1.</span> <span class="nav-text">扩展分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化"><span class="nav-number">3.2.</span> <span class="nav-text">格式化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挂载点"><span class="nav-number">4.</span> <span class="nav-text">挂载点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -578,6 +840,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

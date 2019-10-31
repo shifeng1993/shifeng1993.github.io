@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="base,linux,devops," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言：可能总结的不是很好，后续会继续完善一些东西  常见目录 / 根目录 /boot 启动目录，启动相关文件 /dev 设备文件 /etc 配置文件 /home 普通用户的家目录,可以操作 /lib 系统库保存目录 /mnt 移动设备挂载目录 /media 光盘挂载目录 /misc 磁带机挂载目录 /root 超级用户的家目录,可以操作 /tmp 临时目录,可以操作 /proc 正在运行的内核信息">
+<meta name="keywords" content="base,linux,devops">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【linux系统基础学习随笔】2.linux常用命令">
+<meta property="og:url" content="http://www.shifeng1993.com/2019/07/08/linux_base2/index.html">
+<meta property="og:site_name" content="师峰的博客">
+<meta property="og:description" content="前言：可能总结的不是很好，后续会继续完善一些东西  常见目录 / 根目录 /boot 启动目录，启动相关文件 /dev 设备文件 /etc 配置文件 /home 普通用户的家目录,可以操作 /lib 系统库保存目录 /mnt 移动设备挂载目录 /media 光盘挂载目录 /misc 磁带机挂载目录 /root 超级用户的家目录,可以操作 /tmp 临时目录,可以操作 /proc 正在运行的内核信息">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-14T04:43:18.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【linux系统基础学习随笔】2.linux常用命令">
+<meta name="twitter:description" content="前言：可能总结的不是很好，后续会继续完善一些东西  常见目录 / 根目录 /boot 启动目录，启动相关文件 /dev 设备文件 /etc 配置文件 /home 普通用户的家目录,可以操作 /lib 系统库保存目录 /mnt 移动设备挂载目录 /media 光盘挂载目录 /misc 磁带机挂载目录 /root 超级用户的家目录,可以操作 /tmp 临时目录,可以操作 /proc 正在运行的内核信息">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.shifeng1993.com/2019/07/08/linux_base2/"/>
+
+
+
+
+
+  <title>【linux系统基础学习随笔】2.linux常用命令 | 师峰的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">师峰的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">累了歇一歇,保肝护肝人人做起</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2019/07/08/linux_base2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海色">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="师峰的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【linux系统基础学习随笔】2.linux常用命令</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-08T21:29:00+08:00">
+                2019-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前言：可能总结的不是很好，后续会继续完善一些东西</p>
+<hr>
+<h1 id="常见目录"><a href="#常见目录" class="headerlink" title="常见目录"></a>常见目录</h1><ul>
+<li>/ 根目录</li>
+<li>/boot 启动目录，启动相关文件</li>
+<li>/dev 设备文件</li>
+<li>/etc 配置文件</li>
+<li>/home 普通用户的家目录,可以操作</li>
+<li>/lib 系统库保存目录</li>
+<li>/mnt 移动设备挂载目录</li>
+<li>/media 光盘挂载目录</li>
+<li>/misc 磁带机挂载目录</li>
+<li>/root 超级用户的家目录,可以操作</li>
+<li>/tmp 临时目录,可以操作</li>
+<li>/proc 正在运行的内核信息映射, 主要输出进程信息、内存资源信息和磁盘分区信息等等</li>
+<li>/sys 硬件设备的驱动程序信息</li>
+<li>/var 变量</li>
+<li>/bin 普通的基本命令，如ls,chmod等,一般的用户也都可以使用</li>
+<li>/sbin 基本的系统命令，如shutdown，reboot，用于启动系统，修复系统,只有管理员才可以运行</li>
+<li>/usr/bin 是你在后期安装的一些软件的运行脚本</li>
+<li>/usr/sbin 置一些用户安装的系统管理的必备程序</li>
+</ul>
+<h1 id="命令基本格式"><a href="#命令基本格式" class="headerlink" title="命令基本格式"></a>命令基本格式</h1><h2 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@shifeng ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>root</code> 当前登录用户</li>
+<li><code>shifeng</code> 主机名</li>
+<li><code>~</code> 当前工作目录,默认是当前用户的home目录，root就是<code>/root</code>,普通用户是 <code>/home/用户名</code></li>
+<li><code>#</code> 提示符 超级用户是 <code>#</code>,普通用户是<code>$</code></li>
+</ul>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令 [选项] [参数]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当有多个选项时，可以写在一起</li>
+<li>一般参数有简化和完整写法两种 -a 与 –all等效</li>
+</ul>
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><ul>
+<li>查询目录中的内容</li>
+<li>默认当前目录下的文件列表</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [选项] [文件或者目录]</span><br></pre></td></tr></table></figure>
+<p>选项</p>
+<ul>
+<li>-a 显示所有文件，包括隐藏文件</li>
+<li>-l 显示详细信息</li>
+<li>-d 查看目录本身的属性而非子文件 ls /etc/</li>
+<li>-h 人性化的方式显示文件大小</li>
+<li>-i 显示inode,也就是i节点，每个节点都有ID号</li>
+</ul>
+<p>注：ls -l  或者 ll </p>
+<table>
+<thead>
+<tr>
+<th>drwxr-xr-x</th>
+<th>.</th>
+<th>1</th>
+<th>root</th>
+<th>root</th>
+<th>800</th>
+<th>Sep 16 00:19</th>
+<th>logs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件类型和权限</td>
+<td>ACL权限</td>
+<td>硬链接引用计数</td>
+<td>所有者</td>
+<td>所属组</td>
+<td>文件大小</td>
+<td>最后修改时间</td>
+<td>文件名</td>
+</tr>
+</tbody>
+</table>
+<h1 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h1><h2 id="mkdir-创建目录"><a href="#mkdir-创建目录" class="headerlink" title="mkdir 创建目录"></a>mkdir 创建目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p [目录名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-p 递归创建</li>
+</ul>
+<h2 id="cd-切换目录"><a href="#cd-切换目录" class="headerlink" title="cd 切换目录"></a>cd 切换目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [目录]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>~</code> 当前用户home 目录</li>
+<li><code>/</code> 根目录</li>
+<li><code>.</code> 当前目录</li>
+<li><code>..</code> 上级目录</li>
+<li>相对路径是参照当前所在目录</li>
+<li>绝对路径是从根目录开始</li>
+<li>按TAB键可以补全命令和目录</li>
+</ul>
+<h2 id="pwd-显示当前目录"><a href="#pwd-显示当前目录" class="headerlink" title="pwd 显示当前目录"></a>pwd 显示当前目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<h2 id="rmdir-删除目录"><a href="#rmdir-删除目录" class="headerlink" title="rmdir 删除目录"></a>rmdir 删除目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [目录名]</span><br></pre></td></tr></table></figure>
+<h2 id="rm-删除文件或者目录"><a href="#rm-删除文件或者目录" class="headerlink" title="rm 删除文件或者目录"></a>rm 删除文件或者目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [文件或者目录]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code> 删除目录</li>
+<li><code>-f</code> 强制删除</li>
+<li><code>rm -rf [文件或者目录]</code> 递归强制删除所有目录</li>
+</ul>
+<h2 id="cp-复制"><a href="#cp-复制" class="headerlink" title="cp 复制"></a>cp 复制</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy [源文件或者目录] [目标文件]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-r 复制目录,默认是复制文件</li>
+<li>-p 连带文件属性复制</li>
+<li>-d 若源文件是链接文件，则复制连接属性</li>
+<li>-a 相当于 -rpd</li>
+</ul>
+<h2 id="mv-移动文件或者改名"><a href="#mv-移动文件或者改名" class="headerlink" title="mv 移动文件或者改名"></a>mv 移动文件或者改名</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [源文件或者目录] [目标文件]</span><br></pre></td></tr></table></figure>
+<h2 id="ln-链接"><a href="#ln-链接" class="headerlink" title="ln 链接"></a>ln 链接</h2><p>生成链接文件 link 通常使用软连接</p>
+<h3 id="软链接特征"><a href="#软链接特征" class="headerlink" title="软链接特征"></a>软链接特征</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s [源文件] [目标文件]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-s 创建软链接</li>
+<li>类似Windows快捷方式</li>
+<li>软链接拥有自己的i节点和Block块，但是数据块中只保存源文件的文件名和i节点号，并没有实际的文件数据</li>
+<li>lrwxrwxrwx l 软链接 软链接的文件权限都是 777</li>
+<li>修改任意一个文件，另一个都会改变</li>
+<li>删除源文件，软链接不能使用</li>
+<li>软链接源文件必须写绝对路径</li>
+</ul>
+<h3 id="硬链接特征"><a href="#硬链接特征" class="headerlink" title="硬链接特征"></a>硬链接特征</h3><ul>
+<li>拥有相同的i节点和存储block块，可以看作是同一个文件</li>
+<li>可以通过i节点访问</li>
+<li>不能跨分区</li>
+<li>不能针对目录使用</li>
+<li>一般不使用</li>
+</ul>
+<h1 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h1><h2 id="locate-在数据库中按文件名搜索"><a href="#locate-在数据库中按文件名搜索" class="headerlink" title="locate 在数据库中按文件名搜索"></a>locate 在数据库中按文件名搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate [-d ][文件名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-d或–database= 配置locate指令使用的数据库。locate指令预设的数据库位于/var/lib/slocate目录里，文档名为slocate.db。</li>
+<li>速度比较快</li>
+<li>数据保存在/var/lib/mlocate后台数据库，每天更新一次</li>
+<li>可以updatedb命令立刻更新  数据库</li>
+<li>只能搜索文件名</li>
+<li>/etc/updatedb.conf 建立索引的配置文件<ul>
+<li>PRUNE_BIND_MOUNTS = “yes” 全部生效，开启搜索限制</li>
+<li>PRUNEFS 不搜索的文件系统</li>
+<li>PRUNENAMES 忽略的文件类型</li>
+<li>PRUNEPATHS 忽略的路径 /tmp</li>
+</ul>
+</li>
+</ul>
+<h2 id="whereis-搜索命令所在路径以及帮助文档所在位置"><a href="#whereis-搜索命令所在路径以及帮助文档所在位置" class="headerlink" title="whereis 搜索命令所在路径以及帮助文档所在位置"></a>whereis 搜索命令所在路径以及帮助文档所在位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis [命令名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-b 　只查找二进制文件。</li>
+<li>-m 　只查找说明文件。</li>
+</ul>
+<h2 id="which-在PATH的目录内查找文件"><a href="#which-在PATH的目录内查找文件" class="headerlink" title="which 在PATH的目录内查找文件"></a>which 在PATH的目录内查找文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which [命令名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>能看到的都是外部安装的命令</li>
+<li>无法查看Shell自带的命令，如 which cd</li>
+</ul>
+<h2 id="环境变量-PATH"><a href="#环境变量-PATH" class="headerlink" title="环境变量 $PATH"></a>环境变量 $PATH</h2><p><code>PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code></p>
+<ul>
+<li>定义的是系统搜索命令的路径</li>
+<li>echo $PATH 打印环境变量</li>
+</ul>
+<h2 id="find-文件搜索"><a href="#find-文件搜索" class="headerlink" title="find 文件搜索"></a>find 文件搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [搜索范围] [搜索条件]</span><br></pre></td></tr></table></figure>
+<h3 id="按名称搜索"><a href="#按名称搜索" class="headerlink" title="按名称搜索"></a>按名称搜索</h3><p>避免大范围的搜索，会非常消耗系统资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name aaa.log</span><br></pre></td></tr></table></figure></p>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><p>find是在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，通配符是完全匹配<br>通配符</p>
+<ul>
+<li><code>*</code> 匹配任意内容</li>
+<li><code>?</code> 匹配任意一个字符</li>
+<li><code>[]</code> 匹配任意一个中括号内的字符</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;ab[cdef]&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="i-不区分大小写"><a href="#i-不区分大小写" class="headerlink" title="-i 不区分大小写"></a>-i 不区分大小写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -iname A.log</span><br></pre></td></tr></table></figure>
+<h3 id="user-按所有者进行搜索"><a href="#user-按所有者进行搜索" class="headerlink" title="-user 按所有者进行搜索"></a>-user 按所有者进行搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find /root -user root</span><br><span class="line">find /root -nouser</span><br></pre></td></tr></table></figure>
+<h3 id="按时间搜索"><a href="#按时间搜索" class="headerlink" title="按时间搜索"></a>按时间搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /nginx/access.log -mtime +5</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>atime</td>
+<td>文件访问时间</td>
+</tr>
+<tr>
+<td>ctime</td>
+<td>改变文件属性</td>
+</tr>
+<tr>
+<td>mtime</td>
+<td>修改文件内容</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-5</td>
+<td>5天内修改的文件</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5天前当前修改的文件</td>
+</tr>
+<tr>
+<td>+5</td>
+<td>5天前修改的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="按大小搜索"><a href="#按大小搜索" class="headerlink" title="按大小搜索"></a>按大小搜索</h3><p>k小写,M大写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -size 100k</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-8k</td>
+<td>小于8K</td>
+</tr>
+<tr>
+<td>8k</td>
+<td>等于8K</td>
+</tr>
+<tr>
+<td>+8k</td>
+<td>大于8K</td>
+</tr>
+<tr>
+<td>+8M</td>
+<td>小于8M</td>
+</tr>
+</tbody>
+</table>
+<h3 id="按i节点搜索"><a href="#按i节点搜索" class="headerlink" title="按i节点搜索"></a>按i节点搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -inum 123456</span><br></pre></td></tr></table></figure>
+<h3 id="综合应用"><a href="#综合应用" class="headerlink" title="综合应用"></a>综合应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /tmp -size +10k -a -size -20k</span><br></pre></td></tr></table></figure>
+<p>查找<code>/tmp</code>目录下，大于10KB并且小于20KB的文件</p>
+<ul>
+<li>-a and 逻辑与，两个条件都满足</li>
+<li>-o or 逻辑或，两个条件满足一个就可以</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /tmp -size +10k -a -size -20k -exec ls -lh &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>exec 对上个命令的结果进行操作</li>
+</ul>
+<h3 id="grep-在文件当中匹配符合条件的字符串"><a href="#grep-在文件当中匹配符合条件的字符串" class="headerlink" title="grep 在文件当中匹配符合条件的字符串"></a>grep 在文件当中匹配符合条件的字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;10&quot; access.log</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-i 忽略大小写</li>
+<li>-v 排除指定字符串</li>
+<li>find命令，在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，通配符是完全匹配</li>
+<li>grep命令 在文件当中搜索符合条件的字符串，如果需要匹配，使用正则表达式进行匹配，正则表达式时包含匹配</li>
+</ul>
+<h1 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h1><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man [命令]</span><br></pre></td></tr></table></figure>
+<p>获取指定命令的帮助<br><code>man ls</code> 查看ls的帮助</p>
+<h2 id="man的级别"><a href="#man的级别" class="headerlink" title="man的级别"></a>man的级别</h2><ol>
+<li>查看命令的帮助</li>
+<li>查看可被内核调用的函数的帮助</li>
+<li>查看函数和函数库的帮助</li>
+<li>查看特殊文件的帮助</li>
+<li>查看配置文件的帮助<br>##查看游戏的帮助<br>##查看其它的帮助</li>
+<li>查看系统管理员可用命令的帮助</li>
+<li>查看和内核相关文件的帮助</li>
+</ol>
+<h2 id="查看命令级别"><a href="#查看命令级别" class="headerlink" title="查看命令级别"></a>查看命令级别</h2><ul>
+<li>1p: POSIX utilities</li>
+<li>POSIX表示可移植操作系统接口（Portable Operating System Interface of UNIX，缩写为 POSIX ），POSIX标准定义了操作系统应该为应用程序提供的接口标准.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">man -f ls</span><br><span class="line">whatis ls</span><br><span class="line">man 1 ls</span><br><span class="line">man 1p ls</span><br></pre></td></tr></table></figure>
+<h2 id="关键字搜索"><a href="#关键字搜索" class="headerlink" title="关键字搜索"></a>关键字搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man -k passwd</span><br></pre></td></tr></table></figure>
+<h2 id="shell-内部帮助"><a href="#shell-内部帮助" class="headerlink" title="shell 内部帮助"></a>shell 内部帮助</h2><ul>
+<li><code>whereis</code>命令找到就是外部，找不到就是内部<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help cd</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="压缩与解压缩命令"><a href="#压缩与解压缩命令" class="headerlink" title="压缩与解压缩命令"></a>压缩与解压缩命令</h1><p>.zip .gz .bz2 .tar.gz .tar.bz2</p>
+<h2 id="zip格式"><a href="#zip格式" class="headerlink" title="zip格式"></a>zip格式</h2><p>压缩文件或目录,是一种压缩格式</p>
+<ul>
+<li>压缩文件 <code>zip 压缩文件名.zip 源文件</code></li>
+<li>压缩目录 <code>zip -r 压缩目录名.zip 源目录</code></li>
+<li>解压 <code>unzip 压缩目录名.zip</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir book</span><br><span class="line">touch book/1.txt</span><br><span class="line">touch book/2.txt</span><br><span class="line">zip -r book.zip book</span><br><span class="line">unzip book.zip</span><br></pre></td></tr></table></figure>
+<h2 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h2><p>gzip为高压，可以把文件压缩得更小</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip 源文件</td>
+<td>gzip a.txt</td>
+<td>压缩为.gz格式的压缩文件，源文件会消失</td>
+</tr>
+<tr>
+<td>gzip -c 源文件 &gt; 压缩文件</td>
+<td>gzip -c yum.txt &gt; yum.txt.gz</td>
+<td>压缩为.gz格式的压缩文件，源文件不会消失</td>
+</tr>
+<tr>
+<td>gzip -r 目录</td>
+<td>gzip -r xx</td>
+<td>把目录下的每个子文件都变成压缩包，并删除原文件，当前目录无变化</td>
+</tr>
+<tr>
+<td>gzip -d 压缩文件名</td>
+<td>gzip -d yum.txt.gz</td>
+<td>解压缩文件,不保留压缩包</td>
+</tr>
+<tr>
+<td>gunzip 压缩文件</td>
+<td>gunzip yum.txt.gz</td>
+<td>解压缩文件,也不保留压缩包</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>压缩是压缩目录下的文件</li>
+</ul>
+<h2 id="bz2格式压缩"><a href="#bz2格式压缩" class="headerlink" title=".bz2格式压缩"></a>.bz2格式压缩</h2><p>bzip2是一个压缩能力更强的压缩程序</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bzip2 源文件</td>
+<td>bzip2 1.txt</td>
+<td>压缩为.bz2格式的文件，不保留源文件</td>
+</tr>
+<tr>
+<td>bzip2 -k 源文件</td>
+<td>bzip2 -k 1.txt</td>
+<td>压缩为.bz2格式的文件，保留源文件</td>
+</tr>
+<tr>
+<td>bzip2 -d 压缩文件名</td>
+<td>bzip2 -d 1.txt.bz2</td>
+<td>解压压缩包,不保留压缩包</td>
+</tr>
+<tr>
+<td>bunzip2 压缩文件名</td>
+<td>bunzip2 1.txt.bz2</td>
+<td>解压压缩包,也不保留压缩包</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>bzip2 不能压缩目录</li>
+</ul>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>打包命令,只打包并不压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf [打包文件名] [源文件]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>-c 打包</li>
+<li>-v 显示过程</li>
+<li>-f 指定打包后的文件名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf book.tar book</span><br></pre></td></tr></table></figure>
+<ul>
+<li>x 解打包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf book.tar</span><br></pre></td></tr></table></figure>
+<h2 id="tar-gz压缩格式"><a href="#tar-gz压缩格式" class="headerlink" title="tar.gz压缩格式"></a>tar.gz压缩格式</h2><ul>
+<li>zip可以压缩目录但压缩效率不高，gzip和bzip2压缩效率高但不支持目录</li>
+<li>可以先打包为<code>.tar</code>格式，再压缩为<code>.gz</code>格式 </li>
+<li><code>-z</code> 压缩为<code>.tar.gz</code>格式 <code>-x</code> 解压缩<code>.tar.gz</code>格式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tar -zcvf 压缩包名 .tar.gz源文件</td>
+<td>tar -zcvf book.gar.gz book</td>
+<td>可以先打包为.tar格式，再压缩为.gz格式</td>
+</tr>
+<tr>
+<td>tar -zxvf 压缩包名.tar.gz</td>
+<td>tar -zxvf book.tar.gz</td>
+<td>解压tar.gz压缩包</td>
+</tr>
+<tr>
+<td>tar -jcvf 压缩包名 .tar.bz2源文件</td>
+<td>tar -jcvf book.tar.bz2 book</td>
+<td>可以先打包为.tar格式，再压缩为.bz2格式</td>
+</tr>
+<tr>
+<td>tar -jxvf 压缩包名.tar.bz2</td>
+<td>tar -jxvf book.tar.bz2</td>
+<td>解压tar.bz2压缩包</td>
+</tr>
+</tbody>
+</table>
+<h1 id="关机和重启命令"><a href="#关机和重启命令" class="headerlink" title="关机和重启命令"></a>关机和重启命令</h1><h2 id="shutdown-关机"><a href="#shutdown-关机" class="headerlink" title="shutdown 关机"></a>shutdown 关机</h2><ul>
+<li>-c 取消前一个关机命令</li>
+<li>-h 关机</li>
+<li>-r 重启</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r 06:00</span><br><span class="line">shutdown -c</span><br></pre></td></tr></table></figure>
+<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p>关机<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br></pre></td></tr></table></figure></p>
+<p>重启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 6</span><br></pre></td></tr></table></figure></p>
+<h2 id="logout-退出登录"><a href="#logout-退出登录" class="headerlink" title="logout 退出登录"></a>logout 退出登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logout</span><br></pre></td></tr></table></figure>
+<h1 id="查看登录用户信息"><a href="#查看登录用户信息" class="headerlink" title="查看登录用户信息"></a>查看登录用户信息</h1><h2 id="w"><a href="#w" class="headerlink" title="w"></a>w</h2><p>查看登录用户信息</p>
+<ul>
+<li>USER 登录的用户名</li>
+<li>TTY 登录的终端 tty1 本地终端 pts/0远程终端</li>
+<li>FROM 登录的IP</li>
+<li>LOGIN 登录时间</li>
+<li>IDLE 用户闲置时间</li>
+<li>JCPU 该终端所有进程占用的时间</li>
+<li>PCPU 当前进程所占用的时间</li>
+<li>WHAT 正在执行的命令</li>
+</ul>
+<h2 id="who"><a href="#who" class="headerlink" title="who"></a>who</h2><p>查看登录用户信息</p>
+<ul>
+<li>USER 登录的用户名</li>
+<li>TTY 登录的终端 tty1 本地终端 pts/0远程终端</li>
+<li>LOGIN 登录时间（登录的IP）</li>
+</ul>
+<h2 id="last"><a href="#last" class="headerlink" title="last"></a>last</h2><p>查看当前登录和过去登录的用户信息 默认读取 <code>/var/log/wtmp</code> 文件</p>
+<ul>
+<li>用户名</li>
+<li>登录终端</li>
+<li>登录IP</li>
+<li>登录时间</li>
+<li>退出时间(在线时间)</li>
+</ul>
+<h2 id="last-log"><a href="#last-log" class="headerlink" title="last log"></a>last log</h2><p>查看所有用户的最后一次登录时间</p>
+<ul>
+<li>用户名</li>
+<li>登录终端</li>
+<li>登录IP</li>
+<li>最后一次登录时间</li>
+</ul>
+<h1 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h1><h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p>查看磁盘分区使用状况</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-l</td>
+<td>仅显示本地磁盘(默认)</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>显示所有文件系统的使用情况</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>以1024进制计算最合适的单位显示磁盘容量</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>以1000进制计算最合适的单位显示磁盘容量</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>显示磁盘分区类型</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>显示指定类型文件系统的磁盘分区</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>不显示指定类型文件系统的磁盘分区</td>
+</tr>
+</tbody>
+</table>
+<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p>统计以磁盘上的文件大小</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b</td>
+<td>以byte为单位统计文件</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>以KB为单位统计文件</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>以MB为单位统计文件</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>以1024为单位统计文件</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>以1000为单位统计文件</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>指定统计目标</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -s /etc</span><br><span class="line">du -sH  /etc</span><br></pre></td></tr></table></figure>
+<h2 id="添加新硬盘后的分区和格式化"><a href="#添加新硬盘后的分区和格式化" class="headerlink" title="添加新硬盘后的分区和格式化"></a>添加新硬盘后的分区和格式化</h2><ul>
+<li>硬件设备是由linux系统自动识别并以文件的形式存在于根目录下的dev目录下</li>
+<li>1-4分区编号是留给主分区和扩展分区的,逻辑分区只能从5开始<br>|命令|含义|中文|<br>|–|–|–|<br>|m|print this menu|打印菜单|<br>|n|add a new partition|添加一个分区|<br>|d|delete a partition|删除一个分区|<br>|p|print the partition table|打印分区表|<br>|q|quit without saving changes|退出不保存|<br>|w|write table to disk and exit|写入分区表并保存|</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br><span class="line">Disk /dev/sda: 21.5 GB, 21474836480 bytes</span><br><span class="line">Device      Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *           1            26      204800   83  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/sdb: 8589 MB, 8589934592 bytes</span><br><span class="line">fdisk /dev/sdb 开始对这块硬盘进行分区</span><br><span class="line">m 打印命令</span><br><span class="line">n 创建一个分区</span><br><span class="line">Partition number (1-4): 1 选择分区编号</span><br><span class="line">First cylinder (1-1044, default 1): 1 输入开始扇区</span><br><span class="line">Last cylinder, +cylinders or +size&#123;K,M,G&#125; (1-1044, default 1044): +3000M 输入结束扇区</span><br><span class="line">p 查看当前分区</span><br><span class="line">n 创建分区</span><br><span class="line">e 扩展分区</span><br><span class="line">l 创建逻辑分区 </span><br><span class="line">d 删除分区</span><br><span class="line">w 分区表写入磁盘</span><br></pre></td></tr></table></figure>
+<h2 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h2><ul>
+<li>MBR下主分区最多4个，GPT可达128个</li>
+<li>MBR下主分区容量最大2TB，GPT模式下容量可达18EB(1EB=1024PB,1PB=1024TB,1TB=1024GB)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">parted 开始分区,默认是对第一块硬盘分区</span><br><span class="line">mklabel gpt  指定分区表的类型为gpt</span><br><span class="line">print 查看分区表的类型</span><br><span class="line">mkpart 开始分区</span><br><span class="line">分区名称？  []? system                                                    </span><br><span class="line">文件系统类型？  [ext2]?                                                   </span><br><span class="line">起始点？ 0                                                                </span><br><span class="line">结束点？ 2000                                                             </span><br><span class="line">警告: The resulting partition is not properly aligned for best performance.</span><br><span class="line">忽略/Ignore/放弃/Cancel? c </span><br><span class="line">(parted) 1  </span><br><span class="line">结束点？ 2000  </span><br><span class="line">mkpart 2th 2000 3000</span><br><span class="line">quit 退出编辑</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l /dev/sdb*</span><br><span class="line">mkfs.ext3 /dev/sdb1</span><br><span class="line">mkfs -t ext4 /dev/sdb2</span><br></pre></td></tr></table></figure>
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/zhufeng</span><br><span class="line">mount /dev/sdb1 /mnt/zhufeng</span><br><span class="line">umount /mnt/zhufeng</span><br><span class="line">vim + /etc/fstab</span><br><span class="line"></span><br><span class="line">/dev/sdb1  /mnt/zhufeng  ext3    defaults        0 0</span><br><span class="line">分区名称      挂载点      文件系统类型</span><br></pre></td></tr></table></figure>
+<h2 id="添加swap交换分区"><a href="#添加swap交换分区" class="headerlink" title="添加swap交换分区"></a>添加swap交换分区</h2><ul>
+<li>建立普通的linux分区</li>
+<li>修改分区类型的16进制编码</li>
+<li>格式化成交换分类</li>
+<li>启动交换分区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br><span class="line">p 查看当前的分区</span><br><span class="line">Command (m for help): t 修改分区的系统ID</span><br><span class="line">Partition number (1-4): 3 修改分区编号为3的分区</span><br><span class="line">Hex code (type L to list codes): L 列出所有编号</span><br><span class="line">Hex code (type L to list codes): 82 把编号修改为16进制的82</span><br><span class="line">Changed system type of partition 3 to 82 (Linux swap / Solaris)</span><br><span class="line">p</span><br><span class="line">/dev/sdb3 767 1044 2233035 82 Linux swap / Solaris</span><br><span class="line"></span><br><span class="line">free 查看剩余内存</span><br><span class="line">mkswap /dev/sdb3  把sdb3设置为交换分区</span><br><span class="line">swapon /dev/sdb3  挂载sdb3成交换区</span><br><span class="line">free</span><br><span class="line">swapoff /dev/sdb3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="挂载-1"><a href="#挂载-1" class="headerlink" title="挂载"></a>挂载</h2><h3 id="挂载命令格式"><a href="#挂载命令格式" class="headerlink" title="挂载命令格式"></a>挂载命令格式</h3><ul>
+<li>mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点</li>
+<li>选项<ul>
+<li>-t 文件系统 ext4 iso9660</li>
+<li>-o 特殊选项</li>
+</ul>
+</li>
+</ul>
+<h3 id="挂载光驱"><a href="#挂载光驱" class="headerlink" title="挂载光驱"></a>挂载光驱</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/cd</span><br><span class="line">mount -t iso9660 /dev/sr0 /mnt/cdrom</span><br></pre></td></tr></table></figure>
+<h3 id="卸载光驱"><a href="#卸载光驱" class="headerlink" title="卸载光驱"></a>卸载光驱</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /mnt/cdrom</span><br></pre></td></tr></table></figure>
+<h3 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l 查看硬盘及分区信息</span><br><span class="line">mount -t vfat /dev/sdb1 /mnt/usb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>linux默认不支持NTFS格式</li>
+</ul>
+<h1 id="文件查看命令"><a href="#文件查看命令" class="headerlink" title="文件查看命令"></a>文件查看命令</h1><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><ul>
+<li>cat 命令用于连接文件并打印到标准输出设备上。</li>
+<li>cat [-AbeEnstTuv] [–help] [–version] fileName</li>
+<li>参数<ul>
+<li>-n 或 –number：由 1 开始对所有输出的行数编号。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n textfile1</span><br></pre></td></tr></table></figure>
+<h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><ul>
+<li>Linux more 命令类似 cat ，不过会以一页一页的形式显示，更方便使用者逐页阅读，而最基本的指令就是按空白键（space）就往下一页显示，按 b 键就会往回（back）一页显示，而且还有搜寻字串的功能（与 vi 相似），使用中的说明文件，请按 h 。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more  testfile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><ul>
+<li>用来显示开头某个数量的文字区块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -5 readme.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><ul>
+<li>tail命令可用于查看文件的内容</li>
+<li><p>有一个常用的参数 -f 常用于查阅正在改变的日志文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [参数] [文件]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数</p>
+<ul>
+<li>-f 循环读取</li>
+<li>-n&lt;行数&gt; 显示文件的尾部 n 行内容</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tail -5 mail.txt</span><br><span class="line">tail -f access.log</span><br></pre></td></tr></table></figure>
+<h2 id="第二页"><a href="#第二页" class="headerlink" title="第二页"></a>第二页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -10 file | tail -5</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/base/" rel="tag"># base</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/07/linux_base1/" rel="next" title="【linux系统基础学习随笔】1.linux基础">
+                <i class="fa fa-chevron-left"></i> 【linux系统基础学习随笔】1.linux基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/js_basic_algorithms/" rel="prev" title="【js】常用的一些基础算法">
+                【js】常用的一些基础算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">海色</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常见目录"><span class="nav-number">1.</span> <span class="nav-text">常见目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令基本格式"><span class="nav-number">2.</span> <span class="nav-text">命令基本格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令提示符"><span class="nav-number">2.1.</span> <span class="nav-text">命令提示符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-number">2.2.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">2.3.</span> <span class="nav-text">ls</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件处理命令"><span class="nav-number">3.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir-创建目录"><span class="nav-number">3.1.</span> <span class="nav-text">mkdir 创建目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd-切换目录"><span class="nav-number">3.2.</span> <span class="nav-text">cd 切换目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd-显示当前目录"><span class="nav-number">3.3.</span> <span class="nav-text">pwd 显示当前目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rmdir-删除目录"><span class="nav-number">3.4.</span> <span class="nav-text">rmdir 删除目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm-删除文件或者目录"><span class="nav-number">3.5.</span> <span class="nav-text">rm 删除文件或者目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp-复制"><span class="nav-number">3.6.</span> <span class="nav-text">cp 复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-移动文件或者改名"><span class="nav-number">3.7.</span> <span class="nav-text">mv 移动文件或者改名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ln-链接"><span class="nav-number">3.8.</span> <span class="nav-text">ln 链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软链接特征"><span class="nav-number">3.8.1.</span> <span class="nav-text">软链接特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬链接特征"><span class="nav-number">3.8.2.</span> <span class="nav-text">硬链接特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件搜索命令"><span class="nav-number">4.</span> <span class="nav-text">文件搜索命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#locate-在数据库中按文件名搜索"><span class="nav-number">4.1.</span> <span class="nav-text">locate 在数据库中按文件名搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whereis-搜索命令所在路径以及帮助文档所在位置"><span class="nav-number">4.2.</span> <span class="nav-text">whereis 搜索命令所在路径以及帮助文档所在位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#which-在PATH的目录内查找文件"><span class="nav-number">4.3.</span> <span class="nav-text">which 在PATH的目录内查找文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量-PATH"><span class="nav-number">4.4.</span> <span class="nav-text">环境变量 $PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-文件搜索"><span class="nav-number">4.5.</span> <span class="nav-text">find 文件搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按名称搜索"><span class="nav-number">4.5.1.</span> <span class="nav-text">按名称搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符"><span class="nav-number">4.5.2.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-不区分大小写"><span class="nav-number">4.5.3.</span> <span class="nav-text">-i 不区分大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#user-按所有者进行搜索"><span class="nav-number">4.5.4.</span> <span class="nav-text">-user 按所有者进行搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按时间搜索"><span class="nav-number">4.5.5.</span> <span class="nav-text">按时间搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按大小搜索"><span class="nav-number">4.5.6.</span> <span class="nav-text">按大小搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按i节点搜索"><span class="nav-number">4.5.7.</span> <span class="nav-text">按i节点搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合应用"><span class="nav-number">4.5.8.</span> <span class="nav-text">综合应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep-在文件当中匹配符合条件的字符串"><span class="nav-number">4.5.9.</span> <span class="nav-text">grep 在文件当中匹配符合条件的字符串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#帮助命令"><span class="nav-number">5.</span> <span class="nav-text">帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">5.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man的级别"><span class="nav-number">5.2.</span> <span class="nav-text">man的级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看命令级别"><span class="nav-number">5.3.</span> <span class="nav-text">查看命令级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字搜索"><span class="nav-number">5.4.</span> <span class="nav-text">关键字搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-内部帮助"><span class="nav-number">5.5.</span> <span class="nav-text">shell 内部帮助</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#压缩与解压缩命令"><span class="nav-number">6.</span> <span class="nav-text">压缩与解压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#zip格式"><span class="nav-number">6.1.</span> <span class="nav-text">zip格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gzip"><span class="nav-number">6.2.</span> <span class="nav-text">gzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bz2格式压缩"><span class="nav-number">6.3.</span> <span class="nav-text">.bz2格式压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">6.4.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar-gz压缩格式"><span class="nav-number">6.5.</span> <span class="nav-text">tar.gz压缩格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关机和重启命令"><span class="nav-number">7.</span> <span class="nav-text">关机和重启命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shutdown-关机"><span class="nav-number">7.1.</span> <span class="nav-text">shutdown 关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">7.2.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logout-退出登录"><span class="nav-number">7.3.</span> <span class="nav-text">logout 退出登录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看登录用户信息"><span class="nav-number">8.</span> <span class="nav-text">查看登录用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#w"><span class="nav-number">8.1.</span> <span class="nav-text">w</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who"><span class="nav-number">8.2.</span> <span class="nav-text">who</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#last"><span class="nav-number">8.3.</span> <span class="nav-text">last</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#last-log"><span class="nav-number">8.4.</span> <span class="nav-text">last log</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘管理"><span class="nav-number">9.</span> <span class="nav-text">磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-number">9.1.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-number">9.2.</span> <span class="nav-text">du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加新硬盘后的分区和格式化"><span class="nav-number">9.3.</span> <span class="nav-text">添加新硬盘后的分区和格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPT"><span class="nav-number">9.4.</span> <span class="nav-text">GPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化"><span class="nav-number">9.5.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载"><span class="nav-number">9.6.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加swap交换分区"><span class="nav-number">9.7.</span> <span class="nav-text">添加swap交换分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载-1"><span class="nav-number">9.8.</span> <span class="nav-text">挂载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载命令格式"><span class="nav-number">9.8.1.</span> <span class="nav-text">挂载命令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载光驱"><span class="nav-number">9.8.2.</span> <span class="nav-text">挂载光驱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载光驱"><span class="nav-number">9.8.3.</span> <span class="nav-text">卸载光驱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载U盘"><span class="nav-number">9.8.4.</span> <span class="nav-text">挂载U盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件查看命令"><span class="nav-number">10.</span> <span class="nav-text">文件查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">10.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-number">10.2.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-number">10.3.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tail"><span class="nav-number">10.4.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二页"><span class="nav-number">10.5.</span> <span class="nav-text">第二页</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海色</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
