@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string1/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -299,7 +299,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_string1/" itemprop="url">【C学习随笔】C语言字符长度和数据类型大小</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
         
 
         <div class="post-meta">
@@ -373,12 +373,11 @@
       
         
           
-          字符类型大小使用strlen()函数，可以给出字符串中的字节长度
-12345678#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char name[] = "wo shi shifeng";	printf(
+          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_string1/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -577,7 +576,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_stringFunc/">
+    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2017/03/20/c_string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海色">
@@ -596,7 +595,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/20/c_stringFunc/" itemprop="url">【C学习随笔】C语言的字符串函数</a></h2>
+                <a class="post-title-link" href="/2017/03/20/c_string/" itemprop="url">【C学习随笔】C语言的字符串</a></h2>
         
 
         <div class="post-meta">
@@ -670,11 +669,13 @@
       
         
           
-          strlen()strlen()函数用于统计字符串的长度。参数：字符串数组，以下为示例，输出为len = 15123456789#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main(void)&#123;	char str[] = "wo
+          定义字符串是一个或多个字符的序列，例如：1"wo xian zai hao e wo hao xiang chi fan "
+双引号不是字符串的一部分，仅告知编译器，它们中间的字符数组为字符串。
+字符串存储因为C语言没有单独用来存储字符串的变量类型。所以字符串都被存储在char类型的数组里面，数组由
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/c_stringFunc/#more" rel="contents">
+            <a class="btn" href="/2017/03/20/c_string/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
