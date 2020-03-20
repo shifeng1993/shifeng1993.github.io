@@ -1,353 +1,154 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html lang=zh>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="google-site-verification" content="eBgHfYQWNSw7V_VySe2Mie0P8szPhLRqIMdiukmL8Dg" />
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-
-
-  <meta name="keywords" content="base,webpack," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。 没有具体详细的写过一个webpack配置策略一直是我自己的弱项，现在webpack更新到了4.0版本。今年打算好好的花几个月补一下这个。 下面是正文  webpack是干什么的? - 静态模块打包工具（编译成静态资源） 代码转换：TypeScript 编译成">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。 没有具体详细的写过一个webpack配置策略一直是我自己的弱项，现在webpack更新到了4.0版本。今年打算好好的花几个月补一下这个。 下面是正文  webpack是干什么的? - 静态模块打包工具（编译成静态资源） 代码转换：TypeScript 编译成">
 <meta name="keywords" content="base,webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【webpack学习随笔】1.webpack基础以及核心配置">
-<meta property="og:url" content="http://www.shifeng1993.com/2019/06/08/webpack_1/index.html">
-<meta property="og:site_name" content="师峰的博客">
+<meta property="og:url" content="https://www.shifeng1993.com/2019/06/08/webpack_1/index.html">
+<meta property="og:site_name" content="Hello Haise">
 <meta property="og:description" content="webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。 没有具体详细的写过一个webpack配置策略一直是我自己的弱项，现在webpack更新到了4.0版本。今年打算好好的花几个月补一下这个。 下面是正文  webpack是干什么的? - 静态模块打包工具（编译成静态资源） 代码转换：TypeScript 编译成">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-06-09T13:03:29.429Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【webpack学习随笔】1.webpack基础以及核心配置">
 <meta name="twitter:description" content="webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。 没有具体详细的写过一个webpack配置策略一直是我自己的弱项，现在webpack更新到了4.0版本。今年打算好好的花几个月补一下这个。 下面是正文  webpack是干什么的? - 静态模块打包工具（编译成静态资源） 代码转换：TypeScript 编译成">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.shifeng1993.com/2019/06/08/webpack_1/"/>
-
-
-
-
-
-  <title>【webpack学习随笔】1.webpack基础以及核心配置 | 师峰的博客</title>
-  
-
-
-
-
-
-
-
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【webpack学习随笔】1.webpack基础以及核心配置 | 累了歇一歇,保肝护肝人人做起</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body class="max-width mx-auto px3 ltr">
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="https://github.com/shifeng1993">Github</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/09/webpack_2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/03/05/js_temp_str/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&text=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&is_video=false&description=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【webpack学习随笔】1.webpack基础以及核心配置&body=Check out this article: https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&name=【webpack学习随笔】1.webpack基础以及核心配置&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/06/08/webpack_1/&t=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">师峰的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">累了歇一歇,保肝护肝人人做起</h1>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack是干什么的-静态模块打包工具（编译成静态资源）"><span class="toc-number">1.</span> <span class="toc-text">webpack是干什么的? - 静态模块打包工具（编译成静态资源）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack4-需要安装哪两个包"><span class="toc-number">2.</span> <span class="toc-text">webpack4 需要安装哪两个包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#当前项目怎么运行webpack打包"><span class="toc-number">3.</span> <span class="toc-text">当前项目怎么运行webpack打包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么实现打包（原理）"><span class="toc-number">4.</span> <span class="toc-text">webpack怎么实现打包（原理）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack配置文件-webpack-config-js"><span class="toc-number">5.</span> <span class="toc-text">webpack配置文件 webpack.config.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack四大核心概念"><span class="toc-number">6.</span> <span class="toc-text">webpack四大核心概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#入口-entry"><span class="toc-number">7.</span> <span class="toc-text">入口(entry)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单入口写法"><span class="toc-number">7.1.</span> <span class="toc-text">单入口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多入口写法"><span class="toc-number">7.2.</span> <span class="toc-text">多入口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输出-output"><span class="toc-number">8.</span> <span class="toc-text">输出(output)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单出口写法"><span class="toc-number">8.1.</span> <span class="toc-text">单出口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多出口写法"><span class="toc-number">8.2.</span> <span class="toc-text">多出口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载器-loader"><span class="toc-number">9.</span> <span class="toc-text">加载器(loader)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css的loader"><span class="toc-number">10.</span> <span class="toc-text">css的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css-loader"><span class="toc-number">10.1.</span> <span class="toc-text">css-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style-loader"><span class="toc-number">10.2.</span> <span class="toc-text">style-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node-sass-sass-loader"><span class="toc-number">10.3.</span> <span class="toc-text">node-sass sass-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less-loader"><span class="toc-number">10.4.</span> <span class="toc-text">less-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stylus-loader"><span class="toc-number">10.5.</span> <span class="toc-text">stylus-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js的loader"><span class="toc-number">11.</span> <span class="toc-text">js的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-loader"><span class="toc-number">11.1.</span> <span class="toc-text">babel-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint-loader"><span class="toc-number">11.2.</span> <span class="toc-text">eslint-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ts-loader"><span class="toc-number">11.3.</span> <span class="toc-text">ts-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tslint-loader"><span class="toc-number">11.4.</span> <span class="toc-text">tslint-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件的loader"><span class="toc-number">12.</span> <span class="toc-text">文件的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#file-loader"><span class="toc-number">12.1.</span> <span class="toc-text">file-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-loader"><span class="toc-number">12.2.</span> <span class="toc-text">url-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插件-plugins"><span class="toc-number">13.</span> <span class="toc-text">插件(plugins)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html-webpack-plugin"><span class="toc-number">13.1.</span> <span class="toc-text">html-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clean-webpack-plugin"><span class="toc-number">13.2.</span> <span class="toc-text">clean-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mini-css-extract-plugin"><span class="toc-number">13.3.</span> <span class="toc-text">mini-css-extract-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimize-css-assets-webpack-plugin"><span class="toc-number">13.4.</span> <span class="toc-text">optimize-css-assets-webpack-plugin</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#devServer-开发服务器"><span class="toc-number">14.</span> <span class="toc-text">devServer 开发服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack多页面打包配置示例"><span class="toc-number">15.</span> <span class="toc-text">webpack多页面打包配置示例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么区分是生产环境还是开发环境"><span class="toc-number">16.</span> <span class="toc-text">webpack怎么区分是生产环境还是开发环境</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
-<nav class="site-nav">
-  
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【webpack学习随笔】1.webpack基础以及核心配置
+    </h1>
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
 
-  
-    <div class="site-search">
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hello Haise</span>
+      </span>
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+    <div class="postdate">
+      
+        <time datetime="2019-06-08T08:47:00.000Z" itemprop="datePublished">2019-06-08</time>
+        
+      
     </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
 
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/base/">base</a>, <a class="tag-link" href="/tags/webpack/">webpack</a>
+    </div>
 
 
     </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
+  </header>
   
 
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shifeng1993.com/2019/06/08/webpack_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海色">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="师峰的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">【webpack学习随笔】1.webpack基础以及核心配置</h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-08T16:47:00+08:00">
-                2019-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。</p>
+  <div class="content" itemprop="articleBody">
+    <p>webpack我接触是从1.0，之前是概粗略的看了一下，做了个简单的demo，后面再次看是在去年面试的时候，用webpack4.0做面试题。</p>
 <p>没有具体详细的写过一个webpack配置策略一直是我自己的弱项，现在webpack更新到了4.0版本。今年打算好好的花几个月补一下这个。</p>
 <p>下面是正文</p>
 <hr>
@@ -445,727 +246,133 @@
 </li>
 </ul>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/base/" rel="tag"># base</a>
-          
-            <a href="/tags/webpack/" rel="tag"># webpack</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/03/05/js_temp_str/" rel="next" title="【js】手动实现一个es6模板字符串">
-                <i class="fa fa-chevron-left"></i> 【js】手动实现一个es6模板字符串
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/09/webpack_2/" rel="prev" title="【webpack学习随笔】2.webpack优化配置策略">
-                【webpack学习随笔】2.webpack优化配置策略 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
+</article>
 
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">海色</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">88</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/shifeng1993" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:shifeng199307@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack是干什么的-静态模块打包工具（编译成静态资源）"><span class="nav-number">1.</span> <span class="nav-text">webpack是干什么的? - 静态模块打包工具（编译成静态资源）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack4-需要安装哪两个包"><span class="nav-number">2.</span> <span class="nav-text">webpack4 需要安装哪两个包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当前项目怎么运行webpack打包"><span class="nav-number">3.</span> <span class="nav-text">当前项目怎么运行webpack打包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack怎么实现打包（原理）"><span class="nav-number">4.</span> <span class="nav-text">webpack怎么实现打包（原理）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack配置文件-webpack-config-js"><span class="nav-number">5.</span> <span class="nav-text">webpack配置文件 webpack.config.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack四大核心概念"><span class="nav-number">6.</span> <span class="nav-text">webpack四大核心概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入口-entry"><span class="nav-number">7.</span> <span class="nav-text">入口(entry)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单入口写法"><span class="nav-number">7.1.</span> <span class="nav-text">单入口写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多入口写法"><span class="nav-number">7.2.</span> <span class="nav-text">多入口写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出-output"><span class="nav-number">8.</span> <span class="nav-text">输出(output)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单出口写法"><span class="nav-number">8.1.</span> <span class="nav-text">单出口写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多出口写法"><span class="nav-number">8.2.</span> <span class="nav-text">多出口写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载器-loader"><span class="nav-number">9.</span> <span class="nav-text">加载器(loader)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css的loader"><span class="nav-number">10.</span> <span class="nav-text">css的loader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#css-loader"><span class="nav-number">10.1.</span> <span class="nav-text">css-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#style-loader"><span class="nav-number">10.2.</span> <span class="nav-text">style-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-sass-sass-loader"><span class="nav-number">10.3.</span> <span class="nav-text">node-sass sass-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less-loader"><span class="nav-number">10.4.</span> <span class="nav-text">less-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stylus-loader"><span class="nav-number">10.5.</span> <span class="nav-text">stylus-loader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js的loader"><span class="nav-number">11.</span> <span class="nav-text">js的loader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-loader"><span class="nav-number">11.1.</span> <span class="nav-text">babel-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eslint-loader"><span class="nav-number">11.2.</span> <span class="nav-text">eslint-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ts-loader"><span class="nav-number">11.3.</span> <span class="nav-text">ts-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tslint-loader"><span class="nav-number">11.4.</span> <span class="nav-text">tslint-loader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件的loader"><span class="nav-number">12.</span> <span class="nav-text">文件的loader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#file-loader"><span class="nav-number">12.1.</span> <span class="nav-text">file-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url-loader"><span class="nav-number">12.2.</span> <span class="nav-text">url-loader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件-plugins"><span class="nav-number">13.</span> <span class="nav-text">插件(plugins)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html-webpack-plugin"><span class="nav-number">13.1.</span> <span class="nav-text">html-webpack-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean-webpack-plugin"><span class="nav-number">13.2.</span> <span class="nav-text">clean-webpack-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mini-css-extract-plugin"><span class="nav-number">13.3.</span> <span class="nav-text">mini-css-extract-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimize-css-assets-webpack-plugin"><span class="nav-number">13.4.</span> <span class="nav-text">optimize-css-assets-webpack-plugin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#devServer-开发服务器"><span class="nav-number">14.</span> <span class="nav-text">devServer 开发服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack多页面打包配置示例"><span class="nav-number">15.</span> <span class="nav-text">webpack多页面打包配置示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack怎么区分是生产环境还是开发环境"><span class="nav-number">16.</span> <span class="nav-text">webpack怎么区分是生产环境还是开发环境</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
 
 
         
-      </div>
-    </main>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">Copyright &copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">海色</span>
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="https://github.com/shifeng1993">Github</a></li>
+        
+      </ul>
+    </div>
 
-  
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack是干什么的-静态模块打包工具（编译成静态资源）"><span class="toc-number">1.</span> <span class="toc-text">webpack是干什么的? - 静态模块打包工具（编译成静态资源）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack4-需要安装哪两个包"><span class="toc-number">2.</span> <span class="toc-text">webpack4 需要安装哪两个包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#当前项目怎么运行webpack打包"><span class="toc-number">3.</span> <span class="toc-text">当前项目怎么运行webpack打包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么实现打包（原理）"><span class="toc-number">4.</span> <span class="toc-text">webpack怎么实现打包（原理）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack配置文件-webpack-config-js"><span class="toc-number">5.</span> <span class="toc-text">webpack配置文件 webpack.config.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack四大核心概念"><span class="toc-number">6.</span> <span class="toc-text">webpack四大核心概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#入口-entry"><span class="toc-number">7.</span> <span class="toc-text">入口(entry)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单入口写法"><span class="toc-number">7.1.</span> <span class="toc-text">单入口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多入口写法"><span class="toc-number">7.2.</span> <span class="toc-text">多入口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输出-output"><span class="toc-number">8.</span> <span class="toc-text">输出(output)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单出口写法"><span class="toc-number">8.1.</span> <span class="toc-text">单出口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多出口写法"><span class="toc-number">8.2.</span> <span class="toc-text">多出口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载器-loader"><span class="toc-number">9.</span> <span class="toc-text">加载器(loader)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css的loader"><span class="toc-number">10.</span> <span class="toc-text">css的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css-loader"><span class="toc-number">10.1.</span> <span class="toc-text">css-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style-loader"><span class="toc-number">10.2.</span> <span class="toc-text">style-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node-sass-sass-loader"><span class="toc-number">10.3.</span> <span class="toc-text">node-sass sass-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less-loader"><span class="toc-number">10.4.</span> <span class="toc-text">less-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stylus-loader"><span class="toc-number">10.5.</span> <span class="toc-text">stylus-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js的loader"><span class="toc-number">11.</span> <span class="toc-text">js的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-loader"><span class="toc-number">11.1.</span> <span class="toc-text">babel-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint-loader"><span class="toc-number">11.2.</span> <span class="toc-text">eslint-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ts-loader"><span class="toc-number">11.3.</span> <span class="toc-text">ts-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tslint-loader"><span class="toc-number">11.4.</span> <span class="toc-text">tslint-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件的loader"><span class="toc-number">12.</span> <span class="toc-text">文件的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#file-loader"><span class="toc-number">12.1.</span> <span class="toc-text">file-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-loader"><span class="toc-number">12.2.</span> <span class="toc-text">url-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插件-plugins"><span class="toc-number">13.</span> <span class="toc-text">插件(plugins)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html-webpack-plugin"><span class="toc-number">13.1.</span> <span class="toc-text">html-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clean-webpack-plugin"><span class="toc-number">13.2.</span> <span class="toc-text">clean-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mini-css-extract-plugin"><span class="toc-number">13.3.</span> <span class="toc-text">mini-css-extract-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimize-css-assets-webpack-plugin"><span class="toc-number">13.4.</span> <span class="toc-text">optimize-css-assets-webpack-plugin</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#devServer-开发服务器"><span class="toc-number">14.</span> <span class="toc-text">devServer 开发服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack多页面打包配置示例"><span class="toc-number">15.</span> <span class="toc-text">webpack多页面打包配置示例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么区分是生产环境还是开发环境"><span class="toc-number">16.</span> <span class="toc-text">webpack怎么区分是生产环境还是开发环境</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&text=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&is_video=false&description=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【webpack学习随笔】1.webpack基础以及核心配置&body=Check out this article: https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&name=【webpack学习随笔】1.webpack基础以及核心配置&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/06/08/webpack_1/&t=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
 </div>
 
-
-  <div class="powered-by"><a class="theme-link" target="_blank" href="http://www.beian.miit.gov.cn">陕ICP备16013864号</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">
-    <p>Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a></p>
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 海色 
+    <a target="_blank" href="http://www.beian.miit.gov.cn">陕ICP备16013864号</a>
   </div>
-
-
-
-
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="https://github.com/shifeng1993">Github</a></li>
         
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
+      </ul>
+    </nav>
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
   <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
       }
     });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
   </script>
 
+<script src="/js/main.js"></script>
+<!-- search -->
 
+<!-- Google Analytics -->
 
+<!-- Baidu Analytics -->
 
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1e95bfd8a79cb265d75f340b37a3b57";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
-  
+<!-- Disqus Comments -->
 
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
