@@ -112,7 +112,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -124,9 +124,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -136,13 +136,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/android/">android</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -166,7 +166,7 @@
 </ul>
 <h2 id="Intent跳转"><a href="#Intent跳转" class="headerlink" title="Intent跳转"></a>Intent跳转</h2><h3 id="跳转方式"><a href="#跳转方式" class="headerlink" title="跳转方式"></a>跳转方式</h3><ul>
 <li><p>显式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line">    startActivity(intent);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    startActivity(intent);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>隐式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">     Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.example.shifeng.helloworld.ACTION_START"</span>);</span><br><span class="line">     intent.addCategory(<span class="string">"com.example.shifeng.helloworld.MY_CATEGORY"</span>);</span><br><span class="line">     startActivity(intent);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
@@ -176,7 +176,7 @@
 <h3 id="跳转传值"><a href="#跳转传值" class="headerlink" title="跳转传值"></a>跳转传值</h3><p>使用intent对象下的putExtra()方法，第一个参数是键，用于后面从 Intent 对象中取值，第二个参数才是真正要传递的数据。</p>
 <ul>
 <li><p>传递</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">  String data = <span class="string">"Hello SecondActivity"</span>;</span><br><span class="line">  Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line">  intent.putExtra(<span class="string">"extra_data"</span>, data);</span><br><span class="line">  startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">  String data = <span class="string">"Hello SecondActivity"</span>;</span><br><span class="line">  Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">  intent.putExtra(<span class="string">"extra_data"</span>, data);</span><br><span class="line">  startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>取出</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState); </span><br><span class="line">  setContentView(R.layout.second_layout);</span><br><span class="line">  Intent intent = getIntent();</span><br><span class="line">  String data = intent.getStringExtra(<span class="string">"extra_data"</span>); </span><br><span class="line">  Log.d(<span class="string">"SecondActivity"</span>, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -197,7 +197,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">  Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</span><br><span class="line">  intent.setData(Uri.parse(<span class="string">"tel:10086"</span>));</span><br><span class="line">  startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="activity的生命周期"><a href="#activity的生命周期" class="headerlink" title="activity的生命周期"></a>activity的生命周期</h2><p><img src="/2018/04/18/android1/active_period.png" title="activity的生命周期"></p>
+<h2 id="activity的生命周期"><a href="#activity的生命周期" class="headerlink" title="activity的生命周期"></a>activity的生命周期</h2><p><img src="./active_period.png" title="activity的生命周期"></p>
 <h3 id="完整生存期"><a href="#完整生存期" class="headerlink" title="完整生存期"></a>完整生存期</h3><ul>
 <li>onCreate() 活动第一次被创建，常用作加载布局、绑定事件等。</li>
 <li>onDestroy() 活动被销毁之前</li>
@@ -222,64 +222,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SecondActivity.actionStart(FirstActivity.<span class="keyword">this</span>, <span class="string">"data1"</span>, <span class="string">"data2"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>SecondActivity</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">actionStart</span><span class="params">(Context context, String data1, String data2)</span> </span>&#123; </span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(context, SecondActivity.class);</span><br><span class="line">        intent.putExtra(<span class="string">"param1"</span>, data1);</span><br><span class="line">        intent.putExtra(<span class="string">"param2"</span>, data2);</span><br><span class="line">        context.startActivity(intent); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">actionStart</span><span class="params">(Context context, String data1, String data2)</span> </span>&#123; </span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(context, SecondActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        intent.putExtra(<span class="string">"param1"</span>, data1);</span><br><span class="line">        intent.putExtra(<span class="string">"param2"</span>, data2);</span><br><span class="line">        context.startActivity(intent); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/04/18/android1/">https://www.shifeng1993.com/2018/04/18/android1/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本用法"><span class="toc-number">1.</span> <span class="toc-text">基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">1.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#销毁"><span class="toc-number">1.2.</span> <span class="toc-text">销毁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent跳转"><span class="toc-number">2.</span> <span class="toc-text">Intent跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跳转方式"><span class="toc-number">2.1.</span> <span class="toc-text">跳转方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跳转传值"><span class="toc-number">2.2.</span> <span class="toc-text">跳转传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跳转到别的应用"><span class="toc-number">2.3.</span> <span class="toc-text">跳转到别的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#activity的生命周期"><span class="toc-number">3.</span> <span class="toc-text">activity的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#完整生存期"><span class="toc-number">3.1.</span> <span class="toc-text">完整生存期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可见生存期"><span class="toc-number">3.2.</span> <span class="toc-text">可见生存期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前台生存期"><span class="toc-number">3.3.</span> <span class="toc-text">前台生存期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动模式"><span class="toc-number">4.</span> <span class="toc-text">启动模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#standard-默认"><span class="toc-number">4.1.</span> <span class="toc-text">standard (默认)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTop"><span class="toc-number">4.2.</span> <span class="toc-text">singleTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#singleTask"><span class="toc-number">4.3.</span> <span class="toc-text">singleTask</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#singleInstance"><span class="toc-number">4.3.1.</span> <span class="toc-text">singleInstance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧"><span class="toc-number">5.</span> <span class="toc-text">小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知晓当前活动名称"><span class="toc-number">5.1.</span> <span class="toc-text">知晓当前活动名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随时退出应用"><span class="toc-number">5.2.</span> <span class="toc-text">随时退出应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加activity启动方法"><span class="toc-number">5.3.</span> <span class="toc-text">添加activity启动方法</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/18/android1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/18/android1/&text=【android学习随笔】android activity 活动"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/18/android1/&title=【android学习随笔】android activity 活动"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/18/android1/&is_video=false&description=【android学习随笔】android activity 活动"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【android学习随笔】android activity 活动&body=Check out this article: https://www.shifeng1993.com/2018/04/18/android1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/18/android1/&title=【android学习随笔】android activity 活动"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/18/android1/&title=【android学习随笔】android activity 活动"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/18/android1/&title=【android学习随笔】android activity 活动"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/18/android1/&title=【android学习随笔】android activity 活动"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/18/android1/&name=【android学习随笔】android activity 活动&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/18/android1/&t=【android学习随笔】android activity 活动"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

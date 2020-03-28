@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/C-C/">C/C++</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -154,7 +154,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="有符号整型数据"><a href="#有符号整型数据" class="headerlink" title="有符号整型数据"></a>有符号整型数据</h1><p>1Byte = 8Bit；一个字节为八个比特位元。</p>
-<h2 id="short"><a href="#short" class="headerlink" title="short"></a>short</h2><p>或者为<code>short int</code> 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">short</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="short"><a href="#short" class="headerlink" title="short"></a>short</h2><p>或者为<code>short int</code> 占用的储存空间可能比int类型少，常用于较小数值的场合节省空间<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    short <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="int"><a href="#int" class="headerlink" title="int"></a>int</h2><p>只要是整数类型，都会被定义，用<code>%d</code>输出</p>
 <ul>
 <li>十进制</li>
@@ -179,62 +179,13 @@
 <h1 id="无符号整型数据"><a href="#无符号整型数据" class="headerlink" title="无符号整型数据"></a>无符号整型数据</h1><p>非负数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>比如：<br>八位二进制，正常范围为<code>-128 ~127</code>，加上<code>unsigned</code>后，会变成<code>0~255</code>。</p>
 <h2 id="C11新规范"><a href="#C11新规范" class="headerlink" title="C11新规范"></a>C11新规范</h2><p><code>stdint.h</code>来规范整形数据位数，不分操作平台。<br>包括<code>__int8_t</code>， <code>__int16_t</code>， <code>__int32_t</code>， <code>__int64_t</code>,<br>无负号整型数据包括<code>__uint8_t</code>， <code>__uint16_t</code>， <code>__uint32_t</code>， <code>__uint64_t</code>,<br>全部由<code>%d</code>来输出。</p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/03/20/c_int/">https://www.shifeng1993.com/2017/03/20/c_int/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#有符号整型数据"><span class="toc-number">1.</span> <span class="toc-text">有符号整型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#short"><span class="toc-number">1.1.</span> <span class="toc-text">short</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#int"><span class="toc-number">1.2.</span> <span class="toc-text">int</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#long"><span class="toc-number">1.3.</span> <span class="toc-text">long</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#无符号整型数据"><span class="toc-number">2.</span> <span class="toc-text">无符号整型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C11新规范"><span class="toc-number">2.1.</span> <span class="toc-text">C11新规范</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/03/20/c_int/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/03/20/c_int/&text=【C学习随笔】C语言的整型数据"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/03/20/c_int/&title=【C学习随笔】C语言的整型数据"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/03/20/c_int/&is_video=false&description=【C学习随笔】C语言的整型数据"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【C学习随笔】C语言的整型数据&body=Check out this article: https://www.shifeng1993.com/2017/03/20/c_int/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/03/20/c_int/&title=【C学习随笔】C语言的整型数据"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/03/20/c_int/&title=【C学习随笔】C语言的整型数据"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/03/20/c_int/&title=【C学习随笔】C语言的整型数据"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/03/20/c_int/&title=【C学习随笔】C语言的整型数据"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/03/20/c_int/&name=【C学习随笔】C语言的整型数据&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/03/20/c_int/&t=【C学习随笔】C语言的整型数据"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

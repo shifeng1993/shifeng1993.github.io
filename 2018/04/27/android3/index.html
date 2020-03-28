@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/android/">android</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -166,65 +166,16 @@
 <li>第三个参数是 Toast 显示的时长，有两个内置常量可以选择 Toast.LENGTH_SHORT 和 Toast.LENGTH_LONG。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">             Toast.makeText(FirstActivity.<span class="keyword">this</span>, <span class="string">"You clicked Button 1"</span>,</span><br><span class="line">                Toast.LENGTH_SHORT).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h2><p>在res内创建 Menu resource file 创建各item，用title给名称<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/add_item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Add"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/remove_item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Remove"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h2><p>在res内创建 Menu resource file 创建各item，用title给名称<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/add_item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Add"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/remove_item"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Remove"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后在activity用onCreateOptionsMenu()方法重写，getMenuInflater()方法能够得到 MenuInflater 对象，再调用它的 inflate()，<br>inflate()方法接收两个参数，第一个参数用于指定我们通过哪 一个资源文件来创建菜单，这里当然传入 R.menu.main。第二个参数用于指定我们的菜单项将 添加到哪一个 Menu 对象当中，这里直接使用 onCreateOptionsMenu()方法中传入的 menu 参数。 然后给这个方法返回 true，表示允许创建的菜单显示出来，如果返回了 false，创建的菜单将 无法显示。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    getMenuInflater().inflate(R.menu.main, menu);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在重写选择菜单项的点击方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (item.getItemId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.add_item:</span><br><span class="line">                Toast.makeText(<span class="keyword">this</span>, <span class="string">"your click add"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.remove_item:</span><br><span class="line">                Toast.makeText(<span class="keyword">this</span>, <span class="string">"your click remove"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/04/27/android3/">https://www.shifeng1993.com/2018/04/27/android3/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#点击事件-onClick"><span class="toc-number">1.</span> <span class="toc-text">点击事件 onClick()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取输入内容"><span class="toc-number">2.</span> <span class="toc-text">获取输入内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#控制圆形进度条可见和不可见"><span class="toc-number">3.</span> <span class="toc-text">控制圆形进度条可见和不可见</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#控制水平进度条进度"><span class="toc-number">4.</span> <span class="toc-text">控制水平进度条进度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#显示AlertDialog"><span class="toc-number">5.</span> <span class="toc-text">显示AlertDialog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#显示ProgressDialog"><span class="toc-number">6.</span> <span class="toc-text">显示ProgressDialog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Toast"><span class="toc-number">6.1.</span> <span class="toc-text">Toast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#menu"><span class="toc-number">6.2.</span> <span class="toc-text">menu</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/27/android3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/27/android3/&text=【android学习随笔】android常用事件和控件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/27/android3/&title=【android学习随笔】android常用事件和控件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/27/android3/&is_video=false&description=【android学习随笔】android常用事件和控件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【android学习随笔】android常用事件和控件&body=Check out this article: https://www.shifeng1993.com/2018/04/27/android3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/27/android3/&title=【android学习随笔】android常用事件和控件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/27/android3/&title=【android学习随笔】android常用事件和控件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/27/android3/&title=【android学习随笔】android常用事件和控件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/27/android3/&title=【android学习随笔】android常用事件和控件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/27/android3/&name=【android学习随笔】android常用事件和控件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/27/android3/&t=【android学习随笔】android常用事件和控件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

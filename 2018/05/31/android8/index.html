@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/android/">android</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -160,62 +160,13 @@
 <h1 id="SharedPreferences-存储"><a href="#SharedPreferences-存储" class="headerlink" title="SharedPreferences 存储"></a>SharedPreferences 存储</h1><p>也叫键值对存储。使用xml进行存储对应的键值对，SharedPreferences 存储要比文本存储简单方便许多，应用场景也多了不少，比如很多应用程序中的偏好设置功能其实都使用到了 SharedPreferences 技术，还有记住密码等功能，需要注意正式项目需要对明文密码进行加密。</p>
 <h2 id="布局文件-1"><a href="#布局文件-1" class="headerlink" title="布局文件"></a>布局文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span> <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/save_data"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"保存数据"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/read_data"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"读取数据"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="SharedPreferences操作部分"><a href="#SharedPreferences操作部分" class="headerlink" title="SharedPreferences操作部分"></a>SharedPreferences操作部分</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 以下是保存数据按钮</span></span><br><span class="line">        Button saveData = (Button) findViewById(R.id.save_data);</span><br><span class="line">        saveData.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                SharedPreferences.Editor editor = getSharedPreferences(<span class="string">"data"</span>, MODE_PRIVATE).edit();</span><br><span class="line">                editor.putString(<span class="string">"name"</span>, <span class="string">"hello"</span>);</span><br><span class="line">                editor.putInt(<span class="string">"age"</span>, <span class="number">4</span>);</span><br><span class="line">                editor.apply();</span><br><span class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"保存完成"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 以下是读取数据按钮</span></span><br><span class="line">        Button readData = (Button) findViewById(R.id.read_data);</span><br><span class="line">        readData.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                SharedPreferences pref = getSharedPreferences(<span class="string">"data"</span>, MODE_PRIVATE);</span><br><span class="line">                String name = pref.getString(<span class="string">"name"</span>, <span class="string">""</span>);</span><br><span class="line">                <span class="keyword">int</span> age = pref.getInt(<span class="string">"age"</span>, <span class="number">0</span>);</span><br><span class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"name is "</span> + name + <span class="string">" and age is "</span> + age, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/05/31/android8/">https://www.shifeng1993.com/2018/05/31/android8/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文件存储"><span class="toc-number">1.</span> <span class="toc-text">文件存储</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#布局文件"><span class="toc-number">1.1.</span> <span class="toc-text">布局文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件流读写部分"><span class="toc-number">1.2.</span> <span class="toc-text">文件流读写部分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SharedPreferences-存储"><span class="toc-number">2.</span> <span class="toc-text">SharedPreferences 存储</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#布局文件-1"><span class="toc-number">2.1.</span> <span class="toc-text">布局文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SharedPreferences操作部分"><span class="toc-number">2.2.</span> <span class="toc-text">SharedPreferences操作部分</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/05/31/android8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/05/31/android8/&text=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/05/31/android8/&title=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/05/31/android8/&is_video=false&description=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【android学习随笔】android数据持久化(一)-文件存储和xml存储&body=Check out this article: https://www.shifeng1993.com/2018/05/31/android8/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/05/31/android8/&title=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/05/31/android8/&title=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/05/31/android8/&title=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/05/31/android8/&title=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/05/31/android8/&name=【android学习随笔】android数据持久化(一)-文件存储和xml存储&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/05/31/android8/&t=【android学习随笔】android数据持久化(一)-文件存储和xml存储"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

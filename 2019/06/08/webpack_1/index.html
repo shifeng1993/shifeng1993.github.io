@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,8 +134,8 @@
     </div>
 
 
-      
-
+      <!-- 
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -220,7 +220,7 @@
 <ol start="2">
 <li>配置.babelrc</li>
 </ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [<span class="string">"@babel/preset-env"</span>, &#123;</span><br><span class="line">      "useBuiltIns": "usage", // 如果使用了某些api就注入进来，进行转化</span><br><span class="line">      "corejs": 2             // 需要的corejs</span><br><span class="line">    &#125;]</span><br><span class="line">  ],</span><br><span class="line">  "plugins": []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [<span class="string">"@babel/preset-env"</span>, &#123;</span><br><span class="line">      <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>, <span class="comment">// 如果使用了某些api就注入进来，进行转化</span></span><br><span class="line">      <span class="attr">"corejs"</span>: <span class="number">2</span>             <span class="comment">// 需要的corejs</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以上方法 实现普通的代码是没有问题的，但是如果是使用 promise 或者 set map等新的api会放到global对象上。所以会使用以下的库</p>
 <ul>
 <li>@babel/plugin-transform-runtime<br>依赖于 @babel/runtime，会创建一个沙箱，不会污染全局变量。需要再添加一个@babel/runtime-corejs2</li>
@@ -245,62 +245,13 @@
 <li><p><code>production</code>会将 <code>process.env.NODE_ENV</code> 的值设为 <code>production</code>。启用 <code>FlagDependencyUsagePlugin</code>, <code>FlagIncludedChunksPlugin</code>, <code>ModuleConcatenationPlugin</code>, <code>NoEmitOnErrorsPlugin</code>, <code>OccurrenceOrderPlugin</code>, <code>SideEffectsFlagPlugin</code> 和 <code>UglifyJsPlugin</code>.</p>
 </li>
 </ul>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2019/06/08/webpack_1/">https://www.shifeng1993.com/2019/06/08/webpack_1/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack是干什么的-静态模块打包工具（编译成静态资源）"><span class="toc-number">1.</span> <span class="toc-text">webpack是干什么的? - 静态模块打包工具（编译成静态资源）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack4-需要安装哪两个包"><span class="toc-number">2.</span> <span class="toc-text">webpack4 需要安装哪两个包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#当前项目怎么运行webpack打包"><span class="toc-number">3.</span> <span class="toc-text">当前项目怎么运行webpack打包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么实现打包（原理）"><span class="toc-number">4.</span> <span class="toc-text">webpack怎么实现打包（原理）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack配置文件-webpack-config-js"><span class="toc-number">5.</span> <span class="toc-text">webpack配置文件 webpack.config.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack四大核心概念"><span class="toc-number">6.</span> <span class="toc-text">webpack四大核心概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#入口-entry"><span class="toc-number">7.</span> <span class="toc-text">入口(entry)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单入口写法"><span class="toc-number">7.1.</span> <span class="toc-text">单入口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多入口写法"><span class="toc-number">7.2.</span> <span class="toc-text">多入口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输出-output"><span class="toc-number">8.</span> <span class="toc-text">输出(output)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单出口写法"><span class="toc-number">8.1.</span> <span class="toc-text">单出口写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多出口写法"><span class="toc-number">8.2.</span> <span class="toc-text">多出口写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载器-loader"><span class="toc-number">9.</span> <span class="toc-text">加载器(loader)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css的loader"><span class="toc-number">10.</span> <span class="toc-text">css的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css-loader"><span class="toc-number">10.1.</span> <span class="toc-text">css-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style-loader"><span class="toc-number">10.2.</span> <span class="toc-text">style-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node-sass-sass-loader"><span class="toc-number">10.3.</span> <span class="toc-text">node-sass sass-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less-loader"><span class="toc-number">10.4.</span> <span class="toc-text">less-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stylus-loader"><span class="toc-number">10.5.</span> <span class="toc-text">stylus-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js的loader"><span class="toc-number">11.</span> <span class="toc-text">js的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-loader"><span class="toc-number">11.1.</span> <span class="toc-text">babel-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint-loader"><span class="toc-number">11.2.</span> <span class="toc-text">eslint-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ts-loader"><span class="toc-number">11.3.</span> <span class="toc-text">ts-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tslint-loader"><span class="toc-number">11.4.</span> <span class="toc-text">tslint-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件的loader"><span class="toc-number">12.</span> <span class="toc-text">文件的loader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#file-loader"><span class="toc-number">12.1.</span> <span class="toc-text">file-loader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-loader"><span class="toc-number">12.2.</span> <span class="toc-text">url-loader</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插件-plugins"><span class="toc-number">13.</span> <span class="toc-text">插件(plugins)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html-webpack-plugin"><span class="toc-number">13.1.</span> <span class="toc-text">html-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clean-webpack-plugin"><span class="toc-number">13.2.</span> <span class="toc-text">clean-webpack-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mini-css-extract-plugin"><span class="toc-number">13.3.</span> <span class="toc-text">mini-css-extract-plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimize-css-assets-webpack-plugin"><span class="toc-number">13.4.</span> <span class="toc-text">optimize-css-assets-webpack-plugin</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#devServer-开发服务器"><span class="toc-number">14.</span> <span class="toc-text">devServer 开发服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack多页面打包配置示例"><span class="toc-number">15.</span> <span class="toc-text">webpack多页面打包配置示例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack怎么区分是生产环境还是开发环境"><span class="toc-number">16.</span> <span class="toc-text">webpack怎么区分是生产环境还是开发环境</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&text=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&is_video=false&description=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【webpack学习随笔】1.webpack基础以及核心配置&body=Check out this article: https://www.shifeng1993.com/2019/06/08/webpack_1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&title=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/06/08/webpack_1/&name=【webpack学习随笔】1.webpack基础以及核心配置&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/06/08/webpack_1/&t=【webpack学习随笔】1.webpack基础以及核心配置"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

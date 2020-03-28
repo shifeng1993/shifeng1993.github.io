@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/base/">base</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -169,70 +169,21 @@
 <li>[attr=val]：该选择器仅选择 attr 属性被赋值为 val 的所有元素。 (css2.1)</li>
 <li>[attr~=val]：该选择器仅选择具有 attr 属性的元素，而且要求 val 值是 attr 值包含的被空格分隔的取值列表里中的一个。 (css2.1)</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性的元素将被应用绿色的文本颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性且属性值刚好为"liquid"的元素将被应用金色的背景颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable="liquid"]</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: goldenrod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性且属性值包含"spicy"的元素，</span></span><br><span class="line"><span class="comment">即使元素的属性中还包含其他属性值，都会被应用红色的文本颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable~="spicy"]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性的元素将被应用绿色的文本颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性且属性值刚好为"liquid"的元素将被应用金色的背景颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable=<span class="string">"liquid"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: goldenrod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 所有具有"data-vegetable"属性且属性值包含"spicy"的元素，</span></span><br><span class="line"><span class="comment">即使元素的属性中还包含其他属性值，都会被应用红色的文本颜色 */</span></span><br><span class="line"><span class="selector-attr">[data-vegetable~=<span class="string">"spicy"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="子字符串值选择器"><a href="#子字符串值选择器" class="headerlink" title="子字符串值选择器"></a>子字符串值选择器</h1><ul>
 <li>[attr|=val] : 选择attr属性的值是 val 或值以 val- 开头的元素（注意，这里的 “-” 不是一个错误，这是用来处理语言编码的）。 (css2.1)</li>
 <li>[attr^=val] : 选择attr属性的值以 val 开头（包括 val）的元素。 (css3)</li>
 <li>[attr$=val] : 选择attr属性的值以 val 结尾（包括 val）的元素。 (css3)</li>
 <li>[attr*=val] : 选择attr属性的值中包含子字符串 val 的元素（一个子字符串就是一个字符串的一部分而已，例如，”cat“ 是 字符串 ”caterpillar“ 的子字符串）。 (css3)</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 语言选择的经典用法 */</span></span><br><span class="line"><span class="selector-attr">[lang|="fr"]</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    具有"data-vegetable"属性含有值"not spicy"的所有元素,都变回绿色</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-attr">[data-vegetable*="not spicy"]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">   具有"data-quantity"属性其值以"kg"结尾的所有元素*/</span></span><br><span class="line"><span class="selector-attr">[data-quantity$="kg"]</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">   具有属性"data-quantity"其值以"optional"开头的所有元素 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-attr">[data-quantity^="optional"]</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 语言选择的经典用法 */</span></span><br><span class="line"><span class="selector-attr">[lang|=<span class="string">"fr"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    具有"data-vegetable"属性含有值"not spicy"的所有元素,都变回绿色</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-attr">[data-vegetable*=<span class="string">"not spicy"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">   具有"data-quantity"属性其值以"kg"结尾的所有元素*/</span></span><br><span class="line"><span class="selector-attr">[data-quantity$=<span class="string">"kg"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">   具有属性"data-quantity"其值以"optional"开头的所有元素 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-attr">[data-quantity^=<span class="string">"optional"</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/10/30/base_css2/">https://www.shifeng1993.com/2018/10/30/base_css2/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#元素选择器"><span class="toc-number">1.</span> <span class="toc-text">元素选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类选择器"><span class="toc-number">2.</span> <span class="toc-text">类选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#id选择器"><span class="toc-number">3.</span> <span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用选择器"><span class="toc-number">4.</span> <span class="toc-text">通用选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#属性和值选择器"><span class="toc-number">5.</span> <span class="toc-text">属性和值选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#子字符串值选择器"><span class="toc-number">6.</span> <span class="toc-text">子字符串值选择器</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/30/base_css2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/30/base_css2/&text=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/30/base_css2/&title=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/30/base_css2/&is_video=false&description=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【基础学习-css】2.css简单选择器和属性选择器&body=Check out this article: https://www.shifeng1993.com/2018/10/30/base_css2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/30/base_css2/&title=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/30/base_css2/&title=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/30/base_css2/&title=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/30/base_css2/&title=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/30/base_css2/&name=【基础学习-css】2.css简单选择器和属性选择器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/30/base_css2/&t=【基础学习-css】2.css简单选择器和属性选择器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

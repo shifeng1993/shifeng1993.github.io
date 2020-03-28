@@ -108,7 +108,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -120,9 +120,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -132,13 +132,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/vue/">vue</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -186,7 +186,7 @@
 <ul>
 <li>修改<code>/src/app.vue</code>为如下代码，</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;router-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: 'app'</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"scss"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;<span class="regexp">/router-view&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: 'app'</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"scss"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>修改<code>/src/router/index.js</code>为如下代码，</li>
 </ul>
@@ -194,7 +194,7 @@
 <ul>
 <li>创建<code>/src/containers/Index.vue</code>为如下代码，</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;router-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: 'Index',</span></span><br><span class="line"><span class="regexp">    data () &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    components: &#123;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"scss"</span> rel=<span class="string">"stylesheet/scss"</span> scoped&gt;</span><br><span class="line">  #container &#123;</span><br><span class="line">    height: <span class="number">100</span>%;</span><br><span class="line">    overflow: auto;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;<span class="regexp">/router-view&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    name: 'Index',</span></span><br><span class="line"><span class="regexp">    data () &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    components: &#123;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"scss"</span> rel=<span class="string">"stylesheet/scss"</span> scoped&gt;</span><br><span class="line">  #container &#123;</span><br><span class="line">    height: <span class="number">100</span>%;</span><br><span class="line">    overflow: auto;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>创建<code>/src/stores/actions/index.js</code>为如下代码，</li>
 </ul>
@@ -214,62 +214,13 @@
 <h4 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h4><p>在bash中输入<code>npm run dev</code></p>
 <p>以上工程目录就搭建完毕了，后续components中尽量添加可复用的无状态组件，或者全局状态组件，比如alertbox之类，containers中为页面，至于ajax请求尽量用vuex ，action，去集成，尽量做成函数式编程的风格。这样可以尽可能的保证项目内部代码规整。</p>
 <p>项目目录结构以及代码请移步至以下git中查看<br><a href="https://github.com/shifeng1993/vue-start" title="https://github.com/shifeng1993/vue-start" target="_blank" rel="noopener">https://github.com/shifeng1993/vue-start</a><br>喜欢这个脚手架的可以 star 和 fork 哦！</p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2016/10/02/vue_vue/">https://www.shifeng1993.com/2016/10/02/vue_vue/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步"><span class="toc-number">1.</span> <span class="toc-text">第一步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装nodejs"><span class="toc-number">1.0.1.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装全局webpack"><span class="toc-number">1.0.2.</span> <span class="toc-text">安装全局webpack</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步"><span class="toc-number">2.</span> <span class="toc-text">第二步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装vue-cli脚手架工具"><span class="toc-number">2.0.1.</span> <span class="toc-text">安装vue-cli脚手架工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步"><span class="toc-number">3.</span> <span class="toc-text">第三步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过vue-cli创建项目基础目录"><span class="toc-number">3.0.1.</span> <span class="toc-text">通过vue-cli创建项目基础目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步"><span class="toc-number">4.</span> <span class="toc-text">第四步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装依赖模块"><span class="toc-number">4.0.1.</span> <span class="toc-text">安装依赖模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给生产环境装的依赖"><span class="toc-number">4.0.2.</span> <span class="toc-text">给生产环境装的依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给开发环境安装的依赖"><span class="toc-number">4.0.3.</span> <span class="toc-text">给开发环境安装的依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五步"><span class="toc-number">5.</span> <span class="toc-text">第五步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#搭建项目目录"><span class="toc-number">5.0.1.</span> <span class="toc-text">搭建项目目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建express服务文件"><span class="toc-number">5.0.2.</span> <span class="toc-text">创建express服务文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改src源文件目录"><span class="toc-number">5.0.3.</span> <span class="toc-text">修改src源文件目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行项目"><span class="toc-number">5.0.4.</span> <span class="toc-text">运行项目</span></a></li></ol></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&text=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&is_video=false&description=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【vue2.0实战分享】搭建vue运行环境以及项目目录&body=Check out this article: https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&name=【vue2.0实战分享】搭建vue运行环境以及项目目录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2016/10/02/vue_vue/&t=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

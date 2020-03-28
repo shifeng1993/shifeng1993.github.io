@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/base/">base</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -160,62 +160,13 @@
 <p>以上三个方法 都会绑定函数的作用域。</p>
 <h2 id="apply-和-call"><a href="#apply-和-call" class="headerlink" title="apply 和 call"></a>apply 和 call</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">construct</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">people</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 在call中将this作为thisArgs参数传递</span></span><br><span class="line">  <span class="comment">// construct方法中的this就指向了Cat中的this</span></span><br><span class="line">  <span class="comment">// 所以construct中的this指向的就是cat对象</span></span><br><span class="line">  <span class="comment">// 在construct中定义了name和age属性，就相当于在cat中定义了这些属性</span></span><br><span class="line">  <span class="comment">// cat对象便拥有了construct中定义的属性，从而达到了继承的目的</span></span><br><span class="line">  <span class="comment">// construct.call(this, name, age);</span></span><br><span class="line">  construct.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  <span class="keyword">this</span>.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"I am "</span> + <span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.getAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"My age is "</span> + <span class="keyword">this</span>.age);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// getAge.bind(this)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当通过new运算符产生了cat时，Cat中的this就指向了cat对象</span></span><br><span class="line"><span class="keyword">var</span> girl = <span class="keyword">new</span> people(<span class="string">'Lily'</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">girl.getName(); <span class="comment">// I am Lily</span></span><br><span class="line">girl.getAge(); <span class="comment">// My age is 50</span></span><br></pre></td></tr></table></figure>
 <h2 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h2><p>最经典的应用场景就是react组件内函数的this指向问题。或者统一使用箭头函数，不要this，或者使用bind函数，bind（this）到组件的this上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: <span class="string">'123'</span>,</span><br><span class="line">    age: <span class="number">321</span></span><br><span class="line">  &#125;,</span><br><span class="line">  printData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.data); <span class="comment">// 这里面的this是指向 foo.printData 这个function，而不是foo对象</span></span><br><span class="line">    &#125;</span><br><span class="line">    bar.bind(<span class="keyword">this</span>)();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.printData(); <span class="comment">// &#123; name: '123', age: 321 &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2019/01/14/loophole4/">https://www.shifeng1993.com/2019/01/14/loophole4/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数属性length"><span class="toc-number">1.</span> <span class="toc-text">函数属性length</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数方法-apply、call、bind"><span class="toc-number">2.</span> <span class="toc-text">函数方法 apply、call、bind</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-和-call"><span class="toc-number">2.1.</span> <span class="toc-text">apply 和 call</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind"><span class="toc-number">2.2.</span> <span class="toc-text">bind</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/01/14/loophole4/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/01/14/loophole4/&text=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/01/14/loophole4/&title=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/01/14/loophole4/&is_video=false&description=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【查漏-js】4.函数属性length，方法 apply、call、bind&body=Check out this article: https://www.shifeng1993.com/2019/01/14/loophole4/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/01/14/loophole4/&title=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/01/14/loophole4/&title=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/01/14/loophole4/&title=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/01/14/loophole4/&title=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/01/14/loophole4/&name=【查漏-js】4.函数属性length，方法 apply、call、bind&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/01/14/loophole4/&t=【查漏-js】4.函数属性length，方法 apply、call、bind"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

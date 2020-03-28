@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/base/">base</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -187,7 +187,7 @@
 <li>伪类选择器（a:hover,li:nth-child）</li>
 </ol>
 <h1 id="css语句"><a href="#css语句" class="headerlink" title="css语句"></a>css语句</h1><p><code>@</code> 规则 在CSS中被用来传递元数据、条件信息或其它描述性信息。</p>
-<p>例如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">'base.css'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">'base.css'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>有如下<code>@</code>规则：</p>
 <ul>
 <li>@charset, 定义样式表使用的字符集.</li>
@@ -199,66 +199,17 @@
 <li>@keyframes, 描述 CSS 动画的中间步骤。</li>
 <li>@supports, 如果满足给定条件则条件规则组里的规则生效。 </li>
 </ul>
-<h1 id="css注释"><a href="#css注释" class="headerlink" title="css注释"></a>css注释</h1><p>CSS中的注释以<code>/*</code>开始并以<code>*/</code>结束<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本元素样式 */</span></span><br><span class="line"><span class="comment">/* -------------------------------------------------------------------------------------------- */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">1em</span>/<span class="number">150%</span> Helvetica, Arial, sans-serif;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">33em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">70em</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 特别指明全局字体大小，在大屏或大窗口下加大字体大小以增加可读性 */</span></span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">130%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 处理嵌套在DOM中的特定元素  */</span></span><br><span class="line"><span class="comment">/* -------------------------------------------------------------------------------------------- */</span></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-id">#id</span><span class="selector-pseudo">:first-line</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>+<span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="css注释"><a href="#css注释" class="headerlink" title="css注释"></a>css注释</h1><p>CSS中的注释以<code>/*</code>开始并以<code>*/</code>结束<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本元素样式 */</span></span><br><span class="line"><span class="comment">/* -------------------------------------------------------------------------------------------- */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">1em</span>/<span class="number">150%</span> Helvetica, Arial, sans-serif;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">33em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">70em</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 特别指明全局字体大小，在大屏或大窗口下加大字体大小以增加可读性 */</span></span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">130%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 处理嵌套在DOM中的特定元素  */</span></span><br><span class="line"><span class="comment">/* -------------------------------------------------------------------------------------------- */</span></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>,</span><br><span class="line"><span class="selector-id">#id</span><span class="selector-pseudo">:first-line</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span>+<span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="简写"><a href="#简写" class="headerlink" title="简写"></a>简写</h1><p>一些属性比如 font，background，padding，border，和 margin 被称为简写属性。</p>
 <p>在padding和margin这样的简写属性中，值赋值的顺序是top、right、bottom、left。<br>它们还有其他简写方式，例如给padding两个值，则第一个值表示top/bottom，第二个值表示left/right</p>
 <p>background也一样。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(bg-graphic.png);</span><br><span class="line">  <span class="attribute">background-position</span>: <span class="number">10px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-repeat</span>: repeat-x;</span><br><span class="line">  <span class="attribute">background-scroll</span>: fixed;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">background</span>: red <span class="built_in">url</span>(bg-graphic.png) <span class="number">10px</span> <span class="number">10px</span> repeat-x fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/10/29/base_css1/">https://www.shifeng1993.com/2018/10/29/base_css1/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#css声明"><span class="toc-number">1.</span> <span class="toc-text">css声明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css声明块"><span class="toc-number">2.</span> <span class="toc-text">css声明块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css选择器"><span class="toc-number">3.</span> <span class="toc-text">css选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css选择器优先级："><span class="toc-number">3.1.</span> <span class="toc-text">css选择器优先级：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css选择器执行效率"><span class="toc-number">3.2.</span> <span class="toc-text">css选择器执行效率</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css语句"><span class="toc-number">4.</span> <span class="toc-text">css语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css注释"><span class="toc-number">5.</span> <span class="toc-text">css注释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简写"><span class="toc-number">6.</span> <span class="toc-text">简写</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/29/base_css1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/29/base_css1/&text=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/29/base_css1/&title=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/29/base_css1/&is_video=false&description=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【基础学习-css】1.css结构以及基础语法&body=Check out this article: https://www.shifeng1993.com/2018/10/29/base_css1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/29/base_css1/&title=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/29/base_css1/&title=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/29/base_css1/&title=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/29/base_css1/&title=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/29/base_css1/&name=【基础学习-css】1.css结构以及基础语法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/29/base_css1/&t=【基础学习-css】1.css结构以及基础语法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 

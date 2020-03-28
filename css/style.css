@@ -342,6 +342,7 @@ body .h2 {
   font-size: 1rem;
 }
 body h3 {
+  position: relative;
   color: #eee;
   text-decoration: underline;
   font-weight: bold;
@@ -439,11 +440,6 @@ body td {
   font-family: "Meslo LG";
   src: local("Meslo LG S"), url("../lib/meslo-LG/MesloLGS-Regular.ttf") format("truetype");
 }
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
 html {
   margin: 0;
   padding: 0;
@@ -452,7 +448,6 @@ html {
   -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
   height: 100%;
   background-color: #1d1f21;
   color: #c9cacc;
@@ -488,13 +483,10 @@ body {
 .content a {
   color: #c9cacc;
   text-decoration: none;
-  background-image: linear-gradient(transparent, transparent 5px, #c9cacc 5px, #c9cacc);
-  background-position: bottom;
-  background-size: 100% 6px;
-  background-repeat: repeat-x;
 }
 .content a:hover {
-  background-image: linear-gradient(transparent, transparent 4px, #d480aa 4px, #d480aa);
+  text-decoration: underline;
+  color: #d480aa;
 }
 .content a.icon {
   background: none;
@@ -550,12 +542,12 @@ body {
   }
 }
 .max-width {
-  max-width: 48rem;
+  max-width: 40rem;
 }
 @media (max-width: 480px) {
   .px3 {
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
   }
   .my4 {
     margin-top: 2rem;
@@ -1075,7 +1067,8 @@ article header .author {
 article header .postdate {
   display: inline;
 }
-article .content h2:before {
+article .content h2:before,
+article .content h3:before {
   position: absolute;
   top: -4px;
   left: -1rem;
@@ -1184,15 +1177,13 @@ article .content .caption {
   background-size: 100% 6px;
   background-repeat: repeat-x;
 }
-@media (min-width: 480px) {
-  .article-tag,
-  .article-category {
-    display: inline;
-  }
-  .article-tag:before,
-  .article-category:before {
-    content: "|";
-  }
+.article-tag,
+.article-category {
+  display: inline;
+}
+.article-tag:before,
+.article-category:before {
+  content: "|";
 }
 #archive .post-list {
   padding: 0;

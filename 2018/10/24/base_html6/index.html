@@ -110,7 +110,7 @@
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -122,9 +122,9 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Hello Haise</span>
-      </span>
+      </span> -->
       
     <div class="postdate">
       
@@ -134,13 +134,13 @@
     </div>
 
 
-      
+      <!-- 
     <div class="article-category">
         <i class="fas fa-archive"></i>
         <a class="category-link" href="/categories/base/">base</a>
     </div>
 
-
+ -->
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
@@ -196,62 +196,13 @@
 <h1 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:3333/user"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>Small<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"Lily"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>form元素的 action 属性可以用来发送数据给后端，例如发送到本机的3000端口</p>
 <h2 id="method"><a href="#method" class="headerlink" title="method"></a>method</h2><p>form元素的 method 属性可以用来规定请求的方法。例如POST 和 GET</p>
+<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2018/10/24/base_html6/">https://www.shifeng1993.com/2018/10/24/base_html6/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Archives</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="https://github.com/shifeng1993">Github</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#form"><span class="toc-number">1.</span> <span class="toc-text">form</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用属性"><span class="toc-number">2.</span> <span class="toc-text">通用属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fieldset-和-legend"><span class="toc-number">3.</span> <span class="toc-text">fieldset 和 legend</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文本域"><span class="toc-number">4.</span> <span class="toc-text">文本域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单行文本域"><span class="toc-number">4.1.</span> <span class="toc-text">单行文本域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#email地址域"><span class="toc-number">4.2.</span> <span class="toc-text">email地址域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码域"><span class="toc-number">4.3.</span> <span class="toc-text">密码域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索域"><span class="toc-number">4.4.</span> <span class="toc-text">搜索域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#电话号码域"><span class="toc-number">4.5.</span> <span class="toc-text">电话号码域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url-域"><span class="toc-number">4.6.</span> <span class="toc-text">url 域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多行文本域"><span class="toc-number">5.</span> <span class="toc-text">多行文本域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下拉框"><span class="toc-number">6.</span> <span class="toc-text">下拉框</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下拉单选框"><span class="toc-number">6.1.</span> <span class="toc-text">下拉单选框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接写"><span class="toc-number">6.1.1.</span> <span class="toc-text">直接写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">6.1.2.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下拉复选框"><span class="toc-number">6.2.</span> <span class="toc-text">下拉复选框</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单选框"><span class="toc-number">7.</span> <span class="toc-text">单选框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复选框"><span class="toc-number">8.</span> <span class="toc-text">复选框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#按钮"><span class="toc-number">9.</span> <span class="toc-text">按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#submit"><span class="toc-number">9.1.</span> <span class="toc-text">submit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reset"><span class="toc-number">9.2.</span> <span class="toc-text">reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#button"><span class="toc-number">9.3.</span> <span class="toc-text">button</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#label"><span class="toc-number">10.</span> <span class="toc-text">label</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发送数据"><span class="toc-number">11.</span> <span class="toc-text">发送数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#action"><span class="toc-number">11.1.</span> <span class="toc-text">action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#method"><span class="toc-number">11.2.</span> <span class="toc-text">method</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/24/base_html6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/24/base_html6/&text=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/24/base_html6/&title=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/24/base_html6/&is_video=false&description=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【基础学习-html】6.html表单基础和原生基础控件&body=Check out this article: https://www.shifeng1993.com/2018/10/24/base_html6/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/24/base_html6/&title=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/24/base_html6/&title=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/24/base_html6/&title=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/24/base_html6/&title=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/24/base_html6/&name=【基础学习-html】6.html表单基础和原生基础控件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/24/base_html6/&t=【基础学习-html】6.html表单基础和原生基础控件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
-</div>
-
-        
         <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2020 海色 
