@@ -656,8 +656,9 @@ body {
   }
   #header #nav ul li.icon {
     position: absolute;
-    top: 77px;
-    right: 1rem;
+    top: 45px;
+    right: 0;
+    margin-right: 0;
     display: inline-block;
   }
   #header #nav ul.responsive li {
