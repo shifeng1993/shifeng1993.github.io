@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.shifeng1993.com/2019/08/30/js_basic_algorithms/</loc>
+    
+    <lastmod>2020-03-29T06:13:34.877Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.shifeng1993.com/2020/03/28/project_i18n_treeshaking/</loc>
     
     <lastmod>2020-03-28T14:01:21.921Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://www.shifeng1993.com/2019/10/31/loophole10/</loc>
     
     <lastmod>2019-11-02T10:11:56.224Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shifeng1993.com/2019/08/30/js_basic_algorithms/</loc>
-    
-    <lastmod>2019-10-31T14:13:50.779Z</lastmod>
     
   </url>
   
@@ -324,13 +324,6 @@
   </url>
   
   <url>
-    <loc>https://www.shifeng1993.com/2018/04/27/android2/</loc>
-    
-    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shifeng1993.com/2018/04/18/android1/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
@@ -338,7 +331,7 @@
   </url>
   
   <url>
-    <loc>https://www.shifeng1993.com/2018/05/04/android4/</loc>
+    <loc>https://www.shifeng1993.com/2018/04/27/android2/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
@@ -346,6 +339,13 @@
   
   <url>
     <loc>https://www.shifeng1993.com/2018/04/27/android3/</loc>
+    
+    <lastmod>2018-07-03T16:11:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shifeng1993.com/2018/05/04/android4/</loc>
     
     <lastmod>2018-07-03T16:11:06.000Z</lastmod>
     
