@@ -193,7 +193,7 @@
 <p>注意:如果登录失败，显示超时。可能是防火墙的问题，阿里云在安全策略进行配置，别的请自行百度。</p>
 <h1 id="卸载mongodb"><a href="#卸载mongodb" class="headerlink" title="卸载mongodb"></a>卸载mongodb</h1><h2 id="停止mongodb"><a href="#停止mongodb" class="headerlink" title="停止mongodb"></a>停止mongodb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mongod.service</span><br></pre></td></tr></table></figure>
 <h2 id="卸载mongodb-1"><a href="#卸载mongodb-1" class="headerlink" title="卸载mongodb"></a>卸载mongodb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除安装包</span></span><br><span class="line">yum erase $(rpm -qa | grep mongodb-org) </span><br><span class="line"><span class="comment"># 删除数据目录</span></span><br><span class="line">rm -r /var/<span class="built_in">log</span>/mongodb</span><br><span class="line">rm -r /var/lib/mongo</span><br></pre></td></tr></table></figure>
-<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/09/19/centos7_mongod_install/">https://www.shifeng1993.com/2017/09/19/centos7_mongod_install/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
+<p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/09/19/centos7_mongod_install/">https://www.shifeng1993.com/2017/09/19/centos7_mongod_install/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
 
   </div>
 </article>

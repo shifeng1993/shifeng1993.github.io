@@ -73,7 +73,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/03/20/c_float/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2017/03/20/c_gcc/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2017/03/20/c_io/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -179,7 +179,7 @@
 <h1 id="无符号整型数据"><a href="#无符号整型数据" class="headerlink" title="无符号整型数据"></a>无符号整型数据</h1><p>非负数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>比如：<br>八位二进制，正常范围为<code>-128 ~127</code>，加上<code>unsigned</code>后，会变成<code>0~255</code>。</p>
 <h2 id="C11新规范"><a href="#C11新规范" class="headerlink" title="C11新规范"></a>C11新规范</h2><p><code>stdint.h</code>来规范整形数据位数，不分操作平台。<br>包括<code>__int8_t</code>， <code>__int16_t</code>， <code>__int32_t</code>， <code>__int64_t</code>,<br>无负号整型数据包括<code>__uint8_t</code>， <code>__uint16_t</code>， <code>__uint32_t</code>， <code>__uint64_t</code>,<br>全部由<code>%d</code>来输出。</p>
-<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/03/20/c_int/">https://www.shifeng1993.com/2017/03/20/c_int/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
+<p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/03/20/c_int/">https://www.shifeng1993.com/2017/03/20/c_int/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
 
   </div>
 </article>

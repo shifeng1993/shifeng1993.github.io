@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者：haise本文地址： https://www.shifeng1993.com/2017/0">
+    <meta name="description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者： haise本文地址： https://www.shifeng1993.com/2017/">
 <meta name="keywords" content="C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【C学习随笔】C语言的变量与常量定义">
 <meta property="og:url" content="https://www.shifeng1993.com/2017/03/20/c_const_define/index.html">
 <meta property="og:site_name" content="Hello Haise">
-<meta property="og:description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者：haise本文地址： https://www.shifeng1993.com/2017/0">
+<meta property="og:description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者： haise本文地址： https://www.shifeng1993.com/2017/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-07-03T16:11:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【C学习随笔】C语言的变量与常量定义">
-<meta name="twitter:description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者：haise本文地址： https://www.shifeng1993.com/2017/0">
+<meta name="twitter:description" content="变量定义注意给变量定义类型12int a = 10;a = 11; 常量定义第一种方法全局常量，编译时直接替换函数内的引入，通常称为“明示常量”1#define MY_NUM 10000 第二种方法C90新增const关键字，限定一个常量为只读。1const int MY_NUM1 = 10000 本文作者： haise本文地址： https://www.shifeng1993.com/2017/">
     
     
         
@@ -73,10 +73,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/03/20/c_gcc/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2017/03/20/c_char/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2017/03/20/c_float/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2017/03/20/c_expression/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -156,7 +156,7 @@
     <h2 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h2><p>注意给变量定义类型<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">a = <span class="number">11</span>;</span><br></pre></td></tr></table></figure></p>
 <h2 id="常量定义"><a href="#常量定义" class="headerlink" title="常量定义"></a>常量定义</h2><h4 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h4><p>全局常量，编译时直接替换函数内的引入，通常称为“明示常量”<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_NUM 10000</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h4><p>C90新增const关键字，限定一个常量为只读。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MY_NUM1 = <span class="number">10000</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>本文作者</strong>：haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/03/20/c_const_define/">https://www.shifeng1993.com/2017/03/20/c_const_define/</a> <br><strong>版权声明</strong>：转载请注明出处！</p>
+<p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2017/03/20/c_const_define/">https://www.shifeng1993.com/2017/03/20/c_const_define/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
 
   </div>
 </article>
