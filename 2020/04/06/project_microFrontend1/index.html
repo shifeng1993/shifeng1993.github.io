@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hello Haise">
 <meta property="og:description" content="近一两年，微前端架构，在‘巨石’应用中大放异彩，以可维护性高，模块耦合低等诸多特性，被很多大厂采用实践。那么，在vue单一技术栈中，怎样落地微前端架构？在这里，我借鉴了码云王圣松同学的微前端分享，与 https://alili.tech/ 博客中的前端微服务化思路进行实践，提供适合vue单一技术栈的解决方案。  ps：实践代码采用github外链形式在文章底部，文章中仅提供关键思路以及代码，如有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-06T05:10:54.029Z">
+<meta property="og:updated_time" content="2020-06-02T13:34:24.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微前端解决方案1 - 思考">
 <meta name="twitter:description" content="近一两年，微前端架构，在‘巨石’应用中大放异彩，以可维护性高，模块耦合低等诸多特性，被很多大厂采用实践。那么，在vue单一技术栈中，怎样落地微前端架构？在这里，我借鉴了码云王圣松同学的微前端分享，与 https://alili.tech/ 博客中的前端微服务化思路进行实践，提供适合vue单一技术栈的解决方案。  ps：实践代码采用github外链形式在文章底部，文章中仅提供关键思路以及代码，如有">
@@ -73,8 +73,10 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2020/06/02/blenderkeymap/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        <li><a class="icon" href="/2020/03/28/project_i18n_treeshaking/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="/2020/04/06/project_microFrontend2/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -163,9 +165,9 @@
 <h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p>既然是选型做微前端，当然选型 single-spa 做微前端的基石。当然，为了实现轻松容易，需有良好的设计，才能事半功倍。</p>
 <p>以下是设计部分：</p>
 <h3 id="模块化加载器"><a href="#模块化加载器" class="headerlink" title="模块化加载器"></a>模块化加载器</h3><ol>
-<li><p>自动发现所有模块中的配置文件（manifest），合并生成一个manifests放在base项目根目录下，这样就可以通过请求来读取对应配置， 同时base根目录有配置文件时候需要优先使用配置文件（后端可以读写文件做插件化）。</p>
+<li><p>自动发现所有模块中的配置文件（manifest），合并生成一个manifests放在base项目根目录下，这样就可以通过请求来读取对应配置， 同时base根目录有配置文件的时候，需要优先使用配置文件（后端可以读写文件做插件化）。</p>
 </li>
-<li><p>读取配置文件后，如果是开发环境则需要先在项目启动的时候对子模块生成端口代理（proxy解决跨域问题），生产环境则跳过。base项目读取到manifest后，循环队列，请求到对应使用singlespa注册方法进行循环注册。</p>
+<li><p>读取配置文件后，如果是开发环境则需要先在项目启动的时候，对子模块生成端口代理（proxy解决跨域问题），生产环境则跳过。base项目w读取到manifest后，循环队列，请求到对应使用singlespa注册方法进行循环注册。</p>
 </li>
 <li><p>注册会请求对应端口或路径下的stats.json统计文件，请求，并加载在dom上，js运行，对应的singlespa子模块实例就会被挂载在window对象上。</p>
 </li>
