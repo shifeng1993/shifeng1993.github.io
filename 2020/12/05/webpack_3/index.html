@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 如何运行的更快  本文作者： haise本文地址： h">
+    <meta name="description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 运行速度优化 webpack配置javascript兼">
 <meta name="keywords" content="base,webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【webpack学习随笔】1.webpack5配置与实战">
 <meta property="og:url" content="https://www.shifeng1993.com/2020/12/05/webpack_3/index.html">
 <meta property="og:site_name" content="Hello Haise">
-<meta property="og:description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 如何运行的更快  本文作者： haise本文地址： h">
+<meta property="og:description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 运行速度优化 webpack配置javascript兼">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-06T05:23:48.618Z">
+<meta property="og:updated_time" content="2020-12-06T08:39:04.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【webpack学习随笔】1.webpack5配置与实战">
-<meta name="twitter:description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 如何运行的更快  本文作者： haise本文地址： h">
+<meta name="twitter:description" content="前言去年中旬，详细学了一下webpack4配置优化，受益匪浅。 在最近一年，更是进行了公司级微前端项目的落地和迭代优化，webpack知识在当中起到了非常关键的作用。 过了一年，很多东西都会有更新和优化。这次是要梳理webpack5相关知识，以便后续的优化和知识储备 索引 如何配置和启动项目 如何进行数据和性能分析 编译时间优化 编译体积优化 运行速度优化 webpack配置javascript兼">
     
     
         
@@ -155,8 +155,9 @@
 <li><a href="/2020/12/05/webpack_4/">如何配置和启动项目</a></li>
 <li><a href="/2020/12/05/webpack_5/">如何进行数据和性能分析</a></li>
 <li><a href="/2020/12/06/webpack_6/">编译时间优化</a></li>
-<li><a href="/2020/12/05/webpack_7/">编译体积优化</a></li>
-<li><a href="/2020/12/05/webpack_8/">如何运行的更快</a></li>
+<li><a href="/2020/12/06/webpack_7/">编译体积优化</a></li>
+<li><a href="/2020/12/06/webpack_8/">运行速度优化</a></li>
+<li><a href="/2020/12/06/webpack_9/">webpack配置javascript兼容性</a></li>
 </ul>
 <p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2020/12/05/webpack_3/">https://www.shifeng1993.com/2020/12/05/webpack_3/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
 
