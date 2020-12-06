@@ -166,13 +166,13 @@
 </ul>
 <h2 id="主引导记录"><a href="#主引导记录" class="headerlink" title="主引导记录"></a>主引导记录</h2><ul>
 <li>计算机读取该设备的第一个扇区，也就是读取最前面的512个字节。如果这512个字节的最后两个字节是<code>0x55</code>和<code>0xAA</code>，表明这个设备可以用于启动；如果不是，表明设备不能用于启动，控制权于是被转交给<code>启动顺序</code>中的下一个设备</li>
-<li>这最前面的<code>512</code>个字节，就叫做<code>主引导记录</code>（Master boot record，缩写为MBR）<br><img src="./mbr.png" title="主引导记录"></li>
+<li>这最前面的<code>512</code>个字节，就叫做<code>主引导记录</code>（Master boot record，缩写为MBR）<br><img src="/2019/07/07/linux_base1/mbr.png" title="主引导记录"></li>
 </ul>
 <h2 id="主引导记录的结构"><a href="#主引导记录的结构" class="headerlink" title="主引导记录的结构"></a>主引导记录的结构</h2><p>主引导记录只有512个字节。它的主要作用是告诉计算机到硬盘的哪一个位置去找操作系统。</p>
 <ol>
 <li>第1-446字节：是用来记录系统的启动信息的,调用操作系统的机器码</li>
 <li>第447-510字节(64个字节)：分区表（Partition table），分区表的作用，是将硬盘分成若干个区</li>
-<li>第511-512字节：主引导记录签名（0x55和0xAA）<br><img src="./mbrconstruction.jpg" title="主引导记录的结构"></li>
+<li>第511-512字节：主引导记录签名（0x55和0xAA）<br><img src="/2019/07/07/linux_base1/mbrconstruction.jpg" title="主引导记录的结构"></li>
 </ol>
 <h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><ul>
 <li>磁盘分区是使用分区编辑器在磁盘上划分几个逻辑部分</li>
@@ -184,7 +184,7 @@
 <li>第5个字节：主分区类型，比如FAT32、NTFS等</li>
 <li>第6-8个字节：主分区最后一个扇区的物理位置</li>
 <li>第9-12字节：主分区第一个扇区的逻辑地址</li>
-<li>第13-16字节：主分区的扇区总数<br><img src="./partition_table.jpg" title="分区表"></li>
+<li>第13-16字节：主分区的扇区总数<br><img src="/2019/07/07/linux_base1/partition_table.jpg" title="分区表"></li>
 </ol>
 </li>
 </ul>
@@ -297,7 +297,7 @@
 <ul>
 <li><code>/dev/sd2</code>挂载到了 <code>/</code>目录上,也就是说向<code>/</code>目录下在写文件就是往<code>/dev/sd2</code>分区里写文件</li>
 <li><code>/dev/sd1</code>挂载到了 <code>/boot</code>目录上,也就是说向<code>/boot</code>目录下在写文件就是往<code>/dev/sd1</code>分区里写文件</li>
-<li><code>/dev/sd3</code>挂载到了 <code>/home</code>目录上,也就是说向<code>/home</code>目录下在写文件就是往<code>/dev/sd3</code>分区里写文件<br><img src="./mount.jpg" title="挂载示例"></li>
+<li><code>/dev/sd3</code>挂载到了 <code>/home</code>目录上,也就是说向<code>/home</code>目录下在写文件就是往<code>/dev/sd3</code>分区里写文件<br><img src="/2019/07/07/linux_base1/mount.jpg" title="挂载示例"></li>
 </ul>
 <p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2019/07/07/linux_base1/">https://www.shifeng1993.com/2019/07/07/linux_base1/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
 
