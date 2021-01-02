@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="高阶函数：参数是一个函数， 或者返回一个函数  应用场景before12345678910111213141516function say(...args)&amp;#123;  console.log(&apos;say&apos;,...args);&amp;#125;Function.prototype.before = function(callback)&amp;#123;  return (...args)=&amp;gt;&amp;#123">
+<meta name="keywords" content="base,js,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【nodejs异步部分复习】1.高阶函数来解决异步">
+<meta property="og:url" content="https://www.shifeng1993.com/2021/01/02/node_async1/index.html">
+<meta property="og:site_name" content="Hello Haise">
+<meta property="og:description" content="高阶函数：参数是一个函数， 或者返回一个函数  应用场景before12345678910111213141516function say(...args)&amp;#123;  console.log(&apos;say&apos;,...args);&amp;#125;Function.prototype.before = function(callback)&amp;#123;  return (...args)=&amp;gt;&amp;#123">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-02T08:22:42.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【nodejs异步部分复习】1.高阶函数来解决异步">
+<meta name="twitter:description" content="高阶函数：参数是一个函数， 或者返回一个函数  应用场景before12345678910111213141516function say(...args)&amp;#123;  console.log(&apos;say&apos;,...args);&amp;#125;Function.prototype.before = function(callback)&amp;#123;  return (...args)=&amp;gt;&amp;#123">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【nodejs异步部分复习】1.高阶函数来解决异步 | 累了歇一歇,保肝护肝人人做起</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="https://github.com/shifeng1993">Github</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/01/02/node_async2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/12/06/webpack_8/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2021/01/02/node_async1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://www.shifeng1993.com/2021/01/02/node_async1/&text=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2021/01/02/node_async1/&title=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2021/01/02/node_async1/&is_video=false&description=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【nodejs异步部分复习】1.高阶函数来解决异步&body=Check out this article: https://www.shifeng1993.com/2021/01/02/node_async1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2021/01/02/node_async1/&title=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2021/01/02/node_async1/&title=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2021/01/02/node_async1/&title=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://www.shifeng1993.com/2021/01/02/node_async1/&title=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2021/01/02/node_async1/&name=【nodejs异步部分复习】1.高阶函数来解决异步&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2021/01/02/node_async1/&t=【nodejs异步部分复习】1.高阶函数来解决异步"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">1.</span> <span class="toc-text">应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#before"><span class="toc-number">1.1.</span> <span class="toc-text">before</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数柯里化"><span class="toc-number">1.2.</span> <span class="toc-text">函数柯里化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after"><span class="toc-number">1.3.</span> <span class="toc-text">after</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py3" style="padding-bottom: 4rem;"> 
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【nodejs异步部分复习】1.高阶函数来解决异步
+    </h1>
+
+
+
+    <div class="meta">
+      <!-- <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hello Haise</span>
+      </span> -->
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-02T07:32:00.000Z" itemprop="datePublished">2021-01-02</time>
+        
+      
+    </div>
+
+
+      <!-- 
+ -->
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/base/">base</a>, <a class="tag-link" href="/tags/js/">js</a>, <a class="tag-link" href="/tags/nodejs/">nodejs</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>高阶函数：参数是一个函数， 或者返回一个函数</p>
+</blockquote>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="before"><a href="#before" class="headerlink" title="before"></a>before</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say'</span>,...args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>)=&gt;</span>&#123;</span><br><span class="line">    callback();</span><br><span class="line">    <span class="keyword">this</span>(...args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> beforeSay = say.before(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'before'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">beforeSay(<span class="string">'hello'</span>,<span class="string">'world'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><p>判断变量的类型四种方法：</p>
+<ul>
+<li>typeof  缺点：不能判断引用类型，都是object</li>
+<li>constructor 可以找到这个变量是谁构造出来的 ({}).constructor</li>
+<li>instanceof 判断谁是谁的实例，原理通过<strong>proto</strong>上面有没有包含</li>
+<li>Object.prototype.toString.call() 缺点，不能细分谁是谁的实例，</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isType</span>(<span class="params">type</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">`[object <span class="subst">$&#123;type&#125;</span>]`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isArray = isType(<span class="string">'Array'</span>);</span><br><span class="line">isArray(<span class="string">'1'</span>);</span><br><span class="line">isArray([]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现一个通用的柯里化<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isType</span>(<span class="params">type, value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(type, value, <span class="built_in">Object</span>.prototype.toString.call(value));</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">`[object <span class="subst">$&#123;type&#125;</span>]`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn, arr = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> len = fn.length;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    arr = [...arr, ...args];</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; len) &#123;</span><br><span class="line">      <span class="keyword">return</span> currying(fn, arr); <span class="comment">// 递归，不停的产生函数</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> fn(...arr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isArray = currying(isType)(<span class="string">'Array'</span>);</span><br><span class="line"><span class="keyword">let</span> isString = currying(isType)(<span class="string">'String'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(isArray([]));</span><br><span class="line"><span class="built_in">console</span>.log(isString(<span class="string">'111'</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="after"><a href="#after" class="headerlink" title="after"></a>after</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">after</span>(<span class="params">times, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 闭包，定义的作用域和执行的作用域不在同一作用域下，就会产生一个闭包。</span></span><br><span class="line">    <span class="keyword">if</span> (--times === <span class="number">0</span>) &#123;</span><br><span class="line">      callback();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cb = after(<span class="number">3</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完成'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">cb();</span><br><span class="line">cb();</span><br><span class="line">cb();</span><br></pre></td></tr></table></figure>
+<p><strong>本文作者</strong>： haise<br><strong>本文地址</strong>： <a href="https://www.shifeng1993.com/2021/01/02/node_async1/">https://www.shifeng1993.com/2021/01/02/node_async1/</a> <br><strong>版权声明</strong>： 转载请注明出处！</p>
+
+  </div>
+</article>
+
+
+
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 海色 
+    <a target="_blank" href="http://www.beian.miit.gov.cn">陕ICP备16013864号</a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="https://github.com/shifeng1993">Github</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?1e95bfd8a79cb265d75f340b37a3b57";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
