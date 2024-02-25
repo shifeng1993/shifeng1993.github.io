@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="iframe提交12345678910111213141516171819202122232425262728293031323334353637383940&#x2F;&#x2F; 首先创建一个用来发送数据的iframe.var iframe &#x3D; document.createElement(&quot;iframe&quot;);iframe.name &#x3D; &quot;myTarget&quot;;&#x2F;&#x2F; 必须把这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习-html】9.html表单数据提交">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/10/27/base_html9/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="iframe提交12345678910111213141516171819202122232425262728293031323334353637383940&#x2F;&#x2F; 首先创建一个用来发送数据的iframe.var iframe &#x3D; document.createElement(&quot;iframe&quot;);iframe.name &#x3D; &quot;myTarget&quot;;&#x2F;&#x2F; 必须把这">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-27T08:02:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T11:15:52.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【基础学习-html】9.html表单数据提交</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/10/29/base_css1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/10/27/base_html8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/27/base_html9/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/27/base_html9/&text=【基础学习-html】9.html表单数据提交"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/27/base_html9/&is_video=false&description=【基础学习-html】9.html表单数据提交"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】9.html表单数据提交&body=Check out this article: https://www.shifeng1993.com/2018/10/27/base_html9/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/27/base_html9/&name=【基础学习-html】9.html表单数据提交&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/27/base_html9/&t=【基础学习-html】9.html表单数据提交"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#iframe%E6%8F%90%E4%BA%A4"><span class="toc-number">1.</span> <span class="toc-text">iframe提交</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XMLHttpRequest"><span class="toc-number">2.</span> <span class="toc-text">XMLHttpRequest</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XMLHttpRequest-%E5%8A%A0-FormData-%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text">XMLHttpRequest 加 FormData 对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">发送二进制数据</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【基础学习-html】9.html表单数据提交
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-10-27T08:02:00.000Z" class="dt-published" itemprop="datePublished">2018-10-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/base/">base</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/html/" rel="tag">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="iframe提交"><a href="#iframe提交" class="headerlink" title="iframe提交"></a>iframe提交</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先创建一个用来发送数据的iframe.</span></span><br><span class="line"><span class="keyword">var</span> iframe = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;iframe&quot;</span>);</span><br><span class="line">iframe.<span class="property">name</span> = <span class="string">&quot;myTarget&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 必须把这个iframe插入当前文档.</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  iframe.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(iframe);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面这个函数是真正用来发送数据的.</span></span><br><span class="line"><span class="comment">// 它只有一个参数,一个包含键值对数据格式的对象.</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendData</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name,</span><br><span class="line">      form = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;form&quot;</span>),</span><br><span class="line">      node = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册iframe的load事件处理程序,如果你需要在响应返回时执行一些操作的话.</span></span><br><span class="line">  iframe.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;Yeah! Data sent.&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">    </span><br><span class="line">  form.<span class="property">action</span> = <span class="string">&quot;http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi&quot;</span>;</span><br><span class="line">  form.<span class="property">target</span> = iframe.<span class="property">name</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(name <span class="keyword">in</span> data) &#123;</span><br><span class="line">    node.<span class="property">name</span>  = name;</span><br><span class="line">    node.<span class="property">value</span> = data[name].<span class="title function_">toString</span>();</span><br><span class="line">    form.<span class="title function_">appendChild</span>(node.<span class="title function_">cloneNode</span>());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 表单元素需要添加到主文档中.</span></span><br><span class="line">  form.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(form);</span><br><span class="line"></span><br><span class="line">  form.<span class="title function_">submit</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 表单提交后,就可以删除这个表单,不影响下次的数据发送.</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(form);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sendData</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">XHR</span> = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">  <span class="keyword">var</span> urlEncodedData = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> urlEncodedDataPairs = [];</span><br><span class="line">  <span class="keyword">var</span> name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将数据对象转换为URL编码的键/值对数组。</span></span><br><span class="line">  <span class="keyword">for</span>(name <span class="keyword">in</span> data) &#123;</span><br><span class="line">    urlEncodedDataPairs.<span class="title function_">push</span>(<span class="built_in">encodeURIComponent</span>(name) + <span class="string">&#x27;=&#x27;</span> + <span class="built_in">encodeURIComponent</span>(data[name]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将配对合并为单个字符串，并将所有%-编码空间替换为</span></span><br><span class="line">  <span class="comment">// “+”字符；匹配浏览器窗体提交的行为。</span></span><br><span class="line">  urlEncodedData = urlEncodedDataPairs.<span class="title function_">join</span>(<span class="string">&#x27;&amp;&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/%20/g</span>, <span class="string">&#x27;+&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义成功数据提交时发生的情况</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Yeah! Data sent and response loaded.&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义错误提示</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;哎呀！出了问题。&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 建立我们的请求</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;https://example.com/cors.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 为表单数据POST请求添加所需的HTTP头</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 最后，发送我们的数据。</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">send</span>(urlEncodedData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="XMLHttpRequest-加-FormData-对象"><a href="#XMLHttpRequest-加-FormData-对象" class="headerlink" title="XMLHttpRequest 加 FormData 对象"></a>XMLHttpRequest 加 FormData 对象</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sendData</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">XHR</span> = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">FD</span>  = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 把我们的数据添加到这个FormData对象中</span></span><br><span class="line">  <span class="keyword">for</span>(name <span class="keyword">in</span> data) &#123;</span><br><span class="line">    <span class="variable constant_">FD</span>.<span class="title function_">append</span>(name, data[name]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义数据成功发送并返回后执行的操作</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Yeah! Data sent and response loaded.&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义发生错误时执行的操作</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;Oups! Something goes wrong.&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置请求地址和方法</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;http://ucommbieber.unl.edu/CORS/cors.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发送这个formData对象,HTTP请求头会自动设置</span></span><br><span class="line">  <span class="variable constant_">XHR</span>.<span class="title function_">send</span>(<span class="variable constant_">FD</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;myForm&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;myName&quot;</span>&gt;</span>告诉我你的名字：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;myName&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;John&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">sendData</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">XHR</span> = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们把这个 FormData 和表单元素绑定在一起。</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">FD</span>  = <span class="keyword">new</span> <span class="title class_">FormData</span>(form);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们定义了数据成功发送时会发生的事。</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(event.<span class="property">target</span>.<span class="property">responseText</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们定义了失败的情形下会发生的事</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;error&quot;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;哎呀！出了问题。&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们设置了我们的请求</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;http://ucommbieber.unl.edu/CORS/cors.php&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发送的数据是由用户在表单中提供的</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">send</span>(<span class="variable constant_">FD</span>);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// 我们需要获取表单元素</span></span><br><span class="line">  <span class="keyword">var</span> form = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myForm&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 取消表单的默认提交事件，用sendData代替</span></span><br><span class="line">  form.<span class="title function_">addEventListener</span>(<span class="string">&quot;submit&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    event.<span class="title function_">preventDefault</span>();</span><br><span class="line"></span><br><span class="line">    <span class="title function_">sendData</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="发送二进制数据"><a href="#发送二进制数据" class="headerlink" title="发送二进制数据"></a>发送二进制数据</h1><p>使用append 方法将要发送的二进制数据添加进去。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;myForm&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;i1&quot;</span>&gt;</span>文本数据：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;i1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myText&quot;</span> <span class="attr">value</span>=<span class="string">&quot;一些文本数据&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;i2&quot;</span>&gt;</span>文件数据：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;i2&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myFile&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面是一个普通的表单,包含一个文件输入框,下面是要执行的JavaScript代码.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 因为我们想获取DOM节点,</span></span><br><span class="line"><span class="comment">// 我们在页面加载时初始化我们的脚本.</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这些变量用于存储表单数据</span></span><br><span class="line">  <span class="keyword">var</span> text = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;i1&quot;</span>);</span><br><span class="line">  <span class="keyword">var</span> file = &#123;</span><br><span class="line">        dom    : <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;i2&quot;</span>),</span><br><span class="line">        binary : <span class="literal">null</span></span><br><span class="line">      &#125;;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// 使用 FileReader API 获取文件内容</span></span><br><span class="line">  <span class="keyword">var</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 因为 FileReader 是异步的, 会在完成读取文件时存储结果</span></span><br><span class="line">  reader.<span class="title function_">addEventListener</span>(<span class="string">&quot;load&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    file.<span class="property">binary</span> = reader.<span class="property">result</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 页面加载时, 如果一个文件已经被选择, 那么读取该文件.</span></span><br><span class="line">  <span class="keyword">if</span>(file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>]) &#123;</span><br><span class="line">    reader.<span class="title function_">readAsBinaryString</span>(file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果没有，一旦用户选择了它，就读取文件。</span></span><br><span class="line">  file.<span class="property">dom</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;change&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(reader.<span class="property">readyState</span> === <span class="title class_">FileReader</span>.<span class="property">LOADING</span>) &#123;</span><br><span class="line">      reader.<span class="title function_">abort</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    reader.<span class="title function_">readAsBinaryString</span>(file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>]);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在我们的主函数中发送数据</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">sendData</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 如果存在被选择的文件，等待它读取完成</span></span><br><span class="line">    <span class="comment">// 如果没有, 延迟函数的执行</span></span><br><span class="line">    <span class="keyword">if</span>(!file.<span class="property">binary</span> &amp;&amp; file.<span class="property">dom</span>.<span class="property">files</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(sendData, <span class="number">10</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要构建我们的多部分表单数据请求,</span></span><br><span class="line">    <span class="comment">// 我们需要一个XMLHttpRequest 实例</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">XHR</span> = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们需要一个分隔符来定义请求的每一部分。</span></span><br><span class="line">    <span class="keyword">var</span> boundary = <span class="string">&quot;blob&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将我们的请求主体存储于一个字符串中</span></span><br><span class="line">    <span class="keyword">var</span> data = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所以，如果用户已经选择了一个文件</span></span><br><span class="line">    <span class="keyword">if</span> (file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>]) &#123;</span><br><span class="line">      <span class="comment">// 在请求体中开始新的一部分</span></span><br><span class="line">      data += <span class="string">&quot;--&quot;</span> + boundary + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 把它描述成表单数据</span></span><br><span class="line">      data += <span class="string">&#x27;content-disposition: form-data; &#x27;</span></span><br><span class="line">      <span class="comment">// 定义表单数据的名称</span></span><br><span class="line">            + <span class="string">&#x27;name=&quot;&#x27;</span>         + file.<span class="property">dom</span>.<span class="property">name</span>          + <span class="string">&#x27;&quot;; &#x27;</span></span><br><span class="line">      <span class="comment">// 提供文件的真实名字</span></span><br><span class="line">            + <span class="string">&#x27;filename=&quot;&#x27;</span>     + file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>].<span class="property">name</span> + <span class="string">&#x27;&quot;\r\n&#x27;</span>;</span><br><span class="line">      <span class="comment">// 和文件的MIME类型</span></span><br><span class="line">      data += <span class="string">&#x27;Content-Type: &#x27;</span> + file.<span class="property">dom</span>.<span class="property">files</span>[<span class="number">0</span>].<span class="property">type</span> + <span class="string">&#x27;\r\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 元数据和数据之间有一条空行。</span></span><br><span class="line">      data += <span class="string">&#x27;\r\n&#x27;</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 添加二进制数据到请求体中</span></span><br><span class="line">      data += file.<span class="property">binary</span> + <span class="string">&#x27;\r\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 文本数据是简单的</span></span><br><span class="line">    <span class="comment">// 开始一个新的部分在请求体中</span></span><br><span class="line">    data += <span class="string">&quot;--&quot;</span> + boundary + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 说它是表单数据，并命名它</span></span><br><span class="line">    data += <span class="string">&#x27;content-disposition: form-data; name=&quot;&#x27;</span> + text.<span class="property">name</span> + <span class="string">&#x27;&quot;\r\n&#x27;</span>;</span><br><span class="line">    <span class="comment">// 元数据和数据之间有一条空行。</span></span><br><span class="line">    data += <span class="string">&#x27;\r\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加文本数据到请求体中</span></span><br><span class="line">    data += text.<span class="property">value</span> + <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一旦完成，关闭请求体</span></span><br><span class="line">    data += <span class="string">&quot;--&quot;</span> + boundary + <span class="string">&quot;--&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义成功提交数据执行的语句</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;✌！数据已发送且响应已加载。&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义发生错误时做的事</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">      <span class="title function_">alert</span>(<span class="string">&#x27;哎呀！出了问题。&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建立请求</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;https://example.com/cors.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加需要的HTTP报头来处理多部分表单数据POST请求</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;multipart/form-data; boundary=&#x27;</span> + boundary);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最后，发送数据。</span></span><br><span class="line">    <span class="variable constant_">XHR</span>.<span class="title function_">send</span>(data);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 访问表单…</span></span><br><span class="line">  <span class="keyword">var</span> form = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myForm&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ……接管提交事件</span></span><br><span class="line">  form.<span class="title function_">addEventListener</span>(<span class="string">&#x27;submit&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    event.<span class="title function_">preventDefault</span>();</span><br><span class="line">    <span class="title function_">sendData</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#iframe%E6%8F%90%E4%BA%A4"><span class="toc-number">1.</span> <span class="toc-text">iframe提交</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XMLHttpRequest"><span class="toc-number">2.</span> <span class="toc-text">XMLHttpRequest</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XMLHttpRequest-%E5%8A%A0-FormData-%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text">XMLHttpRequest 加 FormData 对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">发送二进制数据</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/27/base_html9/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/27/base_html9/&text=【基础学习-html】9.html表单数据提交"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/27/base_html9/&is_video=false&description=【基础学习-html】9.html表单数据提交"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】9.html表单数据提交&body=Check out this article: https://www.shifeng1993.com/2018/10/27/base_html9/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html9/&title=【基础学习-html】9.html表单数据提交"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/27/base_html9/&name=【基础学习-html】9.html表单数据提交&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/27/base_html9/&t=【基础学习-html】9.html表单数据提交"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本帖是为了开发做的一个备忘，随时不定期更新。  获取设备宽高12double width &#x3D; MediaQuery.of(context).size.width;double height &#x3D; MediaQuery.of(context).size.height;  开启android沉浸式判断是否为安卓设备必须添加，要不然会导致ios崩溃。 12345678910&#x2F;&#x2F; 输出渲染void main">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【flutter】flutter开发备忘">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/07/12/flutter_dev/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="本帖是为了开发做的一个备忘，随时不定期更新。  获取设备宽高12double width &#x3D; MediaQuery.of(context).size.width;double height &#x3D; MediaQuery.of(context).size.height;  开启android沉浸式判断是否为安卓设备必须添加，要不然会导致ios崩溃。 12345678910&#x2F;&#x2F; 输出渲染void main">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-07-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-10-19T14:24:25.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【flutter】flutter开发备忘</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/08/19/rn_splash_screen/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/07/04/flutter-for-react-native/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/07/12/flutter_dev/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&text=【flutter】flutter开发备忘"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&is_video=false&description=【flutter】flutter开发备忘"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【flutter】flutter开发备忘&body=Check out this article: https://www.shifeng1993.com/2018/07/12/flutter_dev/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&name=【flutter】flutter开发备忘&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/07/12/flutter_dev/&t=【flutter】flutter开发备忘"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BE%E5%A4%87%E5%AE%BD%E9%AB%98"><span class="toc-number">1.</span> <span class="toc-text">获取设备宽高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFandroid%E6%B2%89%E6%B5%B8%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">开启android沉浸式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AppBar%E6%A0%87%E9%A2%98%E5%B1%85%E4%B8%AD%E5%92%8C%E5%8E%BB%E6%8E%89AppBar%E4%B8%8B%E4%BE%A7%E9%98%B4%E5%BD%B1"><span class="toc-number">3.</span> <span class="toc-text">AppBar标题居中和去掉AppBar下侧阴影</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BD%BF%E7%94%A8createState"><span class="toc-number">4.</span> <span class="toc-text">有状态组件一定要使用createState</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ios%E7%9A%84%E5%8A%A8%E7%94%BB%E4%BA%A4%E4%BA%92-%E5%92%8C-MaterialApp-%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">使用ios的动画交互 和 MaterialApp 主题颜色配置不生效的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ListView-builder-%E5%87%BA%E7%8E%B0%E6%97%A0%E9%99%90%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%92%8Cdebug%E6%8A%A5%E9%94%99%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">使用ListView.builder 出现无限加载的问题，和debug报错的问题。</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【flutter】flutter开发备忘
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-07-11T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-07-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/flutter/">flutter</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/flutter/" rel="tag">flutter</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>本帖是为了开发做的一个备忘，随时不定期更新。</p>
+<hr>
+<h4 id="获取设备宽高"><a href="#获取设备宽高" class="headerlink" title="获取设备宽高"></a>获取设备宽高</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">double</span> width = MediaQuery.of(context).size.width;</span><br><span class="line"><span class="built_in">double</span> height = MediaQuery.of(context).size.height;</span><br></pre></td></tr></table></figure>
+
+<h4 id="开启android沉浸式"><a href="#开启android沉浸式" class="headerlink" title="开启android沉浸式"></a>开启android沉浸式</h4><p>判断是否为安卓设备必须添加，要不然会导致ios崩溃。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出渲染</span></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(App());</span><br><span class="line">  <span class="keyword">if</span> (Platform.isAndroid) &#123;</span><br><span class="line">    <span class="comment">// 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。</span></span><br><span class="line">    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);</span><br><span class="line">    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="AppBar标题居中和去掉AppBar下侧阴影"><a href="#AppBar标题居中和去掉AppBar下侧阴影" class="headerlink" title="AppBar标题居中和去掉AppBar下侧阴影"></a>AppBar标题居中和去掉AppBar下侧阴影</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Widget _tabbar(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> AppBar(</span><br><span class="line">      ...</span><br><span class="line">      centerTitle: <span class="keyword">true</span>, <span class="comment">// 标题居中</span></span><br><span class="line">      elevation: <span class="number">0.0</span>, <span class="comment">// 去掉appbar下面的阴影</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="有状态组件一定要使用createState"><a href="#有状态组件一定要使用createState" class="headerlink" title="有状态组件一定要使用createState"></a>有状态组件一定要使用createState</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _HomeScreenState createState() =&gt; _HomeScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_HomeScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">HomeScreen</span>&gt; <span class="title">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 使用TickerProvider 记得加 with SingleTickerProviderStateMixin 不然会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用ios的动画交互-和-MaterialApp-主题颜色配置不生效的问题"><a href="#使用ios的动画交互-和-MaterialApp-主题颜色配置不生效的问题" class="headerlink" title="使用ios的动画交互 和 MaterialApp 主题颜色配置不生效的问题"></a>使用ios的动画交互 和 MaterialApp 主题颜色配置不生效的问题</h4><p>检查是否存在子级MaterialApp。如果有子级MaterialApp请删除，保证全局只有一个MaterialApp，theme就会生效</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> store = createStore();</span><br><span class="line">  <span class="comment">// App();</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreProvider&lt;AppState&gt;(</span><br><span class="line">      store: createStore(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          platform: TargetPlatform.iOS, <span class="comment">// 使用ios的界面动画方式</span></span><br><span class="line">          primaryColor: Colors.red, <span class="comment">// 应用主要部分的背景颜色（工具栏，标签栏等）</span></span><br><span class="line">          accentColor: Colors.red, <span class="comment">// 前景色：旋钮，文本，过度滚动边缘效果等</span></span><br><span class="line">        ),</span><br><span class="line">        routes: &lt;<span class="built_in">String</span>, WidgetBuilder&gt;&#123;</span><br><span class="line">          <span class="string">&#x27;/&#x27;</span>: (BuildContext context) =&gt; HomeScreen(),</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用ListView-builder-出现无限加载的问题，和debug报错的问题。"><a href="#使用ListView-builder-出现无限加载的问题，和debug报错的问题。" class="headerlink" title="使用ListView.builder 出现无限加载的问题，和debug报错的问题。"></a>使用ListView.builder 出现无限加载的问题，和debug报错的问题。</h4><p>报错是因为视窗builder的item加五个之后，超出了数据list的长度，造成了下标越界。</p>
+<p>无限加载是因为，没有限制render长度。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      child: ListView.builder(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">16.0</span>),</span><br><span class="line">        itemBuilder: (BuildContext context, <span class="built_in">int</span> index) &#123;</span><br><span class="line">          <span class="built_in">print</span>(index);</span><br><span class="line">          <span class="keyword">if</span> (index &lt; _suggestions.length) &#123;   <span class="comment">// 加判断，动态render的下标小于输出的长度才render</span></span><br><span class="line">            <span class="keyword">return</span> _listViewItem(<span class="string">&#x27;<span class="subst">$index</span>&#x27;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BE%E5%A4%87%E5%AE%BD%E9%AB%98"><span class="toc-number">1.</span> <span class="toc-text">获取设备宽高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFandroid%E6%B2%89%E6%B5%B8%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">开启android沉浸式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AppBar%E6%A0%87%E9%A2%98%E5%B1%85%E4%B8%AD%E5%92%8C%E5%8E%BB%E6%8E%89AppBar%E4%B8%8B%E4%BE%A7%E9%98%B4%E5%BD%B1"><span class="toc-number">3.</span> <span class="toc-text">AppBar标题居中和去掉AppBar下侧阴影</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BD%BF%E7%94%A8createState"><span class="toc-number">4.</span> <span class="toc-text">有状态组件一定要使用createState</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ios%E7%9A%84%E5%8A%A8%E7%94%BB%E4%BA%A4%E4%BA%92-%E5%92%8C-MaterialApp-%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">使用ios的动画交互 和 MaterialApp 主题颜色配置不生效的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ListView-builder-%E5%87%BA%E7%8E%B0%E6%97%A0%E9%99%90%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%92%8Cdebug%E6%8A%A5%E9%94%99%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">使用ListView.builder 出现无限加载的问题，和debug报错的问题。</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/07/12/flutter_dev/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&text=【flutter】flutter开发备忘"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&is_video=false&description=【flutter】flutter开发备忘"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【flutter】flutter开发备忘&body=Check out this article: https://www.shifeng1993.com/2018/07/12/flutter_dev/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&title=【flutter】flutter开发备忘"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/07/12/flutter_dev/&name=【flutter】flutter开发备忘&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/07/12/flutter_dev/&t=【flutter】flutter开发备忘"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

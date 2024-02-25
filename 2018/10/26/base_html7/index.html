@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="昨天25号有事忙了，今天先更一篇，明天刚好周六，多更一篇把昨天的补上 数字type 为 number  min最小值 max最大值 step增加或减少的步长  1&lt;input type&#x3D;&quot;number&quot; name&#x3D;&quot;age&quot; id&#x3D;&quot;age&quot; min&#x3D;&quot;1&quot; max&#x3D;&quot;10&quot; step&#x3D;&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习-html】7.html表单原生高级控件">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/10/26/base_html7/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="昨天25号有事忙了，今天先更一篇，明天刚好周六，多更一篇把昨天的补上 数字type 为 number  min最小值 max最大值 step增加或减少的步长  1&lt;input type&#x3D;&quot;number&quot; name&#x3D;&quot;age&quot; id&#x3D;&quot;age&quot; min&#x3D;&quot;1&quot; max&#x3D;&quot;10&quot; step&#x3D;&amp;qu">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-26T14:02:00.000Z">
+<meta property="article:modified_time" content="2018-10-26T16:08:23.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【基础学习-html】7.html表单原生高级控件</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/10/27/base_html8/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/10/24/base_html6/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/26/base_html7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/26/base_html7/&text=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/26/base_html7/&is_video=false&description=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】7.html表单原生高级控件&body=Check out this article: https://www.shifeng1993.com/2018/10/26/base_html7/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/26/base_html7/&name=【基础学习-html】7.html表单原生高级控件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/26/base_html7/&t=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97"><span class="toc-number">1.</span> <span class="toc-text">数字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BB%91%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">滑块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">日期时间选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4"><span class="toc-number">3.1.</span> <span class="toc-text">本地时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%88"><span class="toc-number">3.2.</span> <span class="toc-text">月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4"><span class="toc-number">3.3.</span> <span class="toc-text">时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%9F%E6%9C%9F"><span class="toc-number">3.4.</span> <span class="toc-text">星期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">颜色选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">文件选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="toc-number">6.</span> <span class="toc-text">隐藏表单元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%8C%89%E9%92%AE"><span class="toc-number">7.</span> <span class="toc-text">图像按钮</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="toc-number">8.</span> <span class="toc-text">进度条</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%AA%E8%A1%A8"><span class="toc-number">9.</span> <span class="toc-text">仪表</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【基础学习-html】7.html表单原生高级控件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-10-26T14:02:00.000Z" class="dt-published" itemprop="datePublished">2018-10-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/base/">base</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/html/" rel="tag">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>昨天25号有事忙了，今天先更一篇，明天刚好周六，多更一篇把昨天的补上</p>
+<h1 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h1><p>type 为 number</p>
+<ul>
+<li><code>min</code>最小值</li>
+<li><code>max</code>最大值</li>
+<li><code>step</code>增加或减少的步长</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">id</span>=<span class="string">&quot;age&quot;</span> <span class="attr">min</span>=<span class="string">&quot;1&quot;</span> <span class="attr">max</span>=<span class="string">&quot;10&quot;</span> <span class="attr">step</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="滑块"><a href="#滑块" class="headerlink" title="滑块"></a>滑块</h1><p>type 为 range</p>
+<ul>
+<li><code>min</code>最小值</li>
+<li><code>max</code>最大值</li>
+<li><code>step</code>增加或减少的步长</li>
+</ul>
+<p>ie10以下，不支持range。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;range&quot;</span> <span class="attr">name</span>=<span class="string">&quot;beans&quot;</span> <span class="attr">id</span>=<span class="string">&quot;beans&quot;</span> <span class="attr">min</span>=<span class="string">&quot;0&quot;</span> <span class="attr">max</span>=<span class="string">&quot;500&quot;</span> <span class="attr">step</span>=<span class="string">&quot;10&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="日期时间选择器"><a href="#日期时间选择器" class="headerlink" title="日期时间选择器"></a>日期时间选择器</h1><p>使用原生日期时间选择器最大的问题是兼容，ie，ff，Safari都不支持</p>
+<h2 id="本地时间"><a href="#本地时间" class="headerlink" title="本地时间"></a>本地时间</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;datetime-local&quot;</span> <span class="attr">name</span>=<span class="string">&quot;datetime&quot;</span> <span class="attr">id</span>=<span class="string">&quot;datetime&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="月"><a href="#月" class="headerlink" title="月"></a>月</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;month&quot;</span> <span class="attr">name</span>=<span class="string">&quot;month&quot;</span> <span class="attr">id</span>=<span class="string">&quot;month&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;time&quot;</span> <span class="attr">name</span>=<span class="string">&quot;time&quot;</span> <span class="attr">id</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="星期"><a href="#星期" class="headerlink" title="星期"></a>星期</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;week&quot;</span> <span class="attr">name</span>=<span class="string">&quot;week&quot;</span> <span class="attr">id</span>=<span class="string">&quot;week&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="颜色选择器"><a href="#颜色选择器" class="headerlink" title="颜色选择器"></a>颜色选择器</h1><p>使用原生颜色选择器最大的问题是兼容，ie，Safari都不支持</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;color&quot;</span> <span class="attr">name</span>=<span class="string">&quot;color&quot;</span> <span class="attr">id</span>=<span class="string">&quot;color&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="文件选择器"><a href="#文件选择器" class="headerlink" title="文件选择器"></a>文件选择器</h1><p>使用multiple属性支持发送多个文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> <span class="attr">multiple</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="隐藏表单元素"><a href="#隐藏表单元素" class="headerlink" title="隐藏表单元素"></a>隐藏表单元素</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">id</span>=<span class="string">&quot;timestamp&quot;</span> <span class="attr">name</span>=<span class="string">&quot;timestamp&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1286705410&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="图像按钮"><a href="#图像按钮" class="headerlink" title="图像按钮"></a>图像按钮</h1><p>常用作网站的点击图片验证，属性基本与img标签一致， 点击后会以将点击图像的x，y轴位置发出 </p>
+<p>例如:<code>http://foo.com?pos.x=123&amp;pos.y=456</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;image&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Click me!&quot;</span> <span class="attr">src</span>=<span class="string">&quot;my-img.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;80&quot;</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h1><p>ie不支持</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">progress</span> <span class="attr">max</span>=<span class="string">&quot;100&quot;</span> <span class="attr">value</span>=<span class="string">&quot;75&quot;</span>&gt;</span>75/100<span class="tag">&lt;/<span class="name">progress</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="仪表"><a href="#仪表" class="headerlink" title="仪表"></a>仪表</h1><p>ie不支持</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meter</span> <span class="attr">min</span>=<span class="string">&quot;0&quot;</span> <span class="attr">max</span>=<span class="string">&quot;100&quot;</span> <span class="attr">value</span>=<span class="string">&quot;75&quot;</span> <span class="attr">low</span>=<span class="string">&quot;33&quot;</span> <span class="attr">high</span>=<span class="string">&quot;66&quot;</span> <span class="attr">optimum</span>=<span class="string">&quot;50&quot;</span>&gt;</span>75<span class="tag">&lt;/<span class="name">meter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97"><span class="toc-number">1.</span> <span class="toc-text">数字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BB%91%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">滑块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">日期时间选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4"><span class="toc-number">3.1.</span> <span class="toc-text">本地时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%88"><span class="toc-number">3.2.</span> <span class="toc-text">月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4"><span class="toc-number">3.3.</span> <span class="toc-text">时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%9F%E6%9C%9F"><span class="toc-number">3.4.</span> <span class="toc-text">星期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">颜色选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">文件选择器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="toc-number">6.</span> <span class="toc-text">隐藏表单元素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%8C%89%E9%92%AE"><span class="toc-number">7.</span> <span class="toc-text">图像按钮</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="toc-number">8.</span> <span class="toc-text">进度条</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%AA%E8%A1%A8"><span class="toc-number">9.</span> <span class="toc-text">仪表</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/26/base_html7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/26/base_html7/&text=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/26/base_html7/&is_video=false&description=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】7.html表单原生高级控件&body=Check out this article: https://www.shifeng1993.com/2018/10/26/base_html7/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/26/base_html7/&title=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/26/base_html7/&name=【基础学习-html】7.html表单原生高级控件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/26/base_html7/&t=【基础学习-html】7.html表单原生高级控件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

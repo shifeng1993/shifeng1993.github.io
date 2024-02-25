@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="马上2017年了，年底努了一把力，把react以及react生态圈终于是入了个门。从11月底开始零零散散的学了一个月，最大的感触就是得上手多练，多请教人。 分享一下一路走过来的经历吧，希望对新入坑的同学会有一些帮助。至于老司机们，不愿意看的可以无视，愿意看的各位老哥，可以留下意见或和建议。我会努力的改进的。 第一个阶段掌握react语法，等基础知识。最好的中文react入门教程，首推阮一峰老哥的r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【react分享】2016年底学习react经验谈">
+<meta property="og:url" content="https://www.shifeng1993.com/2016/12/05/react_2016/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="马上2017年了，年底努了一把力，把react以及react生态圈终于是入了个门。从11月底开始零零散散的学了一个月，最大的感触就是得上手多练，多请教人。 分享一下一路走过来的经历吧，希望对新入坑的同学会有一些帮助。至于老司机们，不愿意看的可以无视，愿意看的各位老哥，可以留下意见或和建议。我会努力的改进的。 第一个阶段掌握react语法，等基础知识。最好的中文react入门教程，首推阮一峰老哥的r">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【react分享】2016年底学习react经验谈</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/01/31/nodejs_linuxInstallNodejs/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2016/10/23/vue_vuex/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2016/12/05/react_2016/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2016/12/05/react_2016/&text=【react分享】2016年底学习react经验谈"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2016/12/05/react_2016/&is_video=false&description=【react分享】2016年底学习react经验谈"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【react分享】2016年底学习react经验谈&body=Check out this article: https://www.shifeng1993.com/2016/12/05/react_2016/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2016/12/05/react_2016/&name=【react分享】2016年底学习react经验谈&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2016/12/05/react_2016/&t=【react分享】2016年底学习react经验谈"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">2.</span> <span class="toc-text">第二个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">3.</span> <span class="toc-text">第三个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-number">3.1.</span> <span class="toc-text">react-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux"><span class="toc-number">3.2.</span> <span class="toc-text">redux</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【react分享】2016年底学习react经验谈
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-12-04T16:00:00.000Z" class="dt-published" itemprop="datePublished">2016-12-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/react/">react</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/react/" rel="tag">react</a>, <a class="p-category" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>马上2017年了，年底努了一把力，把react以及react生态圈终于是入了个门。从11月底开始零零散散的学了一个月，最大的感触就是得<code>上手多练，多请教人。</code></p>
+<p>分享一下一路走过来的经历吧，希望对新入坑的同学会有一些帮助。至于老司机们，不愿意看的可以无视，愿意看的各位老哥，可以留下意见或和建议。我会努力的改进的。</p>
+<h2 id="第一个阶段"><a href="#第一个阶段" class="headerlink" title="第一个阶段"></a>第一个阶段</h2><p>掌握react语法，等基础知识。最好的中文react入门教程，首推阮一峰老哥的react系列教程，跟着走一遍，包括react组件生命周期，react基本语法以及props，state用法。阮一峰老哥react系列教程</p>
+<p>链接<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/03/react.html" title="http://www.ruanyifeng.com/blog/2015/03/react.html">http://www.ruanyifeng.com/blog/2015/03/react.html</a></p>
+<p>看完这些会有一个严重的问题，就是阮一峰老哥用的是便于入门和理解的es5代码。但是现在工程级别的demo都是es6，单纯看es6文档太费时间，又找不到问题所在，怎么办？这里推荐一个视频。</p>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1bo2nJxt" title="https://pan.baidu.com/s/1bo2nJxt">https://pan.baidu.com/s/1bo2nJxt</a> 密码: <code>dgd2</code></p>
+<p>这个视频主要是讲react-native中es5和es6代码的区别，但是虽然是react-native，也非常好的诠释了react代码的区别，而且能为以后的学习打下基础。</p>
+<h2 id="第二个阶段"><a href="#第二个阶段" class="headerlink" title="第二个阶段"></a>第二个阶段</h2><p>掌握webpack以及简单语法练习，这里推荐慕课网的react画廊应用实战教程。</p>
+<p>链接：<a target="_blank" rel="noopener" href="http://www.imooc.com/learn/507" title="http://www.imooc.com/learn/507">http://www.imooc.com/learn/507</a></p>
+<p>这个实战教程非常好的展示了工程级别webpack的配置，以及react的具体代码写法，加上之前看过的es5与es6代码区别的视频。就可以更好的理解react以及webpack的用法。</p>
+<h2 id="第三个阶段"><a href="#第三个阶段" class="headerlink" title="第三个阶段"></a>第三个阶段</h2><p>开始实战以及熟悉react生态周边，阮一峰老哥说过，学习react并不只是单纯的学习react，包括一整套周边和技术栈都要进行学习。</p>
+<h3 id="react-router"><a href="#react-router" class="headerlink" title="react-router"></a>react-router</h3><p>关于react-router视频，几乎没找到，因为太简单了，看文档就可以分分钟解决</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://react-guide.github.io/react-router-cn/" title="https://react-guide.github.io/react-router-cn/">https://react-guide.github.io/react-router-cn/</a></p>
+<p>在这个阶段我遇到了一些不深不浅的坑。第一个是map()做列表渲染的时候，会有一个关于key的报错，仔细搜了一下，有教程来详解</p>
+<p><a target="_blank" rel="noopener" href="http://taobaofed.org/blog/2016/08/24/react-key/" title="http://taobaofed.org/blog/2016/08/24/react-key/">http://taobaofed.org/blog/2016/08/24/react-key/</a></p>
+<p>第二个就是关于 history这个属性，是必须要加的，这个可以看react-router文档。</p>
+<h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>这个东西，真的是，又爱又恨，函数式表达听起来非常牛逼。但是一直没有合适的教程，学了几乎半个月。。。才勉强看懂。要理解的主要是数据的流向以及action，reducers，store 这三大部分的用处。<br>这里可以先看阮一峰老哥的redux入门教程，大概有个概念。</p>
+<p>链接：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" title="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html</a></p>
+<p>看完阮一峰老哥的教程之后，推荐的是在一个偶然的机会从优酷网找到的视频教程，发现看了好几遍很好理解，然后从大神的git上fork下来demo，顺了一遍，之后加进工程项目里面，忽然变得很好理解。redux最后一道坎就被我迈过去了。</p>
+<p><a target="_blank" rel="noopener" href="http://i.youku.com/i/UNjEzMjQzOTgw/videos" title="http://i.youku.com/i/UNjEzMjQzOTgw/videos">http://i.youku.com/i/UNjEzMjQzOTgw/videos</a>  这位大神的优酷连接<br><a target="_blank" rel="noopener" href="https://github.com/shifeng1993/fast-react-redux-demo" title="https://github.com/shifeng1993/fast-react-redux-demo">https://github.com/shifeng1993/fast-react-redux-demo</a>   代码案例连接</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">第一个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">2.</span> <span class="toc-text">第二个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">3.</span> <span class="toc-text">第三个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-number">3.1.</span> <span class="toc-text">react-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux"><span class="toc-number">3.2.</span> <span class="toc-text">redux</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2016/12/05/react_2016/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2016/12/05/react_2016/&text=【react分享】2016年底学习react经验谈"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2016/12/05/react_2016/&is_video=false&description=【react分享】2016年底学习react经验谈"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【react分享】2016年底学习react经验谈&body=Check out this article: https://www.shifeng1993.com/2016/12/05/react_2016/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2016/12/05/react_2016/&title=【react分享】2016年底学习react经验谈"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2016/12/05/react_2016/&name=【react分享】2016年底学习react经验谈&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2016/12/05/react_2016/&t=【react分享】2016年底学习react经验谈"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

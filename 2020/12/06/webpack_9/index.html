@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="babel babel是一个javascript编译器，主要将es6+版本的代码转换为向下兼容js代码，方便js运行在当前和旧的浏览器中 功能：语法转换  安装1npm install @babel&#x2F;core @babel&#x2F;cli -D  命令和使用src&#x2F;index.js12const sum &#x3D; (a, b)&#x3D;&gt; a + b;console.log(sum(1, 2));  p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【webpack学习随笔】7.webpack配置javascript兼容性">
+<meta property="og:url" content="https://www.shifeng1993.com/2020/12/06/webpack_9/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="babel babel是一个javascript编译器，主要将es6+版本的代码转换为向下兼容js代码，方便js运行在当前和旧的浏览器中 功能：语法转换  安装1npm install @babel&#x2F;core @babel&#x2F;cli -D  命令和使用src&#x2F;index.js12const sum &#x3D; (a, b)&#x3D;&gt; a + b;console.log(sum(1, 2));  p">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-12-06T05:52:00.000Z">
+<meta property="article:modified_time" content="2020-12-13T15:12:43.860Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【webpack学习随笔】7.webpack配置javascript兼容性</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/12/06/webpack_7/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/12/06/webpack_6/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2020/12/06/webpack_9/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&text=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&is_video=false&description=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【webpack学习随笔】7.webpack配置javascript兼容性&body=Check out this article: https://www.shifeng1993.com/2020/12/06/webpack_9/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&name=【webpack学习随笔】7.webpack配置javascript兼容性&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2020/12/06/webpack_9/&t=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#babel"><span class="toc-number">1.</span> <span class="toc-text">babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">命令和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-index-js"><span class="toc-number">3.1.</span> <span class="toc-text">src&#x2F;index.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">3.2.</span> <span class="toc-text">package.json</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babelrc"><span class="toc-number">4.2.</span> <span class="toc-text">.babelrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AE%BE"><span class="toc-number">4.3.</span> <span class="toc-text">预设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-number">4.3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babelrc-1"><span class="toc-number">4.3.2.</span> <span class="toc-text">.babelrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#browsers"><span class="toc-number">4.3.3.</span> <span class="toc-text">browsers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#polyfill"><span class="toc-number">4.4.</span> <span class="toc-text">polyfill</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-polyfill"><span class="toc-number">4.4.1.</span> <span class="toc-text">@babel&#x2F;polyfill</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-runtime"><span class="toc-number">4.4.2.</span> <span class="toc-text">babel-runtime</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-plugin-transform-runtime"><span class="toc-number">4.4.3.</span> <span class="toc-text">#### babel-plugin-transform-runtime</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.5.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%80%E8%8A%82"><span class="toc-number">5.</span> <span class="toc-text">上一节</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【webpack学习随笔】7.webpack配置javascript兼容性
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-06T05:52:00.000Z" class="dt-published" itemprop="datePublished">2020-12-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/webpack/" rel="tag">webpack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h2><ul>
+<li>babel是一个javascript编译器，主要将es6+版本的代码转换为向下兼容js代码，方便js运行在当前和旧的浏览器中</li>
+<li>功能：语法转换</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/core @babel/cli -D</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令和使用"><a href="#命令和使用" class="headerlink" title="命令和使用"></a>命令和使用</h2><h3 id="src-index-js"><a href="#src-index-js" class="headerlink" title="src&#x2F;index.js"></a>src&#x2F;index.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">sum</span> = (<span class="params">a, b</span>)=&gt; a + b;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;bulld&quot;</span><span class="punctuation">:</span> <span class="string">&quot;babel src --out-dir dist --watch&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span> </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
+<li><p>babel是一个编译器 （输入源码&#x3D;&gt; 输出编译后的代码），过程分为三个阶段：</p>
+<ul>
+<li>解析</li>
+<li>转换</li>
+<li>打印输出</li>
+</ul>
+</li>
+<li><p>babel是开箱即用的，但是什么动作都不做，const buildCode &#x3D; (code)&#x3D;&gt; code，将代码解析后再输出同样的代码，想要babel做一些实际的工作，就需要一些插件</p>
+</li>
+</ul>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/plugin-transform-arrow-functions -D</span><br></pre></td></tr></table></figure>
+
+<h3 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;@babel/plugin-transform-arrow-functions&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="预设"><a href="#预设" class="headerlink" title="预设"></a>预设</h3><ul>
+<li>@babel&#x2F;preset-env 插件，可以使用最新的js语法，而不需要去管理语法转换器，可选支持目标浏览器的polyfills</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="string">&quot;pluginA&quot;</span>, <span class="string">&quot;pluginB&quot;</span>, <span class="string">&quot;pluginC&quot;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/preset-env -D</span><br></pre></td></tr></table></figure>
+
+<h4 id="babelrc-1"><a href="#babelrc-1" class="headerlink" title=".babelrc"></a>.babelrc</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;@babel/preset-env&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="browsers"><a href="#browsers" class="headerlink" title="browsers"></a>browsers</h4><ul>
+<li>@babel&#x2F;preset-env 会根据配置生成目标环境，生成插件列表来编译</li>
+<li>可以使用 .browserslistrc 文件来指定环境</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="number">0.25</span>% <span class="comment">// 市场份额大于0.25%</span></span><br><span class="line">last <span class="number">2</span> <span class="title class_">Chrome</span> <span class="title class_">Versions</span> <span class="comment">// 最近两个chrome版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h3><ul>
+<li>@babel&#x2F;preset-env 插件只转换新的语法，不转换新的api，比如 Iterator，Generator，Set，Maps，Proxy，Reflect，Symbol，Promise 等全局对象，以及一些全局对象上的方法，例如Object.assgin都不会转换</li>
+<li>官方给出 @babel&#x2F;polyfill 和 @babel&#x2F;runtime 两种解决方案，来解决这种，全局对象或者全局对象上方法不足的情况</li>
+<li>@babel&#x2F;runtime 更适合在组件库中使用，而 @babel&#x2F;polyfill 适合在业务中使用</li>
+</ul>
+<h4 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="@babel&#x2F;polyfill"></a>@babel&#x2F;polyfill</h4><ul>
+<li>可以完整模拟es2015+的环境</li>
+<li>可以使用Promise,WeekMap等新对象，Array.from，Object.assgin等静态方法，Array.prototype.includes等实例方法</li>
+<li>原理是通过向全局对象和内置对象的prototype上添加方法来实现的，缺点是会造成全局空间污染</li>
+<li>V7.4.0版本已废弃</li>
+</ul>
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/polyfill core-js@3 --save</span><br><span class="line">npm install webpack webpack-cli babel-loader -D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>useBuiltIns: false 此时不对polyfill做操作</li>
+<li>useBuiltIns: ‘entry’ 根据兼容引入浏览器不兼容的 polyfill<ul>
+<li>corejs: 3 配置entry，如果是corejs是3的版本，则 import ‘@babel&#x2F;polyfill’ 需要改成 import ‘corejs&#x2F;stable’; import “regenerator-runtime&#x2F;runtime”</li>
+<li>corejs@2分支已经不会再添加新特性，新增特性都会添加在corejs@3中</li>
+</ul>
+</li>
+<li>useBuiltIns: ‘usage’ 会根据兼容性，以及代码中用到的api进行polyfill，实现了按需添加<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">export</span> = &#123;</span><br><span class="line">  <span class="attr">module</span>:&#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.js?$/</span>,</span><br><span class="line">        <span class="attr">use</span>: &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="attr">persets</span>: [</span><br><span class="line">              [<span class="string">&quot;@babel/preset-env&quot;</span>, &#123;</span><br><span class="line">                <span class="attr">useBuiltIns</span>: <span class="literal">false</span></span><br><span class="line">              &#125;]</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="babel-runtime"><a href="#babel-runtime" class="headerlink" title="babel-runtime"></a>babel-runtime</h4><ul>
+<li>babel为了解决全局变量污染的问题，提供了单独的babel-runtime用来提供编译模块的工机函数</li>
+<li>更像是一种按需加载的实现，例如需要使用promise，只需要在头部引入 import Promise from ‘babel-runtime&#x2F;core-js&#x2F;promise’</li>
+</ul>
+<ol>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-runtime -D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>src&#x2F;indexjs</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Promise</span> <span class="keyword">from</span> <span class="string">&#x27;babel-runtime/core-js/promise&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="#### babel-plugin-transform-runtime"></a>#### babel-plugin-transform-runtime</h4><ul>
+<li>可以自动按需引入babel-runtime 下的工具函数。</li>
+<li>除了可以减少编译后提及之外，还能为代码创建一个沙盒环境</li>
+</ul>
+<ol>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/plugin-transform-runtime -D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>: &#123;</span><br><span class="line">   <span class="attr">rules</span>: [</span><br><span class="line">     &#123;</span><br><span class="line">       <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">       <span class="attr">include</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">       <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</span><br><span class="line">       <span class="attr">use</span>: [</span><br><span class="line">         &#123;</span><br><span class="line">           <span class="attr">loader</span>: <span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">           <span class="attr">options</span>: &#123;</span><br><span class="line">             <span class="attr">presets</span>: [</span><br><span class="line">               [<span class="string">&#x27;@babel/perset-env&#x27;</span>]</span><br><span class="line">             ],</span><br><span class="line">             <span class="attr">plugins</span>: [</span><br><span class="line">               [</span><br><span class="line">                 <span class="string">&#x27;@babel/plugin-transform-runtime&#x27;</span>, &#123;</span><br><span class="line">                   <span class="attr">corejs</span>: <span class="number">3</span>, <span class="comment">// 如果遇到了Promise，会自动引入polyfill</span></span><br><span class="line">                   <span class="attr">helpers</span>:<span class="literal">true</span>, <span class="comment">// 移除内联的babel-helpers，并自动引入babel-runtime/helpers来替代</span></span><br><span class="line">                   <span class="attr">regenerator</span>:<span class="literal">true</span> <span class="comment">// 是否开启gen函数转换成使用regenerator runtime 来避免污染全局作用域</span></span><br><span class="line">                 &#125;</span><br><span class="line">               ]</span><br><span class="line">             ]</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       ]</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><ul>
+<li>插件(plugins)先执行，预设(presets)后执行</li>
+<li>插件顺序从前往后</li>
+<li>预设顺序从后往前</li>
+</ul>
+<h2 id="上一节"><a href="#上一节" class="headerlink" title="上一节"></a>上一节</h2><ul>
+<li><a href="/2020/12/06/webpack_8/">运行速度优化</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#babel"><span class="toc-number">1.</span> <span class="toc-text">babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">命令和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-index-js"><span class="toc-number">3.1.</span> <span class="toc-text">src&#x2F;index.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json"><span class="toc-number">3.2.</span> <span class="toc-text">package.json</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babelrc"><span class="toc-number">4.2.</span> <span class="toc-text">.babelrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AE%BE"><span class="toc-number">4.3.</span> <span class="toc-text">预设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-number">4.3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babelrc-1"><span class="toc-number">4.3.2.</span> <span class="toc-text">.babelrc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#browsers"><span class="toc-number">4.3.3.</span> <span class="toc-text">browsers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#polyfill"><span class="toc-number">4.4.</span> <span class="toc-text">polyfill</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-polyfill"><span class="toc-number">4.4.1.</span> <span class="toc-text">@babel&#x2F;polyfill</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-runtime"><span class="toc-number">4.4.2.</span> <span class="toc-text">babel-runtime</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babel-plugin-transform-runtime"><span class="toc-number">4.4.3.</span> <span class="toc-text">#### babel-plugin-transform-runtime</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.5.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%80%E8%8A%82"><span class="toc-number">5.</span> <span class="toc-text">上一节</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2020/12/06/webpack_9/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&text=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&is_video=false&description=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【webpack学习随笔】7.webpack配置javascript兼容性&body=Check out this article: https://www.shifeng1993.com/2020/12/06/webpack_9/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&title=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2020/12/06/webpack_9/&name=【webpack学习随笔】7.webpack配置javascript兼容性&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2020/12/06/webpack_9/&t=【webpack学习随笔】7.webpack配置javascript兼容性"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

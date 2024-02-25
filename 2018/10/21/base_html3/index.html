@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="语义化html，对可访问性，SEO（搜索引擎优化）等非常重要 标题和段落 标题使用h1-h6标签 块级元素p可以区分段落  段落和标题可以使文本更加结构化和语义化 123&lt;h1&gt;hello&lt;&#x2F;h1&gt;&lt;p&gt;Hello, it&#x27;s me&lt;&#x2F;p&gt;&lt;p&gt;I was wondering if after all these years y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习-html】3.html文档语义和结构">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/10/21/base_html3/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="语义化html，对可访问性，SEO（搜索引擎优化）等非常重要 标题和段落 标题使用h1-h6标签 块级元素p可以区分段落  段落和标题可以使文本更加结构化和语义化 123&lt;h1&gt;hello&lt;&#x2F;h1&gt;&lt;p&gt;Hello, it&#x27;s me&lt;&#x2F;p&gt;&lt;p&gt;I was wondering if after all these years y">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-21T13:45:00.000Z">
+<meta property="article:modified_time" content="2018-10-22T13:51:00.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【基础学习-html】3.html文档语义和结构</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/10/22/base_html4/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/10/20/base_html2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/21/base_html3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/21/base_html3/&text=【基础学习-html】3.html文档语义和结构"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/21/base_html3/&is_video=false&description=【基础学习-html】3.html文档语义和结构"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】3.html文档语义和结构&body=Check out this article: https://www.shifeng1993.com/2018/10/21/base_html3/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/21/base_html3/&name=【基础学习-html】3.html文档语义和结构&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/21/base_html3/&t=【基础学习-html】3.html文档语义和结构"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E5%92%8C%E6%AE%B5%E8%90%BD"><span class="toc-number">1.</span> <span class="toc-text">标题和段落</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8-ul"><span class="toc-number">2.1.</span> <span class="toc-text">无序列表 (ul)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8-ol"><span class="toc-number">2.2.</span> <span class="toc-text">有序列表 (ol)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E5%88%97%E8%A1%A8-dl"><span class="toc-number">2.3.</span> <span class="toc-text">描述列表 (dl)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8"><span class="toc-number">2.4.</span> <span class="toc-text">嵌套列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%BC%BA%E8%B0%83"><span class="toc-number">3.</span> <span class="toc-text">重点强调</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83"><span class="toc-number">3.1.</span> <span class="toc-text">强调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81"><span class="toc-number">3.2.</span> <span class="toc-text">重要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E5%BC%95%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">块引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%BC%95%E7%94%A8"><span class="toc-number">4.2.</span> <span class="toc-text">行内引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%A9%E7%95%A5%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">缩略语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">标记联系方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="toc-number">7.</span> <span class="toc-text">上下标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">日期和时间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BB%A3%E7%A0%81"><span class="toc-number">9.</span> <span class="toc-text">展示计算机代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#html5%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-number">10.</span> <span class="toc-text">html5重新定义的语义</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【基础学习-html】3.html文档语义和结构
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-10-21T13:45:00.000Z" class="dt-published" itemprop="datePublished">2018-10-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/base/">base</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/html/" rel="tag">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>语义化html，对可访问性，SEO（搜索引擎优化）等非常重要</p>
+<h1 id="标题和段落"><a href="#标题和段落" class="headerlink" title="标题和段落"></a>标题和段落</h1><ul>
+<li>标题使用h1-h6标签</li>
+<li>块级元素p可以区分段落</li>
+</ul>
+<p>段落和标题可以使文本更加结构化和语义化</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, it&#x27;s me<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I was wondering if after all these years you&#x27;d like to meet<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><h2 id="无序列表-ul"><a href="#无序列表-ul" class="headerlink" title="无序列表 (ul)"></a>无序列表 (ul)</h2><p>无序列表使用ul标签来包裹，li是每一项</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>鸡蛋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>面包<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>火腿<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="有序列表-ol"><a href="#有序列表-ol" class="headerlink" title="有序列表 (ol)"></a>有序列表 (ol)</h2><p>无序列表使用ol标签来包裹，li是每一项</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>鸡蛋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>面包<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>火腿<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="描述列表-dl"><a href="#描述列表-dl" class="headerlink" title="描述列表 (dl)"></a>描述列表 (dl)</h2><p>dt是标题，dd对标题的描述</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>天真<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>吴邪是南派三叔的作品《盗墓笔记》中的主人公，是《盗墓笔记》的核心，铁三角的精神领袖。生于盗墓世家，长沙老九门狗五爷之孙，南派土夫子巨头吴三省的侄子，吴家现任当家。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>小哥<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>张起灵，南派三叔作品《盗墓笔记》里面的灵魂人物，本书主角之一，铁三角的精神领袖。一出现就给所有人安全感与希望，几乎无所不能。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>胖子<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>王胖子，南派三叔作品《盗墓笔记》中的人物，与吴邪、张起灵合称为“铁三角”。与二人相遇前似乎一直单干。自称是北派摸金校尉以及倒斗界肥王子，身手不凡，胆大心细，平时看着大大咧咧不靠谱，实际比较有分寸，关键时刻不掉链子。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="嵌套列表"><a href="#嵌套列表" class="headerlink" title="嵌套列表"></a>嵌套列表</h2><p>在单独项下添加嵌套列表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>牛奶<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>伊利<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>蒙牛<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>鸡蛋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>面包<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>火腿<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="重点强调"><a href="#重点强调" class="headerlink" title="重点强调"></a>重点强调</h1><h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>表示讽刺等，一些特殊意义。使用<code>em</code>标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>你真是一个<span class="tag">&lt;<span class="name">em</span>&gt;</span>好<span class="tag">&lt;/<span class="name">em</span>&gt;</span>人啊<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="重要"><a href="#重要" class="headerlink" title="重要"></a>重要</h2><p>使用<code>strong</code>标签来表示着重一句话中的某些字。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我真的好喜欢你，<span class="tag">&lt;<span class="name">strong</span>&gt;</span>嫁给我吧！<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><h2 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h2><p>块引用使用<code>blockquote</code>，默认会有一个缩进，在cite属性内标明被引用的资源，使用cite标签来包裹引用的文字，然后使用a标签来包裹cite，并连接向被引用的资源</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">&quot;https://baike.baidu.com/item/%E6%88%98%E7%95%A5%E4%B8%8A%E8%97%90%E8%A7%86%E6%95%8C%E4%BA%BA%EF%BC%8C%E6%88%98%E6%9C%AF%E4%B8%8A%E9%87%8D%E8%A7%86%E6%95%8C%E4%BA%BA/3800588&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://baike.baidu.com/item/%E6%88%98%E7%95%A5%E4%B8%8A%E8%97%90%E8%A7%86%E6%95%8C%E4%BA%BA%EF%BC%8C%E6%88%98%E6%9C%AF%E4%B8%8A%E9%87%8D%E8%A7%86%E6%95%8C%E4%BA%BA/3800588&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">cite</span>&gt;</span>毛主席说过：在战略上藐视敌人，在战术上重视敌人<span class="tag">&lt;/<span class="name">cite</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="行内引用"><a href="#行内引用" class="headerlink" title="行内引用"></a>行内引用</h2><p>块引用使用<code>q</code>,默认会有双引号包裹文字，在cite属性内标明被引用的资源，使用cite标签来包裹引用的文字，然后使用a标签来包裹cite，并连接向被引用的资源</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">q</span> <span class="attr">cite</span>=<span class="string">&quot;https://baike.baidu.com/item/%E6%88%98%E7%95%A5%E4%B8%8A%E8%97%90%E8%A7%86%E6%95%8C%E4%BA%BA%EF%BC%8C%E6%88%98%E6%9C%AF%E4%B8%8A%E9%87%8D%E8%A7%86%E6%95%8C%E4%BA%BA/3800588&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://baike.baidu.com/item/%E6%88%98%E7%95%A5%E4%B8%8A%E8%97%90%E8%A7%86%E6%95%8C%E4%BA%BA%EF%BC%8C%E6%88%98%E6%9C%AF%E4%B8%8A%E9%87%8D%E8%A7%86%E6%95%8C%E4%BA%BA/3800588&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">cite</span>&gt;</span>毛主席说过：在战略上藐视敌人，在战术上重视敌人<span class="tag">&lt;/<span class="name">cite</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="缩略语"><a href="#缩略语" class="headerlink" title="缩略语"></a>缩略语</h1><p><code>abbr</code>来表示一个缩略语，全拼放在title属性内。鼠标hover效果时会出现title内全拼</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;Xi&#x27;an International University&quot;</span>&gt;</span>XAIU<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="标记联系方式"><a href="#标记联系方式" class="headerlink" title="标记联系方式"></a>标记联系方式</h1><p><code>address</code>来表示一个联系方式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>中国，西安，雁塔区，南窑头国际<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h1><p><code>sup</code>表示上标，<code>sub</code>表示下标</p>
+<p>例如，x的平方，和水的化学分子式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>x<span class="tag">&lt;<span class="name">sup</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sup</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>H<span class="tag">&lt;<span class="name">sub</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>O<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h1><p><code>datetime</code>属性表示此元素的时间和日期，并且属性值必须是一个有效的日期格式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;2018-10-21&quot;</span>&gt;</span>2018年10月21日<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="展示计算机代码"><a href="#展示计算机代码" class="headerlink" title="展示计算机代码"></a>展示计算机代码</h1><ul>
+<li><code>code</code>用于标记计算机通用代码。</li>
+<li><code>pre</code>对保留的空格（通常是代码块）——如果您在文本中使用缩进或多余的空白，浏览器将忽略它，您将不会在呈现的页面上看到它。但是，如果您将文本包含在<code>pre</code>标签中，那么空白将会以与你在文本编辑器中看到的相同的方式渲染出来。</li>
+<li><code>var</code>用于标记具体变量名。</li>
+<li><code>kbd</code>用于标记输入电脑的键盘（或其他类型）输入。</li>
+<li><code>samp</code>用于标记计算机程序的输出。</li>
+</ul>
+<p>例子:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  请问变量 <span class="tag">&lt;<span class="name">var</span>&gt;</span>a<span class="tag">&lt;/<span class="name">var</span>&gt;</span> 是多少</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  变量 <span class="tag">&lt;<span class="name">var</span>&gt;</span>a<span class="tag">&lt;/<span class="name">var</span>&gt;</span> 是 <span class="tag">&lt;<span class="name">samp</span>&gt;</span>1<span class="tag">&lt;/<span class="name">samp</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="html5重新定义的语义"><a href="#html5重新定义的语义" class="headerlink" title="html5重新定义的语义"></a>html5重新定义的语义</h1><ul>
+<li><code>i</code>被用来传达传统上用斜体表达的意义：外国文字，分类名称，技术术语，一种思想……</li>
+<li><code>b</code>被用来传达传统上用粗体表达的意义：关键字，产品名称，引导句……</li>
+<li><code>u</code>被用来传达传统上用下划线表达的意义：专有名词，拼写错误……</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E5%92%8C%E6%AE%B5%E8%90%BD"><span class="toc-number">1.</span> <span class="toc-text">标题和段落</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8-ul"><span class="toc-number">2.1.</span> <span class="toc-text">无序列表 (ul)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8-ol"><span class="toc-number">2.2.</span> <span class="toc-text">有序列表 (ol)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E5%88%97%E8%A1%A8-dl"><span class="toc-number">2.3.</span> <span class="toc-text">描述列表 (dl)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8"><span class="toc-number">2.4.</span> <span class="toc-text">嵌套列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%BC%BA%E8%B0%83"><span class="toc-number">3.</span> <span class="toc-text">重点强调</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83"><span class="toc-number">3.1.</span> <span class="toc-text">强调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81"><span class="toc-number">3.2.</span> <span class="toc-text">重要</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E5%BC%95%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">块引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%BC%95%E7%94%A8"><span class="toc-number">4.2.</span> <span class="toc-text">行内引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%A9%E7%95%A5%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">缩略语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">标记联系方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="toc-number">7.</span> <span class="toc-text">上下标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">日期和时间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BB%A3%E7%A0%81"><span class="toc-number">9.</span> <span class="toc-text">展示计算机代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#html5%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-number">10.</span> <span class="toc-text">html5重新定义的语义</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/21/base_html3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/21/base_html3/&text=【基础学习-html】3.html文档语义和结构"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/21/base_html3/&is_video=false&description=【基础学习-html】3.html文档语义和结构"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】3.html文档语义和结构&body=Check out this article: https://www.shifeng1993.com/2018/10/21/base_html3/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/21/base_html3/&title=【基础学习-html】3.html文档语义和结构"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/21/base_html3/&name=【基础学习-html】3.html文档语义和结构&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/21/base_html3/&t=【基础学习-html】3.html文档语义和结构"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

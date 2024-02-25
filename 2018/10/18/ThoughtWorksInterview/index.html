@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前言和鸡汤现在公司像一谭死水，自己人微言轻，改变不了什么，记得有一句话是这样说的： 12当你试图改变什么却发现改变不了的时候，你需要改变你自己了，需要让自己变得更强大，这样你才能改变其他如果连你自己都改变不了的话，那也不用谈改变其他了 …… 莫名的说这么一句鸡汤，感觉有点恶心。。但是确实是大实话。 行动和凉凉我是国庆前投递的简历， 然后在国庆前给了三天用来写 hometest 部分。 国庆后过了三">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次失败的面试 - thoughtWorks面试总结">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="前言和鸡汤现在公司像一谭死水，自己人微言轻，改变不了什么，记得有一句话是这样说的： 12当你试图改变什么却发现改变不了的时候，你需要改变你自己了，需要让自己变得更强大，这样你才能改变其他如果连你自己都改变不了的话，那也不用谈改变其他了 …… 莫名的说这么一句鸡汤，感觉有点恶心。。但是确实是大实话。 行动和凉凉我是国庆前投递的简历， 然后在国庆前给了三天用来写 hometest 部分。 国庆后过了三">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-04-28T13:05:30.380Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="Interview">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>记一次失败的面试 - thoughtWorks面试总结</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/10/19/base_index/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/08/28/rn_webview/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&text=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&is_video=false&description=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=记一次失败的面试 - thoughtWorks面试总结&body=Check out this article: https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&name=记一次失败的面试 - thoughtWorks面试总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&t=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%E5%92%8C%E9%B8%A1%E6%B1%A4"><span class="toc-number">1.</span> <span class="toc-text">前言和鸡汤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%8C%E5%8A%A8%E5%92%8C%E5%87%89%E5%87%89"><span class="toc-number">2.</span> <span class="toc-text">行动和凉凉</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">面试过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E9%A6%88"><span class="toc-number">4.</span> <span class="toc-text">反馈</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        记一次失败的面试 - thoughtWorks面试总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-10-17T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-10-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Interview/">Interview</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Interview/" rel="tag">Interview</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="前言和鸡汤"><a href="#前言和鸡汤" class="headerlink" title="前言和鸡汤"></a>前言和鸡汤</h1><p>现在公司像一谭死水，自己人微言轻，改变不了什么，记得有一句话是这样说的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当你试图改变什么却发现改变不了的时候，你需要改变你自己了，需要让自己变得更强大，这样你才能改变其他</span><br><span class="line">如果连你自己都改变不了的话，那也不用谈改变其他了</span><br></pre></td></tr></table></figure>
+<p>…… 莫名的说这么一句鸡汤，感觉有点恶心。。但是确实是大实话。</p>
+<h1 id="行动和凉凉"><a href="#行动和凉凉" class="headerlink" title="行动和凉凉"></a>行动和凉凉</h1><p>我是国庆前投递的简历， 然后在国庆前给了三天用来写 hometest 部分。</p>
+<p>国庆后过了三天，拿到了反馈，说我hometest通过，然后在12号周五下午面试。</p>
+<p>面试完了下午我就觉得我自己要凉，后面hr小姐姐打来电话反馈，果然凉了。。</p>
+<p>不过，还是谢谢hr小姐姐 <code>何易凡</code> 的鼓励和引荐，不然，连机会都没有。</p>
+<h1 id="面试过程"><a href="#面试过程" class="headerlink" title="面试过程"></a>面试过程</h1><p>还有要说明的是，面试过程分为三个流程：</p>
+<ol>
+<li>结对编程部分，是二对一的形式，会有一个年长和一个年轻的程序员过来提需求，在作业基础上进行添加。</li>
+<li>面试部分，是二对一的形式，在聊天中穿插一些关于技术和三观的问题，问题不会太难或者刁钻。</li>
+<li>英文逻辑题，因为我英语不好，再加上保密协议。只能说是跟英文和逻辑相关的。</li>
+</ol>
+<h1 id="反馈"><a href="#反馈" class="headerlink" title="反馈"></a>反馈</h1><p>以下是我收获到的反馈：</p>
+<ol>
+<li>作业完成的挺好，但是缺乏沟通。</li>
+<li>缺少一些计算机基础和系统性的知识，前端部分 html，css，js 基础的一些部分。</li>
+<li>github展示的东西过于零碎，没有形成一个体系。 </li>
+<li>假设场景，产品提出了一个不合理的需求，并取得老总同意，我是否会坚持自己专业的正确观点，并说服包括老总在内的所有人。我如实回答，<code>不会，我会听产品的</code>。然而，希望的回答是<code>是</code>。</li>
+<li>hr小姐姐给我推荐了以下书单：</li>
+</ol>
+<ul>
+<li>代码整洁之道  </li>
+<li>The clean coder《程序员的职业素养》</li>
+<li>重构：改善既有代码的设计</li>
+<li>测试驱动开发</li>
+<li>单元测试之道</li>
+<li>编写可读代码的艺术</li>
+<li>程序员修炼之道</li>
+<li>代码大全</li>
+<li>重构与模式</li>
+<li>实现模式</li>
+<li>修改代码的艺术</li>
+<li>计算机程序的构造和解释</li>
+<li>精通CSS:高级Web标准解决方案(第2版)</li>
+<li>CSS世界</li>
+<li>CSS IN DEPTH</li>
+<li>CSS揭秘</li>
+<li>JavaScript高级程序设计(第3版)</li>
+<li>你不知道的JavaScript（上中下卷）</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%E5%92%8C%E9%B8%A1%E6%B1%A4"><span class="toc-number">1.</span> <span class="toc-text">前言和鸡汤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%8C%E5%8A%A8%E5%92%8C%E5%87%89%E5%87%89"><span class="toc-number">2.</span> <span class="toc-text">行动和凉凉</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">面试过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E9%A6%88"><span class="toc-number">4.</span> <span class="toc-text">反馈</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&text=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&is_video=false&description=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=记一次失败的面试 - thoughtWorks面试总结&body=Check out this article: https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&title=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&name=记一次失败的面试 - thoughtWorks面试总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/18/ThoughtWorksInterview/&t=记一次失败的面试 - thoughtWorks面试总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

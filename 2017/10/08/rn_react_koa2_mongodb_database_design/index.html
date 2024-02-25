@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。 参考文章： 关联关系 MongoDB进阶模式设计 对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。 数据库设计数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计 逻辑设计模块列表 用户 商品 订单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计">
+<meta property="og:url" content="https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。 参考文章： 关联关系 MongoDB进阶模式设计 对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。 数据库设计数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计 逻辑设计模块列表 用户 商品 订单">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-10-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="实战随笔">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/10/10/rn_react_koa2_mongodb_api1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/10/06/rn_react_koa2_mongodb_requirementAnalysis/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&text=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计&body=Check out this article: https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&name=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&t=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">数据库设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">逻辑设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%88%97%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">模块列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">模块关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">2.3.</span> <span class="toc-text">逻辑设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1%E5%AE%9E%E6%96%BD"><span class="toc-number">2.4.</span> <span class="toc-text">逻辑设计实施</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">物理设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83"><span class="toc-number">3.1.</span> <span class="toc-text">物理设计规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1%E5%AE%9E%E6%96%BD"><span class="toc-number">3.2.</span> <span class="toc-text">物理设计实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.1.</span> <span class="toc-text">用户模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.2.</span> <span class="toc-text">订单模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.3.</span> <span class="toc-text">购物车模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%86%E5%93%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">商品模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9B%E8%B4%A7%E5%95%86%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.5.</span> <span class="toc-text">供货商模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-07T16:00:00.000Z" class="dt-published" itemprop="datePublished">2017-10-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/nodejs/" rel="tag">nodejs</a>, <a class="p-category" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a>, <a class="p-category" href="/tags/%E5%AE%9E%E6%88%98%E9%9A%8F%E7%AC%94/" rel="tag">实战随笔</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>这两天，在进行demo数据库设计的时候由于基础不扎实，导致设计结构混乱。没办法，只能硬着头皮又去研究了一遍关联关系，mongodb数据库设计。</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/lgxlsm/archive/2013/05/15/3080994.html" title="关联关系">关联关系</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.mongoing.com/mongodb-advanced-pattern-design" title="MongoDB进阶模式设计">MongoDB进阶模式设计</a></p>
+<p>对于waterline个人感觉不太适合mongodb，就又换成了mongoose。换了之后感觉好多了。</p>
+<h1 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h1><p>数据库设计分为两个步骤，一个是逻辑设计，一个是物理设计</p>
+<h1 id="逻辑设计"><a href="#逻辑设计" class="headerlink" title="逻辑设计"></a>逻辑设计</h1><h2 id="模块列表"><a href="#模块列表" class="headerlink" title="模块列表"></a>模块列表</h2><ul>
+<li>用户</li>
+<li>商品</li>
+<li>订单</li>
+<li>购物车</li>
+<li>供货商</li>
+</ul>
+<h2 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h2><ul>
+<li>用户&lt;一–多&gt;订单</li>
+<li>订单&lt;一–多&gt;商品</li>
+<li>用户&lt;一–一&gt;购物车</li>
+<li>购物车&lt;一–多&gt;商品</li>
+<li>商品&lt;一–一&gt;供货商</li>
+<li>商品&lt;多–多&gt;用户</li>
+</ul>
+<h2 id="逻辑设计原则"><a href="#逻辑设计原则" class="headerlink" title="逻辑设计原则"></a>逻辑设计原则</h2><p>mongodb逻辑设计是和mysql不一样的，mongodb用复杂的写入换取了简单的读取，并且采用灵活模式，^_^。赞！</p>
+<p>我理解的mongodb设计原则：</p>
+<ul>
+<li>为应用服务，为性能设计，而不是为了存储优化，</li>
+<li>灵活方式大于规范方式，</li>
+<li>优先嵌套</li>
+<li>对于有实体的对象，采用引入，对于无实体的对象，采用嵌套。</li>
+<li>嵌套适合一对一，一对多</li>
+<li>引用适合多对多</li>
+</ul>
+<h2 id="逻辑设计实施"><a href="#逻辑设计实施" class="headerlink" title="逻辑设计实施"></a>逻辑设计实施</h2><p>模型和实体关系是息息相关的，er图是必须的，但是此demo比较简单，就省去了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户：&#123;</span><br><span class="line">  订单: [&#123;</span><br><span class="line">    商品: [&#123;&#125;],</span><br><span class="line">  &#125;],</span><br><span class="line">  购物车: [商品]</span><br><span class="line">&#125;</span><br><span class="line">商品&#123;</span><br><span class="line">  商品信息，</span><br><span class="line">  供货商：“”</span><br><span class="line">&#125;</span><br><span class="line">供货商：&#123;供货商信息&#125; </span><br></pre></td></tr></table></figure>
+
+<p>一个用户对应多个订单，订单内嵌在用户下</p>
+<p>一个订单可以对应多个商品，商品内嵌在订单下</p>
+<p>一个用户对应一个购物车，购物车内嵌在用户下</p>
+<p>一个购物车对应多个商品，商品内嵌在购物车下</p>
+<p>一个商品对应一个供货商，供货商是单独存在的实体，商品可以没有和下架，但是供货商一直都在，所以商品引用供货商信息。</p>
+<p>注：关于用户下商品的内嵌，如果采用引用，则不能记录购买时的信息。所以必须单独放在用户下</p>
+<h1 id="物理设计"><a href="#物理设计" class="headerlink" title="物理设计"></a>物理设计</h1><p>既然逻辑设计出了物理设计就好办了，先制定规范，后填字段就可以</p>
+<h2 id="物理设计规范"><a href="#物理设计规范" class="headerlink" title="物理设计规范"></a>物理设计规范</h2><ol>
+<li>采用驼峰命名，能简洁清楚表达字段名称意义，</li>
+<li>类别类型，统一用int来存储，</li>
+<li>时间格式，统一用Date来存储</li>
+<li>二进制，统一用Buffer来存储</li>
+</ol>
+<h2 id="物理设计实施"><a href="#物理设计实施" class="headerlink" title="物理设计实施"></a>物理设计实施</h2><h3 id="用户模型"><a href="#用户模型" class="headerlink" title="用户模型"></a>用户模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">ObjectId</span> = mongoose.<span class="property">Schema</span>.<span class="property">Types</span>.<span class="property">ObjectId</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">UserSchema</span> = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(&#123;</span><br><span class="line">  <span class="attr">username</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">unique</span>: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 账号</span></span><br><span class="line">  <span class="attr">userphone</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">unique</span>: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 手机</span></span><br><span class="line">  <span class="attr">password</span>: <span class="title class_">String</span>, <span class="comment">// 密码</span></span><br><span class="line">  <span class="attr">nickname</span>: <span class="title class_">String</span>, <span class="comment">// 昵称</span></span><br><span class="line">  <span class="attr">summary</span>: <span class="title class_">String</span>, <span class="comment">//简介</span></span><br><span class="line">  <span class="attr">userImg</span>: <span class="title class_">String</span>, <span class="comment">// 头像</span></span><br><span class="line">  <span class="attr">editTime</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Date</span>,</span><br><span class="line">    <span class="attr">default</span>: <span class="title class_">Date</span>.<span class="property">now</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">orders</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">ObjectId</span>,</span><br><span class="line">      <span class="attr">ref</span>: <span class="string">&#x27;Order&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">shoppingCart</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">ObjectId</span>,</span><br><span class="line">      <span class="attr">ref</span>: <span class="string">&#x27;ShoppingCart&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;User&#x27;</span>, <span class="title class_">UserSchema</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="订单模型"><a href="#订单模型" class="headerlink" title="订单模型"></a>订单模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">OrderSchema</span> = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(&#123;</span><br><span class="line">  <span class="attr">orderState</span>: <span class="title class_">Number</span>,  <span class="comment">//订单状态</span></span><br><span class="line">  <span class="attr">createTime</span>: <span class="title class_">Date</span>,  <span class="comment">// 订单创建时间</span></span><br><span class="line">  <span class="attr">dealTime</span>: <span class="title class_">Date</span>,   <span class="comment">// 订单成交时间</span></span><br><span class="line">  <span class="attr">orderTotal</span>: <span class="title class_">Number</span>,  <span class="comment">// 订单总价</span></span><br><span class="line">  <span class="attr">actuaPayment</span>: <span class="title class_">Number</span>, <span class="comment">// 实付款</span></span><br><span class="line">  <span class="comment">// 订单中商品详情</span></span><br><span class="line">  <span class="attr">goods</span>: [&#123;</span><br><span class="line">    <span class="attr">goodsCode</span>: <span class="title class_">String</span>, <span class="comment">//商品id</span></span><br><span class="line">    <span class="attr">goodsName</span>: <span class="title class_">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">    <span class="attr">goodsSummary</span>: <span class="title class_">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">    <span class="attr">goodsImg</span>: <span class="title class_">String</span>,  <span class="comment">//商品图片</span></span><br><span class="line">    <span class="attr">goodsPrice</span>: <span class="title class_">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">    <span class="attr">goodsNumber</span>: <span class="title class_">Number</span>, <span class="comment">// 商品数量</span></span><br><span class="line">    <span class="attr">supplierUsername</span>: <span class="title class_">String</span>, <span class="comment">// 供货商账号</span></span><br><span class="line">    <span class="attr">supplierNickname</span>: <span class="title class_">String</span>, <span class="comment">//供货商名称</span></span><br><span class="line">    <span class="attr">goodsType</span>: <span class="title class_">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">    <span class="attr">goodsAttrs</span>: [<span class="title class_">String</span>]  <span class="comment">// 商品属性</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;Order&#x27;</span>, <span class="title class_">OrderSchema</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="购物车模型"><a href="#购物车模型" class="headerlink" title="购物车模型"></a>购物车模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">ShoppingCartSchema</span> = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(&#123;</span><br><span class="line">  <span class="attr">goodsCode</span>: <span class="title class_">String</span>, <span class="comment">//商品id</span></span><br><span class="line">  <span class="attr">goodsName</span>: <span class="title class_">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">  <span class="attr">goodsSummary</span>: <span class="title class_">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  <span class="attr">goodsImg</span>: <span class="title class_">String</span>,  <span class="comment">//商品图片</span></span><br><span class="line">  <span class="attr">goodsType</span>: <span class="title class_">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  <span class="attr">goodsPrice</span>: <span class="title class_">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  <span class="attr">supplierUsername</span>: <span class="title class_">String</span>, <span class="comment">// 供货商id</span></span><br><span class="line">  <span class="attr">supplierNickname</span>: <span class="title class_">String</span>, <span class="comment">//供货商名称</span></span><br><span class="line">  <span class="attr">goodsAttrs</span>: [<span class="title class_">String</span>],  <span class="comment">// 商品属性</span></span><br><span class="line">  <span class="attr">goodsNumber</span>: <span class="title class_">Number</span>, <span class="comment">// 商品数量</span></span><br><span class="line">  <span class="attr">editTime</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Date</span>,</span><br><span class="line">    <span class="attr">default</span>: <span class="title class_">Date</span>.<span class="property">now</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;ShoppingCart&#x27;</span>, <span class="title class_">ShoppingCartSchema</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="商品模型"><a href="#商品模型" class="headerlink" title="商品模型"></a>商品模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">ObjectId</span> = mongoose.<span class="property">Schema</span>.<span class="property">Types</span>.<span class="property">ObjectId</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">GoodsSchema</span> = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(&#123;</span><br><span class="line">  <span class="attr">goodsName</span>: <span class="title class_">String</span>, <span class="comment">//商品名称</span></span><br><span class="line">  <span class="attr">goodsSummary</span>: <span class="title class_">String</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  <span class="attr">goodsImg</span>: <span class="title class_">String</span>, <span class="comment">//商品图片</span></span><br><span class="line">  <span class="attr">goodsPrice</span>: <span class="title class_">Number</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  <span class="attr">goodsType</span>: <span class="title class_">Number</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  <span class="attr">goodsStock</span>: <span class="title class_">Number</span>, <span class="comment">// 商品库存</span></span><br><span class="line">  <span class="attr">editTime</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Date</span>,</span><br><span class="line">    <span class="attr">default</span>: <span class="title class_">Date</span>.<span class="property">now</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 商品属性</span></span><br><span class="line">  <span class="attr">goodsAttrs</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="title class_">String</span>,</span><br><span class="line">      <span class="attr">value</span>: [<span class="title class_">String</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// 供货商</span></span><br><span class="line">  <span class="attr">supplier</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">ObjectId</span>,</span><br><span class="line">    <span class="attr">ref</span>: <span class="string">&#x27;Supplier&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;Goods&#x27;</span>, <span class="title class_">GoodsSchema</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="供货商模型"><a href="#供货商模型" class="headerlink" title="供货商模型"></a>供货商模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">SupplierSchema</span> = <span class="keyword">new</span> mongoose.<span class="title class_">Schema</span>(&#123;</span><br><span class="line">  <span class="attr">username</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">unique</span>: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 账号</span></span><br><span class="line">  <span class="attr">userphone</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">unique</span>: <span class="literal">true</span></span><br><span class="line">  &#125;, <span class="comment">// 手机</span></span><br><span class="line">  <span class="attr">password</span>: <span class="title class_">String</span>, <span class="comment">// 密码</span></span><br><span class="line">  <span class="attr">nickname</span>: <span class="title class_">String</span>, <span class="comment">// 昵称</span></span><br><span class="line">  <span class="attr">summary</span>: <span class="title class_">String</span>, <span class="comment">//简介</span></span><br><span class="line">  <span class="attr">userImg</span>: <span class="title class_">String</span>, <span class="comment">// 头像</span></span><br><span class="line">  <span class="attr">editTime</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">Date</span>,</span><br><span class="line">    <span class="attr">default</span>: <span class="title class_">Date</span>.<span class="property">now</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;<span class="attr">versionKey</span>: <span class="literal">false</span>&#125;)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = mongoose.<span class="title function_">model</span>(<span class="string">&#x27;Supplier&#x27;</span>, <span class="title class_">SupplierSchema</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h1><p><code>https://github.com/shifeng1993/mongo-server</code></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">数据库设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">逻辑设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%88%97%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">模块列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">模块关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">2.3.</span> <span class="toc-text">逻辑设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1%E5%AE%9E%E6%96%BD"><span class="toc-number">2.4.</span> <span class="toc-text">逻辑设计实施</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">物理设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83"><span class="toc-number">3.1.</span> <span class="toc-text">物理设计规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1%E5%AE%9E%E6%96%BD"><span class="toc-number">3.2.</span> <span class="toc-text">物理设计实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.1.</span> <span class="toc-text">用户模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.2.</span> <span class="toc-text">订单模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.3.</span> <span class="toc-text">购物车模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%86%E5%93%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text">商品模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9B%E8%B4%A7%E5%95%86%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.5.</span> <span class="toc-text">供货商模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&text=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计&body=Check out this article: https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&title=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&name=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/08/rn_react_koa2_mongodb_database_design/&t=【RN+react+koa2+mongodb实战随笔】2.数据库和M层设计"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

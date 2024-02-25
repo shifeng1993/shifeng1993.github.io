@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="项目demo ：https:&#x2F;&#x2F;github.com&#x2F;shifeng1993&#x2F;rndemo1rn版本： 0.48.3 本节内容 初始化项目，合并入口，项目目录建设 引入矢量图标 路由管理，tabbar 以及 navigation  注：由于之前写过demo，所以有个排坑指南，https:&#x2F;&#x2F;www.shifeng1993.com&#x2F;2017&#x2F;09&#x2F;07&#x2F;reactnative_bug&#x2F; 问题和bug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）">
+<meta property="og:url" content="https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="项目demo ：https:&#x2F;&#x2F;github.com&#x2F;shifeng1993&#x2F;rndemo1rn版本： 0.48.3 本节内容 初始化项目，合并入口，项目目录建设 引入矢量图标 路由管理，tabbar 以及 navigation  注：由于之前写过demo，所以有个排坑指南，https:&#x2F;&#x2F;www.shifeng1993.com&#x2F;2017&#x2F;09&#x2F;07&#x2F;reactnative_bug&#x2F; 问题和bug">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-10-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="实战随笔">
+<meta property="article:tag" content="react-native">
+<meta property="article:tag" content="移动端">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/10/26/rn_react_koa2_mongodb_reactnative2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/10/14/rn_react_koa2_mongodb_api2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&text=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）&body=Check out this article: https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&name=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&t=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">本节内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">架构搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">初始化项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%85%A5%E5%8F%A3"><span class="toc-number">2.1.1.</span> <span class="toc-text">合并入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">创建目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%87"><span class="toc-number">2.2.</span> <span class="toc-text">引入矢量图标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#icon%E5%9B%BE%E6%A0%87%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">icon图标使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">路由管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#react-navigation%E6%8A%80%E5%B7%A7"><span class="toc-number">2.3.1.</span> <span class="toc-text">react-navigation技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.2.</span> <span class="toc-text">本项目使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">新建页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">新建路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%85%A5%E5%8F%A3%E5%BC%95%E5%85%A5%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">主入口引入路由</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-15T16:00:00.000Z" class="dt-published" itemprop="datePublished">2017-10-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/react-native/" rel="tag">react-native</a>, <a class="p-category" href="/tags/%E5%AE%9E%E6%88%98%E9%9A%8F%E7%AC%94/" rel="tag">实战随笔</a>, <a class="p-category" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag">移动端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>项目demo ：<a target="_blank" rel="noopener" href="https://github.com/shifeng1993/rndemo1">https://github.com/shifeng1993/rndemo1</a><br>rn版本： 0.48.3</p>
+<h1 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h1><ol>
+<li>初始化项目，合并入口，项目目录建设</li>
+<li>引入矢量图标</li>
+<li>路由管理，tabbar 以及 navigation</li>
+</ol>
+<p>注：由于之前写过demo，所以有个排坑指南，<br><a href="https://www.shifeng1993.com/2017/09/07/reactnative_bug/">https://www.shifeng1993.com/2017/09/07/reactnative_bug/</a> 问题和bug可以去里面找找</p>
+<h1 id="架构搭建"><a href="#架构搭建" class="headerlink" title="架构搭建"></a>架构搭建</h1><h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>这里需要注意的是在版本0.45开始，ios需要一些新加入的第三方编译库。<br>这些库在国内下载都非常困难（一般的翻墙工具都很难下载）。。<br>未来RN不同版本可能依赖不同版本的第三方编译库，具体所需库和版本请查看<br><a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/blob/master/scripts/ios-install-third-party.sh">https://github.com/facebook/react-native/blob/master/scripts/ios-install-third-party.sh</a> 文件，<br>注意先把左上角的branch切换到对应的版本。</p>
+<p>解决方法：<br>第三方依赖库百度盘链接： <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1kVDUAZ9">http://pan.baidu.com/s/1kVDUAZ9</a><br>下下来后请放置到 <code>~/.rncache</code> 目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> .rncache</span><br><span class="line"><span class="built_in">cd</span> ~/.rncache</span><br><span class="line">open .</span><br></pre></td></tr></table></figure>
+<p>打开文件夹后复制四个下载好的压缩包到 <code>~/.rncache</code><br>全部复制完成后，就可以开始init新的RN项目了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">react-native init yourProjectName</span><br><span class="line"><span class="built_in">cd</span> yourProjectName &amp;&amp; react-native run-ios || react-native run-android</span><br></pre></td></tr></table></figure>
+
+<h3 id="合并入口"><a href="#合并入口" class="headerlink" title="合并入口"></a>合并入口</h3><p>这里有一个问题，ios和android是两个不同的入口文件，我们想要一次编写多端运行。</p>
+<p>解决方案：</p>
+<p>新建 <code>yourProjectName/app.js</code> 也可以不叫 app，起什么名随意。</p>
+<p>将 <code>index.ios.js</code> 和 <code>index.ios.js</code> 添加如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123;AppRegistry&#125; from &#x27;react-native&#x27;;</span><br><span class="line"></span><br><span class="line">import App from &#x27;./app&#x27;</span><br><span class="line"></span><br><span class="line">AppRegistry.registerComponent(&#x27;rndemo1&#x27;, () =&gt; App);</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>app.js</code> 添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">StyleSheet</span>,</span><br><span class="line">  <span class="title class_">Text</span>,</span><br><span class="line">  <span class="title class_">View</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.welcome&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Welcome to React Native!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.instructions&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          To get started, edit index.ios.js</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.instructions&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Press Cmd+R to reload,&#123;&#x27;\n&#x27;&#125;</span></span><br><span class="line"><span class="language-xml">          Cmd+D or shake for dev menu</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">container</span>: &#123;</span><br><span class="line">    <span class="attr">flex</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">justifyContent</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    <span class="attr">alignItems</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    <span class="attr">backgroundColor</span>: <span class="string">&#x27;#F5FCFF&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">welcome</span>: &#123;</span><br><span class="line">    <span class="attr">fontSize</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="attr">textAlign</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    <span class="attr">margin</span>: <span class="number">10</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">instructions</span>: &#123;</span><br><span class="line">    <span class="attr">textAlign</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="string">&#x27;#333333&#x27;</span>,</span><br><span class="line">    <span class="attr">marginBottom</span>: <span class="number">5</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><p>现在app.js就是源码输出的主入口。<br>新建 <code>src/components</code> 作为无状态组件的目录，<br>新建 <code>src/containers</code> 作为关联状态的页面目录，<br>新建 <code>src/styles</code> 作为公共样式的目录，<br>新建 <code>src/utils</code> 作为存放工具的目录，<br>新建 <code>src/store</code> 作为redux的目录，<br>新建 <code>src/router</code> 作为路由的目录，<br>新建 <code>src/common</code> 作为基础配置导出的目录</p>
+<h2 id="引入矢量图标"><a href="#引入矢量图标" class="headerlink" title="引入矢量图标"></a>引入矢量图标</h2><p>引入字体依赖 <code>react-native-vector-icons</code> ，这里先引入icon的原因是后面的路由我们要用到。<br>以下是命令行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> yourProjectName</span><br><span class="line">yarn add react-native-vector-icons</span><br><span class="line">react-native <span class="built_in">link</span> react-native-vector-icons</span><br><span class="line">react-native run-ios || react-native run-android</span><br></pre></td></tr></table></figure>
+
+<p>需注意的是：如果项目之前启动过，重新编译一次，才可以看到成功引入的icon图标</p>
+<h3 id="icon图标使用"><a href="#icon图标使用" class="headerlink" title="icon图标使用"></a>icon图标使用</h3><p>引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Icon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Icon</span> name=<span class="string">&quot;ios-home&quot;</span> size=&#123;<span class="number">28</span>&#125; color=&#123;<span class="string">&#x27;#000&#x27;</span>&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">StyleSheet</span>,</span><br><span class="line">  <span class="title class_">Text</span>,</span><br><span class="line">  <span class="title class_">View</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Icon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.welcome&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Welcome to React Native!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.instructions&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          To get started, edit index.ios.js</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.instructions&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Icon</span> <span class="attr">name</span>=<span class="string">&quot;ios-home&quot;</span> <span class="attr">size</span>=<span class="string">&#123;28&#125;</span> <span class="attr">color</span>=<span class="string">&#123;</span>&#x27;#<span class="attr">000</span>&#x27;&#125;/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果看到一个小房子，表示icon引入成功，这个库一共两个字体库。</p>
+<p><a target="_blank" rel="noopener" href="http://ionicons.com/">http://ionicons.com/</a><br>&#x3D;&#x3D;&gt;  引入方式<code>import Icon from &#39;react-native-vector-icons/Ionicons&#39;;</code></p>
+<p><a target="_blank" rel="noopener" href="http://fontawesome.io/icons/">http://fontawesome.io/icons/</a><br>&#x3D;&#x3D;&gt;  引入方式<code>import Icon from &#39;react-native-vector-icons/FontAwesome&#39;;</code></p>
+<h2 id="路由管理"><a href="#路由管理" class="headerlink" title="路由管理"></a>路由管理</h2><p>使用 <code>react-navigation</code> 来管理路由。 这个库是0.44以上版本官方推荐，目前是1.0beta版本，<br>目前还有一些小bug。比如 <code>goBack()</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> yourProjectName</span><br><span class="line">yarn add react-native-vector-icons</span><br><span class="line">react-native <span class="built_in">link</span> react-native-vector-icons</span><br><span class="line">react-native run-ios || react-native run-android</span><br></pre></td></tr></table></figure>
+
+<h3 id="react-navigation技巧"><a href="#react-navigation技巧" class="headerlink" title="react-navigation技巧"></a>react-navigation技巧</h3><p>基础：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/2f575cc35780">http://www.jianshu.com/p/2f575cc35780</a><br>进阶：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b877115fff1b">http://www.jianshu.com/p/b877115fff1b</a></p>
+<h3 id="本项目使用"><a href="#本项目使用" class="headerlink" title="本项目使用"></a>本项目使用</h3><p>使用路由必须新建几个页面，然后在路由引入进行分发，再将路由引入主入口注册</p>
+<h4 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h4><p>我们先设计四个页面，  Home,Cart,My,Login 分别对应 主页，购物车，我的，登录四个页面</p>
+<p>新建主页 <code>src/containers/Home/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StyleSheet</span>, <span class="title class_">Text</span>, <span class="title class_">View</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Home</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>主页<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建购物车 <code>src/containers/Cart/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StyleSheet</span>, <span class="title class_">Text</span>, <span class="title class_">View</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Cart</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>购物车<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建我的 <code>src/containers/My/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StyleSheet</span>, <span class="title class_">Text</span>, <span class="title class_">View</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">My</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>我的<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建登录页 <code>src/containers/Login/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StyleSheet</span>, <span class="title class_">Text</span>, <span class="title class_">View</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Login</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>主页<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建批量导出 <code>src/containers/index.js</code> 便于引入页面的地方进行解构赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./Home&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Cart</span> <span class="keyword">from</span> <span class="string">&#x27;./Cart&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">My</span> <span class="keyword">from</span> <span class="string">&#x27;./My&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Login</span> <span class="keyword">from</span> <span class="string">&#x27;./common/Login&#x27;</span></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  <span class="title class_">Home</span>,</span><br><span class="line">  <span class="title class_">Cart</span>,</span><br><span class="line">  <span class="title class_">My</span>,</span><br><span class="line">  <span class="title class_">Login</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建路由"><a href="#新建路由" class="headerlink" title="新建路由"></a>新建路由</h4><p>新建 <code>src/router/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Dimensions</span>, <span class="title class_">Platform</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StackNavigator</span>, <span class="title class_">TabNavigator</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-navigation&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Icon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入页面容器</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">Home</span>,</span><br><span class="line">  <span class="title class_">Cart</span>,</span><br><span class="line">  <span class="title class_">My</span>,</span><br><span class="line">  <span class="title class_">Login</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;../containers&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置常量</span></span><br><span class="line"><span class="keyword">const</span> &#123;height, width&#125; = <span class="title class_">Dimensions</span>.<span class="title function_">get</span>(<span class="string">&#x27;window&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tabbar = <span class="title class_">TabNavigator</span>(&#123;</span><br><span class="line">  <span class="title class_">Home</span>: &#123;</span><br><span class="line">    <span class="attr">screen</span>: <span class="title class_">Home</span>,</span><br><span class="line">    <span class="attr">navigationOptions</span>: &#123;</span><br><span class="line">      <span class="attr">tabBarLabel</span>: <span class="string">&#x27;主页&#x27;</span>,</span><br><span class="line">      <span class="attr">tabBarIcon</span>: <span class="function">(<span class="params">&#123;tintColor&#125;</span>) =&gt;</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">name</span>=<span class="string">&quot;ios-home&quot;</span> <span class="attr">size</span>=<span class="string">&#123;28&#125;</span> <span class="attr">color</span>=<span class="string">&#123;tintColor&#125;/</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title class_">Cart</span>: &#123;</span><br><span class="line">    <span class="attr">screen</span>: <span class="title class_">Cart</span>,</span><br><span class="line">    <span class="attr">navigationOptions</span>: &#123;</span><br><span class="line">      <span class="attr">tabBarLabel</span>: <span class="string">&#x27;购物车&#x27;</span>,</span><br><span class="line">      <span class="attr">tabBarIcon</span>: <span class="function">(<span class="params">&#123;tintColor&#125;</span>) =&gt;</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">name</span>=<span class="string">&quot;ios-cart&quot;</span> <span class="attr">size</span>=<span class="string">&#123;28&#125;</span> <span class="attr">color</span>=<span class="string">&#123;tintColor&#125;/</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title class_">My</span>: &#123;</span><br><span class="line">    <span class="attr">screen</span>: <span class="title class_">My</span>,</span><br><span class="line">    <span class="attr">navigationOptions</span>: &#123;</span><br><span class="line">      <span class="attr">tabBarLabel</span>: <span class="string">&#x27;我的&#x27;</span>,</span><br><span class="line">      <span class="attr">tabBarIcon</span>: <span class="function">(<span class="params">&#123;tintColor&#125;</span>) =&gt;</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">name</span>=<span class="string">&quot;ios-person&quot;</span> <span class="attr">size</span>=<span class="string">&#123;28&#125;</span> <span class="attr">color</span>=<span class="string">&#123;tintColor&#125;/</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  <span class="attr">tabBarPosition</span>: <span class="string">&#x27;bottom&#x27;</span>,</span><br><span class="line">  <span class="attr">swipeEnabled</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">animationEnabled</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">lazy</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">backBehavior</span>: <span class="string">&#x27;initialRoute&#x27;</span>,</span><br><span class="line">  <span class="attr">tabBarOptions</span>: &#123;</span><br><span class="line">    <span class="attr">style</span>: &#123;</span><br><span class="line">      <span class="attr">height</span>: (<span class="title class_">Platform</span>.<span class="property">OS</span> === <span class="string">&#x27;ios&#x27;</span>)</span><br><span class="line">        ? width / <span class="number">8</span></span><br><span class="line">        : width / <span class="number">7</span> - <span class="number">5</span>,</span><br><span class="line">      <span class="attr">backgroundColor</span>: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">      <span class="attr">borderTopWidth</span>: <span class="number">0.5</span>,</span><br><span class="line">      <span class="attr">borderColor</span>: <span class="string">&#x27;#e4e4e4&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">labelStyle</span>: &#123;</span><br><span class="line">      <span class="attr">fontSize</span>: width / <span class="number">35</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">iconStyle</span>: &#123;</span><br><span class="line">      <span class="attr">height</span>: width / <span class="number">20</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">indicatorStyle</span>: &#123;</span><br><span class="line">      <span class="attr">height</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">scrollEnabled</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">activeBackgroundColor</span>: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">    <span class="attr">activeTintColor</span>: <span class="string">&#x27;#ff6600&#x27;</span>,</span><br><span class="line">    <span class="attr">inactiveBackgroundColor</span>: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">    <span class="attr">inactiveTintColor</span>: <span class="string">&#x27;#444444&#x27;</span>,</span><br><span class="line">    <span class="attr">showLabel</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">showIcon</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">AppNavigator</span> = <span class="title class_">StackNavigator</span>(&#123;</span><br><span class="line">  <span class="title class_">Main</span>: &#123;</span><br><span class="line">    <span class="attr">screen</span>: tabbar,</span><br><span class="line">    <span class="attr">navigationOptions</span>: &#123;</span><br><span class="line">      <span class="attr">header</span>: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title class_">Login</span>: &#123;</span><br><span class="line">    <span class="attr">screen</span>: <span class="title class_">Login</span>,</span><br><span class="line">    <span class="attr">navigationOptions</span>: &#123;</span><br><span class="line">      <span class="attr">header</span>: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">AppNavigator</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="主入口引入路由"><a href="#主入口引入路由" class="headerlink" title="主入口引入路由"></a>主入口引入路由</h4><p>导出路由文件到 <code>app.js</code>，并在主入口的render函数中引入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">StyleSheet</span>,</span><br><span class="line">  <span class="title class_">Text</span>,</span><br><span class="line">  <span class="title class_">View</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Icon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AppNavigator</span> <span class="keyword">from</span> <span class="string">&#x27;./src/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">AppNavigator</span>&gt;</span><span class="tag">&lt;/<span class="name">AppNavigator</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">本节内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">架构搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">初始化项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%85%A5%E5%8F%A3"><span class="toc-number">2.1.1.</span> <span class="toc-text">合并入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">创建目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%87"><span class="toc-number">2.2.</span> <span class="toc-text">引入矢量图标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#icon%E5%9B%BE%E6%A0%87%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">icon图标使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">路由管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#react-navigation%E6%8A%80%E5%B7%A7"><span class="toc-number">2.3.1.</span> <span class="toc-text">react-navigation技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.2.</span> <span class="toc-text">本项目使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">新建页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">新建路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%85%A5%E5%8F%A3%E5%BC%95%E5%85%A5%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">主入口引入路由</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&text=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）&body=Check out this article: https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&title=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&name=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/16/rn_react_koa2_mongodb_reactnative1/&t=【RN+react+koa2+mongodb实战随笔】5.react-native项目实战（一）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

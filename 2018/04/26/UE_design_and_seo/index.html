@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="上星期公司组织share，我非常幸运的从高斯分布的转笔概率中，脱颖而出，成为这周的share者。。。。 想起曾经做过SEO，就想干脆share一些属于SEO的东西吧。 什么叫UE？首先我们来了解一些UE的这关键词的真实概念。UE即为：User Experience简称UE或UX,也叫做用户体验，它是指用户使用某一产品（服务）的过程中主观心理感受。 UE的价值在哪？做好网站用户体验其核心价值有三个：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UE分析和网站优化">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="上星期公司组织share，我非常幸运的从高斯分布的转笔概率中，脱颖而出，成为这周的share者。。。。 想起曾经做过SEO，就想干脆share一些属于SEO的东西吧。 什么叫UE？首先我们来了解一些UE的这关键词的真实概念。UE即为：User Experience简称UE或UX,也叫做用户体验，它是指用户使用某一产品（服务）的过程中主观心理感受。 UE的价值在哪？做好网站用户体验其核心价值有三个：">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/%E8%9C%82%E8%9C%9C%E4%B8%8B%E6%8B%89.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/%E8%9C%82%E8%9C%9C%E7%9B%B8%E5%85%B3%E6%90%9C%E7%B4%A2.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/%E8%9C%82%E8%9C%9C%E6%90%9C%E7%B4%A2%E5%89%8D%E4%B8%89.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/beecom.png">
+<meta property="article:published_time" content="2018-04-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="UE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/%E8%9C%82%E8%9C%9C%E4%B8%8B%E6%8B%89.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>UE分析和网站优化</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/04/27/android3/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/04/18/android1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&text=UE分析和网站优化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&is_video=false&description=UE分析和网站优化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UE分析和网站优化&body=Check out this article: https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&name=UE分析和网站优化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&t=UE分析和网站优化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%ABUE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么叫UE？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E7%9A%84%E4%BB%B7%E5%80%BC%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">UE的价值在哪？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-number">3.</span> <span class="toc-text">UE设计与优化方向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BC%98%E5%8C%96%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">UE设计与优化的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%88%9D%E9%9C%80%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">最初需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8DUE%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">关键词UE分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%99%E5%86%85%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.</span> <span class="toc-text">站内优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UE%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.1.</span> <span class="toc-text">UE优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.2.</span> <span class="toc-text">技术优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.2.1.</span> <span class="toc-text">网站结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PC%E9%A1%B5%E9%9D%A2"><span class="toc-number">4.3.2.2.</span> <span class="toc-text">PC页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-number">4.3.2.3.</span> <span class="toc-text">移动页面：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%99%E5%A4%96%E4%BC%98%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text">站外优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-number">4.5.</span> <span class="toc-text">数据分析</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        UE分析和网站优化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-25T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-04-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/UE/">UE</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/UE/" rel="tag">UE</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>上星期公司组织share，我非常幸运的从高斯分布的转笔概率中，脱颖而出，成为这周的share者。。。。</p>
+<p>想起曾经做过SEO，就想干脆share一些属于SEO的东西吧。</p>
+<h1 id="什么叫UE？"><a href="#什么叫UE？" class="headerlink" title="什么叫UE？"></a>什么叫UE？</h1><p>首先我们来了解一些UE的这关键词的真实概念。UE即为：User Experience简称UE或UX,也叫做用户体验，它是指用户使用某一产品（服务）的过程中主观心理感受。</p>
+<h1 id="UE的价值在哪？"><a href="#UE的价值在哪？" class="headerlink" title="UE的价值在哪？"></a>UE的价值在哪？</h1><p>做好网站用户体验其核心价值有三个：</p>
+<ol>
+<li>增加网站用户粘度</li>
+<li>减少网站的跳出率、</li>
+<li>提高网站的转化率。</li>
+</ol>
+<p>这也是我们每个人都想得到的结果。</p>
+<h1 id="UE设计与优化方向"><a href="#UE设计与优化方向" class="headerlink" title="UE设计与优化方向"></a>UE设计与优化方向</h1><p>具体有五个：</p>
+<ol>
+<li>有用，让产品对用户有用，能解决用户的需求；</li>
+<li>易用，这个很重要，不要让用户在操作上很难受；</li>
+<li>友好，网站页面设计要做到有较好用户粘度；</li>
+<li>良好感官，网站整体感官要好，页面设计，色彩及图片搭配要合理，合乎大众浏览体验；</li>
+<li>品牌效应，这个是建立在以上四个的基础之上的，完善好上面四个后自然会贯通到品牌上来，做好前四个以后，品牌推广就容易很多了。</li>
+</ol>
+<h1 id="UE设计与优化的流程"><a href="#UE设计与优化的流程" class="headerlink" title="UE设计与优化的流程"></a>UE设计与优化的流程</h1><h2 id="最初需求"><a href="#最初需求" class="headerlink" title="最初需求"></a>最初需求</h2><p>例：<br>我要做一个跟蜂蜜有关的网站<br>具体怎么有关，我不知道。</p>
+<h2 id="关键词UE分析"><a href="#关键词UE分析" class="headerlink" title="关键词UE分析"></a>关键词UE分析</h2><p>三看</p>
+<ul>
+<li>看百度搜索下拉框</li>
+<li>看相关搜索</li>
+<li>看关键词自然排名前三内容</li>
+</ul>
+<p>关键词分为两种</p>
+<ul>
+<li>能产生直接或间接利益的。</li>
+<li>不能产生利益的。</li>
+</ul>
+<p>根据关键词分析，整理出相关性较强，又能直接或间接产生利益的一批关键词。<br>这些关键词除了词本身的意义，更透露出了用户的性别，年龄，搜索习惯，等等非常有用的信息。</p>
+<p>注意：关于关键词扩展，一般优化项目中会使用工具来进行爬取。不需要手动。相关工具请自行搜索。</p>
+<p>例：<br>搜索最初需求内的关键词 <code>蜂蜜</code></p>
+<ul>
+<li>看下拉框 <img src="./蜂蜜下拉.png" title="蜂蜜下拉框"/></li>
+<li>看相关搜索<img src="./蜂蜜相关搜索.png" title="蜂蜜相关搜索"/></li>
+<li>看关键词排名前三内容<img src="./蜂蜜搜索前三.png" title="蜂蜜搜索前三"/></li>
+</ul>
+<p>通过以上三看关键词得出：<br>目标人群：20-50岁之间，拥有一定经济基础的女性。<br>能产生需求关键词：功效作用类，价格类，真伪类。</p>
+<h2 id="站内优化"><a href="#站内优化" class="headerlink" title="站内优化"></a>站内优化</h2><p>站内优化分为两种，一种是根据用户体验进行的逻辑布局优化，一种是纯粹为了排名而进行的技术优化。</p>
+<h3 id="UE优化"><a href="#UE优化" class="headerlink" title="UE优化"></a>UE优化</h3><p>根据整理筛选出的几个重点关键词，讲用户对应关键词的需求操作步骤和逻辑简单化，和对应的布局。<br>例如：蜂蜜网站布局，20-50的女性，对于网站的良好感官是很在意的，因此尽量采用颜色鲜艳，比较抓眼球的UI界面，结合以UE的优化方向为主，按照目标关键词进行合理的布局和操作逻辑优化，达到，好用，易用的标准。<br><img src="./beecom.png" title="蜂蜜网站示例"/></p>
+<h3 id="技术优化"><a href="#技术优化" class="headerlink" title="技术优化"></a>技术优化</h3><h4 id="网站结构"><a href="#网站结构" class="headerlink" title="网站结构"></a>网站结构</h4><ul>
+<li>排查网页指数，流量，收录，br，指数词排名，高流量词覆盖</li>
+<li>整站url结构，要求简介明了，规范，和可读性，要求遵循树状结构。</li>
+<li>分析蜘蛛爬行日志，了解整站具体情况。</li>
+<li>要有sitemap.xml，并在robots里面写明，建立索引库</li>
+</ul>
+<h4 id="PC页面"><a href="#PC页面" class="headerlink" title="PC页面"></a>PC页面</h4><ul>
+<li>排查PageTilte，是否是按照用户需求定位部署，首页，栏目页，文章页标题是否布局合理。</li>
+<li>排查meta标签中keywords是否是按照百度分词进行的部署</li>
+<li>排查meta标签中Description书写是否合理。</li>
+<li>排查页面适配移动站点情况</li>
+<li>排查页面代码中h1，img，alt，title关键词部署，包括密度</li>
+<li>排查页面中错误链接，和页面体验性布局。</li>
+<li>排查页面在重点关键词中按排名表现，根据表现调整TKD</li>
+<li>排查网页中链接部分，要求有合适的网站面包屑、网站导航、网站地图、内链部署模块、友情链接</li>
+<li>及时排查404，死链提交给百度</li>
+<li>统计代码添加情况。</li>
+</ul>
+<h4 id="移动页面："><a href="#移动页面：" class="headerlink" title="移动页面："></a>移动页面：</h4><ul>
+<li>标题主旨明确，</li>
+<li>优质内容，体验</li>
+<li>加载速度快</li>
+<li>终端适配</li>
+<li>地域扩展</li>
+<li>排查被百度转码的Pc站点及时添加适配</li>
+<li>新站建议建站对应目录，并给百度提交适配关系</li>
+</ul>
+<h2 id="站外优化"><a href="#站外优化" class="headerlink" title="站外优化"></a>站外优化</h2><ul>
+<li>建设高质量外链，</li>
+<li>增加稳定的友链，</li>
+<li>稳定的搜索引擎收录，</li>
+<li>指数词的增加。</li>
+</ul>
+<h2 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h2><p>因为网站从优化到被百度重新排名，大概在两周的时间，或许更长。所以数据分析应该以 半月 为一个周期，</p>
+<p>具体的维度有以下：</p>
+<ul>
+<li>索引量 </li>
+<li>排名</li>
+<li>点击量 </li>
+<li>咨询量</li>
+<li>成交量</li>
+<li>跳出率<br>我们可以根据如上几个数据来具体分析站点处在哪个阶段，从而去进行整改，进而提升成交量，转化为经济利益。</li>
+</ul>
+<p>以下是数据分析后几种情况下的处理方式：</p>
+<ol>
+<li>索引量低，没排名，点击量低，没对话没成交</li>
+</ol>
+<ul>
+<li>这时候就要先做收录，因为收录页面多了排名几率才会提升，才有可能带来有转化页面。</li>
+</ul>
+<ol start="2">
+<li>有索引量，没排名，点击量低，没对话没成交</li>
+</ol>
+<ul>
+<li>排查收录页面标题，和标题的匹配相关词，看是否能够带来对话和成交，进行微调，同时做站点收录</li>
+</ul>
+<ol start="3">
+<li>有索引量，有排名，没点击量，没对话，没成交</li>
+</ol>
+<ul>
+<li>先查看排名是否为有效的大词流量词，不是流量词或者大词要进行微调匹配，再查看站点跳出率，排除自己IP后的点击量，如果跳出高，就要改善页面体验度，降低跳出率，提高对话转化率。</li>
+</ul>
+<ol start="4">
+<li>有索引量，有排名，有点击量，没对话，没成交</li>
+</ol>
+<ul>
+<li>这时候要排查自己站点转化，包括页面质量度，体验程度，站点移动适配，移动站质量度，是否符合用户体验习惯，还有页面是否与标题相关。</li>
+</ul>
+<ol start="5">
+<li>有索引量，有排名，有点击量，有对话，没成交-</li>
+</ol>
+<ul>
+<li>先看咨询记录，看是否是对话质量度引起的没成交，如果是，提高页面用户体验，提升用户对话质量，如果不是，可与咨询师协商解决。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%ABUE%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么叫UE？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E7%9A%84%E4%BB%B7%E5%80%BC%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">UE的价值在哪？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-number">3.</span> <span class="toc-text">UE设计与优化方向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BC%98%E5%8C%96%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">UE设计与优化的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%88%9D%E9%9C%80%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">最初需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8DUE%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">关键词UE分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%99%E5%86%85%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.</span> <span class="toc-text">站内优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UE%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.1.</span> <span class="toc-text">UE优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.2.</span> <span class="toc-text">技术优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.2.1.</span> <span class="toc-text">网站结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PC%E9%A1%B5%E9%9D%A2"><span class="toc-number">4.3.2.2.</span> <span class="toc-text">PC页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-number">4.3.2.3.</span> <span class="toc-text">移动页面：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%99%E5%A4%96%E4%BC%98%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text">站外优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-number">4.5.</span> <span class="toc-text">数据分析</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&text=UE分析和网站优化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&is_video=false&description=UE分析和网站优化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UE分析和网站优化&body=Check out this article: https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&title=UE分析和网站优化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&name=UE分析和网站优化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/26/UE_design_and_seo/&t=UE分析和网站优化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

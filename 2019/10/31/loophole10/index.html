@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前言本次查漏，因为都是属于类型，所以二合一。  包装对象（Number、String、Boolean） 对于包装对象这个概念，我以前是真的不知道。一直以为是跟对象一样，字面量可以直接继承prototype上的方法。  类型转换  类型转换这部分，以前只是记住了常用部分的特殊值，并没有仔细研究规则，不会活用。   以上两点，是在今天公司的培训会上提及，应该是我漏掉了。 包装对象定义对象是 JavaS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【查漏-js】10.js包装对象与类型转换">
+<meta property="og:url" content="https://www.shifeng1993.com/2019/10/31/loophole10/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="前言本次查漏，因为都是属于类型，所以二合一。  包装对象（Number、String、Boolean） 对于包装对象这个概念，我以前是真的不知道。一直以为是跟对象一样，字面量可以直接继承prototype上的方法。  类型转换  类型转换这部分，以前只是记住了常用部分的特殊值，并没有仔细研究规则，不会活用。   以上两点，是在今天公司的培训会上提及，应该是我漏掉了。 包装对象定义对象是 JavaS">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-10-31T13:32:00.000Z">
+<meta property="article:modified_time" content="2019-11-02T10:11:56.220Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【查漏-js】10.js包装对象与类型转换</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/03/28/project_i18n_treeshaking/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/08/30/js_basic_algorithms/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/10/31/loophole10/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/10/31/loophole10/&text=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/10/31/loophole10/&is_video=false&description=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【查漏-js】10.js包装对象与类型转换&body=Check out this article: https://www.shifeng1993.com/2019/10/31/loophole10/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/10/31/loophole10/&name=【查漏-js】10.js包装对象与类型转换&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/10/31/loophole10/&t=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E8%A3%85%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">包装对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#valueOf-NaN"><span class="toc-number">2.2.1.</span> <span class="toc-text">valueOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toString-NaN"><span class="toc-number">2.2.2.</span> <span class="toc-text">toString()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">原始类型与实例对象的自动转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">自定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">抽象相等比较算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E7%9B%B8%E5%90%8C"><span class="toc-number">3.1.1.</span> <span class="toc-text">类型相同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C"><span class="toc-number">3.1.2.</span> <span class="toc-text">类型不同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">抽象值操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ToString"><span class="toc-number">3.2.1.</span> <span class="toc-text">ToString</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToNumber"><span class="toc-number">3.2.2.</span> <span class="toc-text">ToNumber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToPrimitive"><span class="toc-number">3.2.3.</span> <span class="toc-text">ToPrimitive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9CPreferredType%E8%A2%AB%E6%A0%87%E8%AE%B0%E4%B8%BANumber"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">如果PreferredType被标记为Number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9CPreferredType%E8%A2%AB%E6%A0%87%E8%AE%B0%E4%B8%BAString"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">如果PreferredType被标记为String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89PreferredType%E8%BF%99%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%8C%E6%80%8E%E4%B9%88%E8%BD%AC%E6%8D%A2%E5%91%A2%EF%BC%9F"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">没有PreferredType这个参数时，怎么转换呢？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToBoolean"><span class="toc-number">3.2.4.</span> <span class="toc-text">ToBoolean</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9A%90%E5%BC%8F%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">常见的隐式强制类型转换</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【查漏-js】10.js包装对象与类型转换
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-31T13:32:00.000Z" class="dt-published" itemprop="datePublished">2019-10-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/js/" rel="tag">js</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次查漏，因为都是属于类型，所以二合一。</p>
+<ul>
+<li><p>包装对象（<code>Number</code>、<code>String</code>、<code>Boolean</code>）</p>
+<p>对于包装对象这个概念，我以前是真的不知道。一直以为是跟对象一样，字面量可以直接继承prototype上的方法。</p>
+</li>
+<li><p>类型转换 </p>
+<p>类型转换这部分，以前只是记住了常用部分的特殊值，并没有仔细研究规则，不会活用。</p>
+</li>
+</ul>
+<p>以上两点，是在今天公司的培训会上提及，应该是我漏掉了。</p>
+<h1 id="包装对象"><a href="#包装对象" class="headerlink" title="包装对象"></a>包装对象</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>对象是 JavaScript 语言最主要的数据类型，三种原始类型的值——数值、字符串、布尔值——在一定条件下，也会自动转为对象，也就是原始类型的“包装对象”（<code>wrapper</code>）。</p>
+<p>所谓“包装对象”，指的是与数值、字符串、布尔值分别相对应的<code>Number</code>、<code>String</code>、<code>Boolean</code>三个原生对象。这三个原生对象可以把原始类型的值变成（包装成）对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v1 = <span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">123</span>);</span><br><span class="line"><span class="keyword">var</span> v2 = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;abc&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> v3 = <span class="keyword">new</span> <span class="title class_">Boolean</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> v1 <span class="comment">// &quot;object&quot;</span></span><br><span class="line"><span class="keyword">typeof</span> v2 <span class="comment">// &quot;object&quot;</span></span><br><span class="line"><span class="keyword">typeof</span> v3 <span class="comment">// &quot;object&quot;</span></span><br><span class="line"></span><br><span class="line">v1 === <span class="number">123</span> <span class="comment">// false</span></span><br><span class="line">v2 === <span class="string">&#x27;abc&#x27;</span> <span class="comment">// false</span></span><br><span class="line">v3 === <span class="literal">true</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，基于原始类型的值，生成了三个对应的包装对象。可以看到，<code>v1</code>、<code>v2</code>、<code>v3</code>都是对象，且与对应的简单类型值不相等。</p>
+<p>包装对象的设计目的，首先是使得“对象”这种类型可以覆盖 JavaScript 所有的值，整门语言有一个通用的数据模型，其次是使得原始类型的值也有办法调用自己的方法。</p>
+<p><code>Number</code>、<code>String</code>和<code>Boolean</code>这三个原生对象，如果不作为构造函数调用（即调用时不加<code>new</code>），而是作为普通函数调用，常常用于将任意类型的值转为数值、字符串和布尔值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串转为数值</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="string">&#x27;123&#x27;</span>) <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数值转为字符串</span></span><br><span class="line"><span class="title class_">String</span>(<span class="number">123</span>) <span class="comment">// &quot;123&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数值转为布尔值</span></span><br><span class="line"><span class="title class_">Boolean</span>(<span class="number">123</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>总结一下，这三个对象作为构造函数使用（带有<code>new</code>）时，可以将原始类型的值转为对象；作为普通函数使用时（不带有<code>new</code>），可以将任意类型的值，转为原始类型的值。</p>
+<h2 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h2><p>三种包装对象各自提供了许多实例方法。这里介绍两种它们共同具有、从<code>Object</code>对象继承的方法：<code>valueOf()</code>和<code>toString()</code>。</p>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>valueOf()方法返回包装对象实例对应的原始类型的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">123</span>).<span class="title function_">valueOf</span>()  <span class="comment">// 123</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;abc&#x27;</span>).<span class="title function_">valueOf</span>() <span class="comment">// &quot;abc&quot;</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Boolean</span>(<span class="literal">true</span>).<span class="title function_">valueOf</span>() <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h3><p>toString()方法返回对应的字符串形式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">123</span>).<span class="title function_">toString</span>() <span class="comment">// &quot;123&quot;</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&#x27;abc&#x27;</span>).<span class="title function_">toString</span>() <span class="comment">// &quot;abc&quot;</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Boolean</span>(<span class="literal">true</span>).<span class="title function_">toString</span>() <span class="comment">// &quot;true&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="原始类型与实例对象的自动转换"><a href="#原始类型与实例对象的自动转换" class="headerlink" title="原始类型与实例对象的自动转换"></a>原始类型与实例对象的自动转换</h2><p>某些场合，原始类型的值会自动当作包装对象调用，即调用包装对象的属性和方法。这时，JavaScript 引擎会自动将原始类型的值转为包装对象实例，并在使用后立刻销毁实例。</p>
+<p>比如，字符串可以调用<code>length</code>属性，返回字符串的长度。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;abc&#x27;</span>.<span class="property">length</span> <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>abc</code>是一个字符串，本身不是对象，不能调用<code>length</code>属性。JavaScript 引擎自动将其转为包装对象，在这个对象上调用<code>length</code>属性。调用结束后，这个临时对象就会被销毁。这就叫<b>原始类型与实例对象的自动转换</b>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;abc&#x27;</span>;</span><br><span class="line">str.<span class="property">length</span> <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> strObj = <span class="keyword">new</span> <span class="title class_">String</span>(str)</span><br><span class="line"><span class="comment">// String &#123;</span></span><br><span class="line"><span class="comment">//   0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot;, length: 3, [[PrimitiveValue]]: &quot;abc&quot;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line">strObj.<span class="property">length</span> <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>自动转换生成的包装对象是只读的，无法修改。所以，字符串无法添加新属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line">s.<span class="property">x</span> = <span class="number">123</span>;</span><br><span class="line">s.<span class="property">x</span> <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码为字符串<code>s</code>添加了一个<code>x</code>属性，结果无效，总是返回<code>undefined</code>。</p>
+<p>另一方面，调用结束后，包装对象实例会自动销毁。这意味着，下一次调用字符串的属性时，实际是调用一个新生成的对象，而不是上一次调用时生成的那个对象，所以取不到赋值在上一个对象的属性。<b>如果要为字符串添加属性，只有在它的原型对象<code>String.prototype</code>上定义</b>。</p>
+<h2 id="自定义方法"><a href="#自定义方法" class="headerlink" title="自定义方法"></a>自定义方法</h2><p>除了原生的实例方法，包装对象还可以自定义方法和属性，供原始类型的值直接调用。</p>
+<p>比如，我们可以新增一个<code>double</code>方法，使得字符串和数字翻倍。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">String</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">double</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">valueOf</span>() + <span class="variable language_">this</span>.<span class="title function_">valueOf</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;abc&#x27;</span>.<span class="title function_">double</span>() <span class="comment">// abcabc</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Number</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">double</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">valueOf</span>() + <span class="variable language_">this</span>.<span class="title function_">valueOf</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="number">123</span>).<span class="title function_">double</span>() <span class="comment">// 246</span></span><br></pre></td></tr></table></figure>
+<p>上面代码在<code>String</code>和<code>Number</code>这两个对象的原型上面，分别自定义了一个方法，从而可以在所有实例对象上调用。注意，最后的<code>123</code>外面必须要加上圆括号，否则后面的点运算符（<code>.</code>）会被解释成小数点。</p>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="抽象相等比较算法"><a href="#抽象相等比较算法" class="headerlink" title="抽象相等比较算法"></a>抽象相等比较算法</h2><p>在比较<code>x == y</code>，其中 <code>x</code> 和 <code>y</code> 是值，结果返回 <code>true</code> 或 <code>false</code>。比较规则如下：</p>
+<h3 id="类型相同"><a href="#类型相同" class="headerlink" title="类型相同"></a>类型相同</h3><p>当 <code>x</code> 的类型与 <code>y</code> 的类型相同时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 如果`x`的类型为`Undefined`，返回`true`。</span><br><span class="line">2. 如果`x`的类型为`Null`，返回`true`。</span><br><span class="line">3. 如果`x`的类型为`Number`，则如下:</span><br><span class="line">  - 如果 x 为 NaN, 返回 false.(NaN == NaN 为false)</span><br><span class="line">  - 如果 y 为 NaN, 返回 false.	</span><br><span class="line">  - 如果 x 和 y 的值相同, 返回 true.</span><br><span class="line">  - 如果x为+0，y为−0，返回 true.</span><br><span class="line">  - 如果x为−0，y为+0，返回 true.</span><br><span class="line">  - 其他返回 false.</span><br><span class="line">4. 如果x是string类型，那么假如x和y是完全相同的字符序列（相同的长度和相应位置的相同字符），则返回true。否则，返回false。</span><br><span class="line">5. 如果x是布尔类型，假如x和y都为true或都为false，则返回true。否则，返回false。</span><br><span class="line">6. 如果x和y引用同一对象，则返回true。否则，返回false。</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型不同"><a href="#类型不同" class="headerlink" title="类型不同"></a>类型不同</h3><p>x 和 y 类型不相同的情况:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 如果x为null，y为undefined，则返回true。</span><br><span class="line">2. 如果x为undefined，y为null，则返回true。(其余的任何类型与undefined和null相比都为false)</span><br><span class="line">3. 如果x是数字类型，y是字符串类型，则返回x == ToNumber(y)的比较结果.</span><br><span class="line">4. 如果x是字符串类型，y是数字类型，则返回ToNumber(x) == y的比较结果.</span><br><span class="line">5. 如果x是布尔类型，则返回ToNumber（x）==y的比较结果.</span><br><span class="line">6. 如果y是布尔类型，则返回x == ToNumber（y)的比较结果.</span><br><span class="line">7. 如果x是字符串或数字类型，y 是对象类型，返回比较结果x== ToPrimitive（y）。</span><br><span class="line">8. 如果x是对象类型，y是字符串或数字类型，返回比较结果ToPrimitive（x）==y。</span><br><span class="line">9. 其他则返回false</span><br></pre></td></tr></table></figure>
+
+<p>上述规则看起来很复杂，但总结起来其实只有以下几点：</p>
+<ul>
+<li>两个引用类型比较，只需判断它们是不是引用了同一个对象，是返回<code>true</code>，否则为<code>false</code>。</li>
+<li><code>undefined</code> 和 <code>null</code> 两者互相比较或者与自身比较，结果是<code>true</code>。它俩与其他任何值比较的都为<code>false</code>。</li>
+<li><code>NaN</code>与任何值比较包括它自身结果都是<code>false</code>。</li>
+<li>引用类型和基本数据类型(<code>String</code>、<code>Number</code>)进行比较，引用类型会转换成与之所比较的基本数据的类型，再进行比较。</li>
+<li>引用类型和基本数据类型(<code>Boolean</code>)进行比较，<code>Boolean</code>类型先转换为数字类型，引用类型再转换成与之所比较的基本数据的类型进行比较。</li>
+<li><code>String</code>，<code>Boolean</code>，<code>Number</code>中的任意两个进行比较，最后都会转为<code>Number</code>类型再进行比较。</li>
+</ul>
+<p>现在我们再来看一下具体的类型转换过程</p>
+<h2 id="抽象值操作"><a href="#抽象值操作" class="headerlink" title="抽象值操作"></a>抽象值操作</h2><h3 id="ToString"><a href="#ToString" class="headerlink" title="ToString"></a>ToString</h3><p>抽象操作<code>ToString</code>负责处理非字符串到字符串的强制类型转换。<br>基本类型值的字符串化规则为：<code>null</code>转换为<code>&quot;null&quot;</code>，<code>undefined</code>转换为<code>&quot;undefined&quot;</code>，<code>true</code>转换为<code>&quot;true&quot;</code>。数字的字符串化遵循通用规则，那些极小和极大的数字使用指数形式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1.07</span>*<span class="number">1000</span>*<span class="number">1000</span>*<span class="number">1000</span>*<span class="number">1000</span>*<span class="number">1000</span>*<span class="number">1000</span>*<span class="number">1000</span></span><br><span class="line">a.<span class="title function_">toString</span>()    <span class="comment">//&quot;1.07e21&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>对<b>普通对象</b>来说，除非自行定义，否则<code>toString()</code>返回内部属性<code>[[Class]]</code>的值，如<code>&quot;[object Object]&quot;</code>。<br>数组的默认<code>toString()</code>方法经过了重新定义，将所有单元字符串化以后再用<code>&quot;,&quot;</code>连接起来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.<span class="title function_">toString</span>()    <span class="comment">//&quot;1,2,3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ToNumber"><a href="#ToNumber" class="headerlink" title="ToNumber"></a>ToNumber</h3><p>抽象操作<code>ToNumber</code>将非数字值转换为数字值。<br>其中<code>true</code>转换为<code>1</code>，<code>false</code>转换为<code>0</code>，<code>undefined</code>转换为<code>NaN</code>,<code>null</code>转换为<code>0</code>。<br><code>ToNumber</code>对字符串的处理基本遵循数字常量的相关规则，<code>&quot;&quot;</code>(空字符串)转为<code>0</code>，<code>&#39;123&#39;</code> 转为 <code>123</code>，(字符串中含有非数字类型字符返回<code>NaN</code>，<code>NaN</code>与任何类型比较都为<code>false</code>，此时就不需要再考虑其他情况)。<br>引用类型，会首先被转换为相应的基本类型值，如果返回的是非数字的基本类型值，则再遵循以上规则将其强制转换为数字。</p>
+<h3 id="ToPrimitive"><a href="#ToPrimitive" class="headerlink" title="ToPrimitive"></a>ToPrimitive</h3><p>抽象方法<code>ToPrimitive(input, PreferredType?)</code>将对象值转换为相应的基本类型值。<br><code>input</code>是要转换的值，<code>PreferredType</code>是可选参数，可以是<code>Number</code>或<code>String</code>类型。他只是一个转换标志，转化后的结果并不一定是这个参数所值的类型，但是转换结果一定是一个原始值（或者报错）</p>
+<h4 id="如果PreferredType被标记为Number"><a href="#如果PreferredType被标记为Number" class="headerlink" title="如果PreferredType被标记为Number"></a>如果<code>PreferredType</code>被标记为Number</h4><ol>
+<li>如果输入的值已经是一个原始值，则直接返回它</li>
+<li>否则，如果输入的值是一个对象，则调用该对象的<code>valueOf()</code>方法，<br>如果<code>valueOf()</code>方法的返回值是一个原始值，则返回这个原始值。</li>
+<li>否则，调用这个对象的<code>toString()</code>方法，如果<code>toString()</code>方法返回的是一个原始值，则返回这个原始值。</li>
+<li>否则，抛出TypeError异常。</li>
+</ol>
+<h4 id="如果PreferredType被标记为String"><a href="#如果PreferredType被标记为String" class="headerlink" title="如果PreferredType被标记为String"></a>如果<code>PreferredType</code>被标记为String</h4><ol>
+<li>如果输入的值已经是一个原始值，则直接返回它</li>
+<li>否则，调用这个对象的<code>toString()</code>方法，如果<code>toString()</code>方法返回的是一个原始值，则返回这个原始值。</li>
+<li>否则，如果输入的值是一个对象，则调用该对象的<code>valueOf()</code>方法，<br>如果<code>valueOf()</code>方法的返回值是一个原始值，则返回这个原始值。</li>
+<li>否则，抛出<code>TypeError</code>异常。</li>
+</ol>
+<h4 id="没有PreferredType这个参数时，怎么转换呢？"><a href="#没有PreferredType这个参数时，怎么转换呢？" class="headerlink" title="没有PreferredType这个参数时，怎么转换呢？"></a>没有<code>PreferredType</code>这个参数时，怎么转换呢？</h4><p><code>PreferredType</code>的值会按照这样的规则来自动设置：</p>
+<ol>
+<li>该对象为<code>Date</code>类型，则<code>PreferredType</code>被设置为<code>String</code></li>
+<li>否则，<code>PreferredType</code>被设置为Number</li>
+</ol>
+<h3 id="ToBoolean"><a href="#ToBoolean" class="headerlink" title="ToBoolean"></a>ToBoolean</h3><p>抽象操作<code>ToBoolean</code>将非布尔值转换为布尔值。<br>对于布尔类型转换来说，假值(<code>undefined</code>、<code>null</code>、<code>fals</code>e、<code>+0</code>、<code>-0</code>、<code>NaN</code>、<code>&quot;&quot;</code>)会被转换为false，除假值外的所有值都会被转换成true。</p>
+<h2 id="常见的隐式强制类型转换"><a href="#常见的隐式强制类型转换" class="headerlink" title="常见的隐式强制类型转换"></a>常见的隐式强制类型转换</h2><ul>
+<li><code>+ - * / %</code> 这几个运算符都可以将结果转为<b>数字类型</b></li>
+<li><code>+</code> 运算符常用来进行<b>数字类型强制转换</b>，因为它不会像<code>-</code>运算符一样影响结果</li>
+<li><code>+</code> 运算符可以将日期类型<code>new Date()</code>转换成<b>数字类型的时间戳</b></li>
+<li><code>!</code> 逻辑运算符<b>可以将任何类型转为布尔类型</b>，因为<code>!</code>运算符转换后的结果是被反转的，我们也可以使用两个<code>!</code>来得出正确的结果</li>
+<li><code>if()、 while()</code>括号内可以对所有数据类型<b>默认执行强制布尔类型转换</b></li>
+<li>三元运算符的条件也会执行<b>强制布尔类型转换</b></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E8%A3%85%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">包装对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#valueOf-NaN"><span class="toc-number">2.2.1.</span> <span class="toc-text">valueOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toString-NaN"><span class="toc-number">2.2.2.</span> <span class="toc-text">toString()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">原始类型与实例对象的自动转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">自定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">抽象相等比较算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E7%9B%B8%E5%90%8C"><span class="toc-number">3.1.1.</span> <span class="toc-text">类型相同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C"><span class="toc-number">3.1.2.</span> <span class="toc-text">类型不同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">抽象值操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ToString"><span class="toc-number">3.2.1.</span> <span class="toc-text">ToString</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToNumber"><span class="toc-number">3.2.2.</span> <span class="toc-text">ToNumber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToPrimitive"><span class="toc-number">3.2.3.</span> <span class="toc-text">ToPrimitive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9CPreferredType%E8%A2%AB%E6%A0%87%E8%AE%B0%E4%B8%BANumber"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">如果PreferredType被标记为Number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9CPreferredType%E8%A2%AB%E6%A0%87%E8%AE%B0%E4%B8%BAString"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">如果PreferredType被标记为String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89PreferredType%E8%BF%99%E4%B8%AA%E5%8F%82%E6%95%B0%E6%97%B6%EF%BC%8C%E6%80%8E%E4%B9%88%E8%BD%AC%E6%8D%A2%E5%91%A2%EF%BC%9F"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">没有PreferredType这个参数时，怎么转换呢？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToBoolean"><span class="toc-number">3.2.4.</span> <span class="toc-text">ToBoolean</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9A%90%E5%BC%8F%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">常见的隐式强制类型转换</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/10/31/loophole10/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/10/31/loophole10/&text=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/10/31/loophole10/&is_video=false&description=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【查漏-js】10.js包装对象与类型转换&body=Check out this article: https://www.shifeng1993.com/2019/10/31/loophole10/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/10/31/loophole10/&title=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/10/31/loophole10/&name=【查漏-js】10.js包装对象与类型转换&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/10/31/loophole10/&t=【查漏-js】10.js包装对象与类型转换"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

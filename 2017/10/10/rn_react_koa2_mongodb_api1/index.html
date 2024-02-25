@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="上次的数据库设计完了，对应的orm映射也做了，下来就是控制器的部分， 操作流程首先我们要来根据用户需求来统计操作流程，并画出流程图。 用户类 用户登录 用户注册 查看用户个人资料 用户编辑个人资料  购物车类 查看购物车 加入购物车 修改：在购物车内修改已选属性，包括数量 删除：删除购物车内商品  订单类 查看订单 单个下单 批量下单：将商品加入自己购物车，在购物车内批量下订单 删除：单个订单删除">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RN+react+koa2+mongodb实战随笔】3.API和C层结构">
+<meta property="og:url" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="上次的数据库设计完了，对应的orm映射也做了，下来就是控制器的部分， 操作流程首先我们要来根据用户需求来统计操作流程，并画出流程图。 用户类 用户登录 用户注册 查看用户个人资料 用户编辑个人资料  购物车类 查看购物车 加入购物车 修改：在购物车内修改已选属性，包括数量 删除：删除购物车内商品  订单类 查看订单 单个下单 批量下单：将商品加入自己购物车，在购物车内批量下订单 删除：单个订单删除">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E7%BC%96%E8%BE%91%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E5%B0%86%E5%95%86%E5%93%81%E5%8A%A0%E5%85%A5%E8%B4%AD%E7%89%A9%E8%BD%A6@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E4%BF%AE%E6%94%B9%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%86%85%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E5%88%A0%E9%99%A4%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%86%85%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%9B%B4%E6%8E%A5%E8%B4%AD%E4%B9%B0%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E5%9C%A8%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%86%85%E4%B8%8B%E5%8D%95%E8%B4%AD%E4%B9%B0%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E5%88%A0%E9%99%A4%E8%AE%A2%E5%8D%95@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E6%9F%A5%E8%AF%A2%E5%94%AE%E5%8D%96%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E6%B7%BB%E5%8A%A0%E5%94%AE%E5%8D%96%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E4%BF%AE%E6%94%B9%E5%94%AE%E5%8D%96%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E5%88%A0%E9%99%A4%E5%94%AE%E5%8D%96%E5%95%86%E5%93%81@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C@2x.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E7%BC%96%E8%BE%91%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99@2x.png">
+<meta property="article:published_time" content="2017-10-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="实战随笔">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95@2x.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【RN+react+koa2+mongodb实战随笔】3.API和C层结构</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/10/14/rn_react_koa2_mongodb_api2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/10/08/rn_react_koa2_mongodb_database_design/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&text=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】3.API和C层结构&body=Check out this article: https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&name=【RN+react+koa2+mongodb实战随笔】3.API和C层结构&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&t=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">操作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用户类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">购物车类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">订单类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">商品类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9B%E8%B4%A7%E5%95%86%E7%B1%BB"><span class="toc-number">1.5.</span> <span class="toc-text">供货商类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E4%BC%A0%E5%8F%82%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">路由设计以及传参设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">枚举：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%B1%BB-1"><span class="toc-number">2.2.</span> <span class="toc-text">用户类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%B1%BB-1"><span class="toc-number">2.3.</span> <span class="toc-text">购物车类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E7%B1%BB-1"><span class="toc-number">2.4.</span> <span class="toc-text">订单类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%B1%BB-1"><span class="toc-number">2.5.</span> <span class="toc-text">商品类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【RN+react+koa2+mongodb实战随笔】3.API和C层结构
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-09T16:00:00.000Z" class="dt-published" itemprop="datePublished">2017-10-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/nodejs/" rel="tag">nodejs</a>, <a class="p-category" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a>, <a class="p-category" href="/tags/%E5%AE%9E%E6%88%98%E9%9A%8F%E7%AC%94/" rel="tag">实战随笔</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>上次的数据库设计完了，对应的orm映射也做了，下来就是控制器的部分，</p>
+<h1 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h1><p>首先我们要来根据用户需求来统计操作流程，并画出流程图。</p>
+<h2 id="用户类"><a href="#用户类" class="headerlink" title="用户类"></a>用户类</h2><ul>
+<li>用户登录<img src="./用户登录@2x.png" title="用户登录"/></li>
+<li>用户注册<img src="./用户注册@2x.png" title="用户注册" /></li>
+<li>查看用户个人资料</li>
+<li>用户编辑个人资料<img src="./用户编辑个人资料@2x.png" title="用户编辑个人资料" /></li>
+</ul>
+<h2 id="购物车类"><a href="#购物车类" class="headerlink" title="购物车类"></a>购物车类</h2><ul>
+<li>查看购物车</li>
+<li>加入购物车<img src="./将商品加入购物车@2x.png" title="将商品加入购物车"/></li>
+<li>修改：在购物车内修改已选属性，包括数量<img src="./修改购物车内商品@2x.png" title="修改购物车内商品" /></li>
+<li>删除：删除购物车内商品<img src="./删除购物车内商品@2x.png" title="删除购物车内商品" /></li>
+</ul>
+<h2 id="订单类"><a href="#订单类" class="headerlink" title="订单类"></a>订单类</h2><ul>
+<li>查看订单</li>
+<li>单个下单<img src="./直接购买商品@2x.png" title="直接购买商品"/></li>
+<li>批量下单：将商品加入自己购物车，在购物车内批量下订单<img src="./在购物车内下单购买商品@2x.png" title="在购物车内下单购买商品" /></li>
+<li>删除：单个订单删除，在订单状态为待付款和已收货才可以删除。<img src="./删除订单@2x.png" title="删除订单" /></li>
+</ul>
+<h2 id="商品类"><a href="#商品类" class="headerlink" title="商品类"></a>商品类</h2><ul>
+<li>查询售卖商品<img src="./查询售卖商品@2x.png" title="查询售卖商品" /></li>
+<li>添加售卖商品<img src="./添加售卖商品@2x.png" title="添加售卖商品" /></li>
+<li>修改售卖商品<img src="./修改售卖商品@2x.png" title="修改售卖商品" /></li>
+<li>删除售卖商品<img src="./删除售卖商品@2x.png" title="删除售卖商品" /></li>
+</ul>
+<h2 id="供货商类"><a href="#供货商类" class="headerlink" title="供货商类"></a>供货商类</h2><ul>
+<li>供货商登录<img src="./用户登录@2x.png" title="供货商登录"/></li>
+<li>供货商注册<img src="./用户注册@2x.png" title="供货商注册" /></li>
+<li>供货商编辑个人资料<img src="./用户编辑个人资料@2x.png" title="供货商编辑个人资料" /></li>
+</ul>
+<h1 id="路由设计以及传参设计"><a href="#路由设计以及传参设计" class="headerlink" title="路由设计以及传参设计"></a>路由设计以及传参设计</h1><p>流程图画完了，大致清楚了需要api的地方，下面做api设计，然后在做路由的优化和合并。</p>
+<ul>
+<li>一级路由为对象，二级路由为对这些对象的操作方法</li>
+<li>合并一些路由，从传参判断</li>
+<li>以下接口默认标注为axios的默认标准</li>
+</ul>
+<h2 id="枚举："><a href="#枚举：" class="headerlink" title="枚举："></a>枚举：</h2><ul>
+<li><p>用户类型<br>userTypes: [‘系统管理员’, ‘用户’, ‘商户’],</p>
+</li>
+<li><p>订单状态<br>orderStates: [‘待付款’, ‘已付款’, ‘待发货’, ‘已发货’, ‘待收货’, ‘已收货’]</p>
+</li>
+</ul>
+<h2 id="用户类-1"><a href="#用户类-1" class="headerlink" title="用户类"></a>用户类</h2><ul>
+<li><p>用户登录</p>
+<ul>
+<li>url: &#x2F;user&#x2F;signIn</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&quot;user1&quot;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&quot;123&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>用户注册</p>
+<ul>
+<li>url: &#x2F;user&#x2F;signUp</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&#x27;user1&#x27;</span>,</span><br><span class="line">  <span class="attr">userphone</span>: <span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">  <span class="attr">nickname</span>: <span class="string">&#x27;321&#x27;</span>,</span><br><span class="line">  <span class="attr">userType</span>: <span class="string">&#x27;用户&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>查看用户资料</p>
+<ul>
+<li>url: &#x2F;user&#x2F;getUserInfo&#x2F;:useruuid</li>
+<li>Type: GET</li>
+</ul>
+</li>
+<li><p>编辑用户资料</p>
+<ul>
+<li>url: &#x2F;user&#x2F;setUserInfo</li>
+<li>Type: POST<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">useruuid</span>: <span class="string">&#x27;599f99f2f7ca72710fbc9b67_2&#x27;</span>,</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">userphone</span>: <span class="string">&#x27;你特么到底想要几个大傻逼&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">nickname</span>: <span class="string">&#x27;第二个大傻逼&#x27;</span>,</span><br><span class="line">  <span class="attr">summary</span>: <span class="string">&#x27;握草，干他&#x27;</span>,</span><br><span class="line">  <span class="attr">userImg</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="购物车类-1"><a href="#购物车类-1" class="headerlink" title="购物车类"></a>购物车类</h2><ul>
+<li><p>查看购物车</p>
+<ul>
+<li>url: &#x2F;shoppingCart&#x2F;getGoods&#x2F;:useruuid,</li>
+<li>Type: GET</li>
+</ul>
+</li>
+<li><p>加入购物车</p>
+<ul>
+<li>url: &#x2F;shoppingCart&#x2F;addGoods,</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goods</span>: &#123;</span><br><span class="line">    <span class="attr">goodsCode</span>: <span class="string">&#x27;599fc0ef7975f910877e6e36&#x27;</span>,</span><br><span class="line">    <span class="attr">goodsName</span>: <span class="string">&#x27;矿泉水&#x27;</span>, <span class="comment">//商品名称</span></span><br><span class="line">    <span class="attr">goodsSummary</span>: <span class="string">&#x27;一瓶矿泉水&#x27;</span>, <span class="comment">// 商品简介</span></span><br><span class="line">    <span class="attr">goodsImg</span>: <span class="string">&#x27;目前没有&#x27;</span>, <span class="comment">//商品图片</span></span><br><span class="line">    <span class="attr">goodsPrice</span>: <span class="number">300</span>, <span class="comment">// 商品标价</span></span><br><span class="line">    <span class="attr">goodsType</span>: <span class="number">2</span>, <span class="comment">// 商品分类</span></span><br><span class="line">    <span class="attr">goodsNumber</span>: <span class="number">2</span>, <span class="comment">// 商品数量</span></span><br><span class="line">    <span class="attr">goodsAttrs</span>: [<span class="string">&#x27;300ML&#x27;</span>], <span class="comment">// 商品属性</span></span><br><span class="line">    <span class="attr">supplierUsername</span>: <span class="string">&#x27;admin&#x27;</span>, <span class="comment">//供货商名称</span></span><br><span class="line">    <span class="attr">supplierNickname</span>: <span class="string">&#x27;第二个大傻逼&#x27;</span>, <span class="comment">//供货商名称</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">useruuid</span>: useruuid</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>修改：在购物车内修改已选属性，包括数量, 支持批量</p>
+<ul>
+<li>url: &#x2F;shoppingCart&#x2F;editGoods,</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goods</span>: [&#123;</span><br><span class="line">    <span class="string">&quot;shoppingCartId&quot;</span>: <span class="string">&quot;59a39ced278ddd1f9dd7edda&quot;</span>,</span><br><span class="line">    <span class="string">&quot;goodsCode&quot;</span>: <span class="string">&quot;599fc0ef7975f910877e6e36&quot;</span>,</span><br><span class="line">    <span class="string">&quot;goodsName&quot;</span>: <span class="string">&quot;这瓶矿泉水真的难喝&quot;</span></span><br><span class="line">  &#125;,&#123;</span><br><span class="line">    <span class="string">&quot;shoppingCartId&quot;</span>: <span class="string">&quot;59a39ced278ddd1f9dd7eddb&quot;</span>,</span><br><span class="line">    <span class="string">&quot;goodsCode&quot;</span>: <span class="string">&quot;599fc0ef7975f910877e6e36&quot;</span>,</span><br><span class="line">    <span class="string">&quot;goodsName&quot;</span>: <span class="string">&quot;我真的是日了狗了&quot;</span></span><br><span class="line">  &#125;],</span><br><span class="line">  <span class="attr">useruuid</span>: useruuid</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>删除：删除购物车内商品，支持批量</p>
+<ul>
+<li>url: &#x2F;shoppingCart&#x2F;removeGoods,</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goodsuuids</span>: [</span><br><span class="line">    <span class="string">&#x27;59a39cef278ddd1f9dd7ede4&#x27;</span>, <span class="string">&#x27;59a39cef278ddd1f9dd7ede5&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">useruuid</span>: useruuid</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="订单类-1"><a href="#订单类-1" class="headerlink" title="订单类"></a>订单类</h2><ul>
+<li><p>查看订单列表</p>
+<ul>
+<li>url: &#x2F;order&#x2F;getOrder&#x2F;:useruuid</li>
+<li>Type: GET</li>
+</ul>
+</li>
+<li><p>查看单个订单</p>
+<ul>
+<li>url: &#x2F;order&#x2F;getOrder&#x2F;:useruuid&#x2F;:orderid</li>
+<li>Type: GET</li>
+</ul>
+</li>
+<li><p>新增单个订单和新增批量订单，交给S端计算</p>
+<ul>
+<li>url: &#x2F;order&#x2F;addOrder</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goods</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">goodsCode</span>: <span class="string">&#x27;599fc0ef7975f910877e6e36&#x27;</span>,</span><br><span class="line">      <span class="attr">goodsName</span>: <span class="string">&#x27;矿泉水&#x27;</span>, <span class="comment">//商品名称</span></span><br><span class="line">      <span class="attr">goodsSummary</span>: <span class="string">&#x27;一瓶矿泉水&#x27;</span>, <span class="comment">// 商品简介</span></span><br><span class="line">      <span class="attr">goodsImg</span>: <span class="string">&#x27;目前没有&#x27;</span>, <span class="comment">//商品图片</span></span><br><span class="line">      <span class="attr">goodsPrice</span>: <span class="number">300</span>, <span class="comment">// 商品标价</span></span><br><span class="line">      <span class="attr">goodsType</span>: <span class="number">2</span>, <span class="comment">// 商品分类</span></span><br><span class="line">      <span class="attr">goodsNumber</span>: <span class="number">2</span>, <span class="comment">// 商品数量</span></span><br><span class="line">      <span class="attr">goodsAttrs</span>: [<span class="string">&#x27;300ML&#x27;</span>], <span class="comment">// 商品属性</span></span><br><span class="line">      <span class="attr">supplierUsername</span>: <span class="string">&#x27;admin&#x27;</span>, <span class="comment">//供货商名称</span></span><br><span class="line">      <span class="attr">supplierNickname</span>: <span class="string">&#x27;第二个大傻逼&#x27;</span>, <span class="comment">//供货商名称</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">useruuid</span>: useruuid</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>提交订单</p>
+<ul>
+<li>url: &#x2F;order&#x2F;saveOrder</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goods</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">goodsCode</span>: <span class="string">&quot;599fc0ef7975f910877e6e36&quot;</span>,</span><br><span class="line">      <span class="attr">goodsName</span>: <span class="string">&quot;矿泉水&quot;</span>,</span><br><span class="line">      <span class="attr">goodsSummary</span>: <span class="string">&quot;一瓶矿泉水&quot;</span>,</span><br><span class="line">      <span class="attr">goodsImg</span>: <span class="string">&quot;目前没有&quot;</span>,</span><br><span class="line">      <span class="attr">goodsPrice</span>: <span class="number">300</span>,</span><br><span class="line">      <span class="attr">goodsType</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="attr">goodsNumber</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="attr">goodsAttrs</span>: [<span class="string">&quot;300ML&quot;</span>],</span><br><span class="line">      <span class="attr">supplierUsername</span>: <span class="string">&quot;admin&quot;</span>,</span><br><span class="line">      <span class="attr">supplierNickname</span>: <span class="string">&quot;第二个大傻逼&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">useruuid</span>: useruuid,</span><br><span class="line">  <span class="attr">orderTotal</span>: <span class="number">600</span>,</span><br><span class="line">  <span class="attr">actuaPayment</span>: <span class="number">600</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>删除订单</p>
+<ul>
+<li>url: &#x2F;order&#x2F;removeOrder&#x2F;:useruuid&#x2F;:orderid</li>
+<li>Type: GET</li>
+</ul>
+</li>
+</ul>
+<h2 id="商品类-1"><a href="#商品类-1" class="headerlink" title="商品类"></a>商品类</h2><ul>
+<li><p>查询售卖商品</p>
+<ul>
+<li>url: &#x2F;goods&#x2F;getGoodsList</li>
+<li>Type: GET</li>
+<li>query:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  currentPage = <span class="number">1</span>;</span><br><span class="line">  pageSize = <span class="number">10</span>;</span><br><span class="line">  goods：id，</span><br><span class="line">  name：string</span><br><span class="line">&#125;==&gt; ?currentPage=<span class="number">1</span>&amp;pageSize=<span class="number">10</span>&amp;goods=id&amp;name=string</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>查询售卖商品单个信息</p>
+<ul>
+<li>url: &#x2F;goods&#x2F;getGoods&#x2F;:goodsuuid</li>
+<li>Type: GET</li>
+</ul>
+</li>
+<li><p>添加售卖商品</p>
+<ul>
+<li>url: &#x2F;goods&#x2F;addGoods</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goodsName</span>: <span class="string">&#x27;矿泉水&#x27;</span>, <span class="comment">//商品名称</span></span><br><span class="line">  <span class="attr">goodsSummary</span>: <span class="string">&#x27;一瓶矿泉水&#x27;</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  <span class="attr">goodsImg</span>: <span class="string">&#x27;目前没有&#x27;</span>, <span class="comment">//商品图片</span></span><br><span class="line">  <span class="attr">goodsPrice</span>: <span class="number">300</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  <span class="attr">goodsType</span>: <span class="number">2</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  <span class="attr">goodsStock</span>: <span class="number">9999</span>, <span class="comment">// 商品库存</span></span><br><span class="line">  <span class="comment">// 商品属性</span></span><br><span class="line">  <span class="attr">goodsAttrs</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;规格&#x27;</span>,</span><br><span class="line">      <span class="attr">value</span>: [<span class="string">&#x27;300ML&#x27;</span>, <span class="string">&#x27;500ML&#x27;</span>, <span class="string">&#x27;1L&#x27;</span>, <span class="string">&#x27;3L&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">supplier</span>: useruuid</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>修改售卖商品</p>
+<ul>
+<li>url: &#x2F;goods&#x2F;editGoods</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goodsuuid</span>: <span class="string">&#x27;599fc0ef7975f910877e6e36&#x27;</span>,</span><br><span class="line">  <span class="attr">goodsName</span>: <span class="string">&#x27;矿泉水&#x27;</span>, <span class="comment">//商品名称</span></span><br><span class="line">  <span class="attr">goodsSummary</span>: <span class="string">&#x27;这真的是他妈一瓶矿泉水&#x27;</span>, <span class="comment">// 商品简介</span></span><br><span class="line">  <span class="attr">goodsImg</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">//商品图片</span></span><br><span class="line">  <span class="attr">goodsPrice</span>: <span class="literal">null</span>, <span class="comment">// 商品标价</span></span><br><span class="line">  <span class="attr">goodsType</span>: <span class="literal">null</span>, <span class="comment">// 商品分类</span></span><br><span class="line">  <span class="attr">goodsStock</span>: <span class="literal">null</span> <span class="comment">// 商品库存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>删除售卖商品, 支持批量</p>
+<ul>
+<li>url: &#x2F;goods&#x2F;removeGoods</li>
+<li>Type: POST</li>
+<li>request:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">goodsuuids</span>: [<span class="string">&#x27;599fc57e148833122ae1df20&#x27;</span>, <span class="string">&#x27;599fc575148833122ae1df1e&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h1 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h1><p><code>https://github.com/shifeng1993/mongo-server</code></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">操作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用户类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">购物车类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">订单类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">商品类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9B%E8%B4%A7%E5%95%86%E7%B1%BB"><span class="toc-number">1.5.</span> <span class="toc-text">供货商类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E4%BC%A0%E5%8F%82%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">路由设计以及传参设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">枚举：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%B1%BB-1"><span class="toc-number">2.2.</span> <span class="toc-text">用户类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%B1%BB-1"><span class="toc-number">2.3.</span> <span class="toc-text">购物车类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E7%B1%BB-1"><span class="toc-number">2.4.</span> <span class="toc-text">订单类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%B1%BB-1"><span class="toc-number">2.5.</span> <span class="toc-text">商品类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&text=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】3.API和C层结构&body=Check out this article: https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&title=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&name=【RN+react+koa2+mongodb实战随笔】3.API和C层结构&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/10/rn_react_koa2_mongodb_api1/&t=【RN+react+koa2+mongodb实战随笔】3.API和C层结构"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

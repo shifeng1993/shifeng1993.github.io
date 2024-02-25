@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前端表单校验分为两种，一种是内置表单校验，一种是js表单校验。校验的目的：  希望数据格式正确 保护用户数据 保护应用和服务器  内置校验（基础）必填项使用 required属性进行校验 12345&lt;form&gt;  &lt;label for&#x3D;&quot;choose&quot;&gt;你吵架时候偏袒你媳妇还是你妈?&lt;&#x2F;label&gt;  &lt;input id&#x3D;&quot;c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习-html】8.html表单校验">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/10/27/base_html8/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="前端表单校验分为两种，一种是内置表单校验，一种是js表单校验。校验的目的：  希望数据格式正确 保护用户数据 保护应用和服务器  内置校验（基础）必填项使用 required属性进行校验 12345&lt;form&gt;  &lt;label for&#x3D;&quot;choose&quot;&gt;你吵架时候偏袒你媳妇还是你妈?&lt;&#x2F;label&gt;  &lt;input id&#x3D;&quot;c">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-27T04:02:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T07:54:25.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【基础学习-html】8.html表单校验</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/10/27/base_html9/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/10/26/base_html7/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/27/base_html8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/27/base_html8/&text=【基础学习-html】8.html表单校验"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/27/base_html8/&is_video=false&description=【基础学习-html】8.html表单校验"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】8.html表单校验&body=Check out this article: https://www.shifeng1993.com/2018/10/27/base_html8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/27/base_html8/&name=【基础学习-html】8.html表单校验&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/27/base_html8/&t=【基础学习-html】8.html表单校验"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%A0%A1%E9%AA%8C%EF%BC%88%E5%9F%BA%E7%A1%80%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">内置校验（基础）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E5%A1%AB%E9%A1%B9"><span class="toc-number">1.1.</span> <span class="toc-text">必填项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%AE%9A%E9%95%BF%E5%BA%A6"><span class="toc-number">1.2.</span> <span class="toc-text">规定长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">使用正则校验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%B7"><span class="toc-number">1.3.2.</span> <span class="toc-text">手机号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7"><span class="toc-number">1.3.3.</span> <span class="toc-text">身份证号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95"><span class="toc-number">1.3.4.</span> <span class="toc-text">账号是否合法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.5.</span> <span class="toc-text">密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.6.</span> <span class="toc-text">强密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-number">1.3.7.</span> <span class="toc-text">域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.3.8.</span> <span class="toc-text">日期格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.3.9.</span> <span class="toc-text">时间格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js%E6%A0%A1%E9%AA%8C%EF%BC%88%E9%AB%98%E7%BA%A7%E5%92%8C%E6%89%A9%E5%B1%95%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">js校验（高级和扩展）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8H5%E7%9A%84%E7%BA%A6%E6%9D%9F%E6%A0%A1%E9%AA%8CAPI%EF%BC%88constraint-validation%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">使用H5的约束校验API（constraint validation）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#html"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">js</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8%E7%BA%A6%E6%9D%9F%E6%A0%A1%E9%AA%8Capi%EF%BC%88constraint-validation%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">不使用约束校验api（constraint validation）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#html-1"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css-1"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js-1"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">js</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【基础学习-html】8.html表单校验
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-10-27T04:02:00.000Z" class="dt-published" itemprop="datePublished">2018-10-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/base/">base</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/html/" rel="tag">html</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>前端表单校验分为两种，一种是内置表单校验，一种是js表单校验。<br>校验的目的：</p>
+<ul>
+<li>希望数据格式正确</li>
+<li>保护用户数据</li>
+<li>保护应用和服务器</li>
+</ul>
+<h1 id="内置校验（基础）"><a href="#内置校验（基础）" class="headerlink" title="内置校验（基础）"></a>内置校验（基础）</h1><h2 id="必填项"><a href="#必填项" class="headerlink" title="必填项"></a>必填项</h2><p>使用 <code>required</code>属性进行校验</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;choose&quot;</span>&gt;</span>你吵架时候偏袒你媳妇还是你妈?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;choose&quot;</span> <span class="attr">name</span>=<span class="string">&quot;i_like&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用css伪类 <code>:invalid</code> 来进行列表的样式化</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:invalid</span> &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">1px</span> red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span><span class="selector-pseudo">:invalid</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="规定长度"><a href="#规定长度" class="headerlink" title="规定长度"></a>规定长度</h2><p>字符串类型输入使用 <code>minlength</code> 和 <code>maxlength</code>限制长度<br>数字类型输入使用 <code>min</code> 和 <code>max</code>限制长度</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;choose&quot;</span>&gt;</span>随便输入六个字?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;choose&quot;</span> <span class="attr">name</span>=<span class="string">&quot;i_like&quot;</span> <span class="attr">required</span> <span class="attr">minlength</span>=<span class="string">&quot;6&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;6&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;number&quot;</span>&gt;</span>输入你想吃的巧克力数量?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">id</span>=<span class="string">&quot;number&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> <span class="attr">min</span>=<span class="string">&quot;1&quot;</span> <span class="attr">max</span>=<span class="string">&quot;10&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样，使用css伪类 <code>:invalid</code> 来进行列表的样式化</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:invalid</span> &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">1px</span> red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span><span class="selector-pseudo">:invalid</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用正则校验"><a href="#使用正则校验" class="headerlink" title="使用正则校验"></a>使用正则校验</h2><p>使用<code>pattern</code>属性加入正则，<br>例如： 枚举，我妈和我媳妇</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;choose&quot;</span>&gt;</span>你吵架时候偏袒你媳妇还是你妈?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;choose&quot;</span> <span class="attr">name</span>=<span class="string">&quot;i_like&quot;</span> <span class="attr">required</span> <span class="attr">pattern</span>=<span class="string">&quot;我妈|我媳妇&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>除了以上例子之外还有很多常用正则。</p>
+<h3 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br></pre></td></tr></table></figure>
+<h3 id="手机号"><a href="#手机号" class="headerlink" title="手机号"></a>手机号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d&#123;8&#125;$</span><br></pre></td></tr></table></figure>
+<h3 id="身份证号"><a href="#身份证号" class="headerlink" title="身份证号"></a>身份证号</h3><p>15位、18位数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\d&#123;15&#125;|\d&#123;18&#125;$</span><br></pre></td></tr></table></figure>
+<h3 id="账号是否合法"><a href="#账号是否合法" class="headerlink" title="账号是否合法"></a>账号是否合法</h3><p>字母开头，允许5-16字节，允许字母数字下划线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$</span><br></pre></td></tr></table></figure>
+<h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><p>以字母开头，长度在6~18之间，只能包含字母、数字和下划线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[a-zA-Z]\w&#123;5,17&#125;$</span><br></pre></td></tr></table></figure>
+<h3 id="强密码"><a href="#强密码" class="headerlink" title="强密码"></a>强密码</h3><p>必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</span><br></pre></td></tr></table></figure>
+<h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(/.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+/.?</span><br></pre></td></tr></table></figure>
+<h3 id="日期格式"><a href="#日期格式" class="headerlink" title="日期格式"></a>日期格式</h3><p>2018-10-27</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\d&#123;3&#125;-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$</span><br></pre></td></tr></table></figure>
+<h3 id="时间格式"><a href="#时间格式" class="headerlink" title="时间格式"></a>时间格式</h3><p>12:00:00</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$</span><br></pre></td></tr></table></figure>
+
+<h1 id="js校验（高级和扩展）"><a href="#js校验（高级和扩展）" class="headerlink" title="js校验（高级和扩展）"></a>js校验（高级和扩展）</h1><h2 id="使用H5的约束校验API（constraint-validation）"><a href="#使用H5的约束校验API（constraint-validation）" class="headerlink" title="使用H5的约束校验API（constraint validation）"></a>使用H5的约束校验API（constraint validation）</h2><p>想样式统一浏览器，和优化用户体验，则必须使用js 校验</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>首先给form元素增加 novalidate 属性，关闭浏览器内置验证</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>请输入邮箱地址:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">id</span>=<span class="string">&quot;mail&quot;</span> <span class="attr">name</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;error&quot;</span> <span class="attr">aria-live</span>=<span class="string">&quot;polite&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><p>css 添加校验周期的伪类样式， <code>:valid、:invalid、:in-range 、:out-of-range</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">1em</span> sans-serif;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin</span> : <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">form</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> * &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=email]</span>&#123;</span><br><span class="line">  -webkit-appearance: none;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">font-family</span>: inherit;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">90%</span>;</span><br><span class="line"></span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 验证失败的元素样式 */</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:invalid</span>&#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#900</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#FDD</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span><span class="selector-pseudo">:invalid</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 错误消息的样式 */</span></span><br><span class="line"><span class="selector-class">.error</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>  : <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#900</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">5px</span>;</span><br><span class="line"> </span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.error</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.3em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> form  = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;form&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> email = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;mail&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> error = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.error&#x27;</span>);</span><br><span class="line"></span><br><span class="line">email.<span class="title function_">addEventListener</span>(<span class="string">&quot;input&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="comment">// 当用户输入信息时，验证 email 字段</span></span><br><span class="line">  <span class="keyword">if</span> (email.<span class="property">validity</span>.<span class="property">valid</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果验证通过，清除已显示的错误消息</span></span><br><span class="line">    error.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>; <span class="comment">// 重置消息的内容</span></span><br><span class="line">    error.<span class="property">className</span> = <span class="string">&quot;error&quot;</span>; <span class="comment">// 重置消息的显示状态</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">form.<span class="title function_">addEventListener</span>(<span class="string">&quot;submit&quot;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="comment">// 当用户提交表单时，验证 email 字段</span></span><br><span class="line">  <span class="keyword">if</span> (!email.<span class="property">validity</span>.<span class="property">valid</span>) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果验证失败，显示一个自定义错误</span></span><br><span class="line">    error.<span class="property">innerHTML</span> = <span class="string">&quot;I expect an e-mail, darling!&quot;</span>;</span><br><span class="line">    error.<span class="property">className</span> = <span class="string">&quot;error active&quot;</span>;</span><br><span class="line">    <span class="comment">// 还需要阻止表单提交事件，以取消数据传送</span></span><br><span class="line">    event.<span class="title function_">preventDefault</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="不使用约束校验api（constraint-validation）"><a href="#不使用约束校验api（constraint-validation）" class="headerlink" title="不使用约束校验api（constraint validation）"></a>不使用约束校验api（constraint validation）</h2><p>一般为了兼容不支持 h5校验api 的老式浏览器，例如ie6,</p>
+<h4 id="html-1"><a href="#html-1" class="headerlink" title="html"></a>html</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>请输入邮箱地址:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">class</span>=<span class="string">&quot;mail&quot;</span> <span class="attr">id</span>=<span class="string">&quot;mail&quot;</span> <span class="attr">name</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;error&quot;</span> <span class="attr">aria-live</span>=<span class="string">&quot;polite&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 老式浏览器 需要增加type submit --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="css-1"><a href="#css-1" class="headerlink" title="css"></a>css</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">1em</span> sans-serif;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin</span> : <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">form</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> * &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-class">.mail</span> &#123;</span><br><span class="line">  -webkit-appearance: none;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">font-family</span>: inherit;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">90%</span>;</span><br><span class="line"></span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 验证失败的元素样式 */</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-class">.invalid</span>&#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#900</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#FDD</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span><span class="selector-class">.invalid</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 错误消息的样式 */</span></span><br><span class="line"><span class="selector-class">.error</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>  : <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#900</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">5px</span>;</span><br><span class="line"> </span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.error</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.3em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="js-1"><a href="#js-1" class="headerlink" title="js"></a>js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用旧版浏览器选择 DOM 节点的方法较少</span></span><br><span class="line"><span class="keyword">var</span> form  = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;form&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> email = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;mail&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下是在 DOM 中访问下一个兄弟元素的技巧</span></span><br><span class="line"><span class="comment">// 这比较危险，很容易引起无限循环</span></span><br><span class="line"><span class="comment">// 在现代浏览器中，应该使用 element.nextElementSibling</span></span><br><span class="line"><span class="keyword">var</span> error = email;</span><br><span class="line"><span class="keyword">while</span> ((error = error.<span class="property">nextSibling</span>).<span class="property">nodeType</span> != <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按照 HTML5 规范</span></span><br><span class="line"><span class="keyword">var</span> emailRegExp = <span class="regexp">/^[a-zA-Z0-9.!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 许多旧版浏览器不支持 addEventListener 方法</span></span><br><span class="line"><span class="comment">// 这只是其中一种简单的处理方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addEvent</span>(<span class="params">element, event, callback</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> previousEventCallBack = element[<span class="string">&quot;on&quot;</span>+event];</span><br><span class="line">  element[<span class="string">&quot;on&quot;</span>+event] = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> output = <span class="title function_">callback</span>(e);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回 `false` 来停止回调链，并中断事件的执行</span></span><br><span class="line">    <span class="keyword">if</span> (output === <span class="literal">false</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> previousEventCallBack === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      output = <span class="title function_">previousEventCallBack</span>(e);</span><br><span class="line">      <span class="keyword">if</span>(output === <span class="literal">false</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在我们可以重构字段的验证约束了</span></span><br><span class="line"><span class="comment">// 由于不使用 CSS 伪类, 我们必须明确地设置 valid 或 invalid 类到 email 字段上</span></span><br><span class="line"><span class="title function_">addEvent</span>(<span class="variable language_">window</span>, <span class="string">&quot;load&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 在这里验证字段是否为空（请记住，该字段不是必需的）</span></span><br><span class="line">  <span class="comment">// 如果非空，检查它的内容格式是不是合格的 e-mail 地址</span></span><br><span class="line">  <span class="keyword">var</span> test = email.<span class="property">value</span>.<span class="property">length</span> === <span class="number">0</span> || emailRegExp.<span class="title function_">test</span>(email.<span class="property">value</span>);</span><br><span class="line"> </span><br><span class="line">  email.<span class="property">className</span> = test ? <span class="string">&quot;valid&quot;</span> : <span class="string">&quot;invalid&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理用户输入事件</span></span><br><span class="line"><span class="title function_">addEvent</span>(email, <span class="string">&quot;input&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> test = email.<span class="property">value</span>.<span class="property">length</span> === <span class="number">0</span> || emailRegExp.<span class="title function_">test</span>(email.<span class="property">value</span>);</span><br><span class="line">  <span class="keyword">if</span> (test) &#123;</span><br><span class="line">    email.<span class="property">className</span> = <span class="string">&quot;valid&quot;</span>;</span><br><span class="line">    error.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    error.<span class="property">className</span> = <span class="string">&quot;error&quot;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    email.<span class="property">className</span> = <span class="string">&quot;invalid&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理表单提交事件</span></span><br><span class="line"><span class="title function_">addEvent</span>(form, <span class="string">&quot;submit&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> test = email.<span class="property">value</span>.<span class="property">length</span> === <span class="number">0</span> || emailRegExp.<span class="title function_">test</span>(email.<span class="property">value</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (!test) &#123;</span><br><span class="line">    email.<span class="property">className</span> = <span class="string">&quot;invalid&quot;</span>;</span><br><span class="line">    error.<span class="property">innerHTML</span> = <span class="string">&quot;I expect an e-mail, darling!&quot;</span>;</span><br><span class="line">    error.<span class="property">className</span> = <span class="string">&quot;error active&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 某些旧版浏览器不支持 event.preventDefault() 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    email.<span class="property">className</span> = <span class="string">&quot;valid&quot;</span>;</span><br><span class="line">    error.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    error.<span class="property">className</span> = <span class="string">&quot;error&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>为了避免重复造轮子和一些兼容问题，可以使用一些库来作为实际项目中的校验。</p>
+<ul>
+<li>原生js<ul>
+<li><a target="_blank" rel="noopener" href="http://rickharrison.github.io/validate.js/">Validate.js</a></li>
+</ul>
+</li>
+<li>jquery<ul>
+<li><a target="_blank" rel="noopener" href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">Validation</a></li>
+<li><a target="_blank" rel="noopener" href="http://unwrongest.com/projects/valid8/">Valid8</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%A0%A1%E9%AA%8C%EF%BC%88%E5%9F%BA%E7%A1%80%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">内置校验（基础）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E5%A1%AB%E9%A1%B9"><span class="toc-number">1.1.</span> <span class="toc-text">必填项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%AE%9A%E9%95%BF%E5%BA%A6"><span class="toc-number">1.2.</span> <span class="toc-text">规定长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">使用正则校验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%B7"><span class="toc-number">1.3.2.</span> <span class="toc-text">手机号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7"><span class="toc-number">1.3.3.</span> <span class="toc-text">身份证号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95"><span class="toc-number">1.3.4.</span> <span class="toc-text">账号是否合法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.5.</span> <span class="toc-text">密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.6.</span> <span class="toc-text">强密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-number">1.3.7.</span> <span class="toc-text">域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.3.8.</span> <span class="toc-text">日期格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.3.9.</span> <span class="toc-text">时间格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#js%E6%A0%A1%E9%AA%8C%EF%BC%88%E9%AB%98%E7%BA%A7%E5%92%8C%E6%89%A9%E5%B1%95%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">js校验（高级和扩展）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8H5%E7%9A%84%E7%BA%A6%E6%9D%9F%E6%A0%A1%E9%AA%8CAPI%EF%BC%88constraint-validation%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">使用H5的约束校验API（constraint validation）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#html"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">js</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8%E7%BA%A6%E6%9D%9F%E6%A0%A1%E9%AA%8Capi%EF%BC%88constraint-validation%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">不使用约束校验api（constraint validation）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#html-1"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css-1"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#js-1"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">js</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/10/27/base_html8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/10/27/base_html8/&text=【基础学习-html】8.html表单校验"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/10/27/base_html8/&is_video=false&description=【基础学习-html】8.html表单校验"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-html】8.html表单校验&body=Check out this article: https://www.shifeng1993.com/2018/10/27/base_html8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/10/27/base_html8/&title=【基础学习-html】8.html表单校验"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/10/27/base_html8/&name=【基础学习-html】8.html表单校验&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/10/27/base_html8/&t=【基础学习-html】8.html表单校验"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

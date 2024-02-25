@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="第一步安装nodejs工程级别的项目需求，一般是长期支持的稳定版本，所以到官网选择LTS版本下载即可。 链接：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F; windows和mac可以傻瓜式安装，按照默认安装即可。linux安装需编译，请根据不同linux发行版进行百度。 安装完成，通过 node -v 来查看当前node版本 注：以下命令有全局标志-g，macos开发环境请自觉加上 sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【vue2.0实战分享】搭建vue运行环境以及项目目录">
+<meta property="og:url" content="https://www.shifeng1993.com/2016/10/02/vue_vue/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="第一步安装nodejs工程级别的项目需求，一般是长期支持的稳定版本，所以到官网选择LTS版本下载即可。 链接：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F; windows和mac可以傻瓜式安装，按照默认安装即可。linux安装需编译，请根据不同linux发行版进行百度。 安装完成，通过 node -v 来查看当前node版本 注：以下命令有全局标志-g，macos开发环境请自觉加上 sudo">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-10-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-06T08:35:01.150Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【vue2.0实战分享】搭建vue运行环境以及项目目录</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2016/10/15/vue_vueRouter/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&text=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&is_video=false&description=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【vue2.0实战分享】搭建vue运行环境以及项目目录&body=Check out this article: https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&name=【vue2.0实战分享】搭建vue运行环境以及项目目录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2016/10/02/vue_vue/&t=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">第一步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">1.0.1.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%A8%E5%B1%80webpack"><span class="toc-number">1.0.2.</span> <span class="toc-text">安装全局webpack</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-number">2.</span> <span class="toc-text">第二步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B7%A5%E5%85%B7"><span class="toc-number">2.0.1.</span> <span class="toc-text">安装vue-cli脚手架工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-number">3.</span> <span class="toc-text">第三步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9B%AE%E5%BD%95"><span class="toc-number">3.0.1.</span> <span class="toc-text">通过vue-cli创建项目基础目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5"><span class="toc-number">4.</span> <span class="toc-text">第四步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97"><span class="toc-number">4.0.1.</span> <span class="toc-text">安装依赖模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E8%A3%85%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">给生产环境装的依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">4.0.3.</span> <span class="toc-text">给开发环境安装的依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">第五步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">5.0.1.</span> <span class="toc-text">搭建项目目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAexpress%E6%9C%8D%E5%8A%A1%E6%96%87%E4%BB%B6"><span class="toc-number">5.0.2.</span> <span class="toc-text">创建express服务文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9src%E6%BA%90%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">5.0.3.</span> <span class="toc-text">修改src源文件目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.0.4.</span> <span class="toc-text">运行项目</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【vue2.0实战分享】搭建vue运行环境以及项目目录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-10-01T16:00:00.000Z" class="dt-published" itemprop="datePublished">2016-10-02</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/vue/">vue</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/vue/" rel="tag">vue</a>, <a class="p-category" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h4><p>工程级别的项目需求，一般是长期支持的稳定版本，<br>所以到官网选择LTS版本下载即可。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/" title="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
+<p>windows和mac可以傻瓜式安装，按照默认安装即可。<br>linux安装需编译，请根据不同linux发行版进行百度。</p>
+<p>安装完成，通过 <code>node -v</code> 来查看当前node版本</p>
+<p>注：以下命令有全局标志<code>-g</code>，macos开发环境请自觉加上 <code>sudo</code>前缀。例：<code>sudo npm install -g webpack</code></p>
+<h4 id="安装全局webpack"><a href="#安装全局webpack" class="headerlink" title="安装全局webpack"></a>安装全局webpack</h4><p><code>npm install -g webpack</code></p>
+<p>安装完成，通过<code>webpack -v</code>来查看当前webpack版本</p>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><h4 id="安装vue-cli脚手架工具"><a href="#安装vue-cli脚手架工具" class="headerlink" title="安装vue-cli脚手架工具"></a>安装vue-cli脚手架工具</h4><p><code>npm install  -g vue-cli</code></p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><h4 id="通过vue-cli创建项目基础目录"><a href="#通过vue-cli创建项目基础目录" class="headerlink" title="通过vue-cli创建项目基础目录"></a>通过vue-cli创建项目基础目录</h4><p><code>vue init webpack 工程名字</code>&lt;工程名字不能用中文&gt;</p>
+<p>之后会让你输入一串项目信息以及项目配置。按需输入即可。</p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><h4 id="安装依赖模块"><a href="#安装依赖模块" class="headerlink" title="安装依赖模块"></a>安装依赖模块</h4><p><code>cd 工程名字</code><br><code>npm install</code></p>
+<h4 id="给生产环境装的依赖"><a href="#给生产环境装的依赖" class="headerlink" title="给生产环境装的依赖"></a>给生产环境装的依赖</h4><p><code>npm install vuex vue-router axios qs --save</code></p>
+<ul>
+<li>安装vue运行依赖<br>1.vuex<br>2.vue-router<br>3.axios<br>4.qs</li>
+</ul>
+<h4 id="给开发环境安装的依赖"><a href="#给开发环境安装的依赖" class="headerlink" title="给开发环境安装的依赖"></a>给开发环境安装的依赖</h4><ul>
+<li><p>安装sass预编译环境<br><code>npm install node-sass sass-loader --save-dev</code><br>1.node-sass<br>2.sass-loader</p>
+</li>
+<li><p>安装express环境以及跨域转发模块以及mock假数据模块<br><code>npm install express http body-parser superagent mockjs --save-dev</code><br>1.express<br>2.http<br>3.body-parser<br>4.superagent<br>5.mockjs</p>
+</li>
+</ul>
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><h4 id="搭建项目目录"><a href="#搭建项目目录" class="headerlink" title="搭建项目目录"></a>搭建项目目录</h4><ul>
+<li>以下路径形式均为以项目根目录为开始</li>
+</ul>
+<p>目录结构一般为了贴近工程需求，会用到mock假数据，跨域代理，sass预编译，组件状态管理，以及组件间状态传递等vue常用需求，下面就教大家纯手动搭建一个工程目录：</p>
+<h4 id="创建express服务文件"><a href="#创建express服务文件" class="headerlink" title="创建express服务文件"></a>创建express服务文件</h4><p>提供mock假数据以及跨域代理，如必要也可自行npm安装sql数据库进行连接，在此不做示例。</p>
+<p>创建<code>/server/app.js</code>文件加入如下代码，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****************************定义和引入********************************/</span></span><br><span class="line"><span class="comment">// 引入模块</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;body-parser&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> superagent = <span class="built_in">require</span>(<span class="string">&#x27;superagent&#x27;</span>); <span class="comment">//http://visionmedia.github.io/superagent/#response-properties 文档地址</span></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title class_">Server</span>(app);</span><br><span class="line"><span class="keyword">var</span> host = <span class="string">&#x27;http://localhost:&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> port = <span class="number">9999</span>; <span class="comment">//设置本地转发服务端口</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Mock</span> = <span class="built_in">require</span>(<span class="string">&#x27;mockjs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*************************以下为设置和启用*****************************/</span></span><br><span class="line"><span class="comment">// 设置node服务</span></span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;port&#x27;</span>, port);</span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123;</span><br><span class="line">  <span class="attr">extended</span>: <span class="literal">false</span></span><br><span class="line">&#125;));</span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动服务</span></span><br><span class="line">server.<span class="title function_">listen</span>(app.<span class="title function_">get</span>(<span class="string">&#x27;port&#x27;</span>), <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;服务已经启动，APIhost：&quot;</span> + host + app.<span class="title function_">get</span>(<span class="string">&#x27;port&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************以下为此服务支持跨域请求********************/</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&#x27;*&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="string">&#x27;*&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild&#x27;</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>, <span class="string">&#x27;PUT, POST, GET, DELETE, OPTIONS, PATCH&#x27;</span>);</span><br><span class="line">  <span class="comment">// res.set(&#123;</span></span><br><span class="line">  <span class="comment">//   &#x27;Content-Type&#x27;: &#x27;Content-Type:application/json; charset=UTF-8&#x27;,</span></span><br><span class="line">  <span class="comment">// &#125;)</span></span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">method</span> == <span class="string">&#x27;OPTIONS&#x27;</span>) &#123;</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="number">200</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************以下是api公共部分，不用修改***********************/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置后端服务器url</span></span><br><span class="line"><span class="keyword">var</span> dbUrl = <span class="string">&#x27;http://localhost:8383&#x27;</span>; <span class="comment">//这里写你的后端api地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// form 请求</span></span><br><span class="line"><span class="keyword">var</span> form = <span class="keyword">function</span> (<span class="params">req, res, API, log</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> sreq = superagent.<span class="title function_">post</span>(dbUrl + <span class="variable constant_">API</span>);</span><br><span class="line">  sreq.<span class="title function_">type</span>(<span class="string">&#x27;form&#x27;</span>)</span><br><span class="line">  sreq.<span class="title function_">send</span>(req.<span class="property">body</span>);</span><br><span class="line">  sreq.<span class="title function_">pipe</span>(res);</span><br><span class="line">  sreq.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(log);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// json 请求</span></span><br><span class="line"><span class="keyword">var</span> json = <span class="keyword">function</span> (<span class="params">req, res, API, log</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> sreq = superagent.<span class="title function_">post</span>(dbUrl + <span class="variable constant_">API</span>);</span><br><span class="line">  sreq.<span class="title function_">type</span>(<span class="string">&#x27;json&#x27;</span>)</span><br><span class="line">  sreq.<span class="title function_">send</span>(req.<span class="property">body</span>);</span><br><span class="line">  sreq.<span class="title function_">pipe</span>(res);</span><br><span class="line">  sreq.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(log);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************以下是api部分***********************/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理转发部分</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// form请求示例</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/machine/init&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">API</span> = <span class="string">&#x27;/api/v2/machine/init&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> log = <span class="string">&#x27;初始化机器&#x27;</span>;</span><br><span class="line">  <span class="title function_">form</span>(req, res, <span class="variable constant_">API</span>, log)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// json请求示例</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/machine/init&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">API</span> = <span class="string">&#x27;/api/v2/machine/init&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> log = <span class="string">&#x27;初始化机器&#x27;</span>;</span><br><span class="line">  <span class="title function_">json</span>(req, res, <span class="variable constant_">API</span>, log)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// mock假数据部分</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// mock示例</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/goods/size&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> data = <span class="title class_">Mock</span>.<span class="title function_">mock</span>([&#123;</span><br><span class="line">    <span class="string">&quot;skuId&quot;</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">&quot;skuSubject&quot;</span>: <span class="string">&quot;清湿茶&quot;</span>,</span><br><span class="line">    <span class="string">&quot;skuPackageType&quot;</span>: <span class="string">&quot;鹰牌&quot;</span>,</span><br><span class="line">  &#125;])</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data))</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;goodssize&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="修改src源文件目录"><a href="#修改src源文件目录" class="headerlink" title="修改src源文件目录"></a>修改src源文件目录</h4><p>为了提供组件间状态传递，为工程预留出更加清晰合理的目录，做出如下修改：</p>
+<ul>
+<li>修改<code>/src/main.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./stores&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建vue实例并渲染到app</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  router,</span><br><span class="line">  store,</span><br><span class="line">  <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改<code>/src/app.vue</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">name</span>: <span class="string">&#x27;app&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>修改<code>/src/router/index.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入插件模块</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueRouter</span> <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入主页面</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Index</span> <span class="keyword">from</span> <span class="string">&#x27;../containers/Index.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入次级页面</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 启用插件</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueRouter</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置</span></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Index</span>,</span><br><span class="line">    <span class="attr">children</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入配置</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  <span class="attr">base</span>: __dirname,</span><br><span class="line">  routes <span class="comment">// （缩写）相当于 routes: routes</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>创建<code>/src/containers/Index.vue</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">name</span>: <span class="string">&#x27;Index&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    data () &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">components</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet/scss&quot;</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  <span class="selector-id">#container</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="attribute">height</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="attribute">overflow</span>: auto;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建<code>/src/stores/actions/index.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// actions</span></span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> actions</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建<code>/src/stores/mutations/index.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mutations</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> mutations</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建<code>/src/stores/states/index.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// states</span></span><br><span class="line"><span class="keyword">const</span> states = &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> states</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建<code>/src/stores/index.js</code>为如下代码，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">States</span> <span class="keyword">from</span> <span class="string">&#x27;./states&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Mutations</span> <span class="keyword">from</span> <span class="string">&#x27;./mutations&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Actions</span> <span class="keyword">from</span> <span class="string">&#x27;./actions&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// store中的全局变量，只在store中使用</span></span><br><span class="line"><span class="comment">// vuex实例  store</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// vuex 模块</span></span><br><span class="line"><span class="keyword">const</span> index = &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="title class_">States</span>,</span><br><span class="line">  <span class="attr">mutations</span>: <span class="title class_">Mutations</span>,</span><br><span class="line">  <span class="attr">actions</span>: <span class="title class_">Actions</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">modules</span>: &#123;</span><br><span class="line">    <span class="attr">index</span>: index</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h4><p>在bash中输入<code>npm run dev </code></p>
+<p>以上工程目录就搭建完毕了，后续components中尽量添加可复用的无状态组件，或者全局状态组件，比如alertbox之类，containers中为页面，至于ajax请求尽量用vuex ，action，去集成，尽量做成函数式编程的风格。这样可以尽可能的保证项目内部代码规整。</p>
+<p>项目目录结构以及代码请移步至以下git中查看<br><a target="_blank" rel="noopener" href="https://github.com/shifeng1993/vue-start" title="https://github.com/shifeng1993/vue-start">https://github.com/shifeng1993/vue-start</a><br>喜欢这个脚手架的可以 star 和 fork 哦！</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">第一步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">1.0.1.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%85%A8%E5%B1%80webpack"><span class="toc-number">1.0.2.</span> <span class="toc-text">安装全局webpack</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-number">2.</span> <span class="toc-text">第二步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B7%A5%E5%85%B7"><span class="toc-number">2.0.1.</span> <span class="toc-text">安装vue-cli脚手架工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-number">3.</span> <span class="toc-text">第三步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87vue-cli%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9B%AE%E5%BD%95"><span class="toc-number">3.0.1.</span> <span class="toc-text">通过vue-cli创建项目基础目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5"><span class="toc-number">4.</span> <span class="toc-text">第四步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97"><span class="toc-number">4.0.1.</span> <span class="toc-text">安装依赖模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E8%A3%85%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">给生产环境装的依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">4.0.3.</span> <span class="toc-text">给开发环境安装的依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5"><span class="toc-number">5.</span> <span class="toc-text">第五步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">5.0.1.</span> <span class="toc-text">搭建项目目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAexpress%E6%9C%8D%E5%8A%A1%E6%96%87%E4%BB%B6"><span class="toc-number">5.0.2.</span> <span class="toc-text">创建express服务文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9src%E6%BA%90%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">5.0.3.</span> <span class="toc-text">修改src源文件目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.0.4.</span> <span class="toc-text">运行项目</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&text=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&is_video=false&description=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【vue2.0实战分享】搭建vue运行环境以及项目目录&body=Check out this article: https://www.shifeng1993.com/2016/10/02/vue_vue/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&title=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2016/10/02/vue_vue/&name=【vue2.0实战分享】搭建vue运行环境以及项目目录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2016/10/02/vue_vue/&t=【vue2.0实战分享】搭建vue运行环境以及项目目录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

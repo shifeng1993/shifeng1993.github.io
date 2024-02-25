@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="TextView12345678&lt;TextView            android:id&#x3D;&quot;@+id&#x2F;text_view&quot;            android:layout_width&#x3D;&quot;match_parent&quot;            android:layout_height&#x3D;&quot;wrap_content&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【android学习随笔】android常用UI控件">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/04/27/android2/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="TextView12345678&lt;TextView            android:id&#x3D;&quot;@+id&#x2F;text_view&quot;            android:layout_width&#x3D;&quot;match_parent&quot;            android:layout_height&#x3D;&quot;wrap_content&quot;">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-04-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【android学习随笔】android常用UI控件</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/05/04/android4/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/04/27/android3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/27/android2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/27/android2/&text=【android学习随笔】android常用UI控件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/27/android2/&is_video=false&description=【android学习随笔】android常用UI控件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【android学习随笔】android常用UI控件&body=Check out this article: https://www.shifeng1993.com/2018/04/27/android2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/27/android2/&name=【android学习随笔】android常用UI控件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/27/android2/&t=【android学习随笔】android常用UI控件"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TextView"><span class="toc-number">1.</span> <span class="toc-text">TextView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Button"><span class="toc-number">2.</span> <span class="toc-text">Button</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EditText"><span class="toc-number">3.</span> <span class="toc-text">EditText</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ImageView"><span class="toc-number">4.</span> <span class="toc-text">ImageView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ProgressBar"><span class="toc-number">5.</span> <span class="toc-text">ProgressBar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">控件属性：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-id-%E2%80%9D-id-XXXX%E2%80%9D"><span class="toc-number">6.1.</span> <span class="toc-text">android:id&#x3D;”@+id&#x2F;XXXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-layout-width-%E2%80%9DXXX%E2%80%9D-android-layout-height-%E2%80%9DXXX%E2%80%9D"><span class="toc-number">6.2.</span> <span class="toc-text">android:layout_width&#x3D;”XXX” &amp;&amp; android:layout_height&#x3D;”XXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-gravity-%E2%80%9DXXX%E2%80%9D"><span class="toc-number">6.3.</span> <span class="toc-text">android:gravity&#x3D;”XXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textSize-%E2%80%9DXXXsp%E2%80%9D"><span class="toc-number">6.4.</span> <span class="toc-text">android:textSize&#x3D;”XXXsp”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textColor-%E2%80%9D-00ff00%E2%80%9D"><span class="toc-number">6.5.</span> <span class="toc-text">android:textColor&#x3D;”#00ff00”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textAllCaps-%E2%80%9Dfalse%E2%80%9D"><span class="toc-number">6.6.</span> <span class="toc-text">android:textAllCaps&#x3D;”false”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-text-%E2%80%9Dhelo%E2%80%9D"><span class="toc-number">6.7.</span> <span class="toc-text">android:text&#x3D;”helo”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-hint-%E2%80%9DType-something-here%E2%80%9D"><span class="toc-number">6.8.</span> <span class="toc-text">android:hint&#x3D;”Type something here”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-maxLines-%E2%80%9D2%E2%80%9D"><span class="toc-number">6.9.</span> <span class="toc-text">android:maxLines&#x3D;”2”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-src-%E2%80%9D-drawable-img-1%E2%80%9D"><span class="toc-number">6.10.</span> <span class="toc-text">android:src&#x3D;”@drawable&#x2F;img_1”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style-%E2%80%9D-android-attr-progressBarStyleHorizontal%E2%80%9D"><span class="toc-number">6.11.</span> <span class="toc-text">style&#x3D;”?android:attr&#x2F;progressBarStyleHorizontal”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-max-%E2%80%9D100%E2%80%9D"><span class="toc-number">6.12.</span> <span class="toc-text">android:max&#x3D;”100”</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【android学习随笔】android常用UI控件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-26T16:00:00.000Z" class="dt-published" itemprop="datePublished">2018-04-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/android/">android</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/android/" rel="tag">android</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/text_view&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">&quot;32sp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">&quot;#00ff00&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">&quot;This is TextView&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/button&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">&quot;Button&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:textAllCaps</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/edit_text&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:hint</span>=<span class="string">&quot;Type something here&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:maxLines</span>=<span class="string">&quot;2&quot;</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/image_view&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:src</span>=<span class="string">&quot;@drawable/img_1 &quot;</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/progress_bar&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">style</span>=<span class="string">&quot;?android:attr/progressBarStyleHorizontal&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:max</span>=<span class="string">&quot;100&quot;</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="控件属性："><a href="#控件属性：" class="headerlink" title="控件属性："></a>控件属性：</h1><h2 id="android-id-”-id-XXXX”"><a href="#android-id-”-id-XXXX”" class="headerlink" title="android:id&#x3D;”@+id&#x2F;XXXX”"></a>android:id&#x3D;”@+id&#x2F;XXXX”</h2><ul>
+<li>控件唯一标识符</li>
+</ul>
+<h2 id="android-layout-width-”XXX”-android-layout-height-”XXX”"><a href="#android-layout-width-”XXX”-android-layout-height-”XXX”" class="headerlink" title="android:layout_width&#x3D;”XXX” &amp;&amp; android:layout_height&#x3D;”XXX”"></a>android:layout_width&#x3D;”XXX” &amp;&amp; android:layout_height&#x3D;”XXX”</h2><ul>
+<li>控件宽高</li>
+<li>父容器决定尺寸：match_parent（推荐） &amp;&amp; fill_parent</li>
+<li>内容决定尺寸：wrap_content</li>
+</ul>
+<h2 id="android-gravity-”XXX”"><a href="#android-gravity-”XXX”" class="headerlink" title="android:gravity&#x3D;”XXX”"></a>android:gravity&#x3D;”XXX”</h2><ul>
+<li>控件对齐方式</li>
+<li>top、bottom、left、right、 center</li>
+<li>可以用“|”来指定多个值</li>
+</ul>
+<h2 id="android-textSize-”XXXsp”"><a href="#android-textSize-”XXXsp”" class="headerlink" title="android:textSize&#x3D;”XXXsp”"></a>android:textSize&#x3D;”XXXsp”</h2><ul>
+<li>控件字体大小</li>
+<li>android使用sp做大小单位</li>
+</ul>
+<h2 id="android-textColor-”-00ff00”"><a href="#android-textColor-”-00ff00”" class="headerlink" title="android:textColor&#x3D;”#00ff00”"></a>android:textColor&#x3D;”#00ff00”</h2><ul>
+<li>控件字体颜色</li>
+</ul>
+<h2 id="android-textAllCaps-”false”"><a href="#android-textAllCaps-”false”" class="headerlink" title="android:textAllCaps&#x3D;”false”"></a>android:textAllCaps&#x3D;”false”</h2><ul>
+<li>button属性</li>
+<li>小写到大写转换（button默认开启）</li>
+</ul>
+<h2 id="android-text-”helo”"><a href="#android-text-”helo”" class="headerlink" title="android:text&#x3D;”helo”"></a>android:text&#x3D;”helo”</h2><ul>
+<li>文本内容</li>
+</ul>
+<h2 id="android-hint-”Type-something-here”"><a href="#android-hint-”Type-something-here”" class="headerlink" title="android:hint&#x3D;”Type something here”"></a>android:hint&#x3D;”Type something here”</h2><ul>
+<li>editText属性</li>
+<li>类似web的placeholder</li>
+</ul>
+<h2 id="android-maxLines-”2”"><a href="#android-maxLines-”2”" class="headerlink" title="android:maxLines&#x3D;”2”"></a>android:maxLines&#x3D;”2”</h2><ul>
+<li>edittext属性</li>
+<li>最大行数</li>
+</ul>
+<h2 id="android-src-”-drawable-img-1”"><a href="#android-src-”-drawable-img-1”" class="headerlink" title="android:src&#x3D;”@drawable&#x2F;img_1”"></a>android:src&#x3D;”@drawable&#x2F;img_1”</h2><ul>
+<li>imageView属性</li>
+<li>图片路径</li>
+</ul>
+<h2 id="style-”-android-attr-progressBarStyleHorizontal”"><a href="#style-”-android-attr-progressBarStyleHorizontal”" class="headerlink" title="style&#x3D;”?android:attr&#x2F;progressBarStyleHorizontal”"></a>style&#x3D;”?android:attr&#x2F;progressBarStyleHorizontal”</h2><ul>
+<li>进度条样式，有圆形进度条和水平进度条两种</li>
+</ul>
+<h2 id="android-max-”100”"><a href="#android-max-”100”" class="headerlink" title="android:max&#x3D;”100”"></a>android:max&#x3D;”100”</h2><ul>
+<li>进度条最大值</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TextView"><span class="toc-number">1.</span> <span class="toc-text">TextView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Button"><span class="toc-number">2.</span> <span class="toc-text">Button</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EditText"><span class="toc-number">3.</span> <span class="toc-text">EditText</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ImageView"><span class="toc-number">4.</span> <span class="toc-text">ImageView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ProgressBar"><span class="toc-number">5.</span> <span class="toc-text">ProgressBar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">控件属性：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#android-id-%E2%80%9D-id-XXXX%E2%80%9D"><span class="toc-number">6.1.</span> <span class="toc-text">android:id&#x3D;”@+id&#x2F;XXXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-layout-width-%E2%80%9DXXX%E2%80%9D-android-layout-height-%E2%80%9DXXX%E2%80%9D"><span class="toc-number">6.2.</span> <span class="toc-text">android:layout_width&#x3D;”XXX” &amp;&amp; android:layout_height&#x3D;”XXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-gravity-%E2%80%9DXXX%E2%80%9D"><span class="toc-number">6.3.</span> <span class="toc-text">android:gravity&#x3D;”XXX”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textSize-%E2%80%9DXXXsp%E2%80%9D"><span class="toc-number">6.4.</span> <span class="toc-text">android:textSize&#x3D;”XXXsp”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textColor-%E2%80%9D-00ff00%E2%80%9D"><span class="toc-number">6.5.</span> <span class="toc-text">android:textColor&#x3D;”#00ff00”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-textAllCaps-%E2%80%9Dfalse%E2%80%9D"><span class="toc-number">6.6.</span> <span class="toc-text">android:textAllCaps&#x3D;”false”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-text-%E2%80%9Dhelo%E2%80%9D"><span class="toc-number">6.7.</span> <span class="toc-text">android:text&#x3D;”helo”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-hint-%E2%80%9DType-something-here%E2%80%9D"><span class="toc-number">6.8.</span> <span class="toc-text">android:hint&#x3D;”Type something here”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-maxLines-%E2%80%9D2%E2%80%9D"><span class="toc-number">6.9.</span> <span class="toc-text">android:maxLines&#x3D;”2”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-src-%E2%80%9D-drawable-img-1%E2%80%9D"><span class="toc-number">6.10.</span> <span class="toc-text">android:src&#x3D;”@drawable&#x2F;img_1”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#style-%E2%80%9D-android-attr-progressBarStyleHorizontal%E2%80%9D"><span class="toc-number">6.11.</span> <span class="toc-text">style&#x3D;”?android:attr&#x2F;progressBarStyleHorizontal”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#android-max-%E2%80%9D100%E2%80%9D"><span class="toc-number">6.12.</span> <span class="toc-text">android:max&#x3D;”100”</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/04/27/android2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/04/27/android2/&text=【android学习随笔】android常用UI控件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/04/27/android2/&is_video=false&description=【android学习随笔】android常用UI控件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【android学习随笔】android常用UI控件&body=Check out this article: https://www.shifeng1993.com/2018/04/27/android2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/04/27/android2/&title=【android学习随笔】android常用UI控件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/04/27/android2/&name=【android学习随笔】android常用UI控件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/04/27/android2/&t=【android学习随笔】android常用UI控件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

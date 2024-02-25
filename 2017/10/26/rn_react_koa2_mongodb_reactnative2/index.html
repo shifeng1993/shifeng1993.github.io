@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="项目demo ：https:&#x2F;&#x2F;github.com&#x2F;shifeng1993&#x2F;rndemo2rn版本： 0.48.3 本节内容 状态管理(redux) 请求库封装 (axios)  未完成内容 公共样式管理，与兼容 (ios&amp;android) 兼容性基础组件的封装 (baseView)  注：由于之前写过demo，所以有个排坑指南，https:&#x2F;&#x2F;www.shifeng1993.com&#x2F;2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）">
+<meta property="og:url" content="https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="项目demo ：https:&#x2F;&#x2F;github.com&#x2F;shifeng1993&#x2F;rndemo2rn版本： 0.48.3 本节内容 状态管理(redux) 请求库封装 (axios)  未完成内容 公共样式管理，与兼容 (ios&amp;android) 兼容性基础组件的封装 (baseView)  注：由于之前写过demo，所以有个排坑指南，https:&#x2F;&#x2F;www.shifeng1993.com&#x2F;2">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-10-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-07-03T16:11:06.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="实战随笔">
+<meta property="article:tag" content="react-native">
+<meta property="article:tag" content="移动端">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2018/02/28/python_1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/10/16/rn_react_koa2_mongodb_reactnative1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&text=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）&body=Check out this article: https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&name=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&t=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">本节内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E5%AE%8C%E6%88%90%E5%86%85%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">未完成内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">架构搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%BA%93%E5%B0%81%E8%A3%85-axios"><span class="toc-number">3.1.</span> <span class="toc-text">请求库封装 (axios)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux"><span class="toc-number">3.2.</span> <span class="toc-text">状态管理(redux)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E5%AE%89%E8%A3%85redux%E4%BE%9D%E8%B5%96"><span class="toc-number">3.2.1.</span> <span class="toc-text">首先，安装redux依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0store"><span class="toc-number">3.2.2.</span> <span class="toc-text">添加store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%9D%E5%A7%8Bstate"><span class="toc-number">3.2.3.</span> <span class="toc-text">添加初始state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0reducer"><span class="toc-number">3.2.4.</span> <span class="toc-text">添加reducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0actions"><span class="toc-number">3.2.5.</span> <span class="toc-text">添加actions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0actionTypes"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">添加actionTypes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0action"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">添加action</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86store%E5%8A%A0%E8%BD%BD%E5%88%B0%E4%B8%BB%E5%85%A5%E5%8F%A3%E5%A4%84"><span class="toc-number">3.2.6.</span> <span class="toc-text">将store加载到主入口处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95store"><span class="toc-number">3.2.7.</span> <span class="toc-text">测试store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95action"><span class="toc-number">3.2.8.</span> <span class="toc-text">测试action</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-25T16:00:00.000Z" class="dt-published" itemprop="datePublished">2017-10-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/react-native/" rel="tag">react-native</a>, <a class="p-category" href="/tags/%E5%AE%9E%E6%88%98%E9%9A%8F%E7%AC%94/" rel="tag">实战随笔</a>, <a class="p-category" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag">移动端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>项目demo ：<a target="_blank" rel="noopener" href="https://github.com/shifeng1993/rndemo2">https://github.com/shifeng1993/rndemo2</a><br>rn版本： 0.48.3</p>
+<h1 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h1><ol>
+<li>状态管理(redux)</li>
+<li>请求库封装 (axios)</li>
+</ol>
+<h1 id="未完成内容"><a href="#未完成内容" class="headerlink" title="未完成内容"></a>未完成内容</h1><ol start="3">
+<li>公共样式管理，与兼容 (ios&amp;android)</li>
+<li>兼容性基础组件的封装 (baseView)</li>
+</ol>
+<p>注：由于之前写过demo，所以有个排坑指南，<br><a href="https://www.shifeng1993.com/2017/09/07/reactnative_bug/">https://www.shifeng1993.com/2017/09/07/reactnative_bug/</a> 问题和bug可以去里面找找</p>
+<h1 id="架构搭建"><a href="#架构搭建" class="headerlink" title="架构搭建"></a>架构搭建</h1><p>因为请求库属于工具的一部分，而状态管理会用到请求库，所以先封装请求库。</p>
+<h2 id="请求库封装-axios"><a href="#请求库封装-axios" class="headerlink" title="请求库封装 (axios)"></a>请求库封装 (axios)</h2><p>注：封装请求库尽量根据实际项目情况来。例如查询，批量修改，批量删除，等非常规操作。</p>
+<p>添加axios 和querystring依赖<br><code>yarn add axios &amp;&amp; yarn add querystring</code></p>
+<p>新建 <code>src/common/httpBaseConfig.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> httpBaseConfig = &#123;</span><br><span class="line">  <span class="attr">baseUrl</span>: <span class="string">&#x27;http://192.168.212.60&#x27;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="string">&#x27;3000&#x27;</span>,</span><br><span class="line">  <span class="attr">prefix</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建 <code>src/utils/http/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> qs <span class="keyword">from</span> <span class="string">&#x27;querystring&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> baseConfig <span class="keyword">from</span> <span class="string">&#x27;../../common/httpBaseConfig.js&#x27;</span>;</span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = baseConfig.<span class="property">baseUrl</span> + <span class="string">&#x27;:&#x27;</span> + baseConfig.<span class="property">port</span> + baseConfig.<span class="property">prefix</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// fetch感觉略麻烦，不清爽，直接引了个axios，用es7写的。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">http</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">get</span>(<span class="params">url, params</span>) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * params&#123;</span></span><br><span class="line"><span class="comment">     *  goods：id，</span></span><br><span class="line"><span class="comment">     *  name：string</span></span><br><span class="line"><span class="comment">     * &#125; ==&gt; ?goods=id&amp;name=string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> query = <span class="keyword">await</span> qs.<span class="title function_">stringify</span>(params)</span><br><span class="line">      <span class="keyword">let</span> res = <span class="literal">null</span>;</span><br><span class="line">      <span class="keyword">if</span> (!params) &#123;</span><br><span class="line">        res = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url + <span class="string">&#x27;?&#x27;</span> + query)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">post</span>(<span class="params">url, params</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> res = <span class="keyword">await</span> axios.<span class="title function_">post</span>(url, params)</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">patch</span>(<span class="params">url, params</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> res = <span class="keyword">await</span> axios.<span class="title function_">patch</span>(url, params)</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">put</span>(<span class="params">url, params</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> res = <span class="keyword">await</span> axios.<span class="title function_">put</span>(url, params)</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">async</span> <span class="title function_">delete</span>(<span class="params">url, params</span>) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * params默认为数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> res = <span class="keyword">await</span> axios.<span class="title function_">post</span>(url, params)</span><br><span class="line">      <span class="keyword">return</span> res</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>引入到入口文件并注册为全局 <code>app.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">StyleSheet</span>,</span><br><span class="line">  <span class="title class_">Text</span>,</span><br><span class="line">  <span class="title class_">View</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Icon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AppNavigator</span> <span class="keyword">from</span> <span class="string">&#x27;./src/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入http 并注册到全局</span></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">&#x27;./src/utils/http&#x27;</span></span><br><span class="line"><span class="variable language_">global</span>.<span class="property">http</span> = http</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">AppNavigator</span>&gt;</span><span class="tag">&lt;/<span class="name">AppNavigator</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Home页面render函数中打印全局http，如果不为未定义，则引入成功</p>
+<h2 id="状态管理-redux"><a href="#状态管理-redux" class="headerlink" title="状态管理(redux)"></a>状态管理(redux)</h2><p>react-native集成redux，0.44以后得带上react-navigation路由参数；<br>然而路由参数不能像B端的react-router-redux一样同步。<br>所以必须得手写一个函数进行同步，还好官方出了这个，虽然有些麻烦，但是还是可以搞的。</p>
+<h3 id="首先，安装redux依赖"><a href="#首先，安装redux依赖" class="headerlink" title="首先，安装redux依赖"></a>首先，安装redux依赖</h3><p><code>yarn add redux &amp;&amp; yarn add react-redux &amp;&amp; yarn add redux-thunk</code></p>
+<h3 id="添加store"><a href="#添加store" class="headerlink" title="添加store"></a>添加store</h3><p>新建 <code>src/store/index.js</code> 存放store</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">&#x27;redux-thunk&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> getReducers <span class="keyword">from</span> <span class="string">&#x27;./reducers&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//thunk为异步action的一个中间件。少了会报个异步的错误。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">getStore</span>(<span class="params">navReducer</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">createStore</span>(</span><br><span class="line">        <span class="title function_">getReducers</span>(navReducer),</span><br><span class="line">        <span class="literal">undefined</span>,</span><br><span class="line">        <span class="title function_">applyMiddleware</span>(thunk)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加初始state"><a href="#添加初始state" class="headerlink" title="添加初始state"></a>添加初始state</h3><p>新建 <code>src/store/states/goods/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// 商品数组</span></span><br><span class="line">  <span class="attr">goodsList</span>: &#123;</span><br><span class="line">    <span class="attr">data</span>:[]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">goods</span>: &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加reducer"><a href="#添加reducer" class="headerlink" title="添加reducer"></a>添加reducer</h3><p>新建 <code>src/store/reducers/index.js</code> 合并单个类的reducer</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> goods <span class="keyword">from</span> <span class="string">&#x27;./goods&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducers = &#123;</span><br><span class="line">  goods</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//和导航相关的reducer通过从调用出传递进来</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">getReducers</span>(<span class="params">navReducer</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">combineReducers</span>(&#123;</span><br><span class="line">        ...reducers,</span><br><span class="line">        <span class="attr">nav</span>: navReducer</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建商品类的reducer <code>src/store/reducers/goods/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> types <span class="keyword">from</span> <span class="string">&#x27;../../constants/actionTypes&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> goodsState <span class="keyword">from</span> <span class="string">&#x27;../../states/goods&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">goods</span>(<span class="params">state = goodsState, action</span>) &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.<span class="property">type</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> types.<span class="property">SET_GOODSLIST</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        <span class="attr">goodsList</span>: action.<span class="property">data</span></span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">case</span> types.<span class="property">SET_GOODS</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        <span class="attr">goods</span>: action.<span class="property">data</span></span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加actions"><a href="#添加actions" class="headerlink" title="添加actions"></a>添加actions</h3><h4 id="添加actionTypes"><a href="#添加actionTypes" class="headerlink" title="添加actionTypes"></a>添加actionTypes</h4><p>新建action类型 <code>src/store/constants/actionTypes.js</code> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* ******** 用户类 *************/</span></span><br><span class="line"><span class="comment">// 商品列表动作</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">SET_GOODSLIST</span> = <span class="string">&#x27;SET_GOODSLIST&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单个商品动作</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">SET_GOODS</span> = <span class="string">&#x27;SET_GOODS&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="添加action"><a href="#添加action" class="headerlink" title="添加action"></a>添加action</h4><p>新建商品类动作 <code>src/store/actions/goods/index.js</code> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> types <span class="keyword">from</span> <span class="string">&#x27;../../constants/actionTypes&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置常量*/</span></span><br><span class="line"><span class="comment">// 每页个数</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PAGE_SIZE</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">fetchGoodsList</span> = (<span class="params">currentPage</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> params = &#123;&#125;</span><br><span class="line">  params.<span class="property">currentPage</span> = currentPage;</span><br><span class="line">  params.<span class="property">pageSize</span> = <span class="variable constant_">PAGE_SIZE</span>;</span><br><span class="line">  <span class="keyword">return</span> http.<span class="title function_">get</span>(<span class="string">&#x27;/goods/getGoodsList&#x27;</span>, params)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getGoodsList</span> = (<span class="params">currentPage</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">dispatch, getState</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fetchGoodsList</span>(currentPage).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> goodsList = &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> (currentPage === <span class="number">1</span>) &#123;</span><br><span class="line">          goodsList = res.<span class="property">data</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          goodsList.<span class="property">data</span> = <span class="title function_">getState</span>().<span class="property">goods</span>.<span class="property">goodsList</span>.<span class="property">data</span>.<span class="title function_">concat</span>(res.<span class="property">data</span>.<span class="property">data</span>)</span><br><span class="line">          goodsList.<span class="property">pageTotal</span> = <span class="built_in">parseInt</span>(res.<span class="property">data</span>.<span class="property">pageTotal</span>)</span><br><span class="line">          goodsList.<span class="property">currentPage</span> = <span class="built_in">parseInt</span>(res.<span class="property">data</span>.<span class="property">currentPage</span>)</span><br><span class="line">          goodsList.<span class="property">pageSize</span> = <span class="built_in">parseInt</span>(res.<span class="property">data</span>.<span class="property">pageSize</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">dispatch</span>(<span class="title function_">setGoodsList</span>(goodsList));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">alert</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">setGoodsList</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;<span class="attr">type</span>: types.<span class="property">SET_GOODSLIST</span>, data&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="将store加载到主入口处"><a href="#将store加载到主入口处" class="headerlink" title="将store加载到主入口处"></a>将store加载到主入口处</h3><p><code>app.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Provider</span>, connect&#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">AsyncStorage</span>, <span class="title class_">BackHandler</span>&#125; <span class="keyword">from</span> <span class="string">&quot;react-native&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">NavigationActions</span>, addNavigationHelpers&#125; <span class="keyword">from</span> <span class="string">&quot;react-navigation&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Ionicons</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/Ionicons&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Faicon</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-vector-icons/FontAwesome&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> getStore <span class="keyword">from</span> <span class="string">&quot;./src/store&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AppNavigator</span> <span class="keyword">from</span> <span class="string">&#x27;./src/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">&#x27;./src/utils/http&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册全局变量</span></span><br><span class="line"><span class="variable language_">global</span>.<span class="property">http</span> = http</span><br><span class="line"><span class="variable language_">global</span>.<span class="property">storage</span> = <span class="title class_">AsyncStorage</span>;</span><br><span class="line"><span class="variable language_">global</span>.<span class="property">Ionicon</span> = <span class="title class_">Ionicons</span></span><br><span class="line"><span class="variable language_">global</span>.<span class="property">Faicon</span> = <span class="title class_">Faicon</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">navReducer</span> = (<span class="params">state, action</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> newState = <span class="title class_">AppNavigator</span></span><br><span class="line">    .<span class="property">router</span></span><br><span class="line">    .<span class="title function_">getStateForAction</span>(action, state);</span><br><span class="line">  <span class="keyword">return</span> newState || state;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">mapStateToProps</span> = (<span class="params">state</span>) =&gt; (&#123;<span class="attr">nav</span>: state.<span class="property">nav</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="comment">/*处理安卓硬件返回按键 开始*/</span></span><br><span class="line">  <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">BackHandler</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;hardwareBackPress&quot;</span>, <span class="variable language_">this</span>.<span class="property">onBackPress</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">componentWillUnmount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">BackHandler</span>.<span class="title function_">removeEventListener</span>(<span class="string">&quot;hardwareBackPress&quot;</span>, <span class="variable language_">this</span>.<span class="property">onBackPress</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  onBackPress = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;dispatch, nav&#125; = <span class="variable language_">this</span>.<span class="property">props</span>;</span><br><span class="line">    <span class="keyword">if</span> (nav.<span class="property">index</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">dispatch</span>(<span class="title class_">NavigationActions</span>.<span class="title function_">back</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">/*处理安卓硬件返回按键 结束*/</span></span><br><span class="line">  </span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">nav</span>)</span><br><span class="line">    <span class="keyword">const</span> &#123;dispatch, nav&#125; = <span class="variable language_">this</span>.<span class="property">props</span>;</span><br><span class="line">    <span class="keyword">const</span> navigation = <span class="title function_">addNavigationHelpers</span>(&#123;dispatch, <span class="attr">state</span>: nav&#125;);</span><br><span class="line">    <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">AppNavigator</span> <span class="attr">navigation</span>=<span class="string">&#123;navigation&#125;/</span>&gt;</span></span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">AppWithNavigationState</span> = <span class="title function_">connect</span>(mapStateToProps)(<span class="title class_">App</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">getStore</span>(navReducer);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Root</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">AppWithNavigationState</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="测试store"><a href="#测试store" class="headerlink" title="测试store"></a>测试store</h3><p>打开js debugging，进行tabbar切换，如果有路由信息打印出来，redux则添加成功<br>注： console.log 在app.js 的第46行，不需要则删除</p>
+<h3 id="测试action"><a href="#测试action" class="headerlink" title="测试action"></a>测试action</h3><p>注：如按上述写那么还需要启动mongo-server服务。<br>文档： <a href="https://www.shifeng1993.com/2017/08/21/rn_react_koa2_mongodb_api1/">https://www.shifeng1993.com/2017/08/21/rn_react_koa2_mongodb_api1/</a><br>项目： <a target="_blank" rel="noopener" href="https://github.com/shifeng1993/mongo-server">https://github.com/shifeng1993/mongo-server</a></p>
+<p>修改src&#x2F;containers&#x2F;Home&#x2F;index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">StyleSheet</span>, <span class="title class_">Text</span>, <span class="title class_">View</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;bindActionCreators&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;connect&#125; <span class="keyword">from</span> <span class="string">&#x27;react-redux&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入action</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> goodsAction <span class="keyword">from</span> <span class="string">&#x27;../../store/actions/goods&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量设置</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">INITIAL_PAGE</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Home</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;actions&#125; = <span class="variable language_">this</span>.<span class="property">props</span>;</span><br><span class="line">    actions.<span class="title function_">getGoodsList</span>(<span class="variable constant_">INITIAL_PAGE</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">goodsList</span>.<span class="property">data</span>)</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>主页<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同步store中的state，状态改变，实时更新</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">mapStateToProps</span> = state =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;<span class="attr">goodsList</span>: state.<span class="property">goods</span>.<span class="property">goodsList</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 同步store中的action</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">mapDispatchToProps</span> = (<span class="params">dispatch</span>) =&gt; (&#123;</span><br><span class="line">  <span class="attr">actions</span>: <span class="title function_">bindActionCreators</span>(goodsAction, dispatch),</span><br><span class="line">  <span class="attr">dispatch</span>: dispatch</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">connect</span>(mapStateToProps, mapDispatchToProps)(<span class="title class_">Home</span>)</span><br></pre></td></tr></table></figure>
+
+<p>刷新应用，这时如果有console.log打印出来空数组或者10个商品的数组，则代表action添加成功。</p>
+<p>如果mongo-server没有添加商品也是为空数组。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">本节内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E5%AE%8C%E6%88%90%E5%86%85%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">未完成内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">架构搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%BA%93%E5%B0%81%E8%A3%85-axios"><span class="toc-number">3.1.</span> <span class="toc-text">请求库封装 (axios)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux"><span class="toc-number">3.2.</span> <span class="toc-text">状态管理(redux)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E5%AE%89%E8%A3%85redux%E4%BE%9D%E8%B5%96"><span class="toc-number">3.2.1.</span> <span class="toc-text">首先，安装redux依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0store"><span class="toc-number">3.2.2.</span> <span class="toc-text">添加store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%9D%E5%A7%8Bstate"><span class="toc-number">3.2.3.</span> <span class="toc-text">添加初始state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0reducer"><span class="toc-number">3.2.4.</span> <span class="toc-text">添加reducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0actions"><span class="toc-number">3.2.5.</span> <span class="toc-text">添加actions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0actionTypes"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">添加actionTypes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0action"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">添加action</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86store%E5%8A%A0%E8%BD%BD%E5%88%B0%E4%B8%BB%E5%85%A5%E5%8F%A3%E5%A4%84"><span class="toc-number">3.2.6.</span> <span class="toc-text">将store加载到主入口处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95store"><span class="toc-number">3.2.7.</span> <span class="toc-text">测试store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95action"><span class="toc-number">3.2.8.</span> <span class="toc-text">测试action</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&text=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&is_video=false&description=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）&body=Check out this article: https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&title=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&name=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2017/10/26/rn_react_koa2_mongodb_reactnative2/&t=【RN+react+koa2+mongodb实战随笔】6.react-native项目实战（二）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

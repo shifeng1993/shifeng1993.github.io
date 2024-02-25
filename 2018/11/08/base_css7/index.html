@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="这几天，加班的疲劳和南窑头的寒冷封印了我。今天晚上请了三线小时假，终于可以继续写了。。 字体样式color文字的前景色 123p &#123;  color: red;&#125;  font-family网页安全字体一般来说通用的字体种类 是网页安全字体 以下是一些通用字体：    字体名称 字体类型 备注    Arial sans-serif 通常认为最佳做法还是添加 Helvetica 作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习-css】7.css字体样式和文本布局">
+<meta property="og:url" content="https://www.shifeng1993.com/2018/11/08/base_css7/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="这几天，加班的疲劳和南窑头的寒冷封印了我。今天晚上请了三线小时假，终于可以继续写了。。 字体样式color文字的前景色 123p &#123;  color: red;&#125;  font-family网页安全字体一般来说通用的字体种类 是网页安全字体 以下是一些通用字体：    字体名称 字体类型 备注    Arial sans-serif 通常认为最佳做法还是添加 Helvetica 作">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-11-08T15:27:00.000Z">
+<meta property="article:modified_time" content="2018-11-08T15:27:04.000Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【基础学习-css】7.css字体样式和文本布局</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2019/01/10/js_FuzzyQuery2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2018/11/05/base_css6/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/11/08/base_css7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/11/08/base_css7/&text=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/11/08/base_css7/&is_video=false&description=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-css】7.css字体样式和文本布局&body=Check out this article: https://www.shifeng1993.com/2018/11/08/base_css7/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/11/08/base_css7/&name=【基础学习-css】7.css字体样式和文本布局&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/11/08/base_css7/&t=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">字体样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#color"><span class="toc-number">1.1.</span> <span class="toc-text">color</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-family"><span class="toc-number">1.2.</span> <span class="toc-text">font-family</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E5%AD%97%E4%BD%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">网页安全字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%AD%97%E4%BD%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">默认字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%88"><span class="toc-number">1.2.3.</span> <span class="toc-text">字体栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-size"><span class="toc-number">1.3.</span> <span class="toc-text">font-size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-style"><span class="toc-number">1.4.</span> <span class="toc-text">font-style</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-weight"><span class="toc-number">1.5.</span> <span class="toc-text">font-weight</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-transform"><span class="toc-number">1.6.</span> <span class="toc-text">text-transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-decoration"><span class="toc-number">1.7.</span> <span class="toc-text">text-decoration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-shadow"><span class="toc-number">1.8.</span> <span class="toc-text">text-shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.9.</span> <span class="toc-text">其他字体样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%B8%83%E5%B1%80"><span class="toc-number">2.</span> <span class="toc-text">文本布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#text-align"><span class="toc-number">2.1.</span> <span class="toc-text">text-align</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#line-height"><span class="toc-number">2.2.</span> <span class="toc-text">line-height</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E9%97%B4%E8%B7%9D%E5%92%8C%E8%AF%8D%E9%97%B4%E8%B7%9D"><span class="toc-number">2.3.</span> <span class="toc-text">字间距和词间距</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E6%9C%AC%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">其他文本布局样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#font%E7%AE%80%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">font简写</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【基础学习-css】7.css字体样式和文本布局
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-08T15:27:00.000Z" class="dt-published" itemprop="datePublished">2018-11-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/base/">base</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/css/" rel="tag">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>这几天，加班的疲劳和南窑头的寒冷封印了我。今天晚上请了三线小时假，终于可以继续写了。。</p>
+<h1 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h1><h2 id="color"><a href="#color" class="headerlink" title="color"></a>color</h2><p>文字的前景色</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="font-family"><a href="#font-family" class="headerlink" title="font-family"></a>font-family</h2><h3 id="网页安全字体"><a href="#网页安全字体" class="headerlink" title="网页安全字体"></a>网页安全字体</h3><p>一般来说通用的字体种类 是网页安全字体</p>
+<p>以下是一些通用字体：</p>
+<table>
+<thead>
+<tr>
+<th>字体名称</th>
+<th>字体类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arial</td>
+<td>sans-serif</td>
+<td>通常认为最佳做法还是添加 Helvetica 作为 Arial 的首选替代品，尽管它们的字体面几乎相同，但 Helvetica 被认为具有更好的形状，即使Arial更广泛地可用。</td>
+</tr>
+<tr>
+<td>Courier New</td>
+<td>monospace</td>
+<td>某些操作系统有一个 Courier New 字体的替代（可能较旧的）版本叫Courier。使用Courier New作为Courier的首选替代方案，被认为是最佳做法。</td>
+</tr>
+<tr>
+<td>Georgia</td>
+<td>serif</td>
+<td></td>
+</tr>
+<tr>
+<td>Times New Roman</td>
+<td>serif</td>
+<td>某些操作系统有一个 Times New Roman 字体的替代（可能较旧的）版本叫 Times。使用Times作为Times New Roman的首选替代方案，被认为是最佳做法。</td>
+</tr>
+<tr>
+<td>Trebuchet MS</td>
+<td>sans-serif</td>
+<td>您应该小心使用这种字体——它在移动操作系统上并不广泛。</td>
+</tr>
+<tr>
+<td>Verdana</td>
+<td>sans-serif</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="默认字体"><a href="#默认字体" class="headerlink" title="默认字体"></a>默认字体</h3><p>CSS 定义了 5 个常用的字体名称:  serif, sans-serif, monospace, cursive,和 fantasy. 这些都是非常通用的，当使用这些通用名称时，使用的字体完全取决于每个浏览器，而且它们所运行的每个操作系统也会有所不同。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>定义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>serif</td>
+<td>有衬线的字体</td>
+<td>（衬线一词是指字体笔画尾端的小装饰，存在于某些印刷体字体中）</td>
+</tr>
+<tr>
+<td>sans-serif</td>
+<td>没有衬线的字体。</td>
+<td><p style="font-family:sans-serif;">My big red elephant</p></td>
+</tr>
+<tr>
+<td>monospace</td>
+<td>每个字符具有相同宽度的字体，通常用于代码列表。</td>
+<td><p style="font-family:monospace;">My big red elephant</p></td>
+</tr>
+<tr>
+<td>cursive</td>
+<td>用于模拟笔迹的字体，具有流动的连接笔画。</td>
+<td><p style="font-family:cursive;">My big red elephant</p></td>
+</tr>
+<tr>
+<td>fantasy</td>
+<td>用来装饰的字体</td>
+<td><p style="font-family:fantasy;">My big red elephant</p></td>
+</tr>
+</tbody></table>
+<h3 id="字体栈"><a href="#字体栈" class="headerlink" title="字体栈"></a>字体栈</h3><p>由于不能保证所有电脑上都有想要的字体，可以提供一个字体栈 (font stack)，这样的话，浏览器就有多种字体可以选择了。只需包含一个font-family属性，其值由几个用逗号分离的字体名称组成。</p>
+<p>例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>:cursive, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="font-size"><a href="#font-size" class="headerlink" title="font-size"></a>font-size</h2><p>字体大小常用单位有 px em rem，需要注意rem支持版本是ie9以上（包括ie9）</p>
+<p>元素的 font-size 属性是从该元素的父元素继承的，如果没有设定默认是16px;</p>
+<p>例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 或者 */</span></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 或者 */</span></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="font-style"><a href="#font-style" class="headerlink" title="font-style"></a>font-style</h2><p>用来打开和关闭文本 italic (斜体)。</p>
+<ul>
+<li>normal: 将文本设置为普通字体 (将存在的斜体关闭)</li>
+<li>italic: 如果当前字体的斜体版本可用，那么文本设置为斜体版本；如果不可用，那么会利用 oblique 状态来模拟 italics。</li>
+<li>oblique: 将文本设置为斜体字体的模拟版本，也就是将普通文本倾斜的样式应用到文本中。</li>
+</ul>
+<h2 id="font-weight"><a href="#font-weight" class="headerlink" title="font-weight"></a>font-weight</h2><p>设置文字的粗体大小。</p>
+<ul>
+<li>normal, bold: 普通或者加粗的字体粗细</li>
+<li>lighter, bolder: 将当前元素的粗体设置为比其父元素粗体更细或更粗一步。</li>
+<li>100–900: 数值粗体值，如果需要，可提供比上述关键字更精细的粒度控制。</li>
+</ul>
+<h2 id="text-transform"><a href="#text-transform" class="headerlink" title="text-transform"></a>text-transform</h2><p>允许你设置要转换的字体。</p>
+<ul>
+<li>none: 防止任何转型。</li>
+<li>uppercase: 将所有文本转为大写。</li>
+<li>lowercase: 将所有文本转为小写。</li>
+<li>capitalize: 转换所有单词让其首字母大写。</li>
+<li>full-width: 将所有字形转换成固定宽度的正方形，类似于等宽字体，允许对齐。拉丁字符以及亚洲语言字形（如中文，日文，韩文）</li>
+</ul>
+<h2 id="text-decoration"><a href="#text-decoration" class="headerlink" title="text-decoration"></a>text-decoration</h2><p>设置&#x2F;取消字体上的文本装饰。比如a标签的下划线。</p>
+<ul>
+<li>none: 取消已经存在的任何文本装饰</li>
+<li>underline: 文本下划线</li>
+<li>overline: 文本上划线</li>
+<li>line-through: 穿过文本的线</li>
+</ul>
+<h2 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-shadow</span>: <span class="number">4px</span> <span class="number">4px</span> <span class="number">5px</span> red;</span><br><span class="line"></span><br><span class="line"><span class="attribute">text-shadow</span>: -<span class="number">1px</span> -<span class="number">1px</span> <span class="number">1px</span> <span class="number">#aaa</span>,</span><br><span class="line">             <span class="number">0px</span> <span class="number">4px</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>),</span><br><span class="line">             <span class="number">4px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.7</span>),</span><br><span class="line">             <span class="number">0px</span> <span class="number">0px</span> <span class="number">7px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.4</span>);</span><br></pre></td></tr></table></figure>
+<p>文本阴影从左到右的具体值：</p>
+<ol>
+<li>阴影与原始文本的水平偏移，可以使用大多数的 CSS 单位 length and size units, 但是 px 是比较合适的。这个值必须指定。</li>
+<li>阴影与原始文本的垂直偏移;效果基本上就像水平偏移，除了它向上&#x2F;向下移动阴影，而不是左&#x2F;右。这个值必须指定。</li>
+<li>模糊半径 - 更高的值意味着阴影分散得更广泛。如果不包含此值，则默认为0，这意味着没有模糊。可以使用大多数的 CSS 单位 length and size units.</li>
+<li>阴影的基础颜色，可以使用大多数的 CSS 颜色单位 CSS color unit. 如果没有指定，默认为 black.</li>
+</ol>
+<h2 id="其他字体样式"><a href="#其他字体样式" class="headerlink" title="其他字体样式"></a>其他字体样式</h2><ul>
+<li>font-variant: 在小型大写字母和普通文本选项之间切换。</li>
+<li>font-kerning: 开启或关闭字体间距选项。</li>
+<li>font-feature-settings: 开启或关闭不同的 OpenType 字体特性。</li>
+<li>font-variant-alternates: 控制给定的自定义字体的替代字形的使用。</li>
+<li>font-variant-caps: 控制大写字母替代字形的使用。</li>
+<li>font-variant-east-asian: 控制东亚文字替代字形的使用, 像日语和汉语。</li>
+<li>font-variant-ligatures: 控制文本中使用的连写和上下文形式。</li>
+<li>font-variant-numeric: 控制数字，分式和序标的替代字形的使用。</li>
+<li>font-variant-position: 控制位于上标或下标处，字号更小的替代字形的使用。</li>
+<li>font-size-adjust: 独立于字体的实际大小尺寸，调整其可视大小尺寸。</li>
+<li>font-stretch: 在给定字体的可选拉伸版本中切换。</li>
+<li>text-underline-position: 指定下划线的排版位置，通过使用 text-decoration-line 属性的underline 值。</li>
+<li>text-rendering: 尝试执行一些文本渲染优化。</li>
+</ul>
+<h1 id="文本布局"><a href="#文本布局" class="headerlink" title="文本布局"></a>文本布局</h1><h2 id="text-align"><a href="#text-align" class="headerlink" title="text-align"></a>text-align</h2><p>文本对齐方式有以下值：</p>
+<ul>
+<li>left: 左对齐文本</li>
+<li>right: 右对齐文本</li>
+<li>center: 居中文字</li>
+<li>justify: 使文本展开，改变单词之间的差距，使所有文本行的宽度相同</li>
+</ul>
+<h2 id="line-height"><a href="#line-height" class="headerlink" title="line-height"></a>line-height</h2><p>行高可以设置固定单位比如px 也可以设置乘数表示</p>
+<p>例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字间距和词间距"><a href="#字间距和词间距" class="headerlink" title="字间距和词间距"></a>字间距和词间距</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-line</span> &#123;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">word-spacing</span>: <span class="number">4px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他文本布局样式"><a href="#其他文本布局样式" class="headerlink" title="其他文本布局样式"></a>其他文本布局样式</h2><ul>
+<li>text-indent: 指定文本内容的第一行前面应该留出多少的水平空间。</li>
+<li>text-overflow: 定义如何向用户表示存在被隐藏的溢出内容。</li>
+<li>white-space: 定义如何处理元素内部的空白和换行。</li>
+<li>word-break: 指定是否能在单词内部换行。</li>
+<li>direction: 定义文本的方向 (这取决于语言，并且通常最好让HTML来处理这部分，因为它是和文本内容相关联的。)</li>
+<li>hyphens: 为支持的语言开启或关闭连字符。</li>
+<li>line-break: 对东亚语言采用更强或更弱的换行规则。</li>
+<li>text-align-last: 定义一个块或行的最后一行，恰好位于一个强制换行前时，如何对齐。</li>
+<li>text-orientation: 定义行内文本的方向。</li>
+<li>word-wrap: 指定浏览器是否可以在单词内换行以避免超出范围。</li>
+<li>writing-mode: 定义文本行布局为水平还是垂直，以及后继文本流的方向。</li>
+</ul>
+<h1 id="font简写"><a href="#font简写" class="headerlink" title="font简写"></a>font简写</h1><p>许多字体的属性也可以通过 font 的简写方式来设置 . 这些是按照以下顺序来写的：  font-style, font-variant, font-weight, font-stretch, font-size, line-height, and font-family.</p>
+<p>如果你想要使用 font 的简写形式，在所有这些属性中，只有 font-size 和 font-family 是一定要指定的。</p>
+<p>font-size 和 line-height 属性之间必须放一个正斜杠。</p>
+<p>例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: italic normal bold normal <span class="number">3em</span>/<span class="number">1.5</span> Helvetica, Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">字体样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#color"><span class="toc-number">1.1.</span> <span class="toc-text">color</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-family"><span class="toc-number">1.2.</span> <span class="toc-text">font-family</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E5%AD%97%E4%BD%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">网页安全字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%AD%97%E4%BD%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">默认字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%88"><span class="toc-number">1.2.3.</span> <span class="toc-text">字体栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-size"><span class="toc-number">1.3.</span> <span class="toc-text">font-size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-style"><span class="toc-number">1.4.</span> <span class="toc-text">font-style</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-weight"><span class="toc-number">1.5.</span> <span class="toc-text">font-weight</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-transform"><span class="toc-number">1.6.</span> <span class="toc-text">text-transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-decoration"><span class="toc-number">1.7.</span> <span class="toc-text">text-decoration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-shadow"><span class="toc-number">1.8.</span> <span class="toc-text">text-shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.9.</span> <span class="toc-text">其他字体样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%B8%83%E5%B1%80"><span class="toc-number">2.</span> <span class="toc-text">文本布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#text-align"><span class="toc-number">2.1.</span> <span class="toc-text">text-align</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#line-height"><span class="toc-number">2.2.</span> <span class="toc-text">line-height</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E9%97%B4%E8%B7%9D%E5%92%8C%E8%AF%8D%E9%97%B4%E8%B7%9D"><span class="toc-number">2.3.</span> <span class="toc-text">字间距和词间距</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E6%9C%AC%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">其他文本布局样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#font%E7%AE%80%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">font简写</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2018/11/08/base_css7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2018/11/08/base_css7/&text=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2018/11/08/base_css7/&is_video=false&description=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【基础学习-css】7.css字体样式和文本布局&body=Check out this article: https://www.shifeng1993.com/2018/11/08/base_css7/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2018/11/08/base_css7/&title=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2018/11/08/base_css7/&name=【基础学习-css】7.css字体样式和文本布局&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2018/11/08/base_css7/&t=【基础学习-css】7.css字体样式和文本布局"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

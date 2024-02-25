@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="启动部分BIOS计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input&#x2F;Output System) 硬件自检 BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test) 如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【linux系统基础学习随笔】1.linux基础">
+<meta property="og:url" content="https://www.shifeng1993.com/2019/07/07/linux_base1/index.html">
+<meta property="og:site_name" content="Hello Jelly">
+<meta property="og:description" content="启动部分BIOS计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input&#x2F;Output System) 硬件自检 BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test) 如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。">
+<meta property="og:locale">
+<meta property="og:image" content="https://www.shifeng1993.com/2019/07/07/linux_base1/mbr.png">
+<meta property="og:image" content="https://www.shifeng1993.com/2019/07/07/linux_base1/mbrconstruction.jpg">
+<meta property="og:image" content="https://www.shifeng1993.com/2019/07/07/linux_base1/partition_table.jpg">
+<meta property="og:image" content="https://www.shifeng1993.com/2019/07/07/linux_base1/mount.jpg">
+<meta property="article:published_time" content="2019-07-07T13:14:00.000Z">
+<meta property="article:modified_time" content="2019-07-14T04:43:18.180Z">
+<meta property="article:author" content="Jelly Orange">
+<meta property="article:tag" content="base">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="devops">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.shifeng1993.com/2019/07/07/linux_base1/mbr.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【linux系统基础学习随笔】1.linux基础</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2019/07/08/linux_base2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/06/09/webpack_2/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/07/07/linux_base1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&text=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&is_video=false&description=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【linux系统基础学习随笔】1.linux基础&body=Check out this article: https://www.shifeng1993.com/2019/07/07/linux_base1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&name=【linux系统基础学习随笔】1.linux基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/07/07/linux_base1/&t=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">启动部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BIOS"><span class="toc-number">1.1.</span> <span class="toc-text">BIOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%87%AA%E6%A3%80"><span class="toc-number">1.2.</span> <span class="toc-text">硬件自检</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">启动顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95"><span class="toc-number">1.4.</span> <span class="toc-text">主引导记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.</span> <span class="toc-text">主引导记录的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-number">1.6.</span> <span class="toc-text">分区表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.</span> <span class="toc-text">扇区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.1.</span> <span class="toc-text">物理扇区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.2.</span> <span class="toc-text">逻辑扇区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E5%90%AF%E5%8A%A8"><span class="toc-number">1.8.</span> <span class="toc-text">硬盘启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.9.</span> <span class="toc-text">操作系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">硬件设备文件名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">分区</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%88%86%E5%8C%BA"><span class="toc-number">3.1.</span> <span class="toc-text">扩展分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">格式化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">挂载点</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【linux系统基础学习随笔】1.linux基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jelly Orange</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-07T13:14:00.000Z" class="dt-published" itemprop="datePublished">2019-07-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/base/" rel="tag">base</a>, <a class="p-category" href="/tags/devops/" rel="tag">devops</a>, <a class="p-category" href="/tags/linux/" rel="tag">linux</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="启动部分"><a href="#启动部分" class="headerlink" title="启动部分"></a>启动部分</h1><h2 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h2><p>计算机通电后，第一件事就是读取刷入ROM芯片的开机程序，这个程序叫做基本输入输出系统(Basic Input&#x2F;Output System)</p>
+<h2 id="硬件自检"><a href="#硬件自检" class="headerlink" title="硬件自检"></a>硬件自检</h2><ul>
+<li>BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做”硬件自检”（Power-On Self-Test)</li>
+<li>如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。</li>
+</ul>
+<h2 id="启动顺序"><a href="#启动顺序" class="headerlink" title="启动顺序"></a>启动顺序</h2><ul>
+<li>硬件自检完成后，BIOS把控制权转交给下一阶段的启动程序。</li>
+<li>这时，BIOS需要知道下一阶段的启动程序具体存放在哪一个设备</li>
+<li>BIOS需要有一个外部储存设备的排序，排在前面的设备就是优先转交控制权的设备。这种排序叫做”启动顺序”（Boot Sequence）</li>
+<li>BIOS按照”启动顺序”，把控制权转交给排在第一位的储存设备</li>
+</ul>
+<h2 id="主引导记录"><a href="#主引导记录" class="headerlink" title="主引导记录"></a>主引导记录</h2><ul>
+<li>计算机读取该设备的第一个扇区，也就是读取最前面的512个字节。如果这512个字节的最后两个字节是<code>0x55</code>和<code>0xAA</code>，表明这个设备可以用于启动；如果不是，表明设备不能用于启动，控制权于是被转交给<code>启动顺序</code>中的下一个设备</li>
+<li>这最前面的<code>512</code>个字节，就叫做<code>主引导记录</code>（Master boot record，缩写为MBR）<img src="./mbr.png" title="主引导记录"/></li>
+</ul>
+<h2 id="主引导记录的结构"><a href="#主引导记录的结构" class="headerlink" title="主引导记录的结构"></a>主引导记录的结构</h2><p>主引导记录只有512个字节。它的主要作用是告诉计算机到硬盘的哪一个位置去找操作系统。</p>
+<ol>
+<li>第1-446字节：是用来记录系统的启动信息的,调用操作系统的机器码</li>
+<li>第447-510字节(64个字节)：分区表（Partition table），分区表的作用，是将硬盘分成若干个区</li>
+<li>第511-512字节：主引导记录签名（0x55和0xAA）<img src="./mbrconstruction.jpg" title="主引导记录的结构"/></li>
+</ol>
+<h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><ul>
+<li>磁盘分区是使用分区编辑器在磁盘上划分几个逻辑部分</li>
+<li>磁盘一旦划分成多个分区，不同类的目录与文件可以存储进不同的分区内</li>
+<li>主引导记录因此必须知道将控制权转交给哪个区</li>
+<li>分区表的长度只有64个字节，里面又分成四项，每项16个字节。所以，一个硬盘最多只能分四个一级分区，又叫做主分区<ol>
+<li>第1个字节：如果为0x80，就表示该主分区是激活分区，控制权要转交给这个分区。四个主分区里面只能有一个是激活的。</li>
+<li>第2-4个字节：主分区第一个扇区的物理位置(柱面(Cylinder)、磁头(Heads)、扇区号(Sector)等等)</li>
+<li>第5个字节：主分区类型，比如FAT32、NTFS等</li>
+<li>第6-8个字节：主分区最后一个扇区的物理位置</li>
+<li>第9-12字节：主分区第一个扇区的逻辑地址</li>
+<li>第13-16字节：主分区的扇区总数<img src="./partition_table.jpg" title="分区表"/></li>
+</ol>
+</li>
+</ul>
+<h2 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h2><ul>
+<li>扇区是硬盘存储上的概念，机械硬盘的内部是金属盘片，将圆形的盘片划分成若干个扇形区域，这就是扇区，若干个扇区就组成整个盘片</li>
+<li>扇区是硬盘上最小的读写单位，这个是硬盘决定的，不是操作系统决定的</li>
+<li>对现在的硬盘来说，逻辑扇区的大小等于物理扇区的大小，所以也并没有严格区分物理扇区和逻辑扇区</li>
+</ul>
+<h3 id="物理扇区"><a href="#物理扇区" class="headerlink" title="物理扇区"></a>物理扇区</h3><p>物理扇区就是底层硬件意义上的扇区</p>
+<h3 id="逻辑扇区"><a href="#逻辑扇区" class="headerlink" title="逻辑扇区"></a>逻辑扇区</h3><ul>
+<li>而在物理扇区之上，操作系统划分的逻辑扇区，是为了方便操作系统读取写入硬盘数据而设置的，其大小与具体地址，都可以通过一定的公式与物理地址对应</li>
+<li>同时如果出现的坏扇区，系统可以通过逻辑扇区，将物理上的坏扇区地址，重新定位到硬盘上备用的好扇区上，这样也就延长了硬盘的使用寿命</li>
+</ul>
+<h2 id="硬盘启动"><a href="#硬盘启动" class="headerlink" title="硬盘启动"></a>硬盘启动</h2><p>计算机的控制权就要转交给硬盘的某个分区了<br>四个主分区里面，只有一个是激活的。计算机会读取激活分区的第一个扇区，叫做”卷引导记录”(Volume boot record，缩写为VBR)</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ul>
+<li>控制权转交给操作系统后，操作系统的内核首先被载入内存。</li>
+<li>以Linux系统为例，先载入<code>/boot</code>目录下面的<code>kernel</code>。内核加载成功后，第一个运行的程序是<code>/sbin/init</code>。它根据配置文件（Debian系统是&#x2F;etc&#x2F;initab）产生init进程。这是Linux启动后的第一个进程，pid进程编号为1，其他进程都是它的后代</li>
+<li>然后，<code>init</code>线程加载系统的各个模块，比如窗口程序和网络程序，直至执行<code>/bin/login</code>程序，跳出登录界面，等待用户输入用户名和密码。</li>
+</ul>
+<h1 id="硬件设备文件名"><a href="#硬件设备文件名" class="headerlink" title="硬件设备文件名"></a>硬件设备文件名</h1><ul>
+<li>只要插入硬盘，Linux会自动检测和分配名称</li>
+<li>一个硬盘可以分成多个分区，每个分区都会有一个系统分配的名称</li>
+<li>第一块SCSI硬盘名称叫sda,它的第一个分区叫sda1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>硬件</th>
+<th>设备文件名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IDE硬盘</td>
+<td>&#x2F;dev&#x2F;hd[a-d]</td>
+</tr>
+<tr>
+<td>SCSI&#x2F;SATA&#x2F;USB硬盘</td>
+<td>&#x2F;dev&#x2F;sd[a-p]</td>
+</tr>
+<tr>
+<td>光驱</td>
+<td>&#x2F;dev&#x2F;cdrom或&#x2F;dev&#x2F;hdc</td>
+</tr>
+<tr>
+<td>软盘</td>
+<td>&#x2F;dev&#x2F;fd[0-1]</td>
+</tr>
+<tr>
+<td>打印机(25针)</td>
+<td>&#x2F;dev&#x2F;lp[0-2]</td>
+</tr>
+<tr>
+<td>打印机(USB)</td>
+<td>&#x2F;dev&#x2F;usb&#x2F;lp[0-15]</td>
+</tr>
+<tr>
+<td>鼠标</td>
+<td>&#x2F;dev&#x2F;mouse</td>
+</tr>
+</tbody></table>
+<h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><ul>
+<li>磁盘分区是使用分区编辑器在磁盘上划分几个逻辑部分</li>
+<li>磁盘一旦划分成多个分区，不同类的目录与文件可以存储进不同的分区内</li>
+<li>分区表的长度只有64个字节，里面又分成四项，每项16个字节。所以，一个硬盘最多只能分四个一级分区，又叫做主分区</li>
+</ul>
+<h2 id="扩展分区"><a href="#扩展分区" class="headerlink" title="扩展分区"></a>扩展分区</h2><ul>
+<li>随着硬盘越来越大,四个主分区已经不够了,需要更多的分区. 但是,分区表只有四项，因此规定有且仅有一个区可以被定义成扩展分区(Extended partition)</li>
+<li>所谓扩展分区，就是指这个区里面又分成多个区。这种分区里面的分区，就叫做逻辑分区(logical partition)</li>
+<li>为了突破4个分区的限制，就取出一个分区作为扩展分区<ul>
+<li>扩展分区最多只能有1个</li>
+<li>主分区加扩展分区最多有4个</li>
+<li>不能写入数据，只能包含逻辑分区，逻辑分区最多是23个</li>
+</ul>
+</li>
+</ul>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
+<li>格式化是指根据用户选定的文件系统(如FAT16(2G),FAT32(4G)、NTFS、EXT2、EXT3、EXT4)对分区进行划分</li>
+<li>目的是为了更好的写入和读取数据</li>
+<li>主要是把整个分区切分成等大小的数据块，每个数据块是4KB，10K需要使用2个半的数据块。是存放文件的最小空间。</li>
+<li>微软操作系统（DOS、WINDOWS等）中磁盘文件存储管理的最小单位叫做簇</li>
+<li>簇(cluster)的本意就是一组，即一组扇区(一个磁道可以分割成若干个大小相等的圆弧，叫扇区)的意思。因为扇区的单位太小，因此把它捆在一起，组成一个更大的单位簇更方便进行灵活管理</li>
+<li>在分区中划出一片用于存放文件分配表，目录表等用户文件管理的磁盘空间。<ul>
+<li>ID</li>
+<li>修改时间</li>
+<li>权限</li>
+<li>数据块位置</li>
+</ul>
+</li>
+<li>格式化会清空数据</li>
+</ul>
+<h1 id="挂载点"><a href="#挂载点" class="headerlink" title="挂载点"></a>挂载点</h1><ul>
+<li>为了让Linux系统中可以访问这些分区，需要把这些分区挂载到对应的目录上</li>
+<li>在Linux中是把目录称为挂载点</li>
+<li>把目录和分区链接在一起的过程成为挂载</li>
+<li>&#x2F;为根目录，必须挂载到一个分区上，默认所有子目录都会写入这个分区</li>
+<li>同一级目录下面的所有子目录可以有自己的独立存储空间</li>
+<li>必须有的分区<ul>
+<li>&#x2F; 根分区</li>
+<li>swap分区(交换分区，虚拟内存，一般为内存的2倍，不要超过2G)</li>
+</ul>
+</li>
+<li>推荐分区<ul>
+<li>&#x2F;boot (启动分区,200M) 单独分区，避免分区写满造成系统无法启动</li>
+</ul>
+</li>
+</ul>
+<p>挂载示例:</p>
+<ul>
+<li><code>/dev/sd2</code>挂载到了 <code>/</code>目录上,也就是说向<code>/</code>目录下在写文件就是往<code>/dev/sd2</code>分区里写文件</li>
+<li><code>/dev/sd1</code>挂载到了 <code>/boot</code>目录上,也就是说向<code>/boot</code>目录下在写文件就是往<code>/dev/sd1</code>分区里写文件</li>
+<li><code>/dev/sd3</code>挂载到了 <code>/home</code>目录上,也就是说向<code>/home</code>目录下在写文件就是往<code>/dev/sd3</code>分区里写文件<img src="./mount.jpg" title="挂载示例"/></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Articles</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">启动部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BIOS"><span class="toc-number">1.1.</span> <span class="toc-text">BIOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%87%AA%E6%A3%80"><span class="toc-number">1.2.</span> <span class="toc-text">硬件自检</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">启动顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95"><span class="toc-number">1.4.</span> <span class="toc-text">主引导记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.</span> <span class="toc-text">主引导记录的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-number">1.6.</span> <span class="toc-text">分区表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.</span> <span class="toc-text">扇区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.1.</span> <span class="toc-text">物理扇区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%89%87%E5%8C%BA"><span class="toc-number">1.7.2.</span> <span class="toc-text">逻辑扇区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E5%90%AF%E5%8A%A8"><span class="toc-number">1.8.</span> <span class="toc-text">硬盘启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.9.</span> <span class="toc-text">操作系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">硬件设备文件名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%8C%BA"><span class="toc-number">3.</span> <span class="toc-text">分区</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%88%86%E5%8C%BA"><span class="toc-number">3.1.</span> <span class="toc-text">扩展分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">格式化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">挂载点</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.shifeng1993.com/2019/07/07/linux_base1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&text=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&is_video=false&description=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【linux系统基础学习随笔】1.linux基础&body=Check out this article: https://www.shifeng1993.com/2019/07/07/linux_base1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&title=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.shifeng1993.com/2019/07/07/linux_base1/&name=【linux系统基础学习随笔】1.linux基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.shifeng1993.com/2019/07/07/linux_base1/&t=【linux系统基础学习随笔】1.linux基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jelly Orange
+    <a target="_blank" href="http://www.beian.miit.gov.cn"></a>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/shifeng1993">github</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
